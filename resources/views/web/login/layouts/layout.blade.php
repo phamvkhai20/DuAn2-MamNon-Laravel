@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Metronic | Dashboard</title>
+    <title>@yield('title')</title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
@@ -42,7 +42,7 @@
     class="m-page--fluid m-page--loading-enabled m-page--loading m-header--fixed m-header--fixed-mobile m-footer--push m-aside--offcanvas-default">
 
     <!-- header -->
-    @include('login/layouts/header')
+    @include('web/login/layouts/header')
     <!--end  header -->
     @yield('content')
     <script src="{{asset('assets/vendors/base/vendors.bundle.js')}}" type="text/javascript"></script>

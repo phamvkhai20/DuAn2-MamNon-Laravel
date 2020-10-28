@@ -1,5 +1,5 @@
 
-@extends('./login/layouts/layout')
+@extends('./web/login/layouts/layout')
 @section('title','Nhà trường đăng nhập')
 @section('content')
     <div class="login" style="margin-top:70px">

@@ -16,12 +16,11 @@
         <div class="m-header__top">
             <div class="m-container m-container--fluid m-container--full-height m-page__container">
                 <div class="m-stack m-stack--ver m-stack--desktop">
-
                     <!-- begin::Brand -->
                     <div class="m-stack__item m-brand m-stack__item--left">
                         <div class="m-stack m-stack--ver m-stack--general m-stack--inline">
                             <div class="m-stack__item m-stack__item--middle m-brand__logo">
-                                <a href="index.html" class="m-brand__logo-wrapper">
+                                <a href="{{route('web.home')}}" class="m-brand__logo-wrapper">
                                     <img alt="" style="height:60px"
                                         src="https://mamnonarmstrong.com/wp-content/uploads/2020/08/ARMS-Logo.png"
                                         class="m-brand__logo-desktop" />
@@ -44,15 +43,15 @@
                                             <ul class="m-menu__nav  m-menu__nav--submenu-arrow "
                                                 style="text-align:left">
                                                 <li class="m-menu__item   m-menu__item--submenu m-menu__item--tabs">
-                                                    <a style="background:#fff" class="m-menu__link m-menu__toggle"><span
+                                                    <a style="background:#fff" href="{{route('login.school')}}" class="m-menu__link "><span
                                                             class="m-menu__link-text">Nhà trường</span>
                                                         <i class="m-menu__hor-arrow la la-angle-down"></i><i
                                                             class="m-menu__ver-arrow la la-angle-right"></i>
                                                     </a>
                                                 </li>
                                                 <li class="m-menu__item  m-menu__item--submenu m-menu__item--tabs">
-                                                    <a style="background:#fff"
-                                                        class="m-menu__link m-menu__toggle "><span
+                                                    <a style="background:#fff"  href="{{route('login.teacher')}}" 
+                                                        class="m-menu__link"><span
                                                             class="m-menu__link-text">Giáo viên</span>
                                                         <i class="m-menu__hor-arrow la la-angle-down"></i><i
                                                             class="m-menu__ver-arrow la la-angle-right"></i>
@@ -60,8 +59,10 @@
 
                                                 </li>
                                                 <li class="m-menu__item  m-menu__item--submenu m-menu__item--tabs">
-                                                    <a style="background:#fff" class="m-menu__link m-menu__toggle"><span
-                                                            class="m-menu__link-text">Phụ huynh</span>
+                                                    <a style="background:#fff" class="m-menu__link "  href="{{route('login.parents')}}" ><span
+                                                            class="m-menu__link-text">
+                                                            Phụ huynh
+                                                            </span>
                                                         <i class="m-menu__hor-arrow la la-angle-down"></i><i
                                                             class="m-menu__ver-arrow la la-angle-right"></i>
                                                     </a>
