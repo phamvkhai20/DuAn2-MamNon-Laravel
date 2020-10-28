@@ -115,10 +115,6 @@
                                         class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block">
                                         <span></span>
                                     </a>
-                                    <a id="m_aside_header_topbar_mobile_toggle"
-                                        class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
-                                        <i class="flaticon-more"></i>
-                                    </a>
                                 </div>
                             </div>
                         </div>
