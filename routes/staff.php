@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\AuthController;
+use App\Http\Controllers\Web\NhaTruong\HomeController;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Aler;
 /*
@@ -14,7 +14,7 @@ use RealRashid\SweetAlert\Facades\Aler;
 |
 */
 Route::group([
-    'prefix'=>'auth',
+    'prefix'=>'nha-truong',
 ], function () {
-	Route::get('school/login', 'AuthController@login_school')->name('school.login');
+    Route::get('/', [HomeController::class,'index'])->name('nha-truong.index');
 });
