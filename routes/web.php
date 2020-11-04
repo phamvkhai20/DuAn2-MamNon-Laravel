@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,3 +22,17 @@ Route::group([
 	// Route::get('school/login', 'AuthController@login_school')->name('school.login');
 });
 Route::get('/', [AuthController::class,'home'])->name('web.home');
+
+
+
+Route::group([
+    'prefix'=>'nha-truong',
+], function () {
+    Route::group([
+        'prefix'=>'hoc-sinh',
+    ], function () {
+        Route::get('danh_sach', 'Web\HocSinh\KidsController@list')->name('hocSinh.danh_sach');
+        Route::get('them', 'Web\HocSinh\KidsController@add')->name('hocSinh.them');
+        Route::get('sua', 'Web\HocSinh\KidsController@edit')->name('hocSinh.sua');
+    });
+});
