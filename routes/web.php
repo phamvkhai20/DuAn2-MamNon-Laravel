@@ -11,3 +11,8 @@ Route::group([
     Route::get('giao-vien', 'AuthController@form_login_teacher')->name('login.teacher');
 });
 Route::get('/', 'AuthController@home')->name('web.home');
+
+
+
+
+
