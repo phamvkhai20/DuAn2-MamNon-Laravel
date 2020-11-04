@@ -94,7 +94,6 @@
     <!-- END: Subheader -->
     <div class="m-content">
         <div class="">
-
             <!--begin::Portlet-->
             <div class="m-portlet ">
                 <div class="m-portlet__head">
@@ -110,8 +109,8 @@
                     </div>
                 </div>
                 <!--begin::Form-->
-                <form class="m-form row">
-                    <div class="col-6">
+                <form class="m-form row" >
+                    <div class="col-lg-6">
                         <div class="m-portlet__body">
                             <div class="m-form__section m-form__section--first">
                                 <div class="form-group m-form__group">
@@ -135,7 +134,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6">
                         <div class="m-portlet__body">
                             <div class="m-form__section m-form__section--first">
                                 <div class="form-group m-form__group">
