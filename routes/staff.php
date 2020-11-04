@@ -48,11 +48,11 @@ Route::group([
     'prefix'=>'giao-vien',
 ], function () {
    Route::get('danh-sach','Web\NhaTruong\TeacherController@index')
-    ->name('gv.index');
+    ->name('giao-vien.index');
     Route::get('sua','Web\NhaTruong\TeacherController@edit')
-    ->name('gv.sua');
+    ->name('giao-vien.sua');
     Route::get('them','Web\NhaTruong\TeacherController@add')
-    ->name('gv.them');
+    ->name('giao-vien.them');
 });
 });
 

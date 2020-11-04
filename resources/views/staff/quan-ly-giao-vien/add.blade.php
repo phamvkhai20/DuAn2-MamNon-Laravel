@@ -1,5 +1,5 @@
 @extends('./staff/layouts/layout')
-@section('title','Dashboard')
+@section('title','Thêm mới giáo viên')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
 
@@ -165,7 +165,7 @@
                         <div class="">
                             <div class="m-form__actions m-form__actions">
                                 <button type="reset" class="btn btn-primary">Thêm</button>
-                                <a href="{{route('gv.index')}}" class="btn btn-secondary">Quay Lại</a>
+                                <a href="{{route('giao-vien.index')}}" class="btn btn-secondary">Quay Lại</a>
                             </div>
                         </div>
                     </div>

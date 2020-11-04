@@ -1,5 +1,5 @@
 @extends('./staff/layouts/layout')
-@section('title','Dashboard')
+@section('title','Danh sách giáo viên')
 @section('content')
     <div class="m-grid__item m-grid__item--fluid m-wrapper container">
 
@@ -88,7 +88,7 @@
 								<div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12"><table class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline" id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 954px;">
 									<thead>
                                         <tr>
-                                            <a href="{{route('gv.them')}}" class="btn btn-sm btn-success">Thêm</a>
+                                            <a href="{{route('giao-vien.them')}}" class="btn btn-sm btn-success">Thêm</a>
                                         </tr>
                                         <tr>
                                             <th rowspan="1" colspan="1">ID</th>
@@ -130,7 +130,7 @@
                                         <td>abc</td>
                                         <td>12-12-1990</td>
                                        <td>
-                                           <a href="{{route('gv.sua')}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
+                                           <a href="{{route('giao-vien.sua')}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
                                             <a href="" class="btn btn-danger btn-sm btn-remove" >Xóa</a>
                                         </td>
                                     </tr>
@@ -145,7 +145,7 @@
                                         <td>abc</td>
                                         <td>12-12-1990</td>
                                        <td>
-                                           <a href="{{route('gv.sua')}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
+                                           <a href="{{route('giao-vien.sua')}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
                                             <a href="" class="btn btn-danger btn-sm btn-remove" >Xóa</a>
                                         </td>
                                     </tr>

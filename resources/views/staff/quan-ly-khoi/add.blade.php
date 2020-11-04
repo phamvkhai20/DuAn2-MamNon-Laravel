@@ -1,5 +1,5 @@
 @extends('./staff/layouts/layout')
-@section('title','Dashboard')
+@section('title','Thêm mới khối học')
 @section('content')
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
 
