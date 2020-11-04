@@ -21,7 +21,7 @@
 		<link href="{{asset('assets_staff/vendors/base/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('assets_staff/demo/default/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{asset('assets_staff/vendors/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet" type="text/css" />
-		<link rel="shortcut icon" href="{{asset('assets_staff/demo/default/media/img/logo/favicon.ico')}}" />
+		<link rel="shortcut icon" href="https://s3.ap-southeast-1.amazonaws.com/kiddihub-production/images/avatar-trng-mm-non-ty-tu-ty-tu11554690864.png" />
 	</head>
 	<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 		<div class="m-grid m-grid--hor m-grid--root m-page">
