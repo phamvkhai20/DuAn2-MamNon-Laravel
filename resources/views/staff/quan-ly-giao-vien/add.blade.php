@@ -89,12 +89,12 @@
 					</div>
 
 					<!-- END: Subheader -->
-					<div class="m-content">
+					<div class="m-content" style="background-color: white;">
 						<div class="row">
 							<div class="col-lg-6">
 
 								<!--begin::Portlet-->
-								<div class="m-portlet">
+								<div class="">
 									<div class="m-portlet__head">
 										<div class="m-portlet__head-caption">
 											<div class="m-portlet__head-title">
@@ -138,7 +138,7 @@
 							</div>
 							<div class="col-lg-6">
 								<!--begin::Portlet-->
-								<div class="m-portlet">
+								<div class="">
 									<!--begin::Form-->
 									<form class="m-form m-form--fit">
 										<div class="m-portlet__body">
