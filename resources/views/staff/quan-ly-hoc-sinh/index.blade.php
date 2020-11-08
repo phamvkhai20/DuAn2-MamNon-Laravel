@@ -1,5 +1,5 @@
 @extends('./staff/layouts/layout')
-@section('title','Danh sách lớp học')
+@section('title','Danh sách học sinh')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper container">
 
@@ -7,8 +7,10 @@
     <div class="m-subheader ">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
-                <h3 class="m-subheader__title ">Danh Sách Lớp</h3>
+                <h3 class="m-subheader__title ">Danh sách học sinh</h3>
+
             </div>
+
         </div>
     </div>
     <div class="m-portlet m-portlet--mobile mt-3">
@@ -19,57 +21,47 @@
                         <table class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline" id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 954px;">
                             <thead>
                                 <tr>
-                                    <a href="{{route('lop.them-moi')}}" class="btn btn-sm btn-success">Thêm</a>
+                                    <a href="{{route('hoc-sinh.add')}}" class="btn btn-sm btn-success">Thêm</a>
                                 </tr>
                                 <tr>
                                     <th rowspan="1" colspan="1">ID</th>
-                                    <th rowspan="1" colspan="1">Tên Lớp</th>
-                                    <th rowspan="1" colspan="1">ID Khối</th>
-                                    <th rowspan="1" colspan="1">ID Năm Học</th>
-                                    <th rowspan="1" colspan="1">
-                                    </th>
+                                    <th rowspan="1" colspan="1">Họ và Tên</th>
+                                    <th rowspan="1" colspan="1">Giới tính</th>
+                                    <th rowspan="1" colspan="1">Ngày sinh</th>
+                                    <th rowspan="1" colspan="1">Địa chỉ</th>
+                                    <th rowspan="1" colspan="1">Ảnh đại diện</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th rowspan="1" colspan="1">ID</th>
-                                    <th rowspan="1" colspan="1">Tên Lớp</th>
-                                    <th rowspan="1" colspan="1">ID Khối</th>
-                                    <th rowspan="1" colspan="1">ID Năm Học</th>
-
+                                    <th rowspan="1" colspan="1">Họ và Tên</th>
+                                    <th rowspan="1" colspan="1">Giới tính</th>
+                                    <th rowspan="1" colspan="1">Ngày sinh</th>
+                                    <th rowspan="1" colspan="1">Địa chỉ</th>
+                                    <th rowspan="1" colspan="1">Ảnh đại diện</th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 <tr role="row" class="odd">
                                     <td class="sorting_1" tabindex="0">1</td>
-                                    <td>1 tuổi</td>
-                                    <td>khối A</td>
-                                    <td>2020</td>
+                                    <td>Nguyễn văn a</td>
+                                    <td>Nam</td>
+                                    <td>17/01/2020</td>
+                                    <td>Hà nội</td>
+                                    <td><img src="{{ asset('assets_staff/app/media/img/products/product1.jpg') }}" alt="" style="width: 100px"></td>
                                     <td>
-                                        <a href="{{route('lop.sua')}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
-                                        <a href="" class="btn btn-danger btn-sm btn-remove">Xóa</a>
-                                    </td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1" tabindex="0">2</td>
-                                    <td>2 tuổi</td>
-                                    <td>khối B</td>
-                                    <td>2020</td>
-                                    <td>
-                                        <a href="{{route('lop.sua')}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
-                                        <a href="" class="btn btn-danger btn-sm btn-remove">Xóa</a>
+                                        <a href="{{route('hoc-sinh.edit')}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div id="m_table_1_processing" class="dataTables_processing card" style="display: none;">
-                            Processing...</div>
+                        <div id="m_table_1_processing" class="dataTables_processing card" style="display: none;">Processing...</div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-5">
-                        <div class="dataTables_info" id="m_table_1_info" role="status" aria-live="polite">Hiển thị 1 đến
-                            10 trong số 30 mục nhập</div>
+                        <div class="dataTables_info" id="m_table_1_info" role="status" aria-live="polite">Hiển thị 1 đến 10 trong số 30 mục nhập</div>
                     </div>
                     <div class="col-sm-12 col-md-7 dataTables_pager">
                         <div class="dataTables_length" id="m_table_1_length">
@@ -120,7 +112,4 @@
                     </div>
                 </div>
             </div>
-
-
-
             @endsection

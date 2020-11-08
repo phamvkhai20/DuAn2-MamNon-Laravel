@@ -12,20 +12,18 @@
 
         </div>
     </div>
-    
+
     <div class="m-portlet m-portlet--mobile mt-3">
         <div class="m-portlet__body">
 
             <!--begin: Datatable -->
             <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <table
-                            class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
-                            id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 954px;">
+                    <div class="table-responsive">
+                        <table class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline" id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 954px;">
                             <thead>
                                 <tr>
-                                    <a href="{{route('khoi.them')}}" class="btn btn-sm btn-success">Thêm</a>
+                                    <a href="{{route('khoi.them-moi')}}" class="btn btn-sm btn-success">Thêm</a>
                                 </tr>
                                 <tr>
                                     <th rowspan="1" colspan="1">ID</th>
@@ -72,8 +70,7 @@
                 <div class="col-sm-12 col-md-7 dataTables_pager">
                     <div class="dataTables_length" id="m_table_1_length">
                         <label>Display
-                            <select name="m_table_1_length" aria-controls="m_table_1"
-                                class="custom-select custom-select-sm form-control form-control-sm">
+                            <select name="m_table_1_length" aria-controls="m_table_1" class="custom-select custom-select-sm form-control form-control-sm">
                                 <option value="5">5</option>
                                 <option value="10">10</option>
                                 <option value="25">25</option>
@@ -89,32 +86,25 @@
                                 </a>
                             </li>
                             <li class="paginate_button page-item active">
-                                <a href="#" aria-controls="m_table_1" data-dt-idx="1" tabindex="0"
-                                    class="page-link">1</a>
+                                <a href="#" aria-controls="m_table_1" data-dt-idx="1" tabindex="0" class="page-link">1</a>
                             </li>
                             <li class="paginate_button page-item ">
-                                <a href="#" aria-controls="m_table_1" data-dt-idx="2" tabindex="0"
-                                    class="page-link">2</a>
+                                <a href="#" aria-controls="m_table_1" data-dt-idx="2" tabindex="0" class="page-link">2</a>
                             </li>
                             <li class="paginate_button page-item ">
-                                <a href="#" aria-controls="m_table_1" data-dt-idx="3" tabindex="0"
-                                    class="page-link">3</a>
+                                <a href="#" aria-controls="m_table_1" data-dt-idx="3" tabindex="0" class="page-link">3</a>
                             </li>
                             <li class="paginate_button page-item ">
-                                <a href="#" aria-controls="m_table_1" data-dt-idx="4" tabindex="0"
-                                    class="page-link">4</a>
+                                <a href="#" aria-controls="m_table_1" data-dt-idx="4" tabindex="0" class="page-link">4</a>
                             </li>
                             <li class="paginate_button page-item ">
-                                <a href="#" aria-controls="m_table_1" data-dt-idx="5" tabindex="0"
-                                    class="page-link">5</a>
+                                <a href="#" aria-controls="m_table_1" data-dt-idx="5" tabindex="0" class="page-link">5</a>
                             </li>
                             <li class="paginate_button page-item disabled" id="m_table_1_ellipsis">
-                                <a href="#" aria-controls="m_table_1" data-dt-idx="6" tabindex="0"
-                                    class="page-link">…</a>
+                                <a href="#" aria-controls="m_table_1" data-dt-idx="6" tabindex="0" class="page-link">…</a>
                             </li>
                             <li class="paginate_button page-item ">
-                                <a href="#" aria-controls="m_table_1" data-dt-idx="7" tabindex="0"
-                                    class="page-link">35</a>
+                                <a href="#" aria-controls="m_table_1" data-dt-idx="7" tabindex="0" class="page-link">35</a>
                             </li>
                             <li class="paginate_button page-item next" id="m_table_1_next">
                                 <a href="#" aria-controls="m_table_1" data-dt-idx="8" tabindex="0" class="page-link">

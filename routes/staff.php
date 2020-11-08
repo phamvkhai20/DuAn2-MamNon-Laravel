@@ -1,4 +1,3 @@
-
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\NhaTruong\HomeController;
@@ -27,8 +26,8 @@ Route::group([
     ->name('lop.index');
     Route::get('sua','Web\NhaTruong\ClassController@edit')
     ->name('lop.sua');
-    Route::get('them','Web\NhaTruong\ClassController@add')
-    ->name('lop.them');
+    Route::get('them-moi','Web\NhaTruong\ClassController@add')
+    ->name('lop.them-moi');
 });
 
     //khối
@@ -39,8 +38,8 @@ Route::group([
     ->name('khoi.index');
     Route::get('sua','Web\NhaTruong\GradeController@edit')
     ->name('khoi.sua');
-    Route::get('them','Web\NhaTruong\GradeController@add')
-    ->name('khoi.them');
+    Route::get('them-moi','Web\NhaTruong\GradeController@add')
+    ->name('khoi.them-moi');
 });
 
     //giáo viên
@@ -51,9 +50,15 @@ Route::group([
     ->name('giao-vien.index');
     Route::get('sua','Web\NhaTruong\TeacherController@edit')
     ->name('giao-vien.sua');
-    Route::get('them','Web\NhaTruong\TeacherController@add')
-    ->name('giao-vien.them');
-});
+    Route::get('them-moi','Web\NhaTruong\TeacherController@add')
+    ->name('giao-vien.them-moi');
 });
 
-
+    Route::group([
+        'prefix'=>'hoc-sinh',
+    ], function () {
+        Route::get('danh-sach', 'Web\HocSinh\StudentController@list')->name('hoc-sinh.index');
+        Route::get('them-moi', 'Web\HocSinh\StudentController@add')->name('hoc-sinh.add');
+        Route::get('sua', 'Web\HocSinh\StudentController@edit')->name('hoc-sinh.edit');
+    });
+});

@@ -17,13 +17,13 @@
         <div class="m-portlet__body">
             <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="table-responsive">
                         <table
                             class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
                             id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 954px;">
                             <thead>
                                 <tr>
-                                    <a href="{{route('giao-vien.them')}}" class="btn btn-sm btn-success">Thêm</a>
+                                    <a href="{{route('giao-vien.them-moi')}}" class="btn btn-sm btn-success">Thêm</a>
                                 </tr>
                                 <tr>
                                     <th rowspan="1" colspan="1">ID</th>

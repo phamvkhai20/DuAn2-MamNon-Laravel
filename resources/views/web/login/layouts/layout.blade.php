@@ -30,8 +30,7 @@
     <link href="{{asset('assets/demo/demo10/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet"
         type="text/css" />
-    <link rel="shortcut icon png"
-        href="https://s3.ap-southeast-1.amazonaws.com/kiddihub-production/images/avatar-trng-mm-non-ty-tu-ty-tu11554690864.png" />
+    <link rel="shortcut icon png" src="{{asset('assets/demo/img/logo/icon-logo.png')}}" />
 </head>
 
 <!-- end::Head -->
