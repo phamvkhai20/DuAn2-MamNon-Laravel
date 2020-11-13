@@ -93,14 +93,14 @@
                                         <tr>
                                             <th rowspan="1" colspan="1">ID</th>
                                             <th rowspan="1" colspan="1">Tên GV</th>
+                                            <th rowspan="1" colspan="1">Ảnh</th>
+                                            <th rowspan="1" colspan="1">Ngày Sinh</th>
                                             <th rowspan="1" colspan="1">SĐT</th>
                                             <th rowspan="1" colspan="1">Email</th>
-                                            <th rowspan="1" colspan="1">Mật Khẩu</th>
                                             <th rowspan="1" colspan="1">Giới Tính</th>
                                             <th rowspan="1" colspan="1">Vai Trò</th>
                                             <th rowspan="1" colspan="1">Trạng Thái</th>
-                                            <th rowspan="1" colspan="1">Ngày Sinh</th>
-                                             <th rowspan="1" colspan="1">
+                                            <th rowspan="1" colspan="1">
                                             </th>
                                         </tr>
                                      </thead>
@@ -108,47 +108,49 @@
 										<tr>
                                             <th rowspan="1" colspan="1">ID</th>
                                             <th rowspan="1" colspan="1">Tên GV</th>
+                                            <th rowspan="1" colspan="1">Ảnh</th>
+                                            <th rowspan="1" colspan="1">Ngày Sinh</th>
                                             <th rowspan="1" colspan="1">SĐT</th>
                                             <th rowspan="1" colspan="1">Email</th>
-                                            <th rowspan="1" colspan="1">Mật Khẩu</th>
                                             <th rowspan="1" colspan="1">Giới Tính</th>
                                             <th rowspan="1" colspan="1">Vai Trò</th>
                                             <th rowspan="1" colspan="1">Trạng Thái</th>
-                                            <th rowspan="1" colspan="1">Ngày Sinh</th>
+                                           
 
                                         </tr>
 									</tfoot>
 								<tbody>
+                                @foreach ($teachers as $teacher)
                                     <tr role="row" class="odd">
-                                        <td class="sorting_1" tabindex="0">1</td>
-                                        <td>hoa</td>
-                                        <td>01234456</td>
-                                        <td>a@mail.com</td>
-                                        <td>1234</td>
-                                        <td>nu</td>
-                                        <td>agsfdhj</td>
-                                        <td>abc</td>
-                                        <td>12-12-1990</td>
+                                        <td class="sorting_1" tabindex="0">{{$teacher->id}}</td>
+                                        <td>{{$teacher->fullname}}</td>
+                                        <td>
+                                            <img src="{{asset('/storage/images/'.$teacher->avatar)}}" alt="avatar" width="100px"> 
+                                        </td>
+                                        <td>{{$teacher->date_of_birth}}</td>
+                                        <td>{{$teacher->phone}}</td>
+                                        <td>{{$teacher->email}}</td>
+                                        <td>
+                                            @if($teacher->gender == 0)
+                                                Nữ
+                                            @else($teacher->gender == 1)
+                                                Name
+                                            @endif
+                                        </td>
+                                        <td>{{ $teacher->getTeacherType->teacher_type}}</td>
+                                        <td>
+                                            @if($teacher->status == 0)
+                                                Khóa
+                                            @else
+                                               Hoạt động
+                                            @endif
+                                        </td>
+                                        
                                        <td>
-                                           <a href="{{route('giao-vien.sua')}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
-                                            <a href="" class="btn btn-danger btn-sm btn-remove" >Xóa</a>
+                                           <a href="{{ route('giao-vien.sua', $teacher->id) }}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
                                         </td>
                                     </tr>
-                                    <tr role="row" class="odd">
-                                        <td class="sorting_1" tabindex="0">2</td>
-                                        <td>hoa</td>
-                                        <td>01234456</td>
-                                        <td>a@mail.com</td>
-                                        <td>1234</td>
-                                        <td>nu</td>
-                                        <td>agsfdhj</td>
-                                        <td>abc</td>
-                                        <td>12-12-1990</td>
-                                       <td>
-                                           <a href="{{route('giao-vien.sua')}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
-                                            <a href="" class="btn btn-danger btn-sm btn-remove" >Xóa</a>
-                                        </td>
-                                    </tr>
+                                @endforeach
                         </tbody>
                     </table>
                     <div id="m_table_1_processing" class="dataTables_processing card" style="display: none;">Processing...</div>

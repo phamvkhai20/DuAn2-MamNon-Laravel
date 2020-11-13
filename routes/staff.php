@@ -49,10 +49,17 @@ Route::group([
 ], function () {
    Route::get('danh-sach','Web\NhaTruong\TeacherController@index')
     ->name('giao-vien.index');
-    Route::get('sua','Web\NhaTruong\TeacherController@edit')
+
+    Route::get('sua/{id}','Web\NhaTruong\TeacherController@edit')
     ->name('giao-vien.sua');
-    Route::get('them','Web\NhaTruong\TeacherController@add')
+    
+    Route::post('sua/{id}','Web\NhaTruong\TeacherController@update')
+    ->name('giao-vien.update');
+
+    Route::get('them','Web\NhaTruong\TeacherController@create')
     ->name('giao-vien.them');
+    Route::post('them','Web\NhaTruong\TeacherController@store')
+    ->name('giao-vien.store');
 });
 });
 
