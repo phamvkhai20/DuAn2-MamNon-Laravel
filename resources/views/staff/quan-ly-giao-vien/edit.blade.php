@@ -30,27 +30,34 @@
                     </div>
                 </div>
                 <!--begin::Form-->
-                <form class="m-form row">
+                <form class="m-form row" enctype="multipart/form-data" action="{{ route('giao-vien.update', $teacher->id) }}" method="post">
+                    @csrf
                     <div class="col-lg-6">
                         <div class="m-portlet__body">
+                        <input hidden name="id" value="{{$teacher->id}}" type="text" class="form-control m-input" placeholder="Nhập đầy đủ tên">
                             <div class="m-form__section m-form__section--first">
+                            
                                 <div class="form-group m-form__group">
                                     <label for="example_input_full_name">Tên:</label>
-                                    <input type="text" class="form-control m-input" placeholder="Nhập đầy đủ tên">
+                                    <input name="fullname" type="text" class="form-control m-input" placeholder="Nhập đầy đủ tên" value="{{$teacher->fullname}}">
+                                    {!! ShowErrors($errors,'fullname') !!}
                                     <!-- <span class="m-form__help">Please enter your full name</span> -->
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Email :</label>
-                                    <input type="email" class="form-control m-input" placeholder="Nhập email đầy đủ">
+                                    <input name="email"  type="text" class="form-control m-input" placeholder="Nhập email đầy đủ" value="{{$teacher->email}}">
+                                    {!! ShowErrors($errors,'email') !!}
                                     <!-- <span class="m-form__help">We'll never share your email with anyone else</span> -->
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Số Điện Thoại</label>
-                                    <input type="text" class="form-control m-input" placeholder="Nhập sđt đầy đủ">
+                                    <input name="phone" type="text" class="form-control m-input" placeholder="Nhập sđt đầy đủ" value="{{$teacher->phone}}">
+                                    {!! ShowErrors($errors,'phone') !!}
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Mật Khẩu</label>
-                                    <input type="text" class="form-control m-input" placeholder="Nhập mật khẩu đầy đủ">
+                                    <input name="password" type="password" class="form-control m-input" placeholder="Nhập mật khẩu đầy đủ" value="{{$teacher->password}}">
+                                    {!! ShowErrors($errors,'password') !!}
                                 </div>
                             </div>
                         </div>
@@ -59,33 +66,47 @@
                         <div class="m-portlet__body">
                             <div class="m-form__section m-form__section--first">
                                 <div class="form-group m-form__group">
+                                    <label>Ngày Sinh</label>
+                                    <input name="date_of_birth" type="date" class="form-control m-input" placeholder="" value="{{$teacher->date_of_birth}}">
+                                    {!! ShowErrors($errors,'date_of_birth') !!}
+                                </div>
+                                <div class="form-group m-form__group">
                                     <label for="example_input_full_name">Giới Tính:</label>
-                                    <select name="id_cate" class="form-control">
-                                        <option value="34">Nam</option>
-                                        <option value="35">Nữ</option>
+                                    <select name="gender" class="form-control">
+                                        <option @if ($teacher->gender == 0) selected @endif value="0">Nữ</option>
+                                        <option @if ($teacher->gender == 1) selected @endif value="1">Nam</option>
                                     </select>
+                                    {!! ShowErrors($errors,'gender') !!}
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Vai Trò :</label>
-                                    <input type="email" class="form-control m-input" placeholder="">
-                                    <!-- <span class="m-form__help">We'll never share your email with anyone else</span> -->
+                                    <select name="teacher_type_id" class="form-control">
+                                    @foreach ($teacher_types as $teacher_type)
+                                    <option @if($teacher_type->id == $teacher->teacher_type_id ) selected @endif value="{{ $teacher_type->id }}">{{ $teacher_type->teacher_type }}</option>
+                                    @endforeach
+                                    </select>
+                                    {!! ShowErrors($errors,'teacher_type_id') !!}
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Trạng Thái</label>
-                                    <select name="id_cate" class="form-control">
-                                        <option value="34">ab</option>
-                                        <option value="35">bc</option>
+                                    <select  name="status" class="form-control">
+                                        <option @if ($teacher->status == 0) selected @endif value="0">Khóa</option>
+                                        <option @if ($teacher->status == 1) selected @endif value="1">Hoạt Động</option>
                                     </select>
+                                    {!! ShowErrors($errors,'status') !!}
                                 </div>
                                 <div class="form-group m-form__group">
-                                    <label>Ngày Sinh</label>
-                                    <input type="text" class="form-control m-input" placeholder="">
+                                    <label>Ảnh</label>
+                                    <br>
+                                    <img src="{{asset('/storage/images/'.$teacher->avatar)}}" id="avatar" width="300px">
+                                    <input name="avatar" type="file" class="form-control m-input" onchange="readURL(this);" >
+                                    {!! ShowErrors($errors,'avatar') !!}
                                 </div>
                             </div>
                         </div>
                         <div class="">
                             <div class="m-form__actions m-form__actions">
-                                <button type="reset" class="btn btn-primary">Thêm</button>
+                                <button type="submit" class="btn btn-primary">Cập nhật</button>
                                 <a href="{{route('giao-vien.index')}}" class="btn btn-secondary">Quay Lại</a>
                             </div>
                         </div>
@@ -97,5 +118,19 @@
 
     </div>
 </div>
+<script>
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
+                reader.onload = function (e) {
+                    $('#avatar')
+                        .attr('src', e.target.result)
+                        .width(300);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 @endsection
