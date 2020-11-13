@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +12,7 @@ class Teacher extends Model
 
     public function getTeacherType()
     {
-        return $this->beLongsTo('App\TeacherType', 'teacher_type_id','id');
+        return $this->beLongsTo('App\Models\TeacherType', 'teacher_type_id','id');
     }
 }
 

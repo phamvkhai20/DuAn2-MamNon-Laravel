@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Web\NhaTruong;
-use App\{Teacher,TeacherType};
+use App\Models\{Teacher,TeacherType};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Teacher\{TeacherRequest,EditTeacherRequest};
 use Arr;
 
 class TeacherController extends Controller
@@ -19,9 +20,9 @@ class TeacherController extends Controller
       return view('staff.quan-ly-giao-vien.add',$data);
    }
 
-   public function store(Request $request){
+   public function store(TeacherRequest $request){
       $data = Arr::except($request->all(),['_token']);
-      $data['password']= bcrypt($data['password']);
+      $data['password']= bcrypt('123456');
       if($request->hasFile('avatar')){
          $file=$request->file('avatar');
          $data['avatar'] = $file->getClientOriginalName(); 
@@ -31,7 +32,7 @@ class TeacherController extends Controller
       }
       // dd($data);
       Teacher::create($data);
-      return redirect()->route('giao-vien.index')->with('thongbao','Thêm Tài Khoản Thành Công');
+      return redirect()->route('giao-vien.index');
    }
    
    public function edit($id){
@@ -40,7 +41,7 @@ class TeacherController extends Controller
       return view('staff.quan-ly-giao-vien.edit', $data);
    }
 
-   public function update(Request $request, $id){
+   public function update(EditTeacherRequest $request, $id){
       $teacher = Teacher::find($id);
       $data = Arr::except(request()->all(), ["_token ,'_method'"]);
       $data = Arr::except($request->all(),['_token']);
@@ -53,6 +54,6 @@ class TeacherController extends Controller
          $data['avatar'] = $teacher->avatar;
       }
       $teacher->update($data);
-      return redirect()->route('giao-vien.index')->with('thongbao','Thêm Tài Khoản Thành Công');
+      return redirect()->route('giao-vien.index');
    }
 }

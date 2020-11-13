@@ -5,7 +5,7 @@
 							<div class="m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--middle m-brand__logo">
 									<a href="{{route('nha-truong.index')}}" class="m-brand__logo-wrapper">
-										<img alt="" style="height:60px" src="https://mamnonarmstrong.com/wp-content/uploads/2020/08/ARMS-Logo.png" />
+										<img alt="" style="height:60px" src="{{asset('assets/demo/img/logo/logo-mamNon.png')}}" />
 									</a>
 								</div>
 								<div class="m-stack__item m-stack__item--middle m-brand__tools">

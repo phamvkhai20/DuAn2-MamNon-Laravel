@@ -21,11 +21,11 @@
                         <div class="m-stack m-stack--ver m-stack--general m-stack--inline">
                             <div class="m-stack__item m-stack__item--middle m-brand__logo">
                                 <a href="{{route('web.home')}}" class="m-brand__logo-wrapper">
-                                    <img alt="" style="height:60px"
-                                        src="https://mamnonarmstrong.com/wp-content/uploads/2020/08/ARMS-Logo.png"
-                                        class="m-brand__logo-desktop" />
                                     <img alt="" style="height:50px"
-                                        src="https://mamnonarmstrong.com/wp-content/uploads/2020/08/ARMS-Logo.png"
+                                    src="{{asset('assets/demo/img/logo/logo-mamNon.png')}}"
+                                        class="m-brand__logo-desktop" />
+                                    <img alt="" style="height:45px"
+                                    src="{{asset('assets/demo/img/logo/logo-mamNon.png')}}"
                                         class="m-brand__logo-mobile" />
                                 </a>
                             </div>
