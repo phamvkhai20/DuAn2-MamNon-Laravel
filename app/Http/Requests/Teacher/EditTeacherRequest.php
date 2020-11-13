@@ -56,8 +56,9 @@ class EditTeacherRequest extends FormRequest
             
             
             'phone.required'=> 'Vui lòng nhập số điện thoại!',
-            // 'phone.regex'=>'Số điện thoại không hợp lệ!',
-            // 'phone.digits'=>'Số điện thoại phải đúng định dạng!',
+            'phone.regex'=>'Số điện thoại không hợp lệ!',
+            'phone.digits'=>'Số điện thoại phải đúng định dạng!',
+
             'password.required'=>'Vui lòng nhập mật khẩu!',
             'password.min'=>'Mật khẩu yêu cầu tối thiểu 6 ký tự!',
 

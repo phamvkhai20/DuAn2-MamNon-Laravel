@@ -46,8 +46,8 @@ class TeacherRequest extends FormRequest
             'email.unique'=>'Email đã tồn tại!',
             
             'phone.required'=> 'Vui lòng nhập số điện thoại!',
-            // 'phone.regex'=>'Số điện thoại không hợp lệ!',
-            // 'phone.digits'=>'Số điện thoại phải đúng định dạng!',
+            'phone.regex'=>'Số điện thoại không hợp lệ!',
+            'phone.digits'=>'Số điện thoại phải đúng định dạng!',
 
             'date_of_birth.required'=>'Vui lòng chọn ngày sinh!',
 
