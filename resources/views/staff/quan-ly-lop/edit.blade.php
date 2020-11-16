@@ -8,9 +8,9 @@
 						<div class="d-flex align-items-center">
 							<div class="mr-auto">
 								<h3 class="m-subheader__title ">Sửa Lớp</h3>
-							
+
 							</div>
-							
+
 						</div>
 					</div>
 
@@ -35,31 +35,36 @@
 									</div>
 
 									<!--begin::Form-->
-									<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
-										<div class="m-portlet__body">
+									<form action="{{route('lop.save_edit',['id'=>$class->id])}}" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+										 @csrf
+                                        <div class="m-portlet__body">
 											<div class="form-group m-form__group row">
 												<label class="col-lg-2 col-form-label">Tên Lớp:</label>
 												<div class="col-lg-6">
-													<input type="email" class="form-control m-input" placeholder="Nhập tên đầy đủ">
-													<!-- <span class="m-form__help">Please enter your full name</span> -->
+													<input type="text" name="name" value="{{$class->name}}" class="form-control m-input" placeholder="Nhập tên đầy đủ">
+                                                      @error('name')
+                                                        <small style="color:red" >{{$message}}</small>
+                                                    @enderror
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
 												<label class="col-lg-2 col-form-label">ID Khối :</label>
 												<div class="col-lg-6">
-													<select name="id_cate" class="form-control">
-                                                        <option value="34">a</option>
-                                                        <option value="35">b</option>
+													<select name="grade_id" class="form-control" value="{{$class->grade_id}}">
+                                                    @foreach($grade as $gr)
+                                                        <option value="{{$gr->id}}">{{$gr->grade}}</option>
+                                                    @endforeach
                                                     </select>
 													<!-- <span class="m-form__help">We'll never share your email with anyone else</span> -->
 												</div>
 											</div>
 											<div class="m-form__group m-form__group--last form-group row">
-												<label class="col-lg-2 col-form-label">ID Năm Học</label>
+												<label class="col-lg-2 col-form-label">ID Năm Học:</label>
 												<div class="col-lg-6">
-													<select name="id_cate" class="form-control">
-                                                        <option value="34">a</option>
-                                                        <option value="35">b</option>
+													<select name="school_year_id" class="form-control" value="{{$class->school_year_id}}">
+                                                    @foreach($year as $yr)
+                                                        <option value="{{$yr->id}}">{{$yr->school_year}}</option>
+                                                    @endforeach
                                                     </select>
 												</div>
 											</div>
@@ -69,7 +74,7 @@
 												<div class="row">
 													<div class="col-lg-2"></div>
 													<div class="col-lg-6">
-														<button type="reset" class="btn btn-success">Sửa</button>
+														<button type="submit" class="btn btn-success">Sửa</button>
 														<a href="{{route('lop.index')}}" class="btn btn-secondary">Quay Lại</a>
 													</div>
 												</div>
