@@ -37,29 +37,22 @@
                                     <th rowspan="1" colspan="1">ID Khối</th>
                                     <th rowspan="1" colspan="1">ID Năm Học</th>
 
+
                                 </tr>
                             </tfoot>
                             <tbody>
+                            @foreach($class as $cl )
                                 <tr role="row" class="odd">
-                                    <td class="sorting_1" tabindex="0">1</td>
-                                    <td>1 tuổi</td>
-                                    <td>khối A</td>
-                                    <td>2020</td>
+                                    <td class="sorting_1" tabindex="0">{{$cl->id}}</td>
+                                    <td>{{$cl->name}}</td>
+                                    <td>{{$cl->grades->grade}}</td>
+                                    <td>{{$cl->school_years->school_year}}</td>
                                     <td>
-                                        <a href="{{route('lop.sua')}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
-                                        <a href="" class="btn btn-danger btn-sm btn-remove">Xóa</a>
+                                        <a href="sua/{{$cl->id}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
+                                        <a href="xoa/{{$cl->id}}" class="btn btn-danger btn-sm btn-remove">Xóa</a>
                                     </td>
                                 </tr>
-                                <tr role="row" class="even">
-                                    <td class="sorting_1" tabindex="0">2</td>
-                                    <td>2 tuổi</td>
-                                    <td>khối B</td>
-                                    <td>2020</td>
-                                    <td>
-                                        <a href="{{route('lop.sua')}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
-                                        <a href="" class="btn btn-danger btn-sm btn-remove">Xóa</a>
-                                    </td>
-                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                         <div id="m_table_1_processing" class="dataTables_processing card" style="display: none;">

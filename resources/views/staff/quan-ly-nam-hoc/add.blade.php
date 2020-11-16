@@ -1,5 +1,5 @@
 @extends('./staff/layouts/layout')
-@section('title','Thêm mới khối học')
+@section('title','Thêm mới năm học')
 @section('content')
     <div class="m-grid__item m-grid__item--fluid m-wrapper">
 
@@ -7,7 +7,7 @@
 					<div class="m-subheader ">
 						<div class="d-flex align-items-center">
 							<div class="mr-auto">
-								<h3 class="m-subheader__title ">Thêm Khối</h3>
+								<h3 class="m-subheader__title ">Thêm Năm Học</h3>
 							</div>
 						</div>
 					</div>
@@ -33,16 +33,13 @@
 									</div>
 
 									<!--begin::Form-->
-									<form action="{{route('khoi.save_add')}}" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+									<form action="{{route('nam.save_add')}}" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
 										@csrf
                                         <div class="m-portlet__body">
 											<div class="form-group m-form__group row">
-												<label class="col-lg-2 col-form-label">Tên khối:</label>
+												<label class="col-lg-2 col-form-label">Năm:</label>
 												<div class="col-lg-6">
-													<input type="text" name="grade" class="form-control m-input" placeholder="Nhập tên đầy đủ">
-                                                    @error('grade')
-                                                        <small style="color:red" >{{$message}}</small>
-                                                    @enderror
+													<input type="text" name="school_year" class="form-control m-input" placeholder="Nhập tên đầy đủ">
 													<!-- <span class="m-form__help">Please enter your full name</span> -->
 												</div>
 											</div>
@@ -54,7 +51,7 @@
 													<div class="col-lg-2"></div>
 													<div class="col-lg-6">
 														<button  class="btn btn-success">Thêm</button>
-														<a href="{{route('khoi.index')}}" class="btn btn-secondary">Quay lại</a>
+														<a href="{{route('nam.index')}}" class="btn btn-secondary">Quay lại</a>
 													</div>
 												</div>
 											</div>
