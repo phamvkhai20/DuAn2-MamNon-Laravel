@@ -25,13 +25,13 @@ class GradeRequest extends FormRequest
     public function rules()
     {
         return [
-            'grade'=>'required|min:11|unique:grades,grade'
+            'grade'=>'required|min:5|unique:grades,grade'
         ];
     }
     public function messages(){
         return[
             'grade.required'=>'Vui lòng nhập tên khối',
-            'grade.min'=>'Tên khối yêu cầu ít nhất 11 kí tự',
+            'grade.min'=>'Tên khối yêu cầu ít nhất 5 kí tự',
             'grade.unique' => 'Tên khối bị trùng' ,
         ];
     }

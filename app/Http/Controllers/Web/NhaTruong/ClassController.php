@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web\NhaTruong;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\ClassRequests;
+use App\Http\Requests\ClassRequest;
 use App\ClassModel;
 use App\SchoolYearModel;
 use App\GradeModel;
