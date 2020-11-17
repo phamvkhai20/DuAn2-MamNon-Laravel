@@ -19,7 +19,6 @@ class TeacherController extends Controller
       $data['teacher_types'] = TeacherType::all();
       return view('staff.quan-ly-giao-vien.add',$data);
    }
-
    public function store(TeacherRequest $request){
       $data = Arr::except($request->all(),['_token']);
       request()->flashOnly('fullname');

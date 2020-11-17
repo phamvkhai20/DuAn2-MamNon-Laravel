@@ -30,7 +30,7 @@
     <link href="{{asset('assets/demo/demo10/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet"
         type="text/css" />
-    <link rel="shortcut icon png" src="{{asset('assets/demo/img/logo/icon-logo.png')}}" />
+        <link rel = "icon" href ="{{asset('assets/demo/img/logo/icon-logo.png')}}" />
 </head>
 
 <!-- end::Head -->
