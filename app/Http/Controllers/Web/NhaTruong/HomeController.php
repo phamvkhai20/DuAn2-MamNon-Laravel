@@ -18,8 +18,7 @@ class HomeController extends Controller
         $date=Carbon::now('Asia/Ho_Chi_Minh');
         $month=substr($date,0,7);
         $today=substr($date,0,10);
-        $getAttendance=Attendace::whereBetween("date",[$month.'-1',$today])->orderBy('date',"asc")->distinct()->get();
-        dd($getAttendance);
+        $getAttendance=Attendace::whereBetween("date",[$month.'-1',$today])->orderBy('date',"asc")->distinct()->get(['date']);
         $studentInClass=Kids::where('class_id','7')->with(['attendance' => function ($query) {
             $query->where('class_id', '7')->whereBetween("date",[substr(Carbon::now('Asia/Ho_Chi_Minh'),0,7).'-1',substr(Carbon::now('Asia/Ho_Chi_Minh'),0,10)]);
         }])->get();

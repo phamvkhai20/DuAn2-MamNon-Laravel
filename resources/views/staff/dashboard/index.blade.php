@@ -10,33 +10,34 @@
         </div>
     </div>
     <div class="m-content">
-     
+
 
         <div class="m-section">
             <div class="m-section__content">
                 <table class="table table-bordered m-table m-table--border-success">
                     <thead>
-						
+
                         <tr>
                             <th>Ngày</th>
-							@foreach($getAttendance as $gg)
-							<th>{{substr($gg->date,8,2)}}</th>
-							@endforeach
+                            @foreach($getAttendance as $gg)
+                            <th>{{substr($gg->date,8,2)}}</th>
+                            @endforeach
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-						@foreach($studentInClass as $student)
-							<tr>
-								<td>{{$student->fullname}}</td>
-									@foreach($student->attendance as $attendances)
-										@if($attendances->status==1)
-											<td>Vắng</td>
-										@else
-											<td>Đi</td>
-										@endif
-									@endforeach
-							</tr>
-						@endforeach
+                        @foreach($studentInClass as $student)
+                        <tr>
+                            <td>{{$student->fullname}}</td>
+                            @foreach($student->attendance as $attendances)
+                            @if($attendances->status==1)
+                            <td>Vắng</td>
+                            @else
+                            <td>Đi</td>
+                            @endif
+                            @endforeach
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
