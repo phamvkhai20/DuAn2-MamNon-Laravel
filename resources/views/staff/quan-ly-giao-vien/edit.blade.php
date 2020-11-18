@@ -94,7 +94,7 @@
                                 <div class="form-group m-form__group">
                                     <label>Ảnh đại diện</label>
                                     <br>
-                                    <img src="{{asset('/upload/avatar/'.$teacher->avatar)}}" id="avatar" width="300px">
+                                    <img src="{{asset('upload/avatar/'.$teacher->avatar)}}"  id="avatar" width="300px">
                                     <input name="avatar" type="file" class="form-control m-input" onchange="readURL(this);" >
                                     {!! ShowErrors($errors,'avatar') !!}
                                 </div>

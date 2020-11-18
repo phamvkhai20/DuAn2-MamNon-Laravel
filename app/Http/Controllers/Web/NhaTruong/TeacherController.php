@@ -19,7 +19,6 @@ class TeacherController extends Controller
       $data['teacher_types'] = TeacherType::all();
       return view('staff.quan-ly-giao-vien.add',$data);
    }
-
    public function store(TeacherRequest $request){
       $data = Arr::except($request->all(),['_token']);
       request()->flashOnly('fullname');
@@ -32,18 +31,14 @@ class TeacherController extends Controller
       request()->flashOnly('avatar');
       $data['password']= bcrypt('123456');
       if($request->hasFile('avatar')){
-         // $file=$request->file('avatar');
-         // $data['avatar'] = $file->getClientOriginalName(); 
-         // $request->file('avatar')->storeAs('images', $data['avatar'], 'public');
          $avatar = $request->file('avatar');
-         $getAvatar = time().'_'.$avatar->getClientOriginalName();
+         $getavatar = time().'_'.$avatar->getClientOriginalName();
          $destinationPath = public_path('upload/avatar');
-         $avatar->move($destinationPath, $getAvatar);
-         $data['avatar'] = $getAvatar;
+         $avatar->move($destinationPath, $getavatar);
+         $data['avatar']=$getavatar;
       }else{
          $data['avatar']='';
       }
-      // dd($data);
       Teacher::create($data);
       return redirect()->route('giao-vien.index');
    }
@@ -61,14 +56,15 @@ class TeacherController extends Controller
       $data['password']= bcrypt($data['password']);
       if($request->hasFile('avatar')){
          $avatar = $request->file('avatar');
-         $getAvatar = time().'_'.$avatar->getClientOriginalName();
+         $getavatar = time().'_'.$avatar->getClientOriginalName();
          $destinationPath = public_path('upload/avatar');
-         $avatar->move($destinationPath, $getAvatar);
-         $data['avatar'] = $getAvatar;
+         $avatar->move($destinationPath, $getavatar);
+         $data['avatar']=$getavatar;
       }else{
          $data['avatar'] = $teacher->avatar;
       }
-      $teacher->update($data);
+
+      Teacher::find($id)->update($data);
       return redirect()->route('giao-vien.index');
    }
 }

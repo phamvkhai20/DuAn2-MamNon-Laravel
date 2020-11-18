@@ -33,12 +33,16 @@
 									</div>
 
 									<!--begin::Form-->
-									<form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+									<form action="{{route('khoi.save_edit',['id'=>$grade->id])}}" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                                    @csrf
 										<div class="m-portlet__body">
 											<div class="form-group m-form__group row">
 												<label class="col-lg-2 col-form-label">Tên khối:</label>
 												<div class="col-lg-6">
-													<input type="email" class="form-control m-input" placeholder="Nhập tên đầy đủ">
+													<input type="text" name="grade" value="{{$grade->grade}}" class="form-control m-input" placeholder="Nhập tên đầy đủ">
+                                                    @error('grade')
+                                                        <small style="color:red" >{{$message}}</small>
+                                                    @enderror
 													<!-- <span class="m-form__help">Please enter your full name</span> -->
 												</div>
 											</div>
@@ -48,8 +52,8 @@
 												<div class="row">
 													<div class="col-lg-2"></div>
 													<div class="col-lg-6">
-														<button type="reset" class="btn btn-success">Sửa</button>
-														<a href="{{route('khoi.index')}}" class="btn btn-secondary">Quay lại</a>
+														<button type="submit" class="btn btn-success">Sửa</button>
+														<a href="{{route('khoi.index')}}" class="btn btn-secondary">Quay Lại</a>
 													</div>
 												</div>
 											</div>

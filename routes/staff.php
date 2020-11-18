@@ -24,10 +24,16 @@ Route::group([
 ], function () {
     Route::get('danh-sach','Web\NhaTruong\ClassController@index')
     ->name('lop.index');
-    Route::get('sua','Web\NhaTruong\ClassController@edit')
+    Route::get('sua/{id}','Web\NhaTruong\ClassController@edit')
     ->name('lop.sua');
+     Route::post('luu-sua/{id}','Web\NhaTruong\ClassController@saveEdit')
+    ->name('lop.save_edit');
     Route::get('them-moi','Web\NhaTruong\ClassController@add')
     ->name('lop.them-moi');
+     Route::post('luu','Web\NhaTruong\ClassController@saveAdd')
+    ->name('lop.save_add');
+   Route:: get('xoa/{id}','Web\NhaTruong\ClassController@delete')
+    ->name('lop.xoa');
 });
 
     //khối
@@ -36,10 +42,34 @@ Route::group([
 ], function () {
    Route::get('danh-sach','Web\NhaTruong\GradeController@index')
     ->name('khoi.index');
-    Route::get('sua','Web\NhaTruong\GradeController@edit')
+    Route::get('sua/{id}','Web\NhaTruong\GradeController@edit')
     ->name('khoi.sua');
+   Route::post('luu-sua/{id}','Web\NhaTruong\GradeController@saveEdit')
+    ->name('khoi.save_edit');
     Route::get('them-moi','Web\NhaTruong\GradeController@add')
-    ->name('khoi.them-moi');
+    ->name('khoi.them_moi');
+     Route::post('luu','Web\NhaTruong\GradeController@saveAdd')
+    ->name('khoi.save_add');
+   Route:: get('xoa/{id}','Web\NhaTruong\GradeController@delete')
+    ->name('khoi.xoa');
+});
+
+    //năm
+    Route::group([
+    'prefix'=>'nam',
+], function () {
+   Route::get('danh-sach','Web\NhaTruong\YearController@index')
+    ->name('nam.index');
+    Route::get('sua/{id}','Web\NhaTruong\YearController@edit')
+    ->name('nam.sua');
+   Route::post('luu-sua/{id}','Web\NhaTruong\YearController@saveEdit')
+    ->name('nam.save_edit');
+    Route::get('them-moi','Web\NhaTruong\YearController@add')
+    ->name('nam.them_moi');
+     Route::post('luu','Web\NhaTruong\YearController@saveAdd')
+    ->name('nam.save_add');
+   Route:: get('xoa/{id}','Web\NhaTruong\YearController@delete')
+    ->name('nam.xoa');
 });
 
     //giáo viên
