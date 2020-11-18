@@ -32,15 +32,20 @@ class TeacherController extends Controller
       request()->flashOnly('avatar');
       $data['password']= bcrypt('123456');
       if($request->hasFile('avatar')){
-         $file=$request->file('avatar');
-         $data['avatar'] = $file->getClientOriginalName(); 
-         $request->file('avatar')->storeAs('images', $data['avatar'], 'public');
+         // $file=$request->file('avatar');
+         // $data['avatar'] = $file->getClientOriginalName(); 
+         // $request->file('avatar')->storeAs('images', $data['avatar'], 'public');
+         $avatar = $request->file('avatar');
+         $getAvatar = time().'_'.$avatar->getClientOriginalName();
+         $destinationPath = public_path('upload/avatar');
+         $avatar->move($destinationPath, $getAvatar);
+         $data['avatar'] = $getAvatar;
       }else{
          $data['avatar']='';
       }
       // dd($data);
       Teacher::create($data);
-      return redirect()->route('giao-vien.index')->withInput();;
+      return redirect()->route('giao-vien.index');
    }
    
    public function edit($id){
@@ -55,9 +60,11 @@ class TeacherController extends Controller
       $data = Arr::except($request->all(),['_token']);
       $data['password']= bcrypt($data['password']);
       if($request->hasFile('avatar')){
-         $file=$request->file('avatar');
-         $data['avatar'] = $file->getClientOriginalName(); 
-         $request->file('avatar')->storeAs('images', $data['avatar'], 'public');
+         $avatar = $request->file('avatar');
+         $getAvatar = time().'_'.$avatar->getClientOriginalName();
+         $destinationPath = public_path('upload/avatar');
+         $avatar->move($destinationPath, $getAvatar);
+         $data['avatar'] = $getAvatar;
       }else{
          $data['avatar'] = $teacher->avatar;
       }

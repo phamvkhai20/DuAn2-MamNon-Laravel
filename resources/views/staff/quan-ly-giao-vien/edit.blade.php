@@ -54,11 +54,6 @@
                                     <input name="phone" type="text" class="form-control m-input" placeholder="Nhập sđt đầy đủ" value="{{$teacher->phone}}">
                                     {!! ShowErrors($errors,'phone') !!}
                                 </div>
-                                <div class="form-group m-form__group">
-                                    <label>Mật Khẩu</label>
-                                    <input name="password" type="password" class="form-control m-input" placeholder="Nhập mật khẩu đầy đủ" value="{{$teacher->password}}">
-                                    {!! ShowErrors($errors,'password') !!}
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -90,15 +85,16 @@
                                 <div class="form-group m-form__group">
                                     <label>Trạng Thái</label>
                                     <select  name="status" class="form-control">
+                                        <option value="">Chọn trạng thái</option>
                                         <option @if ($teacher->status == 0) selected @endif value="0">Khóa</option>
                                         <option @if ($teacher->status == 1) selected @endif value="1">Hoạt Động</option>
                                     </select>
                                     {!! ShowErrors($errors,'status') !!}
                                 </div>
                                 <div class="form-group m-form__group">
-                                    <label>Ảnh</label>
+                                    <label>Ảnh đại diện</label>
                                     <br>
-                                    <img src="{{asset('/storage/images/'.$teacher->avatar)}}" id="avatar" width="300px">
+                                    <img src="{{asset('/upload/avatar/'.$teacher->avatar)}}" id="avatar" width="300px">
                                     <input name="avatar" type="file" class="form-control m-input" onchange="readURL(this);" >
                                     {!! ShowErrors($errors,'avatar') !!}
                                 </div>

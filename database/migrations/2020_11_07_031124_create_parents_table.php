@@ -15,12 +15,12 @@ class CreateParentsTable extends Migration
     {
         Schema::create('parents', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fullname');
-            $table->text('avatar');
+            $table->string('parent_name');
+            $table->text('parent_avatar');
             $table->string('phone');
             $table->text('password');
             $table->string('email')->unique();
-            $table->integer('status');
+            $table->integer('parent_status');
             $table->timestamps();
         });
     }

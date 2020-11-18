@@ -88,6 +88,7 @@
                                 <div class="form-group m-form__group">
                                     <label>Trạng Thái</label>
                                     <select  name="status" class="form-control">
+                                    <option value="">Chọn trạng thái</option>
                                         <option  @if (old('status') == "1") {{ 'selected' }} @endif value="1">Hoạt động</option>
                                         <option  @if (old('gender') == "0") {{ 'selected' }} @endif value="0">Khóa</option>
                                     </select>

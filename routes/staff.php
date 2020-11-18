@@ -70,22 +70,25 @@ Route::group([
     ->name('phu-huynh.index');
 
     Route::get('sua/{id}','Web\NhaTruong\ParentController@edit')
-    ->name('phu-huynh.sua');
+    ->name('phu-huynh.edit');
     
     Route::post('sua/{id}','Web\NhaTruong\ParentController@update')
     ->name('phu-huynh.update');
 
     Route::get('them','Web\NhaTruong\ParentController@create')
-    ->name('phu-huynh.them');
+    ->name('phu-huynh.create');
     Route::post('them','Web\NhaTruong\ParentController@store')
     ->name('phu-huynh.store');
 });
 
     Route::group([
-        'prefix'=>'hoc-sinh',
+        'prefix'=>'tre',
     ], function () {
-        Route::get('danh-sach', 'Web\HocSinh\StudentController@list')->name('hoc-sinh.index');
-        Route::get('them-moi', 'Web\HocSinh\StudentController@add')->name('hoc-sinh.add');
-        Route::get('sua', 'Web\HocSinh\StudentController@edit')->name('hoc-sinh.edit');
+        Route::get('danh-sach', 'Web\NhaTruong\KidController@index')->name('tre.index');
+        Route::get('them', 'Web\NhaTruong\KidController@create')->name('tre.create');
+        Route::get('them/search', 'Web\NhaTruong\KidController@search')->name('tre.search');
+        Route::post('them', 'Web\NhaTruong\KidController@store')->name('tre.store');
+        Route::get('sua/{id}', 'Web\NhaTruong\KidController@edit')->name('tre.edit');
+        Route::post('sua/{id}','Web\NhaTruong\KidController@update')->name('tre.update');
     });
 });

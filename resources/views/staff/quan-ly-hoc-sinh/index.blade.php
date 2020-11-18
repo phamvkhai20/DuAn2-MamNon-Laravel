@@ -21,7 +21,7 @@
                         <table class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline" id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 954px;">
                             <thead>
                                 <tr>
-                                    <a href="{{route('hoc-sinh.add')}}" class="btn btn-sm btn-success">Thêm</a>
+                                    <a href="{{route('tre.create')}}" class="btn btn-sm btn-success">Thêm</a>
                                 </tr>
                                 <tr>
                                     <th rowspan="1" colspan="1">ID</th>
@@ -30,6 +30,8 @@
                                     <th rowspan="1" colspan="1">Ngày sinh</th>
                                     <th rowspan="1" colspan="1">Địa chỉ</th>
                                     <th rowspan="1" colspan="1">Ảnh đại diện</th>
+                                    <th rowspan="1" colspan="1">Trạng thái</th>
+                                    <th rowspan="1" colspan="1"></th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -40,20 +42,37 @@
                                     <th rowspan="1" colspan="1">Ngày sinh</th>
                                     <th rowspan="1" colspan="1">Địa chỉ</th>
                                     <th rowspan="1" colspan="1">Ảnh đại diện</th>
+                                    <th rowspan="1" colspan="1">Trạng thái</th>
+                                    <th rowspan="1" colspan="1"></th>
                                 </tr>
                             </tfoot>
                             <tbody>
+                            @foreach($kids as $kid)
                                 <tr role="row" class="odd">
-                                    <td class="sorting_1" tabindex="0">1</td>
-                                    <td>Nguyễn văn a</td>
-                                    <td>Nam</td>
-                                    <td>17/01/2020</td>
-                                    <td>Hà nội</td>
-                                    <td><img src="{{ asset('assets_staff/app/media/img/products/product1.jpg') }}" alt="" style="width: 100px"></td>
+                                    <td class="sorting_1" tabindex="0">{{$kid->id}}</td>
+                                    <td>{{$kid->kid_name}}</td>
                                     <td>
-                                        <a href="{{route('hoc-sinh.edit')}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
+                                        @if($kid->gender == 1)
+                                            Nam
+                                        @elseif($kid->gender == 0)
+                                            Nữ
+                                        @endif
+                                    </td>
+                                    <td>{{$kid->date_of_birth}}</td>
+                                    <td>{{$kid->address}}</td>
+                                    <td>
+                                        <img src="{{asset('/upload/avatar/'.$kid->kid_avatar)}}" alt="avatar" width="100px">
+                                    </td>
+                                    @if($kid->kid_status == 0)
+                                            <td class="text-danger"> Khóa </td>
+                                            @else
+                                            <td class="text-success"> Hoạt động </td>
+                                            @endif
+                                    <td>
+                                        <a href="{{route('tre.edit', $kid->id)}}" class="btn btn-warning btn-sm ">Chi tiết</a>&nbsp;
                                     </td>
                                 </tr>
+                            @endforeach
                             </tbody>
                         </table>
                         <div id="m_table_1_processing" class="dataTables_processing card" style="display: none;">Processing...</div>
@@ -76,37 +95,7 @@
                         </div>
                         <div class="dataTables_paginate paging_simple_numbers" id="m_table_1_paginate">
                             <ul class="pagination">
-                                <li class="paginate_button page-item previous disabled" id="m_table_1_previous">
-                                    <a href="#" aria-controls="m_table_1" data-dt-idx="0" tabindex="0" class="page-link">
-                                        <i class="la la-angle-left"></i>
-                                    </a>
-                                </li>
-                                <li class="paginate_button page-item active">
-                                    <a href="#" aria-controls="m_table_1" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="m_table_1" data-dt-idx="2" tabindex="0" class="page-link">2</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="m_table_1" data-dt-idx="3" tabindex="0" class="page-link">3</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="m_table_1" data-dt-idx="4" tabindex="0" class="page-link">4</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="m_table_1" data-dt-idx="5" tabindex="0" class="page-link">5</a>
-                                </li>
-                                <li class="paginate_button page-item disabled" id="m_table_1_ellipsis">
-                                    <a href="#" aria-controls="m_table_1" data-dt-idx="6" tabindex="0" class="page-link">…</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="m_table_1" data-dt-idx="7" tabindex="0" class="page-link">35</a>
-                                </li>
-                                <li class="paginate_button page-item next" id="m_table_1_next">
-                                    <a href="#" aria-controls="m_table_1" data-dt-idx="8" tabindex="0" class="page-link">
-                                        <i class="la la-angle-right"></i>
-                                    </a>
-                                </li>
+                            {{ $kids->links() }}
                             </ul>
                         </div>
                     </div>

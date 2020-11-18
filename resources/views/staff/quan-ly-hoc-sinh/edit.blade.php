@@ -18,92 +18,94 @@
                 <!--begin::Portlet-->
                 <div class="">
                     <!--begin::Form-->
-                    <form class="m-form row">
+                    <form class="m-form row" enctype="multipart/form-data" action="{{ route('tre.update', $kid->id) }}" method="post">
+                    @csrf
                         <div class="m-portlet__body col-lg-6">
                             <div class="m-form__section m-form__section--first">
                                 <div class="form-group m-form__group">
                                     <label for="example_input_full_name">Họ Tên học sinh: </label>
-                                    <input type="text" class="form-control m-input" placeholder="Nhập đầy đủ tên">
+                                    <input name="kid_name" type="text" class="form-control m-input" placeholder="Nhập đầy đủ tên" value="{{$kid->kid_name}}">
+                                    {!! ShowErrors($errors,'kid_name') !!}
                                 </div>
                                 <div class="form-group m-form__group">
-                                    <label>Nick name </label>
-                                    <input type="email" class="form-control m-input" placeholder="Nhập nick name">
+                                    <label>Nickname</label>
+                                    <input name="nickname" type="text" class="form-control m-input" placeholder="Nhập nick name" value="{{$kid->nickname}}">
+                                    {!! ShowErrors($errors,'nickname') !!}
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Giới Tính</label>
-                                    <div class="">
-                                        <select id="cars" class="form-control">
-                                            <option value="nam">Nam</option>
-                                            <option value="nu">Nữ</option>
+                                        <select name="gender" id="cars" class="form-control">
+                                            <option value="">Chọn giới tính</option>
+                                            <option  @if ($kid->gender == 1) selected @endif value="1">Nam</option>
+                                            <option  @if ($kid->gender == 0) selected @endif value="0">Nữ</option>
                                         </select>
-                                    </div>
+                                        {!! ShowErrors($errors,'gender') !!}
                                 </div>
+
                                 <div class="form-group m-form__group">
                                     <label>Ngày sinh </label>
-                                    <input type="date" class="form-control m-input">
+                                    <input name="date_of_birth" type="date" class="form-control m-input" value="{{$kid->date_of_birth}}">
+                                    {!! ShowErrors($errors,'date_of_birth') !!}
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Địa chỉ </label>
-                                    <input type="text" class="form-control m-input" placeholder="Nhập địa chỉ đầy đủ">
+                                    <input name="address" type="text" class="form-control m-input" placeholder="Nhập địa chỉ đầy đủ" value="{{$kid->address}}">
+                                    {!! ShowErrors($errors,'address') !!}
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Ngày vào lớp </label>
-                                    <input type="date" class="form-control m-input">
-                                </div>
-                                <div class="form-group m-form__group">
-                                    <label>Tên phụ huynh </label>
-                                    <input type="text" class="form-control m-input" placeholder="Nhập tên phụ huynh đầy đủ">
+                                    <input name="admission_date" type="date" class="form-control m-input" value="{{$kid->admission_date}}">
+                                    {!! ShowErrors($errors,'admission_date') !!}
                                 </div>
                             </div>
                         </div>
                         <div class="m-portlet__body col-lg-6">
                             <div class="m-form__section m-form__section--first">
-
-                                <div class="form-group m-form__group">
-                                        <label>Chi tiết </label>
-                                        <textarea id="w3review" class="form-control m-input" name="w3review" rows="10" cols="50">
-                                        </textarea>
-                                </div>
-                                <div class="form-group m-form__group">
-                                    <label>ID lớp </label>
-                                    <div class="">
-                                        <select id="cars" class="form-control">
-                                            <option value="nam">1</option>
-                                            <option value="nu">3</option>
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="form-group m-form__group">
                                     <label>Ảnh đại diện </label>
-                                    <input type="file" class="form-control m-input" placeholder="">
+                                    <br>
+                                    <img src="{{asset('/upload/avatar/'.$kid->kid_avatar)}}" id="avatar" width="300px">
+                                    <input name="kid_avatar" type="file" class="form-control m-input" placeholder="" onchange="readURL(this);">
+                                    {!! ShowErrors($errors,'kid_avatar') !!}
                                 </div>
+                                <div class="form-group m-form__group">
+                                        <label>Chi tiết </label>
+                                        <textarea id="w3review" class="form-control m-input" name="description" rows="10" cols="50">
+                                        {{$kid->description}}
+                                        </textarea>
+                                        {!! ShowErrors($errors,'description') !!}
+                                </div>
+                                <div class="form-group m-form__group">
+                                    <label>Lớp</label>
+                                    <div class="">
+                                        <select name="class_id" id="cars" class="form-control">
+                                        <option value="">Chọn lớp</option>
+                                        @foreach($classes as $class)
+                                            <option {{($class->id==$kid->class_id)? 'selected':''}} value="{{$class->id}}">{{$class->name}}</option>  
+                                        @endforeach
+                                        </select>
+                                    </div>
+                                    {!! ShowErrors($errors,'class_id') !!}
+                                </div>
+                               
                                 <div class="form-group m-form__group">
                                     <label>Trạng thái</label>
                                     <div class="">
-                                        <select id="cars" class="form-control">
-                                            <option value="nam">1</option>
-                                            <option value="nu">3</option>
+                                        <select name="kid_status" id="cars" class="form-control">
+                                            <option value="">Chọn trạng thái</option>
+                                            <option  @if ($kid->kid_status == 1) selected @endif value="1">Hoạt động</option>
+                                            <option  @if ($kid->kid_status == 0) selected @endif value="0">Khóa</option>
                                         </select>
                                     </div>
+                                    {!! ShowErrors($errors,'kid_status') !!}
                                 </div>
-                                <div class="form-group m-form__group">
-                                    <label>ID phụ huynh </label>
-                                    <div class="">
-                                        <select id="cars" class="form-control">
-                                            <option value="nam">1</option>
-                                            <option value="nu">3</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group m-form__group">
-                                    <label>ID năm học </label>
-                                    <div class="">
-                                        <select id="cars" class="form-control">
-                                            <option value="nam">1</option>
-                                            <option value="nu">3</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="">
+                            <div class="m-form__actions m-form__actions">
+                                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                <a href="{{route('giao-vien.index')}}" class="btn btn-secondary">Quay Lại</a>
                             </div>
                         </div>
                     </form>
@@ -113,7 +115,23 @@
         </div>
 
     </div>
+    
 </div>
+<script>
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#avatar')
+                        .attr('src', e.target.result)
+                        .width(300);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 
 
 @endsection

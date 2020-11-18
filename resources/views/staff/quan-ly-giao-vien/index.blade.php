@@ -46,6 +46,8 @@
                                             <th rowspan="1" colspan="1">Email</th>
                                             <th rowspan="1" colspan="1">Vai Trò</th>
                                             <th rowspan="1" colspan="1">Trạng Thái</th>
+                                            <th rowspan="1" colspan="1">
+                                    </th>
                                         </tr>
 									</tfoot>
 								<tbody>
@@ -54,7 +56,7 @@
                                         <td class="sorting_1" tabindex="0">{{$teacher->id}}</td>
                                         <td>{{$teacher->fullname}}</td>
                                         <td>
-                                            <img src="{{asset('/storage/images/'.$teacher->avatar)}}" alt="avatar" width="100px"> 
+                                            <img src="{{asset('/upload/avatar/'.$teacher->avatar)}}" alt="avatar" width="100px"> 
                                         </td>
                                         <td>{{$teacher->phone}}</td>
                                         <td>{{$teacher->email}}</td>
