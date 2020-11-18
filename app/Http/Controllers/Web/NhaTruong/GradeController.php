@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web\NhaTruong;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\GradeRequest;
-use App\GradeModel;
+use App\Models\GradeModel;
 
 class GradeController extends Controller
 {
