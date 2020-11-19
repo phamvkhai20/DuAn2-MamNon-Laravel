@@ -15,9 +15,9 @@ class CreateKidsTable extends Migration
     {
         Schema::create('kids', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('fullname');
+            $table->string('kid_name');
             $table->string('nickname');
-            $table->text('avatar');
+            $table->text('kid_avatar');
             $table->integer('gender');
             $table->date('date_of_birth');
             $table->text('address');
@@ -26,7 +26,8 @@ class CreateKidsTable extends Migration
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->integer('parent_id')->unsigned();
             $table->foreign('parent_id')->references('id')->on('parents')->onDelete('cascade');
-            $table->integer('status');
+            $table->longText('description');
+            $table->integer('kid_status');
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web\NhaTruong;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\SchoolYearModel;
+use App\Models\SchoolYearModel;
 
 class YearController extends Controller
 {

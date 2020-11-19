@@ -46,6 +46,8 @@
                                             <th rowspan="1" colspan="1">Email</th>
                                             <th rowspan="1" colspan="1">Vai Trò</th>
                                             <th rowspan="1" colspan="1">Trạng Thái</th>
+                                            <th rowspan="1" colspan="1">
+                                    </th>
                                         </tr>
 									</tfoot>
 								<tbody>

@@ -40,7 +40,7 @@ class TeacherController extends Controller
          $data['avatar']='';
       }
       Teacher::create($data);
-      return redirect()->route('giao-vien.index')->withInput();;
+      return redirect()->route('giao-vien.index');
    }
    
    public function edit($id){
