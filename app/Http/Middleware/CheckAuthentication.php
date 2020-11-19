@@ -15,10 +15,10 @@ class CheckAuthentication
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check()==false){
-            return redirect()->route('form.school');
-        }else{
+        // if(Auth::check()==false){
+        //     return redirect()->route('form.school');
+        // }else{
             return $next($request);
-        }
+        // }
     }
 }

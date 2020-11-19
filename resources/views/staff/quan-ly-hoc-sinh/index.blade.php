@@ -2,21 +2,6 @@
 @section('title','Danh sách học sinh')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper container">
-
-    <!-- BEGIN: Subheader -->
-    <div class="m-subheader ">
-        <div class="d-flex align-items-center">
-            <div class="mr-auto">
-                <h3 class="m-subheader__title ">Danh sách học sinh</h3>
-
-            </div>
-
-        </div>
-    </div>
-
-
-
-
     <div class="m-content">
         <div class="row">
             <div class="col-lg-12">
@@ -32,29 +17,29 @@
                             <div class="m-portlet__head-caption">
                                 <div class="m-portlet__head-title">
                                     <span class="m-portlet__head-icon">
-                                        <i class="flaticon-map-location"></i>
+                                        <!-- <i class="flaticon-map-location"></i> -->
                                     </span>
                                     <h3 class="m-portlet__head-text">
-                                        Sticky Head Portlet
+                                    Danh sách học sinh
                                     </h3>
                                 </div>
                             </div>
                             <div class="m-portlet__head-tools">
-                                <a href="#"
+                                <a href="{{route('nha-truong.index')}}"
                                     class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                     <span>
                                         <i class="la la-arrow-left"></i>
-                                        <span>Back</span>
+                                        <span>Quay lại</span>
                                     </span>
                                 </a>
-                                <a href="#"
-                                    class="btn btn-metal m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                                <a href="{{route('tre.create')}}"
+                                    class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                                     <span>
                                         <i class="la la-puzzle-piece"></i>
-                                        <span>Add Attributes</span>
+                                        <span>Thêm trẻ</span>
                                     </span>
                                 </a>
-                                <div class="btn-group">
+                                <!-- <div class="btn-group">
                                     <button type="button"
                                         class="btn btn-brand  m-btn m-btn--icon m-btn--wide m-btn--md">
                                         <span>
@@ -74,7 +59,7 @@
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#"><i class="la la-close"></i> Cancel</a>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -90,10 +75,7 @@
                                             id="m_table_1" role="grid" aria-describedby="m_table_1_info"
                                             style="width: 954px;">
                                             <thead>
-                                                <tr>
-                                                    <a href="{{route('tre.create')}}"
-                                                        class="btn btn-sm btn-success">Thêm</a>
-                                                </tr>
+                                              
                                                 <tr>
                                                     <th rowspan="1" colspan="1">ID</th>
                                                     <th rowspan="1" colspan="1">Họ và Tên</th>
