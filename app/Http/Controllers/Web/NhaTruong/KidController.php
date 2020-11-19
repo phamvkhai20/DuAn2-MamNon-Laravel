@@ -80,8 +80,7 @@ class KidController extends Controller
     }
 
     public function store(KidRequest $request){
-        // public function store(Request $request){
-       
+        
         
         if( $request->has('check') ){
             $kid = new Kid();
