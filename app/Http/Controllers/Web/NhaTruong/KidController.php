@@ -80,24 +80,7 @@ class KidController extends Controller
     }
 
     public function store(KidRequest $request){
-        request()->flashOnly('check');
-        request()->flashOnly('search');
-        request()->flashOnly('kid_name');
-        request()->flashOnly('nickname');
-        request()->flashOnly('gender');
-        request()->flashOnly('date_of_birth');
-        request()->flashOnly('address');
-        request()->flashOnly('admission_date');
-        request()->flashOnly('class_id');
-        request()->flashOnly('kid_status');
-        request()->flashOnly('description');
-        request()->flashOnly('kid_avatar');
-
-        request()->flashOnly('parent_name');
-        request()->flashOnly('phone');
-        request()->flashOnly('email');
-        request()->flashOnly('status');
-        request()->flashOnly('parent_avatar');
+        
         
         if( $request->has('check') ){
             $kid = new Kid();
@@ -164,7 +147,24 @@ class KidController extends Controller
             }
             $kid->save();
         }
-        
+        request()->flashOnly('check');
+        request()->flashOnly('search');
+        request()->flashOnly('kid_name');
+        request()->flashOnly('nickname');
+        request()->flashOnly('gender');
+        request()->flashOnly('date_of_birth');
+        request()->flashOnly('address');
+        request()->flashOnly('admission_date');
+        request()->flashOnly('class_id');
+        request()->flashOnly('kid_status');
+        request()->flashOnly('description');
+        request()->flashOnly('kid_avatar');
+
+        request()->flashOnly('parent_name');
+        request()->flashOnly('phone');
+        request()->flashOnly('email');
+        request()->flashOnly('status');
+        request()->flashOnly('parent_avatar');
         return redirect()->route('tre.index');
     }
     public function edit($id){

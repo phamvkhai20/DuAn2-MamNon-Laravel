@@ -15,9 +15,10 @@ use RealRashid\SweetAlert\Facades\Aler;
 */
 Route::group([
     'prefix'=>'nha-truong',
+    'middleware' => ['check_auth'],
 ], function () {
-    Route::get('/', 'Web\NhaTruong\HomeController@index')->name('nha-truong.index');
 
+    Route::get('/', 'Web\NhaTruong\HomeController@index')->name('nha-truong.index');
     //lớp
  Route::group([
     'prefix'=>'lop',

@@ -38,13 +38,22 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'schools',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
+            'provider' => 'schools',
             'hash' => false,
+        ],
+
+        'school' => [
+            'driver' => 'session',
+            'provider' => 'schools',
+        ],
+        'school-api' => [
+            'driver' => 'token',
+            'provider' => 'schools',
         ],
     ],
 
@@ -71,6 +80,10 @@ return [
             'model' => App\User::class,
         ],
 
+        'schools' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\School::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -93,8 +106,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'schools' => [
+            'provider' => 'schools',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
