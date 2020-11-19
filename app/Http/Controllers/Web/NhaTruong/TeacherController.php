@@ -21,14 +21,7 @@ class TeacherController extends Controller
    }
    public function store(TeacherRequest $request){
       $data = Arr::except($request->all(),['_token']);
-      request()->flashOnly('fullname');
-      request()->flashOnly('email');
-      request()->flashOnly('phone');
-      request()->flashOnly('date_of_birth');
-      request()->flashOnly('gender');
-      request()->flashOnly('teacher_type_id');
-      request()->flashOnly('status');
-      request()->flashOnly('avatar');
+      
       $data['password']= bcrypt('123456');
       if($request->hasFile('avatar')){
          $avatar = $request->file('avatar');
@@ -40,6 +33,14 @@ class TeacherController extends Controller
          $data['avatar']='';
       }
       Teacher::create($data);
+      request()->flashOnly('fullname');
+      request()->flashOnly('email');
+      request()->flashOnly('phone');
+      request()->flashOnly('date_of_birth');
+      request()->flashOnly('gender');
+      request()->flashOnly('teacher_type_id');
+      request()->flashOnly('status');
+      request()->flashOnly('avatar');
       return redirect()->route('giao-vien.index');
    }
    
