@@ -172,7 +172,6 @@ class KidController extends Controller
         $kid = Kid::find($id);
         $data = Arr::except(request()->all(), ["_token ,'_method'"]);
         $data = Arr::except($request->all(),['_token']);
-      
         if($request->hasFile('kid_avatar')){
             $avatar = $request->file('kid_avatar');
             $getAvatar = time().'_'.$avatar->getClientOriginalName();
