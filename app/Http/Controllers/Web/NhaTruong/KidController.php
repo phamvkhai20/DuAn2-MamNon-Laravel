@@ -80,24 +80,8 @@ class KidController extends Controller
     }
 
     public function store(KidRequest $request){
-        request()->flashOnly('check');
-        request()->flashOnly('search');
-        request()->flashOnly('kid_name');
-        request()->flashOnly('nickname');
-        request()->flashOnly('gender');
-        request()->flashOnly('date_of_birth');
-        request()->flashOnly('address');
-        request()->flashOnly('admission_date');
-        request()->flashOnly('class_id');
-        request()->flashOnly('kid_status');
-        request()->flashOnly('description');
-        request()->flashOnly('kid_avatar');
-
-        request()->flashOnly('parent_name');
-        request()->flashOnly('phone');
-        request()->flashOnly('email');
-        request()->flashOnly('status');
-        request()->flashOnly('parent_avatar');
+        // public function store(Request $request){
+       
         
         if( $request->has('check') ){
             $kid = new Kid();
@@ -131,7 +115,7 @@ class KidController extends Controller
             $parent->email = $request->email;
             $parent->password = bcrypt('123456');
             $parent->parent_status = $request->parent_status;
-            $parent->parent_avatar=$request->file('parent_avatar');
+            // $parent->parent_avatar=$request->file('parent_avatar');
             if($request->hasFile('parent_avatar')){
                 $avatar = $request->file('parent_avatar');
                 $getAvatar = time().'_'.$avatar->getClientOriginalName();
@@ -141,7 +125,9 @@ class KidController extends Controller
             }else{
                 $parent->parent_avatar = '';
             }
+
             $parent->save();
+
             $kid = new Kid();
             $kid->parent_id = $parent->id;
             $kid->kid_name = $request->kid_name;
@@ -153,18 +139,28 @@ class KidController extends Controller
             $kid->class_id = $request->class_id;
             $kid->kid_status = $request->kid_status;
             $kid->description = $request->description;
-            if($request->hasFile('kid_avatar')){
-                $avatar = $request->file('kid_avatar');
-                $getAvatar = time().'_'.$avatar->getClientOriginalName();
-                $destinationPath = public_path('upload/avatar');
-                $avatar->move($destinationPath, $getAvatar);
-                $kid->kid_avatar = $getAvatar;
-            }else{
-                $kid->kid_avatar = '';
-            }
+            $avatar = $request->file('kid_avatar');
+            $getAvatar = time().'_'.$avatar->getClientOriginalName();
+            $destinationPath = public_path('upload/avatar');
+            $avatar->move($destinationPath, $getAvatar);
+            $kid->kid_avatar = $getAvatar;
             $kid->save();
         }
-        
+        request()->flashOnly('check');
+        request()->flashOnly('search');
+        request()->flashOnly('kid_name');
+        request()->flashOnly('nickname');
+        request()->flashOnly('gender');
+        request()->flashOnly('date_of_birth');
+        request()->flashOnly('address');
+        request()->flashOnly('admission_date');
+        request()->flashOnly('class_id');
+        request()->flashOnly('kid_status');
+        request()->flashOnly('description');
+        request()->flashOnly('parent_name');
+        request()->flashOnly('phone');
+        request()->flashOnly('email');
+        request()->flashOnly('status');
         return redirect()->route('tre.index');
     }
     public function edit($id){
