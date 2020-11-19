@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Parents extends Model
 {
+    protected $table ='parents';
     protected $fillable = [
-        'parent_name', 'parent_avatar', 'phone', 'email', 'password', 'parent_status'
+        'fullname', 'parent_avatar', 'phone', 'email', 'password', 'parent_status'
     ];
 
     public function Kids()
