@@ -12,12 +12,12 @@ class ParentController extends Controller
    public function index()
    {
       $data['parents'] = Parents::paginate(10);
-       return view('staff.quan-ly-phu-huynh.index',$data);
+       return view('staff.nha-truong.quan-ly-phu-huynh.index',$data);
    }
    public function create()
    {
       
-      return view('staff.quan-ly-phu-huynh.add');
+      return view('staff.nha-truong.quan-ly-phu-huynh.add');
    }
 
    public function store(ParentRequest $request){
@@ -44,13 +44,14 @@ class ParentController extends Controller
    
    public function edit($id){
      $data['parent'] = Parents::find($id);
-      return view('staff.quan-ly-phu-huynh.edit',$data);
+      return view('staff.nha-truong.quan-ly-phu-huynh.edit',$data);
    }
 
    public function update(EditParentRequest $request, $id){
       $parent = Parents::find($id);
       $data = Arr::except(request()->all(), ["_token ,'_method'"]);
       $data = Arr::except($request->all(),['_token']);
+
       if($request->hasFile('parent_avatar')){
          $avatar = $request->file('parent_avatar');
          $getAvatar = time().'_'.$avatar->getClientOriginalName();
@@ -60,7 +61,7 @@ class ParentController extends Controller
       }else{
          $data['parent_avatar'] = $parent->parent_avatar;
       }
-      $parent->update($data);
+        $parent->update($data);
       return redirect()->route('phu-huynh.index');
    }
 }

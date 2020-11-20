@@ -29,12 +29,12 @@ class EditParentRequest extends FormRequest
         $segments = request()->segments();
         $parent = Parents::find((int) end($segments));
         if(request('email') == $parent->email){
-            $email ='required|email';
+            $email ='required|email|unique:parents';
         }else{
             $email ='required|email|unique:parents';
         }
         if(request('phone') == $parent->phone){
-            $phone =['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10'];
+            $phone =['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10','unique:parents'];
         }else{
             $phone =['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10','unique:parents'];
         }

@@ -12,12 +12,12 @@ class TeacherController extends Controller
    public function index()
    {
       $data['teachers'] = Teacher::paginate(10);
-       return view('staff.quan-ly-giao-vien.index', $data);
+       return view('staff.nha-truong.quan-ly-giao-vien.index', $data);
    }
    public function create()
    {
       $data['teacher_types'] = TeacherType::all();
-      return view('staff.quan-ly-giao-vien.add',$data);
+      return view('staff.nha-truong.quan-ly-giao-vien.add',$data);
    }
    public function store(TeacherRequest $request){
       $data = Arr::except($request->all(),['_token']);
@@ -47,7 +47,7 @@ class TeacherController extends Controller
    public function edit($id){
       $data["teacher"] = Teacher::find($id);
       $data['teacher_types'] = TeacherType::all();
-      return view('staff.quan-ly-giao-vien.edit', $data);
+      return view('staff.nha-truong.quan-ly-giao-vien.edit', $data);
    }
 
    public function update(EditTeacherRequest $request, $id){

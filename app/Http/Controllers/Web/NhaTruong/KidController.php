@@ -12,11 +12,11 @@ class KidController extends Controller
 {
     public function index(){
         $data['kids'] = Kid::paginate(10);
-        return view('staff.quan-ly-hoc-sinh.index', $data);
+        return view('staff.nha-truong.quan-ly-hoc-sinh.index', $data);
     }
     public function create(){
         $data['classes'] = Classes::all();
-        return view('staff.quan-ly-hoc-sinh.add', $data);
+        return view('staff.nha-truong.quan-ly-hoc-sinh.add', $data);
     }
     public function search(Request $request){
         if($request->ajax())
@@ -165,7 +165,7 @@ class KidController extends Controller
     public function edit($id){
         $data['kid'] = Kid::find($id);
         $data['classes'] = Classes::all();
-        return view('staff.quan-ly-hoc-sinh.edit',$data);
+        return view('staff.nha-truong.quan-ly-hoc-sinh.edit',$data);
     }
     public function update(EditKidRequest $request, $id){
         $kid = Kid::find($id);
@@ -176,7 +176,8 @@ class KidController extends Controller
             $getAvatar = time().'_'.$avatar->getClientOriginalName();
             $destinationPath = public_path('upload/avatar');
             $avatar->move($destinationPath, $getAvatar);
-            $kid->kid_avatar = $getAvatar;
+            $data['kid_avatar']  = $getAvatar;
+         
         }else{
            $data['kid_avatar'] = $kid->kid_avatar;
         }
