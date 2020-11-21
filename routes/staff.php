@@ -130,12 +130,15 @@ Route::group([
     'prefix' => 'giao-vien',
 ], function () {
     Route::get('/', 'Web\GiaoVien\HomeController@index')->name('giao-vien.index');
-    Route::get('/diem-danh', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh')->name('giao-vien.giao_dien_diem_danh');
+    Route::get('/diem-danh/{id}', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh')->name('giao-vien.giao_dien_diem_danh');
+    Route::post('/diem-danh/tao', 'Web\GiaoVien\AttendanceController@diem_danh_den')->name('giao-vien.diem_danh_den');
+    Route::post('/diem-danh/update', 'Web\GiaoVien\AttendanceController@diem_danh_ve')->name('giao-vien.diem_danh_ve');
     //lớp
 });
 Route::group([
     'prefix' => 'phu-huynh',
 ], function () {
+    
     Route::get('/', 'Web\PhuHuynh\HomeController@index')->name('giao-vien.index');
     //lớp
 });
