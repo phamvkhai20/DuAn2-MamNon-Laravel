@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
 Route::group([
-    'prefix'=>'dang-nhap',
+    'prefix' => 'dang-nhap',
 ], function () {
     Route::get('phu-huynh', 'AuthController@form_login_parent')->name('login.parents');
 
@@ -14,9 +14,6 @@ Route::group([
 
     Route::get('giao-vien', 'AuthController@form_login_teacher')->name('login.teacher');
 });
+
 Route::get('/', 'AuthController@home')->name('web.home');
-
-
-
-
-
+Route::get('/nop-ho-so', 'AuthController@nop_ho_so_nhap_hoc')->name('web.nop-ho-so');

@@ -1,3 +1,54 @@
-.m-widget24__item{
-    min-height: 180px;
+.button_attendance {
+    border: 0;
+    border-radius: 5px;
+    text-align: center;
+    height: 80px;
+    width: 80px;
+}
+
+@media screen and (min-width: 350px) {
+    .image_kid_attendance {
+        min-height: 150px;
+        min-width: 100px;
+    }
+}
+@media screen and (min-width: 400px) {
+    .image_kid_attendance {
+        min-height: 220px;
+        min-width: 170px;
+    }
+}
+.image_kid_attendance {
+    border:1px solid #000;
+    max-width: 170px;
+    border-radius: 5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.box_group_name{
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    background: #fff;
+    position: absolute;
+    top: 0px;
+    margin: auto;
+    text-align: center;
+}
+.box_group_button {
+  
+    width: 100%;
+    background: #fff;
+    position: absolute;
+    bottom: -20px;
+    margin: auto;
+    text-align: center;
+  
+}
+
+.m-switch{
+    margin-top:5px;
+    margin-bottom: 0;
 }

@@ -127,8 +127,15 @@ Route::group([
 
 
 Route::group([
-    'prefix'=>'giao-vien',
-        ], function () {
-            Route::get('/', 'Web\GiaoVien\HomeController@index')->name('giao-vien.index');
-            //lớp
+    'prefix' => 'giao-vien',
+], function () {
+    Route::get('/', 'Web\GiaoVien\HomeController@index')->name('giao-vien.index');
+    Route::get('/diem-danh', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh')->name('giao-vien.giao_dien_diem_danh');
+    //lớp
+});
+Route::group([
+    'prefix' => 'phu-huynh',
+], function () {
+    Route::get('/', 'Web\PhuHuynh\HomeController@index')->name('giao-vien.index');
+    //lớp
 });
