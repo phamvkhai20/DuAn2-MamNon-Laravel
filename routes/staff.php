@@ -129,11 +129,18 @@ Route::group([
 Route::group([
     'prefix' => 'giao-vien',
 ], function () {
+    Route::group([
+        'prefix' => 'diem-danh',
+    ], function () {
+        Route::get('/{id}', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh')->name('giao-vien.giao_dien_diem_danh');
+        Route::post('/tao', 'Web\GiaoVien\AttendanceController@diem_danh_den')->name('giao-vien.diem_danh_den');
+        Route::post('/update', 'Web\GiaoVien\AttendanceController@diem_danh_ve')->name('giao-vien.diem_danh_ve');
+
+        Route::get('/lich-su/{id}', 'Web\GiaoVien\AttendanceController@xem_diem_danh')->name('giao-vien.xem_diem_danh');
+        
+    });
     Route::get('/', 'Web\GiaoVien\HomeController@index')->name('giao-vien.index');
-    Route::get('/diem-danh/{id}', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh')->name('giao-vien.giao_dien_diem_danh');
-    Route::post('/diem-danh/tao', 'Web\GiaoVien\AttendanceController@diem_danh_den')->name('giao-vien.diem_danh_den');
-    Route::post('/diem-danh/update', 'Web\GiaoVien\AttendanceController@diem_danh_ve')->name('giao-vien.diem_danh_ve');
-    //lớp
+      //lớp
 });
 Route::group([
     'prefix' => 'phu-huynh',

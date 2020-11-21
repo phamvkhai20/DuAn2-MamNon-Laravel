@@ -99,7 +99,6 @@
                             </div>
                             <script>
                                 var d = new Date();
-
                                 document.getElementById("date[{{$kid->id}}]").value = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
                                 document.getElementById("arrival_time[{{$kid->id}}]").value = d.getHours() + ':' + (d.getMinutes()) + ':' + d.getSeconds();
                             </script>
@@ -131,9 +130,9 @@
                                     <input hidden type="text" value="null" name="note[{{$attendance->kid->id}}]" />
                                 </div>
                                 <div class="box_time">
-                                    <b>@if(!empty($kid->attendance[0]))
-                                        {{$kid->attendance[0]->leave_time}}
-                                        @endif</b>
+                                    <b>
+                                        {{$attendance->leave_time}}
+                                        </b>
                                 </div>
                                 <div class="box_group_button">
                                     <div class="row">

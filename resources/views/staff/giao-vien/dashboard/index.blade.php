@@ -7,7 +7,7 @@
             <div class="m-demo__preview">
                 <div class="m-nav-grid">
                     <div class="m-nav-grid__row">
-                        <a href="#" class="m-nav-grid__item">
+                        <a href="{{route('giao-vien.giao_dien_diem_danh',['id'=>'1'])}}" class="m-nav-grid__item">
                             <i class="m-nav-grid__icon flaticon-list-1"></i>
                             <h5 class="m-nav-grid__text">Điểm danh</h5>
                         </a>
