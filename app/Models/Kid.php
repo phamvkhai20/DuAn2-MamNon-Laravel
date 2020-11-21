@@ -9,7 +9,9 @@ class Kid extends Model
     protected $fillable = [
         'kid_name', 'nickname', 'kid_avatar', 'gender', 'date_of_birth', 'address', 'admission_date', 'description', 'class_id', 'parent_id', 'kid_status'
     ];
-
+    public function attendance(){
+        return $this-> hasMany(Attendance::class,'kid_id','id');
+    }
     public function getParent()
     {
         return $this->beLongsTo('App\Models\Parents', 'parent_id','id');
