@@ -17,7 +17,7 @@ use RealRashid\SweetAlert\Facades\Aler;
 
 Route::group([
     'prefix' => 'nha-truong',
-    'middleware' => ['check_auth'],
+    'middleware' => ['check_school'],
 ], function () {
     Route::get('/', 'Web\NhaTruong\HomeController@index')->name('nha-truong.index');
     //lớp
@@ -79,9 +79,9 @@ Route::group([
         'prefix' => 'giao-vien',
     ], function () {
         Route::get('', 'Web\NhaTruong\TeacherController@index')
-            ->name('giao-vien.index');
+            ->name('giao-vien.list');
         Route::get('danh-sach', 'Web\NhaTruong\TeacherController@index')
-            ->name('giao-vien.index');
+            ->name('giao-vien.list');
 
         Route::get('sua/{id}', 'Web\NhaTruong\TeacherController@edit')
             ->name('giao-vien.sua');
@@ -99,18 +99,13 @@ Route::group([
         'prefix' => 'phu-huynh',
     ], function () {
         Route::get('danh-sach', 'Web\NhaTruong\ParentController@index')
-            ->name('phu-huynh.index');
-
-        Route::get('sua/{id}', 'Web\NhaTruong\ParentController@edit')
-            ->name('phu-huynh.edit');
-
-        Route::post('luu-thong-tin/{id}', 'Web\NhaTruong\ParentController@update')
-            ->name('phu-huynh.update');
-
+            ->name('phu-huynh.list');
         Route::get('them', 'Web\NhaTruong\ParentController@create')
             ->name('phu-huynh.create');
         Route::post('them', 'Web\NhaTruong\ParentController@store')
             ->name('phu-huynh.store');
+        Route::get('sua/{id}', 'Web\NhaTruong\ParentController@edit')->name('phu-huynh.edit');
+        Route::post('sua/{id}', 'Web\NhaTruong\ParentController@update')->name('phu-huynh.update');
     });
 
     Route::group([
@@ -128,6 +123,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'giao-vien',
+    'middleware' => ['check_teacher'],
 ], function () {
     Route::group([
         'prefix' => 'diem-danh',
@@ -144,6 +140,7 @@ Route::group([
 });
 Route::group([
     'prefix' => 'phu-huynh',
+    'middleware' => ['check_parent'],
 ], function () {
     
     Route::get('/', 'Web\PhuHuynh\HomeController@index')->name('phu-huynh.index');

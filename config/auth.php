@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'school',
+        'passwords' => 'schools',
     ],
 
     /*
@@ -36,24 +36,19 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'schools',
-        ],
-
-        'api' => [
-            'driver' => 'token',
-            'provider' => 'schools',
-            'hash' => false,
-        ],
-
         'school' => [
             'driver' => 'session',
             'provider' => 'schools',
         ],
-        'school-api' => [
-            'driver' => 'token',
-            'provider' => 'schools',
+
+        'teacher' => [
+            'driver' => 'session',
+            'provider' => 'teachers',
+        ],
+
+        'parent' => [
+            'driver' => 'session',
+            'provider' => 'parents',
         ],
     ],
 
@@ -75,14 +70,17 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
-        ],
-
         'schools' => [
             'driver' => 'eloquent',
             'model' => App\Models\School::class,
+        ],
+        'teachers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Teacher::class,
+        ],
+        'parents' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Parents::class,
         ],
         // 'users' => [
         //     'driver' => 'database',
@@ -108,6 +106,18 @@ return [
     'passwords' => [
         'schools' => [
             'provider' => 'schools',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'teachers' => [
+            'provider' => 'teachers',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'parents' => [
+            'provider' => 'parents',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

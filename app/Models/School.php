@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class School extends Authenticatable
 {
+
     protected $fillable = [
         'phone', 'password'
     ];

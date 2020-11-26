@@ -28,16 +28,17 @@ class EditTeacherRequest extends FormRequest
     {
         $segments = request()->segments();
         $teacher = Teacher::find((int) end($segments));
-        if(request('email') == $teacher->email){
+        if(request('email') == $teacher->email && request('phone') == $teacher->phone){
             $email ='required|email';
+            $phone =['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10'];
         }else{
             $email ='required|email|unique:teachers';
+            $phone =['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10','unique:parents'];
         }
         return [
             'fullname'=>'required|min:6',
             'email'=>$email,
-            'phone' => ['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10'],
-            'password'=>'required|min:6',
+            'phone' => $phone,
             'date_of_birth'=>'required',
             'gender'=>'required',
             'teacher_type_id'=>'required',
@@ -58,9 +59,7 @@ class EditTeacherRequest extends FormRequest
             'phone.required'=> 'Vui lòng nhập số điện thoại!',
             'phone.regex'=>'Số điện thoại không hợp lệ!',
             'phone.digits'=>'Số điện thoại phải đúng định dạng!',
-
-            'password.required'=>'Vui lòng nhập mật khẩu!',
-            'password.min'=>'Mật khẩu yêu cầu tối thiểu 6 ký tự!',
+            'phone.unique'=>'Số điện thoại đã tồn tại!',
 
             'date_of_birth.required'=>'Vui lòng chọn ngày sinh!',
 

@@ -28,21 +28,18 @@ class EditParentRequest extends FormRequest
     {
         $segments = request()->segments();
         $parent = Parents::find((int) end($segments));
-        if(request('email') == $parent->email){
-            $email ='required|email|unique:parents';
+        if(request('email') == $parent->email && request('phone') == $parent->phone){
+            $email ='required|email';
+            $phone =['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10'];
         }else{
             $email ='required|email|unique:parents';
-        }
-        if(request('phone') == $parent->phone){
-            $phone =['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10','unique:parents'];
-        }else{
             $phone =['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10','unique:parents'];
         }
         return [
-            'fullname'=>'required|min:6',
+            'parent_name'=>'required|min:6',
             'email'=>$email,
             'phone' => $phone,
-            'parent_avatar'=>'required|mimes:jpeg,jpg,png',
+            'parent_avatar'=>'mimes:jpeg,jpg,png',
             'parent_status'=>'required',
         ];
     }
@@ -63,7 +60,6 @@ class EditParentRequest extends FormRequest
 
             'parent_status.required'=>'Vui lòng chọn trạng thái!',
 
-            'parent_avatar.required'=>'Vui lòng chọn ảnh đại diện!',
             'parent_avatar.mimes'=>'Không đúng định dạng ảnh!',
         ];
     }

@@ -81,7 +81,7 @@
                         </div>
                         <div class="">
                             <div class="m-form__actions m-form__actions">
-                                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                <button type="submit" class="btn btn-primary">Thêm mới</button>
                                 <a href="{{route('phu-huynh.index')}}" class="btn btn-secondary">Quay Lại</a>
                             </div>
                         </div>

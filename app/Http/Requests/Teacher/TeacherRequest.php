@@ -28,7 +28,7 @@ class TeacherRequest extends FormRequest
         return [
             'fullname'=>'required|min:6',
             'email'=>'required|email|unique:teachers',
-            'phone' => ['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10'],
+            'phone' => ['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10','unique:teachers'],
             'date_of_birth'=>'required',
             'gender'=>'required',
             'teacher_type_id'=>'required',
@@ -46,6 +46,7 @@ class TeacherRequest extends FormRequest
             'email.unique'=>'Email đã tồn tại!',
             
             'phone.required'=> 'Vui lòng nhập số điện thoại!',
+            'phone.unique'=> 'Số điện thoại đã tồn tại!',
             'phone.regex'=>'Số điện thoại không hợp lệ!',
             'phone.digits'=>'Số điện thoại phải đúng định dạng!',
 

@@ -38,10 +38,8 @@ class ParentController extends Controller
       } else {
          $data['parent_avatar'] = "";
       }
-      $addParents = Parents::create($data);
-
-      // request()->flashOnly('parent_avatar');
-      return redirect()->route('phu-huynh.index');
+      Parents::create($data);
+      return redirect()->route('phu-huynh.list');
    }
 
    public function edit($id)
@@ -55,7 +53,6 @@ class ParentController extends Controller
       $parent = Parents::find($id);
       $data = Arr::except(request()->all(), ["_token ,'_method'"]);
       $data = Arr::except($request->all(), ['_token']);
-
       if ($request->hasFile('parent_avatar')) {
          $avatar = $request->file('parent_avatar');
          $getAvatar = time() . '_' . $avatar->getClientOriginalName();
@@ -66,6 +63,6 @@ class ParentController extends Controller
          $data['parent_avatar'] = $parent->parent_avatar;
       }
       $parent->update($data);
-      return redirect()->route('phu-huynh.index');
+      return redirect()->route('phu-huynh.list');
    }
 }
