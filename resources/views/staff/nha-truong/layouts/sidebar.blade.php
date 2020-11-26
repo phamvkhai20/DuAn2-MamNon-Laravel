@@ -22,7 +22,7 @@
                         huynh</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('phu-huynh.index')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Danh sách phụ hyunh</span></a></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('phu-huynh.list')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Danh sách phụ hyunh</span></a></li>
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{route('phu-huynh.create')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Thêm mới phụ hyunh</span></a></li>
                     </ul>
                 </div>
@@ -31,7 +31,7 @@
                         giáo viên</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.index')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Danh giáo viên</span></a></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.list')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Danh giáo viên</span></a></li>
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.them')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Thêm mới giáo viên</span></a></li>
                     </ul>
                 </div>

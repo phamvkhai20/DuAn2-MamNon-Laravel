@@ -39,7 +39,7 @@ class KidController extends Controller
             <input value='.$data->id.' name="parent_id" type="text" class="form-control m-input" style="display:none">
             <div class="form-group m-form__group">
                 <label>Ảnh đại diện phụ huynh</label>
-                <img src="'.asset('/storage/images/'."$data->parent_avatar").'" id="avatar" width="300px">
+                <img src="'.asset('/upload/avatar/'."$data->parent_avatar").'" id="avatar" width="300px">
             </div>
             <div class="form-group m-form__group">
                 <label>Họ tên phụ huynh</label>

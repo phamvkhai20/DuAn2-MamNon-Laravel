@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Parents extends Model
+class Parents extends Authenticatable
 {
     protected $table ='parents';
     protected $fillable = [
-        'fullname', 'parent_avatar', 'phone', 'email', 'password', 'parent_status'
+        'parent_name', 'parent_avatar', 'phone', 'email', 'password', 'parent_status'
     ];
 
     public function Kids()

@@ -32,22 +32,29 @@
                                 </ul>
                             </div>
                         </div>
-                        <form class="m-form m-form--fit m-form--label-align-right">
+                        <form class="m-form m-form--fit m-form--label-align-right" action="{{ route('login.parent') }}" method="post">
+                        @csrf
                             <div class="m-portlet__body">
                                 <div class="form-group m-form__group">
                                     <label>Số điện thoại</label>
-                                    <input type="number" class="form-control m-input m-input--square"
+                                    <input name="phone" type="number" class="form-control m-input m-input--square"
                                         placeholder="Số điện thoại">
+                                        {!! ShowErrors($errors,'phone') !!}
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Mật khẩu</label>
-                                    <input type="password" class="form-control m-input m-input--square"
-                                        placeholder="mật khẩu">
+                                    <input name="password" type="password" class="form-control m-input m-input--square"
+                                        placeholder="Mật khẩu">
+                                        {!! ShowErrors($errors,'password') !!}
+                                        <br>
+                                        @if(session('thongbao'))
+                                <span style='color: red'>{{session('thongbao')}}</span>
+                                @endif
                                 </div>
                             </div>
                             <div class="m-portlet__foot m-portlet__foot--fit">
                                 <div class="m-form__actions">
-                                    <button type="reset" class="btn btn-primary">Đăng nhập</button>
+                                    <button type="submit" class="btn btn-primary">Đăng nhập</button>
                                     <button type="reset" class="btn btn-secondary">Cancel</button>
                                 </div>
                             </div>

@@ -51,10 +51,10 @@ class TeacherController extends Controller
    }
 
    public function update(EditTeacherRequest $request, $id){
+
       $teacher = Teacher::find($id);
       $data = Arr::except(request()->all(), ["_token ,'_method'"]);
       $data = Arr::except($request->all(),['_token']);
-      $data['password']= bcrypt($data['password']);
       if($request->hasFile('avatar')){
          $avatar = $request->file('avatar');
          $getavatar = time().'_'.$avatar->getClientOriginalName();
@@ -66,6 +66,6 @@ class TeacherController extends Controller
       }
 
       Teacher::find($id)->update($data);
-      return redirect()->route('giao-vien.index');
+      return redirect()->route('giao-vien.list');
    }
 }

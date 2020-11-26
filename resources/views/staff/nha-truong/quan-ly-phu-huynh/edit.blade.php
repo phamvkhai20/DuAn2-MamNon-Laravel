@@ -64,7 +64,7 @@
                                     <br>
                                     <img src="{{asset('/upload/avatar/'.$parent->parent_avatar)}}" id="avatar" width="300px">
                                     <input name="parent_avatar" type="file" class="form-control m-input" onchange="readURL(this);" >
-                                    {!! ShowErrors($errors,'avatar') !!}
+                                    {!! ShowErrors($errors,'parent_avatar') !!}
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Trạng Thái</label>
@@ -74,7 +74,7 @@
                                         <option @if ($parent->parent_status == 0) selected @endif value="0">Khóa</option>
                                         
                                     </select>
-                                    {!! ShowErrors($errors,'status') !!}
+                                    {!! ShowErrors($errors,'parent_status') !!}
                                 </div>
                                 
                             </div>

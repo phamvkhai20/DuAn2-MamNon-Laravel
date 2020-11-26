@@ -61,7 +61,7 @@
                                                 </li>
                                                 <li class="m-menu__item  m-menu__item--submenu m-menu__item--tabs">
                                                     <a style="background:#fff" class="m-menu__link "
-                                                        href="{{route('login.parents')}}"><span
+                                                        href="{{route('login.parent')}}"><span
                                                             class="m-menu__link-text">
                                                             Phụ huynh
                                                         </span>
@@ -72,7 +72,7 @@
                                                 </li>
                                                 <li class="m-menu__item  m-menu__item--submenu m-menu__item--tabs">
                                                     <a style="background:#fff" class="m-menu__link "
-                                                        href="{{route('login.parents')}}"><span
+                                                        href="{{route('login.parent')}}"><span
                                                             class="m-menu__link-text">
                                                             Nộp hồ sơ nhập học
                                                         </span>
