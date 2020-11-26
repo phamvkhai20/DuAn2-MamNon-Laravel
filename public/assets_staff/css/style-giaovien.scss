@@ -22,6 +22,9 @@
     }
 }
 @media screen and (min-width: 350px) {
+    .box_button_attendance{
+        margin-top: 300px;
+    }
     .image_kid_attendance {
         min-height: 220px;
         min-width: 140px;
@@ -30,6 +33,9 @@
     }
 }
 @media screen and (min-width: 500px) {
+    .box_button_attendance{
+        margin-top: 300px;
+    }
     .image_kid_attendance {
         min-height: 220px;
         min-width: 150px;
@@ -133,6 +139,15 @@
     margin-top:5px;
     margin-bottom: 0;
 }
-.table_attendance{
-    
+.title_attendance{
+    padding: 20px;
+    min-height: 70px;
+    line-height: 70px;
+    h3{
+        padding-top: 1000px;
+        line-height: 70px;
+    }
+}
+.box_tille_ {
+    margin: 5px;
 }
