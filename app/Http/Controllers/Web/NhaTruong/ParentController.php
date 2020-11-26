@@ -12,12 +12,12 @@ class ParentController extends Controller
    public function index()
    {
       $data['parents'] = Parents::paginate(10);
-       return view('staff.quan-ly-phu-huynh.index',$data);
+       return view('staff.nha-truong.quan-ly-phu-huynh.index',$data);
    }
    public function create()
    {
       
-      return view('staff.quan-ly-phu-huynh.add');
+      return view('staff.nha-truong.quan-ly-phu-huynh.add');
    }
 
    public function store(ParentRequest $request){
@@ -34,17 +34,17 @@ class ParentController extends Controller
          $data['parent_avatar'] = "";
       }
       Parents::create($data);
-      request()->flashOnly('paren_name');
+      request()->flashOnly('parent_name');
       request()->flashOnly('email');
       request()->flashOnly('phone');
       request()->flashOnly('parent_status');
       request()->flashOnly('parent_avatar');
-      return redirect()->route('phu-huynh.index');
+      return redirect()->route('phu-huynh.list');
    }
    
    public function edit($id){
      $data['parent'] = Parents::find($id);
-      return view('staff.quan-ly-phu-huynh.edit',$data);
+      return view('staff.nha-truong.quan-ly-phu-huynh.edit',$data);
    }
 
    public function update(EditParentRequest $request, $id){
@@ -61,6 +61,6 @@ class ParentController extends Controller
          $data['parent_avatar'] = $parent->parent_avatar;
       }
       $parent->update($data);
-      return redirect()->route('phu-huynh.index');
+      return redirect()->route('phu-huynh.list');
    }
 }

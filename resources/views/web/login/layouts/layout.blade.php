@@ -30,7 +30,14 @@
     <link href="{{asset('assets/demo/demo10/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet"
         type="text/css" />
-        <link rel = "icon" href ="{{asset('assets/demo/img/logo/icon-logo.png')}}" />
+
+
+
+    <link href="{{asset('assets_staff/vendors/base/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets_staff/demo/default/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets_staff/vendors/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet"
+        type="text/css" />
+    <link rel="icon" href="{{asset('assets/demo/img/logo/icon-logo.png')}}" />
 </head>
 
 <!-- end::Head -->
@@ -49,6 +56,12 @@
     <script src="{{asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js')}}" type="text/javascript">
     </script>
     <script src="{{asset('assets/app/js/dashboard.js')}}" type="text/javascript"></script>
+
+    <script src="{{asset('assets_staff/vendors/base/vendors.bundle.js')}}" type="text/javascript"></script>
+    <script src="{{asset('assets_staff/demo/default/base/scripts.bundle.js')}}" type="text/javascript"></script>
+    <script src="{{asset('assets_staff/vendors/custom/fullcalendar/fullcalendar.bundle.js')}}" type="text/javascript">
+    </script>
+    <script src="{{asset('assets_staff/app/js/dashboard.js')}}" type="text/javascript"></script>
     <script>
     $(window).on('load', function() {
         $('body').removeClass('m-page--loading');

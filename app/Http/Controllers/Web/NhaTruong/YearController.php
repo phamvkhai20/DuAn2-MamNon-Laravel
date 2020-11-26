@@ -11,12 +11,12 @@ class YearController extends Controller
      public function index()
    {
        $year=SchoolYearModel::all();
-       return view('staff.quan-ly-nam-hoc.index',compact('year'));
+       return view('staff.nha-truong.quan-ly-nam-hoc.index',compact('year'));
    }
    public function edit($id)
    {
        $year=SchoolYearModel::find($id);
-       return view('staff.quan-ly-nam-hoc.edit',compact('year'));
+       return view('staff.nha-truong.quan-ly-nam-hoc.edit',compact('year'));
    }
    public function saveEdit(Request $request, $id)
    {
@@ -28,7 +28,7 @@ class YearController extends Controller
     public function add()
    {
        $year= SchoolYearModel::all();
-       return view('staff.quan-ly-nam-hoc.add',compact('year'));
+       return view('staff.nha-truong.quan-ly-nam-hoc.add',compact('year'));
    }
    public function saveAdd(Request $request)
    {

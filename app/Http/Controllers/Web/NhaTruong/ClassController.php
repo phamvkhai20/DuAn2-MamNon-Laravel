@@ -14,14 +14,14 @@ class ClassController extends Controller
     public function index()
     {
         $grades = GradeModel::with('classes')->get();
-        return view('staff.quan-ly-lop.index', compact('grades'));
+        return view('staff.nha-truong.quan-ly-lop.index', compact('grades'));
     }
     public function edit($id)
     {
         $class = ClassModel::find($id);
         $grade = GradeModel::all();
         $year = SchoolYearModel::all();
-        return view('staff.quan-ly-lop.edit', compact('class', 'grade', 'year'));
+        return view('staff.nha-truong.quan-ly-lop.edit', compact('class', 'grade', 'year'));
     }
     public function saveEdit(ClassRequest $request, $id)
     {
@@ -33,7 +33,7 @@ class ClassController extends Controller
         $class = ClassModel::all();
         $grade = GradeModel::all();
         $year = SchoolYearModel::all();
-        return view('staff.quan-ly-lop.add', compact('grade', 'year'));
+        return view('staff.nha-truong.quan-ly-lop.add', compact('grade', 'year'));
     }
     public function saveAdd(ClassRequest $request)
     {

@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'school',
+        'passwords' => 'schools',
     ],
 
     /*
@@ -70,7 +70,6 @@ return [
     */
 
     'providers' => [
-
         'schools' => [
             'driver' => 'eloquent',
             'model' => App\Models\School::class,

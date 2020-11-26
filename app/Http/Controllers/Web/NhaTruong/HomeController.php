@@ -9,6 +9,6 @@ class HomeController extends Controller
 {
     protected function index()
     {
-       return view('staff.dashboard.index');
+       return view('staff.nha-truong.dashboard.index');
     }
 }

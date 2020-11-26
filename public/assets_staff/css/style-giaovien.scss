@@ -1,0 +1,138 @@
+.button_attendance {
+    border: 0;
+    border-radius: 5px;
+    text-align: center;
+    height: 80px;
+    width: 80px;
+}
+
+@media screen and (min-width: 280px) {
+    .image_kid_attendance {
+        min-height: 150px;
+        min-width: 100px;
+        margin:20px
+    }
+}
+@media screen and (min-width: 320px) {
+    .image_kid_attendance {
+        min-height: 230px;
+        min-width: 230px;
+        margin:10px;
+        margin-bottom:20px;
+    }
+}
+@media screen and (min-width: 350px) {
+    .image_kid_attendance {
+        min-height: 220px;
+        min-width: 140px;
+        margin:10px;
+        margin-bottom:20px;
+    }
+}
+@media screen and (min-width: 500px) {
+    .image_kid_attendance {
+        min-height: 220px;
+        min-width: 150px;
+        margin:15px
+    }
+}
+@media screen and (min-width: 760px) {
+    .image_kid_attendance {
+        min-height: 250px;
+        min-width: 190px;
+        margin:20px
+    }
+}
+
+@media screen and (min-width: 840px) {
+    .image_kid_attendance {
+        min-height: 250px;
+        min-width: 180px;
+        margin:10px;
+        margin-bottom: 20px;
+    }
+}
+@media screen and (min-width: 1000px) {
+    .image_kid_attendance {
+        min-height: 250px;
+        min-width: 195px;
+        margin:10px;
+        margin-bottom:20px;
+    }
+}
+.button_khac{
+    width: 50%;
+}
+.icon_button_khac{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgb(126, 203, 233);
+    padding-top: 5px;
+    margin-top: 10px;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+}
+.image_kid_attendance {
+    width: 100%;
+    max-width: 170px;
+    border-radius: 5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+}
+.box_group_name{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    background: #fff;
+    position: absolute;
+    top: 0px;
+    margin: auto;
+    text-align: center;
+}
+.box_time{
+    padding-left: 15px;
+    padding-right: 15px;
+    opacity: 55%;
+    height: 30px;
+    right: 0;
+    line-height: 30px;
+    background: #fff;
+    position: absolute;
+    top: 35px;
+    margin: auto;
+    text-align: center;
+}
+.box_group_button {
+    width: 100%;
+    background: #fff;
+    position: absolute;
+    bottom: -20px;
+    margin: auto;
+    text-align: center;
+    border-radius: 5px;
+
+}
+
+.m-switch{
+    margin-top:5px;
+    margin-bottom: 0;
+}
+.table_attendance{
+    
+}

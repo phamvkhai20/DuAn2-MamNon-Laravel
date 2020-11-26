@@ -22,10 +22,10 @@
                             <div class="m-stack__item m-stack__item--middle m-brand__logo">
                                 <a href="{{route('web.home')}}" class="m-brand__logo-wrapper">
                                     <img alt="" style="height:50px"
-                                    src="{{asset('assets/demo/img/logo/logo-mamNon.png')}}"
+                                        src="{{asset('assets/demo/img/logo/logo-mamNon.png')}}"
                                         class="m-brand__logo-desktop" />
                                     <img alt="" style="height:45px"
-                                    src="{{asset('assets/demo/img/logo/logo-mamNon.png')}}"
+                                        src="{{asset('assets/demo/img/logo/logo-mamNon.png')}}"
                                         class="m-brand__logo-mobile" />
                                 </a>
                             </div>
@@ -43,26 +43,39 @@
                                             <ul class="m-menu__nav  m-menu__nav--submenu-arrow "
                                                 style="text-align:left">
                                                 <li class="m-menu__item   m-menu__item--submenu m-menu__item--tabs">
-                                                    <a style="background:#fff" href="{{route('login.school')}}" class="m-menu__link "><span
-                                                            class="m-menu__link-text">Nhà trường</span>
+                                                    <a style="background:#fff" href="{{route('login.school')}}"
+                                                        class="m-menu__link "><span class="m-menu__link-text">Nhà
+                                                            trường</span>
                                                         <i class="m-menu__hor-arrow la la-angle-down"></i><i
                                                             class="m-menu__ver-arrow la la-angle-right"></i>
                                                     </a>
                                                 </li>
                                                 <li class="m-menu__item  m-menu__item--submenu m-menu__item--tabs">
-                                                    <a style="background:#fff"  href="{{route('login.teacher')}}" 
-                                                        class="m-menu__link"><span
-                                                            class="m-menu__link-text">Giáo viên</span>
+                                                    <a style="background:#fff" href="{{route('login.teacher')}}"
+                                                        class="m-menu__link"><span class="m-menu__link-text">Giáo
+                                                            viên</span>
                                                         <i class="m-menu__hor-arrow la la-angle-down"></i><i
                                                             class="m-menu__ver-arrow la la-angle-right"></i>
                                                     </a>
 
                                                 </li>
                                                 <li class="m-menu__item  m-menu__item--submenu m-menu__item--tabs">
-                                                    <a style="background:#fff" class="m-menu__link "  href="{{route('login.parents')}}" ><span
+                                                    <a style="background:#fff" class="m-menu__link "
+                                                        href="{{route('login.parent')}}"><span
                                                             class="m-menu__link-text">
                                                             Phụ huynh
-                                                            </span>
+                                                        </span>
+                                                        <i class="m-menu__hor-arrow la la-angle-down"></i><i
+                                                            class="m-menu__ver-arrow la la-angle-right"></i>
+                                                    </a>
+
+                                                </li>
+                                                <li class="m-menu__item  m-menu__item--submenu m-menu__item--tabs">
+                                                    <a style="background:#fff" class="m-menu__link "
+                                                        href="{{route('login.parent')}}"><span
+                                                            class="m-menu__link-text">
+                                                            Nộp hồ sơ nhập học
+                                                        </span>
                                                         <i class="m-menu__hor-arrow la la-angle-down"></i><i
                                                             class="m-menu__ver-arrow la la-angle-right"></i>
                                                     </a>

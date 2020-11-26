@@ -11,12 +11,12 @@ class GradeController extends Controller
      public function index()
    {
        $grade=GradeModel::all();
-       return view('staff.quan-ly-khoi.index',compact('grade'));
+       return view('staff.nha-truong.quan-ly-khoi.index',compact('grade'));
    }
    public function edit($id)
    {
        $grade=GradeModel::find($id);
-       return view('staff.quan-ly-khoi.edit',compact('grade'));
+       return view('staff.nha-truong.quan-ly-khoi.edit',compact('grade'));
    }
    public function saveEdit(GradeRequest $req, $id)
    {
@@ -28,7 +28,7 @@ class GradeController extends Controller
     public function add()
    {
        $grade= GradeModel::all();
-       return view('staff.quan-ly-khoi.add',compact('grade'));
+       return view('staff.nha-truong.quan-ly-khoi.add',compact('grade'));
    }
    public function saveAdd(GradeRequest $request)
    {
