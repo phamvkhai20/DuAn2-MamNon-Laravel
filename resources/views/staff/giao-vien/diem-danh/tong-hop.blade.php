@@ -3,27 +3,21 @@
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <!-- END: Subheader -->
-    <div class="m-content">
-        <div class="m-portlet">
-            <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                    <div class="row">
-                        <div class="m-portlet__head-title col 6">
-                            <h3 class="m-portlet__head-text">
-                                Xem điểm danh
-                            </h3>
-                        </div>
-                        <div class="input-group date col-6">
-                            <input type="text" class="form-control m-input" readonly value="05/20/2017" id="m_datepicker_3" />
-                            <div class="input-group-append">
-                                <span class="input-group-text">
-                                    <i class="la la-calendar"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="">
+    <div class="m-portlet box_tille_ row title_attendance" role="tablist">
+            <h3 class="col-lg-5" style="padding-top:5px">
+                Điểm danh
+            </h3>
+            <div class="col-lg-4">
+                <input type="date" class="form-control m-input" id="date_attendance" />
             </div>
+            <script>
+                var d = new Date();
+                document.getElementById("date_attendance").value = d.getFullYear() + '-' + (
+                    d.getMonth() + 1) + '-' + d.getDate();
+            </script>
+        </div>
+        <div class="m-portlet box_tille_">
             <div class="m-portlet__body">
                 <div class="m-section">
                     <div class=" table-responsive">
@@ -43,8 +37,8 @@
                             <tbody>
                             @foreach($studentInClass as $index=>$student)
                                 <tr>
-                                <th>{{$index+1}}</th>
-                                    <td>{{$student->kid_name}}</td>
+                                <th   width="40px">{{$index+1}}</th>
+                                    <td  width="140px">{{$student->kid_name}}</td>
                                     @foreach($student->attendance as $attendances)
                                     @if($attendances->status==1)
                                     <td  width="60px">Đi</td>
