@@ -119,8 +119,6 @@ Route::group([
         Route::post('sua/{id}', 'Web\NhaTruong\KidController@update')->name('tre.update');
     });
 });
-
-
 Route::group([
     'prefix' => 'giao-vien',
     'middleware' => ['check_teacher'],
@@ -128,21 +126,13 @@ Route::group([
     Route::group([
         'prefix' => 'diem-danh',
     ], function () {
-        Route::get('/{id}', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh')->name('giao-vien.giao_dien_diem_danh');
+
+        Route::get('/', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh')->name('giao-vien.giao_dien_diem_danh');
         Route::post('/tao', 'Web\GiaoVien\AttendanceController@diem_danh_den')->name('giao-vien.diem_danh_den');
         Route::post('/update', 'Web\GiaoVien\AttendanceController@diem_danh_ve')->name('giao-vien.diem_danh_ve');
 
         Route::get('/{id}/lich-su', 'Web\GiaoVien\AttendanceController@xem_diem_danh')->name('giao-vien.xem_diem_danh');
-        
     });
     Route::get('/', 'Web\GiaoVien\HomeController@index')->name('giao-vien.index');
-      //lớp
-});
-Route::group([
-    'prefix' => 'phu-huynh',
-    'middleware' => ['check_parent'],
-], function () {
-    
-    Route::get('/', 'Web\PhuHuynh\HomeController@index')->name('phu-huynh.index');
     //lớp
 });

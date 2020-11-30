@@ -221,7 +221,7 @@
                 </div>
                 <div id="info">
 
-                </div>s
+                </div>
             </div>
         </div>
     </div>

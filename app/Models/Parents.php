@@ -18,4 +18,7 @@ class Parents extends Authenticatable
     {
         return $this->hasMany('App\Models\Kid', 'parent_id', 'id');
     }
+    protected $hidden = [
+        'password',
+    ];
 }
