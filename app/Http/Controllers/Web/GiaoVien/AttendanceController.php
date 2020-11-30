@@ -34,9 +34,6 @@ class AttendanceController extends Controller
 
     public function diem_danh_den(Request $request)
     {
-        $date = Carbon::now('Asia/Ho_Chi_Minh');
-        $month = substr($date, 0, 7);
-        $today = substr($date, 0, 10);
         $data = Arr::except($request->all(), ['_token']);
         foreach ($data["kid_id"] as $index => $kid) {
             $find = Attendance::where('kid_id', $data["kid_id"][$index])->where("date", $data["date"][$index])->get();

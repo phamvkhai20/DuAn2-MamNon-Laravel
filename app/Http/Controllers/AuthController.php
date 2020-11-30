@@ -72,6 +72,7 @@ class AuthController extends Controller
                return redirect()->route('phu-huynh.index', ['id' => $findInfoParent->kids[0]->id]);
             } else if ($coutKids > 1) {
                session(['kids' => $findInfoParent->kids]);
+               session(['id_kid_default' => $findInfoParent->kids[0]->id]);
                return redirect()->route('phu-huynh.index', ['id' => $findInfoParent->kids[0]->id]);
             } else {
                return redirect()->route('form.parent')->with('thongbao', 'Tài Khoản Của Bạn Đã Bị Khóa');
