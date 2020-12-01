@@ -11,7 +11,7 @@
                             <i class="m-nav-grid__icon flaticon-list-1"></i>
                             <h5 class="m-nav-grid__text">Thông tin trẻ</h5>
                         </a>
-                        <a href="#" class="m-nav-grid__item">
+                        <a href="{{route('phu-huynh.xin-nghi-hoc',['id'=>session('id_kid_default')])}}" class="m-nav-grid__item">
                             <i class="m-nav-grid__icon flaticon-chat-2"></i>
                             <span class="m-nav-grid__text">Xin nghỉ</span>
                         </a>

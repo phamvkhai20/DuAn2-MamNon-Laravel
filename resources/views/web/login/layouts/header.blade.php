@@ -9,7 +9,7 @@
 <!-- end::Page Loader -->
 
 <!-- begin:: Page -->
-<div class="m-grid m-grid--hor m-grid--root m-page">
+<div class="">
     <!-- begin::Header -->
     <header id="m_header" class="m-grid__item m-header " m-minimize="minimize" m-minimize-mobile="minimize"
         m-minimize-offset="10" m-minimize-mobile-offset="10">

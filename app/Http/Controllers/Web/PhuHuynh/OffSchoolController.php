@@ -28,7 +28,7 @@ class OffSchoolController extends Controller
                 $offSchool->kid_id = $request->get('id');
                 $offSchool->leave_time = "00:00:00";
                 $offSchool->meal = 0;
-                $offSchool->status = 3;
+                $offSchool->status = 2;
                 $offSchool->arrival_time = "00:00:00";
                 $offSchool->class_id = $kid->class_id;
                 $offSchool->date =  $request->get('start');
