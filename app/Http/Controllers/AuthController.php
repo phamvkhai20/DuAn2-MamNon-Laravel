@@ -44,14 +44,17 @@ class AuthController extends Controller
    {
       $data = Arr::except($request->all(), ['_token']);
       if ($result = Auth::guard('teacher')->attempt($data)) {
+         $idTeacher=Auth::guard('teacher')->user()->id;
          if (Auth::guard('teacher')->user()->status == 0) {
             return redirect()->route('form.teacher')->with('thongbao', 'Tài Khoản Của Bạn Đã Bị Khóa');
          } else {
+            $findTeacher=Teacher::where('id',$idTeacher)->with('class')->first();
             return redirect()->route('giao-vien.index');
          }
       } else {
          return redirect()->back()->with('thongbao', 'Bạn nhập sai số điện thoại hoặc mật khẩu');
       }
+      
    }
    // Đăng nhập phụ huynh
    protected function form_login_parent()

@@ -30,8 +30,8 @@
                                     <th>{{substr($gg->date,8,2)}}</th>
                                     @endforeach
                                     <th>Đi học</th>
-                                    <th>Nghỉ có phép</th>
                                     <th>Nghỉ không phép</th>
+                                    <th>Nghỉ có phép</th>
                                 </tr>
                             </thead>
                             <tbody>

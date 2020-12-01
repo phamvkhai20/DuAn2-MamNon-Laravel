@@ -11,7 +11,6 @@ class AttendanceController extends Controller
 {
     public function view_attendance($id)
     {
-
         $kid = Kid::where('id', $id)->with(['attendance' => function ($query) {
             $query->whereBetween("date", [substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 7) . '-1', substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 10)]);
         }])->first();
