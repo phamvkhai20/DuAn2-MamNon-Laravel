@@ -66,6 +66,8 @@
                                             <input data-switch="true" type="checkbox" checked="checked"
                                                 name="status[{{$kid->id}}]" data-on-color="success" data-on-text="P"
                                                 data-off-color="danger" data-off-text="A">
+                                            @elseif(!empty($kid->attendance[0])&&$kid->attendance[0]->status==3)
+                                            <p>Xin Nghỉ</p>
                                             @else
                                             <input data-switch="true" type="checkbox" name="status[{{$kid->id}}]"
                                                 data-on-color="success" data-on-text="P" data-off-color="danger"
