@@ -11,7 +11,8 @@
                             <i class="m-nav-grid__icon flaticon-list-1"></i>
                             <h5 class="m-nav-grid__text">Thông tin trẻ</h5>
                         </a>
-                        <a href="{{route('phu-huynh.xin-nghi-hoc',['id'=>session('id_kid_default')])}}" class="m-nav-grid__item">
+                        <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false"
+                            data-target="#m_daterangepicker_modal" class="m-nav-grid__item">
                             <i class="m-nav-grid__icon flaticon-chat-2"></i>
                             <span class="m-nav-grid__text">Xin nghỉ</span>
                         </a>
@@ -201,6 +202,41 @@
 
                 <!--end:: Widgets/Support Tickets -->
             </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="m_daterangepicker_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="">Xin nghỉ học</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="la la-remove"></span>
+                </button>
+            </div>
+            <form class="m-form m-form--fit m-form--label-align-right"
+                action="{{route('phu-huynh.them-don-xin-nghi',['id'=>session('id_kid_default')])}}" method="post">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group m-form__group row">
+                        <label class="col-form-label col-lg-5 col-sm-12">Chọn khoảng thời gian xin nghỉ học</label>
+                        <div class="col-lg-6 col-md-9 col-sm-12">
+                            <div class='input-group pull-right' id='m_daterangepicker_6'>
+                                <input type="hidden" name="id" value="{{session('id_kid_default')}}">
+                                <input type='text' class="form-control m-input" readonly
+                                    placeholder="Chọn lịch nghỉ học" name="date" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="la la-calendar-check-o"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary m-btn">Gửi</button>
+                    <button type="button" class="btn btn-brand m-btn" data-dismiss="modal">Close</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

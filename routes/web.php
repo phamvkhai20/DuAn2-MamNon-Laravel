@@ -18,8 +18,9 @@ Route::group([
     Route::post('giao-vien', 'AuthController@loginTeacher')->name('login.teacher');
     Route::get('logout2', 'AuthController@logoutTeacher')->name('logout.teacher');
 });
-
 Route::get('/', 'AuthController@home')->name('web.home');
+
+Route::post('/nop-ho-so/gui', 'AdmissionRecordsController@them_moi')->name('web.ho-so-nhap-hoc');
 Route::get('/nop-ho-so', 'AuthController@nop_ho_so_nhap_hoc')->name('web.nop-ho-so');
 
 

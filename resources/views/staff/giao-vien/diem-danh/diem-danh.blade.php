@@ -60,14 +60,15 @@
                                 <div class="row">
                                     <span class=" col-6 m-switch m-switch--outline m-switch--success">
                                         <label style="margin-bottom: 5px;margin-left:10px">
-                                            <input hidden type="text" value="off" value=""
+                                            <input hidden type="text" value="off"
                                                 name="status[{{$kid->id}}]" />
                                             @if(!empty($kid->attendance[0])&&$kid->attendance[0]->status==1)
                                             <input data-switch="true" type="checkbox" checked="checked"
                                                 name="status[{{$kid->id}}]" data-on-color="success" data-on-text="P"
                                                 data-off-color="danger" data-off-text="A">
-                                            @elseif(!empty($kid->attendance[0])&&$kid->attendance[0]->status==3)
-                                            <p>Xin Nghỉ</p>
+                                            @elseif(!empty($kid->attendance[0])&&$kid->attendance[0]->status==2)
+                                            <input hidden type="text" value="2" 
+                                                name="status[{{$kid->id}}]" />
                                             @else
                                             <input data-switch="true" type="checkbox" name="status[{{$kid->id}}]"
                                                 data-on-color="success" data-on-text="P" data-off-color="danger"

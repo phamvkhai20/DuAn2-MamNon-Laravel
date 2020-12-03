@@ -24,6 +24,7 @@
                 </div>
             </div>
             <div class="m-portlet__body">
+
                 <form class="m-form m-form--label-align-left- m-form--state-"
                     action="{{route('phu-huynh.them-don-xin-nghi',['id'=>session('id_kid_default')])}}" method="post"
                     id="m_form">
