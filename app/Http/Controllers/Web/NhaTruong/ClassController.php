@@ -13,9 +13,7 @@ class ClassController extends Controller
 {
     public function index()
     {
-        $grades = GradeModel::with(['classes'=>function (Query){
-            $query->with('')
-        }])->get();
+        $grades = GradeModel::with('classes')->get();
         return view('staff.nha-truong.quan-ly-lop.index', compact('grades'));
     }
     public function edit($id)
