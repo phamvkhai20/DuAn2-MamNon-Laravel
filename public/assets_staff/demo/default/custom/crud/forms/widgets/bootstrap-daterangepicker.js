@@ -98,31 +98,21 @@ var BootstrapDaterangepicker = {
                         );
                     }
                 );
-            // var a = moment().subtract(29, "days"),
-            //     t = moment();
+            var a = moment().subtract(29, "days"),
+                t = moment();
             $("#m_daterangepicker_6").daterangepicker(
                 {
                     buttonClasses: "m-btn btn",
                     applyClass: "btn-primary",
                     cancelClass: "btn-secondary",
+                    startDate: t,
+                    endDate: a,
                     ranges: {
-                        "Hôm nay": [moment(), moment()],
-                        "Ngày mai": [moment().subtract(-1, "days"), moment().subtract(-1, "days")],
-                        "Xin nghỉ 2 ngày tới": [moment().subtract(-2, "days"), moment()],
-                        "Xin nghỉ hết tuần": [moment().subtract(1, "friday"), moment()],
-                        "Xin nghỉ 1 tuần": [moment().subtract(-6, "days"), moment()],
-                        "Xin nghỉ 1 tháng": [
-                            moment().subtract(-29, "days"),
-                            moment(),
+                        "Hôm Nay": [moment(), moment()],
+                        "Ngày mai": [
+                            moment().subtract(-1, "days"),
+                            moment().subtract(-1, "days"),
                         ],
-                        // "This Month": [
-                        //     moment().startOf("month"),
-                        //     moment().endOf("month"),
-                        // ],
-                        // "Last Month": [
-                        //     moment().subtract(1, "month").startOf("month"),
-                        //     moment().subtract(1, "month").endOf("month"),
-                        // ],
                     },
                 },
                 function (a, t, n) {

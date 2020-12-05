@@ -1,10 +1,9 @@
-
-
 <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
 
-					<!-- BEGIN: Aside Menu -->
-					<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="1" m-menu-dropdown-timeout="500" style="position: relative;">
-                    <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+    <!-- BEGIN: Aside Menu -->
+    <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark "
+        m-menu-vertical="1" m-menu-scrollable="1" m-menu-dropdown-timeout="500" style="position: relative;">
+        <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
             @foreach(session('kids') as $key=>$kid)
             <li class="m-menu__item m-menu__item--active" aria-haspopup="true"><a href="#" class="m-menu__link ">
                     <form method="post" action="{{route('phu-huynh.set-default-kid')}}">
@@ -13,7 +12,7 @@
 
                         <button type="submit" class="box_kid">
                             <img src="{{asset('/upload/avatar/'.$kid->kid_avatar)}}" alt="avatar"
-                                style="width:30px;border-radius: 5%;margin:0 10px 5px 0">
+                                style="width:30px; height:30px; border-radius: 5%;margin:0 10px 5px 0">
                             <span class="text_name">
                                 {{$kid->kid_name}}
                             </span>
@@ -90,7 +89,7 @@
 
 
         </ul>
-					</div>
+    </div>
 
-					<!-- END: Aside Menu -->
-				</div>
+    <!-- END: Aside Menu -->
+</div>

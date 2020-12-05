@@ -22,6 +22,9 @@ class OffSchoolController extends Controller
         $data = $request->get('date');
         $start = substr($data, 0, 10);
         $end = substr($data, 13, 10);
+        if (empty($data)) {
+            return response()->json(['error' => 'Vui lòng chọn ngày nghỉ'], 400);
+        }
         if ($end === $start) {
             $checkAttendance = Attendance::where('kid_id', $request->get('id'))->where('date', $request->get('start'))->get();
             if (empty($checkAttendance)) {
@@ -36,7 +39,16 @@ class OffSchoolController extends Controller
                 $offSchool->date =  $request->get('start');
                 $offSchool->note =  "Xin Nghỉ học";
                 $offSchool->save();
+                return response()->json(
+                    ['data' =>   'Thành công']
+                );
+            } else {
+                return response()->json(['error' => 'Ngày nghỉ đã tồn tại'], 409);
             }
+        } else if ($end < $start) {
+            return response('Đã tồn tại', 402)->json(
+                ['data' =>   'Ngày nghỉ không hợp lệ']
+            );
         } else {
             $tmpDate = new DateTime($start);
             $tmpEndDate = new DateTime($end);
@@ -60,7 +72,11 @@ class OffSchoolController extends Controller
                     $offSchool->save();
                 }
             }
+            return response()->json(
+                ['data' =>   'Thành công']
+            );
         }
-        return redirect()->route('phu-huynh.xin-nghi-hoc', ['id' => session('id_kid_default')]);
+
+        // return redirect()->route('phu-huynh.xin-nghi-hoc', ['id' => session('id_kid_default')]);
     }
 }

@@ -66,7 +66,6 @@
     <script src="{{asset('assets_staff/demo/default/custom/crud/wizard/wizard.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets_staff/demo/default/custom/components/base/sweetalert2.js')}}" type="text/javascript">
     </script>
-
     <script>
     $(window).on('load', function() {
         $('body').removeClass('m-page--loading');

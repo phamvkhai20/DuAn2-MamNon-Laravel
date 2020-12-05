@@ -207,16 +207,26 @@
 </div>
 <div class="modal fade" id="m_daterangepicker_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+        <div class="modal-content ">
             <div class="modal-header">
                 <h5 class="modal-title" id="">Xin nghỉ học</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="la la-remove"></span>
                 </button>
             </div>
-            <form class="m-form m-form--fit m-form--label-align-right"
-                action="{{route('phu-huynh.them-don-xin-nghi',['id'=>session('id_kid_default')])}}" method="post">
-                @csrf
+            <div class=" justify-content-center  d-flex">
+                <div class="d-none mt-3" style="height: 200px;" id="loading">
+                    <td style="vertical-align:middle;">
+                        <div class="m-spinner m-spinner--brand"></div>
+                        <div class="m-spinner m-spinner--primary"></div>
+                        <div class="m-spinner m-spinner--success"></div>
+                        <div class="m-spinner m-spinner--info"></div>
+                        <div class="m-spinner m-spinner--warning"></div>
+                        <div class="m-spinner m-spinner--danger"></div>
+                    </td>
+                </div>
+            </div>
+            <form class="m-form m-form--fit m-form--label-align-right" id="form_nghi_hoc">
                 <div class="modal-body">
                     <div class="form-group m-form__group row">
                         <label class="col-form-label col-lg-5 col-sm-12">Chọn khoảng thời gian xin nghỉ học</label>
@@ -233,11 +243,50 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary m-btn">Gửi</button>
+                    <button type="button" onclick="guiXinNghiHoc()" class="btn btn-secondary m-btn">Gửi</button>
                     <button type="button" class="btn btn-brand m-btn" data-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+function guiXinNghiHoc() {
+    event.preventDefault();
+    document.querySelector('#form_nghi_hoc').classList.add("d-none")
+    document.querySelector('#loading').classList.remove("d-none")
+    const id = document.querySelector("input[name = 'id']").value;
+    const date = document.querySelector("input[name = 'date']").value;
+    axios.post("{{route('phu-huynh.them-don-xin-nghi',['id'=>session('id_kid_default')])}}", {
+            id: id,
+            date: date
+        })
+        .then((response) => {
+            console.log(response);
+            if (response.status === 200) {
+                swal({
+                    title: "Gửi đơn xin nghỉ học thành công !",
+                    text: "Thông báo tự động đóng trong 5s.",
+                    timer: 5e3,
+                    onOpen: function() {
+                        swal.showLoading();
+                    },
+                }).then(function(e) {
+                    "timer" === e.dismiss &&
+                        window.location.reload();
+                });
+            }
+        })
+        .catch(function(error) {
+            if (error.response) {
+                error.response.status === 400 && swal("Gửi thất bại!", "Vui lòng chọn ngày nghỉ", "Lỗi");
+                error.response.status === 409 && swal("Gửi thất bại!", "Đơn xin nghỉ học đã tồn tại", "Lỗi");
+
+            }
+        }).finally(function() {
+            document.querySelector('#form_nghi_hoc').classList.remove("d-none")
+            document.querySelector('#loading').classList.add("d-none")
+        });
+}
+</script>
 @endsection
