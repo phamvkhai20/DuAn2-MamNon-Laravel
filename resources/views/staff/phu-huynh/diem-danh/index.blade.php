@@ -109,7 +109,6 @@
                                             <th rowspan="1" colspan="1">Giờ về</th>
                                             <th rowspan="1" colspan="1">Ăn</th>
                                             <th rowspan="1" colspan="1">Khác</th>
-                                            <th rowspan="1" colspan="1"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -117,12 +116,23 @@
                                         <tr>
                                             <td rowspan="1" colspan="1">{{$key+1}}</td>
                                             <td rowspan="1" colspan="1">{{$attendance->date}}</td>
-                                            <td rowspan="1" colspan="1">{{$attendance->status}}</td>
+                                            <td rowspan="1" colspan="1">
+                                                @php
+                                                if($attendance->status==0){echo "Nghỉ không phép";}
+                                                if($attendance->status==1){echo "Đi học";}
+                                                if($attendance->status==2){echo "Nghỉ phép";}
+                                                @endphp
+                                            </td>
                                             <td rowspan="1" colspan="1">{{$attendance->arrival_time}}</td>
                                             <td rowspan="1" colspan="1">{{$attendance->leave_time}}</td>
-                                            <td rowspan="1" colspan="1">{{$attendance->meal}}</td>
-                                            <td rowspan="1" colspan="1">Trạng thái</td>
-                                            <td rowspan="1" colspan="1"></td>
+                                            <td rowspan="1" colspan="1">
+                                                @php
+                                                if($attendance->meal==0){echo "Không ăn";}else{
+                                                echo "Có ăn";
+                                                }
+                                                @endphp
+                                            </td>
+                                            <td rowspan="1" colspan="1"><a href="">Chi tiết</a> </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

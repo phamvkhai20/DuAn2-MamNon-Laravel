@@ -13,7 +13,9 @@ class ClassController extends Controller
 {
     public function index()
     {
-        $grades = GradeModel::with('classes')->get();
+        $grades = GradeModel::with(['classes'=>function (Query){
+            $query->with('')
+        }])->get();
         return view('staff.nha-truong.quan-ly-lop.index', compact('grades'));
     }
     public function edit($id)
@@ -26,7 +28,7 @@ class ClassController extends Controller
     public function saveEdit(ClassRequest $request, $id)
     {
         $data = ClassModel::find($id)->update(request()->all());
-        return redirect()->route('lop.index');
+        return redirect()->route('nha-truong.lop.index');
     }
     public function add()
     {
@@ -39,7 +41,7 @@ class ClassController extends Controller
     {
         $data = request()->all();
         ClassModel::create($data);
-        return redirect()->route('lop.index');
+        return redirect()->route('nha-truong.lop.index');
     }
     public function delete($id)
     {

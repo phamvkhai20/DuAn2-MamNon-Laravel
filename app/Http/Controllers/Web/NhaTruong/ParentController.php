@@ -39,7 +39,7 @@ class ParentController extends Controller
          $data['parent_avatar'] = "";
       }
       Parents::create($data);
-      return redirect()->route('phu-huynh.list');
+      return redirect()->route('nha-truong.phu-huynh.list');
    }
 
    public function edit($id)
@@ -63,6 +63,6 @@ class ParentController extends Controller
          $data['parent_avatar'] = $parent->parent_avatar;
       }
       $parent->update($data);
-      return redirect()->route('phu-huynh.list');
+      return redirect()->route('nha-truong.phu-huynh.list');
    }
 }

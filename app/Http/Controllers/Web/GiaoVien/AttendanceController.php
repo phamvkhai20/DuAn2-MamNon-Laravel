@@ -35,61 +35,64 @@ class AttendanceController extends Controller
     public function diem_danh_den(Request $request)
     {
         $data = Arr::except($request->all(), ['_token']);
+        // dd($data);
         foreach ($data["kid_id"] as $index => $kid) {
             $find = Attendance::where('kid_id', $data["kid_id"][$index])->where("date", $data["date"][$index])->get();
-            if (count($find) < 1) {
-                $attendance = new Attendance();
-                $attendance->kid_id = $data["kid_id"][$index];
-                $attendance->leave_time = "00:00:00";
-                if ($data["status"][$index] == "off") {
-                    $attendance->meal = 0;
+            if ($data["status"][$index] != "2") {
+                if (count($find) < 1) {
+                    $attendance = new Attendance();
+                    $attendance->kid_id = $data["kid_id"][$index];
+                    $attendance->leave_time = "00:00:00";
+                    if ($data["status"][$index] == "off") {
+                        $attendance->meal = 0;
+                    } else {
+                        $attendance->meal = $data["meal"][$index];
+                    }
+                    if ($data["status"][$index] == "off") {
+                        $attendance->status = 0;
+                        $attendance->arrival_time = "00:00:00";
+                    } else {
+                        $attendance->status = 1;
+                        $attendance->arrival_time =  $data["arrival_time"][$index];
+                    }
+                    $attendance->class_id =  $data["class_id"][$index];
+                    $attendance->date =  $data["date"][$index];
+                    $attendance->note =  $data["note"][$index];
+                    $attendance->save();
                 } else {
-                    $attendance->meal = $data["meal"][$index];
+                    $attendance = new Attendance();
+                    if ($data["status"][$index] == "off") {
+                        $attendance->meal = 0;
+                    } else {
+                        $attendance->meal = $data["meal"][$index];
+                    }
+                    if ($data["status"][$index] == "off") {
+                        $attendance->status = 0;
+                        $attendance->arrival_time = "00:00:00";
+                    } else {
+                        $attendance->status = 1;
+                        $attendance->arrival_time =  $data["arrival_time"][$index];
+                    }
+                    $attendance->class_id =  $data["class_id"][$index];
+                    $attendance->note =  $data["note"][$index];
+                    if ($data["arrival_time"][$index] !== "00:00:00") {
+                        $params = array(
+                            'note'  => $attendance->note,
+                            'status'  => $attendance->status,
+                            'leave_time' => "00:00:00",
+                            'arrival_time' => $attendance->arrival_time,
+                            'meal' => $attendance->meal
+                        );
+                    } else {
+                        $params = array(
+                            'note'  => $attendance->note,
+                            'status'  => $attendance->status,
+                            'meal' => $attendance->meal
+                        );
+                    }
+                    $find = Attendance::where("kid_id", $data["kid_id"][$index])->where("date", $data["date"][$index])->first();
+                    $find->update($params);
                 }
-                if ($data["status"][$index] == "off") {
-                    $attendance->status = 0;
-                    $attendance->arrival_time = "00:00:00";
-                } else {
-                    $attendance->status = 1;
-                    $attendance->arrival_time =  $data["arrival_time"][$index];
-                }
-                $attendance->class_id =  $data["class_id"][$index];
-                $attendance->date =  $data["date"][$index];
-                $attendance->note =  $data["note"][$index];
-                $attendance->save();
-            } else {
-                $attendance = new Attendance();
-                if ($data["status"][$index] == "off") {
-                    $attendance->meal = 0;
-                } else {
-                    $attendance->meal = $data["meal"][$index];
-                }
-                if ($data["status"][$index] == "off") {
-                    $attendance->status = 0;
-                    $attendance->arrival_time = "00:00:00";
-                } else {
-                    $attendance->status = 1;
-                    $attendance->arrival_time =  $data["arrival_time"][$index];
-                }
-                $attendance->class_id =  $data["class_id"][$index];
-                $attendance->note =  $data["note"][$index];
-                if ($data["arrival_time"][$index] !== "00:00:00") {
-                    $params = array(
-                        'note'  => $attendance->note,
-                        'status'  => $attendance->status,
-                        'leave_time' => "00:00:00",
-                        'arrival_time' => $attendance->arrival_time,
-                        'meal' => $attendance->meal
-                    );
-                } else {
-                    $params = array(
-                        'note'  => $attendance->note,
-                        'status'  => $attendance->status,
-                        'meal' => $attendance->meal
-                    );
-                }
-                $find = Attendance::where("kid_id", $data["kid_id"][$index])->where("date", $data["date"][$index])->first();
-                $find->update($params);
             }
         }
         return redirect()->route('giao-vien.giao_dien_diem_danh', ['id' => $data["class"]]);

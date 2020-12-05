@@ -30,28 +30,33 @@
                     </div>
                 </div>
                 <!--begin::Form-->
-                <form class="m-form row" enctype="multipart/form-data" action="{{ route('giao-vien.update', $teacher->id) }}" method="post">
+                <form class="m-form row" enctype="multipart/form-data"
+                    action="{{ route('nha-truong.giao-vien.update', $teacher->id) }}" method="post">
                     @csrf
                     <div class="col-lg-6">
                         <div class="m-portlet__body">
-                        <input hidden name="id" value="{{$teacher->id}}" type="text" class="form-control m-input" placeholder="Nhập đầy đủ tên">
+                            <input hidden name="id" value="{{$teacher->id}}" type="text" class="form-control m-input"
+                                placeholder="Nhập đầy đủ tên">
                             <div class="m-form__section m-form__section--first">
-                            
+
                                 <div class="form-group m-form__group">
                                     <label for="example_input_full_name">Tên:</label>
-                                    <input name="fullname" type="text" class="form-control m-input" placeholder="Nhập đầy đủ tên" value="{{$teacher->fullname}}">
+                                    <input name="fullname" type="text" class="form-control m-input"
+                                        placeholder="Nhập đầy đủ tên" value="{{$teacher->fullname}}">
                                     {!! ShowErrors($errors,'fullname') !!}
                                     <!-- <span class="m-form__help">Please enter your full name</span> -->
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Email :</label>
-                                    <input name="email"  type="text" class="form-control m-input" placeholder="Nhập email đầy đủ" value="{{$teacher->email}}">
+                                    <input name="email" type="text" class="form-control m-input"
+                                        placeholder="Nhập email đầy đủ" value="{{$teacher->email}}">
                                     {!! ShowErrors($errors,'email') !!}
                                     <!-- <span class="m-form__help">We'll never share your email with anyone else</span> -->
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Số Điện Thoại</label>
-                                    <input name="phone" type="text" class="form-control m-input" placeholder="Nhập sđt đầy đủ" value="{{$teacher->phone}}">
+                                    <input name="phone" type="text" class="form-control m-input"
+                                        placeholder="Nhập sđt đầy đủ" value="{{$teacher->phone}}">
                                     {!! ShowErrors($errors,'phone') !!}
                                 </div>
                             </div>
@@ -62,7 +67,8 @@
                             <div class="m-form__section m-form__section--first">
                                 <div class="form-group m-form__group">
                                     <label>Ngày Sinh</label>
-                                    <input name="date_of_birth" type="date" class="form-control m-input" placeholder="" value="{{$teacher->date_of_birth}}">
+                                    <input name="date_of_birth" type="date" class="form-control m-input" placeholder=""
+                                        value="{{$teacher->date_of_birth}}">
                                     {!! ShowErrors($errors,'date_of_birth') !!}
                                 </div>
                                 <div class="form-group m-form__group">
@@ -76,15 +82,16 @@
                                 <div class="form-group m-form__group">
                                     <label>Vai Trò :</label>
                                     <select name="teacher_type_id" class="form-control">
-                                    @foreach ($teacher_types as $teacher_type)
-                                    <option @if($teacher_type->id == $teacher->teacher_type_id ) selected @endif value="{{ $teacher_type->id }}">{{ $teacher_type->teacher_type }}</option>
-                                    @endforeach
+                                        @foreach ($teacher_types as $teacher_type)
+                                        <option @if($teacher_type->id == $teacher->teacher_type_id ) selected @endif
+                                            value="{{ $teacher_type->id }}">{{ $teacher_type->teacher_type }}</option>
+                                        @endforeach
                                     </select>
                                     {!! ShowErrors($errors,'teacher_type_id') !!}
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Trạng Thái</label>
-                                    <select  name="status" class="form-control">
+                                    <select name="status" class="form-control">
                                         <option value="">Chọn trạng thái</option>
                                         <option @if ($teacher->status == 0) selected @endif value="0">Khóa</option>
                                         <option @if ($teacher->status == 1) selected @endif value="1">Hoạt Động</option>
@@ -94,8 +101,9 @@
                                 <div class="form-group m-form__group">
                                     <label>Ảnh đại diện</label>
                                     <br>
-                                    <img src="{{asset('upload/avatar/'.$teacher->avatar)}}"  id="avatar" width="300px">
-                                    <input name="avatar" type="file" class="form-control m-input" onchange="readURL(this);" >
+                                    <img src="{{asset('upload/avatar/'.$teacher->avatar)}}" id="avatar" width="300px">
+                                    <input name="avatar" type="file" class="form-control m-input"
+                                        onchange="readURL(this);">
                                     {!! ShowErrors($errors,'avatar') !!}
                                 </div>
                             </div>
@@ -115,18 +123,18 @@
     </div>
 </div>
 <script>
-    function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#avatar')
-                        .attr('src', e.target.result)
-                        .width(300);
-                };
+        reader.onload = function(e) {
+            $('#avatar')
+                .attr('src', e.target.result)
+                .width(300);
+        };
 
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 </script>
 @endsection

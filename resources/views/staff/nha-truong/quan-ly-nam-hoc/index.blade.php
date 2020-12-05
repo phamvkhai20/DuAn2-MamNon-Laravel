@@ -23,7 +23,7 @@
                         <table class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline" id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 954px;">
                             <thead>
                                 <tr>
-                                    <a href="{{route('nam.them_moi')}}" class="btn btn-sm btn-success">Thêm</a>
+                                    <a href="{{route('nha-truong.nam.them_moi')}}" class="btn btn-sm btn-success">Thêm</a>
                                 </tr>
                                 <tr>
                                     <th rowspan="1" colspan="1">ID</th>
@@ -40,7 +40,7 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                    @foreach($year as $yr)
+                        @foreach($year as $yr)
                         <tr role="row" class="odd">
                             <td class="sorting_1" tabindex="0">{{$yr->id}}</td>
                             <td>{{$yr->school_year}}</td>
@@ -49,7 +49,7 @@
                                 <a href="xoa/{{$yr->id}}" class="btn btn-danger btn-sm btn-remove">Xóa</a>
                             </td>
                         </tr>
-                    @endforeach
+                        @endforeach
                     </tbody>
                     </table>
                     <div id="m_table_1_processing" class="dataTables_processing card" style="display: none;">
