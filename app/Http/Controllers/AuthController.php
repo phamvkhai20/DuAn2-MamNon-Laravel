@@ -28,7 +28,7 @@ class AuthController extends Controller
          if (Auth::user()->status == 0) {
             return redirect()->route('form.school')->with('thongbao', 'Tài Khoản Của Bạn Đã Bị Khóa');
          } else {
-            return redirect()->route('nha-truong.index');
+            return redirect()->route('nha-truong.nha-truong.index');
          }
       } else {
          return redirect()->back()->with('thongbao', 'Bạn nhập sai số điện thoại hoặc mật khẩu');

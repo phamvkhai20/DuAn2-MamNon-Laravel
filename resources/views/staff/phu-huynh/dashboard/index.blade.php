@@ -1,8 +1,8 @@
 @extends('./staff/phu-huynh/layouts/layout')
 @section('title','Bảng tin')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
-    <div class="container mt-5">
+<div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
+    <div class="mt-5">
         <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
             <div class="m-demo__preview">
                 <div class="m-nav-grid">
@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="">
         <div class="m-portlet">
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
@@ -102,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="">
         <div class="row">
             <div class="col-xl-6">
 

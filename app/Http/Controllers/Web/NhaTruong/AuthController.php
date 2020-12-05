@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Auth;
 use Arr;
 use App\Models\School;
+
 class AuthController extends Controller
 
 {
@@ -22,12 +23,11 @@ class AuthController extends Controller
    {
       $data = Arr::except($request->all(), ['_token']);
 
-     if ($result = Auth::attempt($data)) {
-         if(Auth::user()->status == 0 ){
-         return redirect()->route('form.school')->with('thongbao','Tài Khoản Của Bạn Đã Bị Khóa');
-         }
-         else{
-            return redirect()->route('nha-truong.index');
+      if ($result = Auth::attempt($data)) {
+         if (Auth::user()->status == 0) {
+            return redirect()->route('form.school')->with('thongbao', 'Tài Khoản Của Bạn Đã Bị Khóa');
+         } else {
+            return redirect()->route('nha-truong.nha-truong.index');
          }
       } else {
          return redirect()->back()->with('thongbao', 'Bạn nhập sai số điện thoại hoặc mật khẩu');
@@ -38,5 +38,5 @@ class AuthController extends Controller
    {
       Auth::logout();
       return redirect()->route('login.school');
-  }
+   }
 }

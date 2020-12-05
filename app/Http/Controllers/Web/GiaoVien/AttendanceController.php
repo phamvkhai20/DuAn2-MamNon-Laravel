@@ -38,7 +38,7 @@ class AttendanceController extends Controller
         // dd($data);
         foreach ($data["kid_id"] as $index => $kid) {
             $find = Attendance::where('kid_id', $data["kid_id"][$index])->where("date", $data["date"][$index])->get();
-            if($data["status"][$index]!="2"){
+            if ($data["status"][$index] != "2") {
                 if (count($find) < 1) {
                     $attendance = new Attendance();
                     $attendance->kid_id = $data["kid_id"][$index];

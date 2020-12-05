@@ -40,16 +40,9 @@
     <link rel="icon" href="{{asset('assets/demo/img/logo/icon-logo.png')}}" />
 </head>
 
-<!-- end::Head -->
-
-<!-- begin::Body -->
-
 <body
     class="m-page--fluid m-page--loading-enabled m-page--loading m-header--fixed m-header--fixed-mobile m-footer--push m-aside--offcanvas-default">
-
-    <!-- header -->
     @include('web/login/layouts/header')
-    <!--end  header -->
     @yield('content')
     <script src="{{asset('assets/vendors/base/vendors.bundle.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/demo/demo10/base/scripts.bundle.js')}}" type="text/javascript"></script>
