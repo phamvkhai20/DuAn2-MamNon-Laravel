@@ -10,7 +10,7 @@ class YearController extends Controller
 {
     public function index()
     {
-        $year = SchoolYearModel::all();
+          $data['year'] = Parents::paginate(10);
         return view('staff.nha-truong.quan-ly-nam-hoc.index', compact('year'));
     }
     public function edit($id)
