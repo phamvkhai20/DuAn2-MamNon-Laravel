@@ -1,5 +1,5 @@
 @extends('./staff/nha-truong/layouts/layout')
-@section('title','Danh sách phụ huynh')
+@section('title','Danh sách giáo viên')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3 ">
     <div class="">
