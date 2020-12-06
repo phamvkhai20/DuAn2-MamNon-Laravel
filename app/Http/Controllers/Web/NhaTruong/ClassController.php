@@ -29,19 +29,36 @@ class ClassController extends Controller
             $querys->with('teacher');
         }])->first();
         $grade = GradeModel::all();
-        $year = SchoolYearModel::orderBy('id', 'asc')->limit(1)->first();;
+        $year = SchoolYearModel::orderBy('id', 'desc')->limit(1)->first();;
         return view('staff.nha-truong.quan-ly-lop.edit', compact('class', 'grade', 'year'));
     }
     public function saveEdit(ClassRequest $request, $id)
     {
-        $data = ClassModel::find($id)->update(request()->all());
+
+        $data = ClassModel::find($id);
+        $teachers = request()->get('param');
+        if (!empty($teachers)) {
+            $assignment = Assignment::where('class_id', $id)->delete();
+            foreach ($teachers as $teacher) {
+                $dataTeacher = [
+                    'school_year_id' => request()->get('school_year_id'),
+                    'class_id' => $id,
+                    'teacher_id' => $teacher
+                ];
+                Assignment::create($dataTeacher);
+            }
+        } else {
+            $assignment = Assignment::where('class_id', $id)->delete();
+        }
+
+        $data->update(request()->all());
         return redirect()->route('nha-truong.lop.index');
     }
     public function add()
     {
         $class = ClassModel::all();
         $grade = GradeModel::all();
-        $year = SchoolYearModel::orderBy('id', 'asc')->limit(1)->first();;
+        $year = SchoolYearModel::orderBy('id', 'desc')->limit(1)->first();;
         return view('staff.nha-truong.quan-ly-lop.add', compact('grade', 'year'));
     }
     public function saveAdd(ClassRequest $request)

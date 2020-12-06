@@ -19,6 +19,6 @@ class Teacher extends Authenticatable
     }
     public function assignment()
     {
-        return $this->hasMany(Assignment::class, 'id');
+        return $this->hasMany(Assignment::class, 'teacher_id', 'id');
     }
 }

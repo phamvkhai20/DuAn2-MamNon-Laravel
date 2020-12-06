@@ -24,8 +24,8 @@
                         </a>
                     </div>
                 </div>
-            <div class="m-portlet__body">
-            <form action="{{route('nam.save_edit',['id'=>$year->id])}}" method="post"
+                <div class="m-portlet__body">
+                    <form action="{{route('nha-truong.nam.save_edit',['id'=>$year->id])}}" method="post"
                         class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                         @csrf
                         <div class="m-portlet__body">

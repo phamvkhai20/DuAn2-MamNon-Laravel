@@ -55,10 +55,9 @@
                                 <label class="col-lg-2 col-form-label">ID Năm Học:</label>
                                 <div class="col-lg-6">
                                     <input value="{{$year->id}}" id="school_year" hidden class="form-control"
-                                        name="school_year_id" disabled />
+                                        name="school_year_id" />
 
-                                    <input value="{{$year->school_year}}" class="form-control" name="school_year_id"
-                                        disabled />
+                                    <input value="{{$year->school_year}}" class="form-control" disabled />
                                 </div>
                             </div>
                             <div class="m-form__group m-form__group--last form-group row">

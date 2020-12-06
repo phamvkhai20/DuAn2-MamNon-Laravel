@@ -19,7 +19,7 @@ class CheckLogin
     {
         if (Auth::check() === true || Auth::guard('parent')->check() || Auth::guard('teacher')->check()) {
             if (!empty(Auth::guard('teacher')->user()) == true) {
-                // return redirect()->route('nha-truong.nha-truong.index');
+                return redirect()->route('giao-vien.index');
             } else  if (!empty(Auth::guard('parent')->user()) == true) {
                 $idParent = Auth::guard('parent')->user()->id;
                 $findInfoParent = Parents::where('id', $idParent)->with('kids')->first();

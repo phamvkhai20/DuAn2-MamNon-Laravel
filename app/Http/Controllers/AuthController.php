@@ -24,6 +24,7 @@ class AuthController extends Controller
    public function loginSchool(LoginRequest $request)
    {
       $data = Arr::except($request->all(), ['_token']);
+
       if ($result = Auth::attempt($data)) {
          if (Auth::user()->status == 0) {
             return redirect()->route('form.school')->with('thongbao', 'Tài Khoản Của Bạn Đã Bị Khóa');
@@ -47,7 +48,14 @@ class AuthController extends Controller
          if (Auth::guard('teacher')->user()->status == 0) {
             return redirect()->route('form.teacher')->with('thongbao', 'Tài Khoản Của Bạn Đã Bị Khóa');
          } else {
-            $findTeacher = Teacher::where('id', $idTeacher)->with('class')->first();
+            $findTeacher = Teacher::where('id', $idTeacher)->with(['assignment' => function ($query) {
+               $query->with('class');
+            }])->first();
+            if (!empty($findTeacher->assignment)) {
+               session(['classArray' => $findTeacher->assignment]);
+               session(['class' => $findTeacher->assignment[0]->class_id]);
+               return redirect()->route('giao-vien.index');
+            }
             return redirect()->route('giao-vien.index');
          }
       } else {
@@ -88,19 +96,22 @@ class AuthController extends Controller
       return view('web.page.nop-ho-so');
    }
    // Đăng xuất
-   public function logoutSchool()
+   public function logoutSchool(Request $request)
    {
       Auth::logout();
+      $request->session()->flush();
       return redirect()->route('web.home');
    }
-   public function logoutTeacher()
+   public function logoutTeacher(Request $request)
    {
       Auth::guard('teacher')->logout();
+      $request->session()->flush();
       return redirect()->route('web.home');
    }
-   public function logoutParent()
+   public function logoutParent(Request $request)
    {
       Auth::guard('parent')->logout();
+      $request->session()->flush();
       return redirect()->route('web.home');
    }
 }
