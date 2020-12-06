@@ -24,8 +24,8 @@
                         </a>
                     </div>
                 </div>
-            <div class="m-portlet__body">
-         <form action="{{route('nha-truong.lop.save_add')}}" method="post"
+                <div class="m-portlet__body">
+                    <form action="{{route('nha-truong.lop.save_add')}}" method="post"
                         class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                         @csrf
                         <div class="m-portlet__body">
@@ -53,13 +53,25 @@
                             <div class="m-form__group m-form__group--last form-group row">
                                 <label class="col-lg-2 col-form-label">ID Năm Học:</label>
                                 <div class="col-lg-6">
-                                    <select name="school_year_id" class="form-control">
-                                        @foreach($year as $yr)
-                                        <option value="{{$yr->id}}">{{$yr->school_year}}</option>
-                                        @endforeach
+
+                                    <input value="{{$year->id}}" id="school_year" hidden class="form-control"
+                                        name="school_year_id" disabled />
+
+                                    <input value="{{$year->school_year}}" class="form-control" name="school_year_id"
+                                        disabled />
+                                </div>
+                            </div>
+                            <div class="m-form__group m-form__group--last form-group row">
+                                <label class="col-lg-2 col-form-label">Giáo viên:</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control m-select2" id="m_select2_3" name="param[]"
+                                        multiple="multiple">
+                                        <optgroup id="teacher">
+                                        </optgroup>
                                     </select>
                                 </div>
                             </div>
+
                         </div>
                         <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
                             <div class="m-form__actions m-form__actions--solid">
@@ -73,10 +85,32 @@
                                 </div>
                             </div>
                         </div>
+                        <div id="hahaa">
+
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+var school_year = document.querySelector('#school_year').value;
+axios.get(
+        `{{route('nha-truong.giao-vien.get-list')}}`, {
+            params: {
+                school_year: school_year
+            }
+        })
+    .then(function(response) {
+        document.querySelector('#teacher').innerHTML = response.data.teacher.map(teacher =>
+            `<option value="${teacher.id}">${teacher.fullname}</option>`);
+    })
+    .catch(function(error) {
+        console.log(error);
+    })
+    .then(function() {});
+</script>
 @endsection

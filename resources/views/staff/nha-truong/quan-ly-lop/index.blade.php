@@ -2,7 +2,6 @@
 @section('title','Danh sách lớp học')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
-
     <div class="m-portlet m-portlet--mobile">
         <div class="m-portlet__body">
             <div class="m-form m-form--label-align-right  ">
@@ -79,7 +78,7 @@
                         <span>Quay lại</span>
                     </span>
                 </a>
-                <a href="{{route('nha-truong.phu-huynh.create')}}"
+                <a href="{{route('nha-truong.lop.them-moi')}}"
                     class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                     <span>
                         <i class="la la-plus"></i>
@@ -123,7 +122,14 @@
                                 <td class="sorting_1" tabindex="0">{{$key+1}}</td>
                                 <td>{{$cl->name}}</td>
                                 <td>{{count($cl->kids)}} Học sinh</td>
-                                <td>{{$cl->school_years->school_year}}</td>
+                                <td>
+                                    <ul>
+                                        @foreach($cl->assignments as $teacher)
+                                        <li>{{($teacher->teacher->fullname)}}</li>
+                                        @endforeach
+                                    </ul>
+
+                                </td>
                                 <td>{{$cl->school_years->school_year}}</td>
                                 <td>
                                     <a href="sua/{{$cl->id}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
