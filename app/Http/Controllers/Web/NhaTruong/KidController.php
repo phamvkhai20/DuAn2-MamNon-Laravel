@@ -156,7 +156,7 @@ class KidController extends Controller
         request()->flashOnly('phone');
         request()->flashOnly('email');
         request()->flashOnly('status');
-        return redirect()->route('tre.index');
+        return redirect()->route('nha-truong.tre.index');
     }
     public function edit($id)
     {
@@ -179,6 +179,6 @@ class KidController extends Controller
             $data['kid_avatar'] = $kid->kid_avatar;
         }
         $kid->update($data);
-        return redirect()->route('tre.index');
+        return redirect()->route('nha-truong.tre.index');
     }
 }

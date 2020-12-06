@@ -91,72 +91,67 @@
             <div class="m-portlet__body">
 
                 <form class="m-form m-form--label-align-left- m-form--state-" id="m_form">
-
-                    <!--begin: Form Body -->
                     <div class="">
                         <div class="row">
                             <div class="table-responsive">
-                        <table
-                            class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
-                            id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 954px;">
-                            <thead>
-                                <tr>
-                                    <a href="{{route('nha-truong.giao-vien.them')}}"
-                                        class="btn btn-sm btn-success">Thêm</a>
-                                </tr>
-                                <tr>
-                                    <th rowspan="1" colspan="1">ID</th>
-                                    <th rowspan="1" colspan="1">Tên GV</th>
-                                    <th rowspan="1" colspan="1">Ảnh</th>
-                                    <th rowspan="1" colspan="1">SĐT</th>
-                                    <th rowspan="1" colspan="1">Email</th>
-                                    <th rowspan="1" colspan="1">Vai Trò</th>
-                                    <th rowspan="1" colspan="1">Trạng Thái</th>
-                                    <th rowspan="1" colspan="1">
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th rowspan="1" colspan="1">ID</th>
-                                    <th rowspan="1" colspan="1">Tên GV</th>
-                                    <th rowspan="1" colspan="1">Ảnh</th>
-                                    <th rowspan="1" colspan="1">SĐT</th>
-                                    <th rowspan="1" colspan="1">Email</th>
-                                    <th rowspan="1" colspan="1">Vai Trò</th>
-                                    <th rowspan="1" colspan="1">Trạng Thái</th>
-                                    <th rowspan="1" colspan="1">
-                                    </th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                @foreach ($teachers as $teacher)
-                                <tr role="row" class="odd">
-                                    <td class="sorting_1" tabindex="0">{{$teacher->id}}</td>
-                                    <td>{{$teacher->fullname}}</td>
-                                    <td>
-                                        <img src="{{asset('upload/avatar/'.$teacher->avatar)}}" alt="avatar"
-                                            width="100px">
-                                    </td>
-                                    <td>{{$teacher->phone}}</td>
-                                    <td>{{$teacher->email}}</td>
-                                    <td>{{ $teacher->getTeacherType->teacher_type}}</td>
+                                <table
+                                    class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
+                                    id="m_table_1" role="grid" aria-describedby="m_table_1_info"
+                                    style="min-width: 954px;width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="1" colspan="1">ID</th>
+                                            <th rowspan="1" colspan="1">Tên GV</th>
+                                            <th rowspan="1" colspan="1">Ảnh</th>
+                                            <th rowspan="1" colspan="1">SĐT</th>
+                                            <th rowspan="1" colspan="1">Email</th>
+                                            <th rowspan="1" colspan="1">Vai Trò</th>
+                                            <th rowspan="1" colspan="1">Trạng Thái</th>
+                                            <th rowspan="1" colspan="1">
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th rowspan="1" colspan="1">ID</th>
+                                            <th rowspan="1" colspan="1">Tên GV</th>
+                                            <th rowspan="1" colspan="1">Ảnh</th>
+                                            <th rowspan="1" colspan="1">SĐT</th>
+                                            <th rowspan="1" colspan="1">Email</th>
+                                            <th rowspan="1" colspan="1">Vai Trò</th>
+                                            <th rowspan="1" colspan="1">Trạng Thái</th>
+                                            <th rowspan="1" colspan="1">
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        @foreach ($teachers as $teacher)
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1" tabindex="0">{{$teacher->id}}</td>
+                                            <td>{{$teacher->fullname}}</td>
+                                            <td>
+                                                <img src="{{asset('upload/avatar/'.$teacher->avatar)}}" alt="avatar"
+                                                    width="100px">
+                                            </td>
+                                            <td>{{$teacher->phone}}</td>
+                                            <td>{{$teacher->email}}</td>
+                                            <td>{{ $teacher->getTeacherType->teacher_type}}</td>
 
-                                    @if($teacher->status == 0)
-                                    <td class="text-danger"> Khóa </td>
-                                    @else
-                                    <td class="text-success"> Hoạt động </td>
-                                    @endif
-                                    </td>
+                                            @if($teacher->status == 0)
+                                            <td class="text-danger"> Khóa </td>
+                                            @else
+                                            <td class="text-success"> Hoạt động </td>
+                                            @endif
+                                            </td>
 
-                                    <td>
-                                        <a href="{{ route('nha-truong.giao-vien.sua', $teacher->id) }}"
-                                            class="btn btn-warning btn-sm ">Chi tiết</a>&nbsp;
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                            <td>
+                                                <a href="{{ route('nha-truong.giao-vien.sua', $teacher->id) }}"
+                                                    class="btn btn-warning btn-sm ">Chi tiết</a>&nbsp;
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
 
 
                                 <div id="m_table_1_processing" class="dataTables_processing card"

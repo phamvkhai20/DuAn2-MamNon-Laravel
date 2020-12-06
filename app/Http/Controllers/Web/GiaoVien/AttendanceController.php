@@ -147,7 +147,7 @@ class AttendanceController extends Controller
         $date = Carbon::now('Asia/Ho_Chi_Minh');
         $month = substr($date, 0, 7);
         $today = substr($date, 0, 10);
-        $getAttendance = Attendance::whereBetween("date", [$month . '-1', $today])->orderBy('date', "asc")->distinct()->get(['date']);
+        $getAttendance = Attendance::whereBetween("date", [$month . '-1', $today])->where('class_id', $id)->orderBy('date', "asc")->distinct()->get(['date']);
         $studentInClass = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
             $query->whereBetween("date", [substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 7) . '-1', substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 10)]);
         }])->get();

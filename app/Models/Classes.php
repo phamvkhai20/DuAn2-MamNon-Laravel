@@ -22,4 +22,8 @@ class Classes extends Model
     {
         return $this->belongsTo(SchoolYearModel::class, 'school_year_id', 'id');
     }
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class, 'class_id', 'id');
+    }
 }

@@ -79,8 +79,10 @@ Route::group([
     Route::group([
         'prefix' => 'giao-vien',
     ], function () {
-        Route::get('', 'Web\NhaTruong\TeacherController@index')
+        Route::get('/get-list-teacher', 'Web\NhaTruong\TeacherController@index')
             ->name('giao-vien.list');
+        Route::get('', 'Web\NhaTruong\TeacherController@get_all_teacher')
+            ->name('giao-vien.get-list');
         Route::get('danh-sach', 'Web\NhaTruong\TeacherController@index')
             ->name('giao-vien.list');
 
