@@ -100,10 +100,7 @@
                             class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
                             id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 954px;">
                             <thead>
-                                <tr>
-                                    <a href="{{route('nha-truong.khoi.them_moi')}}"
-                                        class="btn btn-sm btn-success">Thêm</a>
-                                </tr>
+                               
                                 <tr>
                                     <th rowspan="1" colspan="1">ID</th>
                                     <th rowspan="1" colspan="1">Tên Khối</th>
