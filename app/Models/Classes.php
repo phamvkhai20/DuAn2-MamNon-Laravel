@@ -10,9 +10,16 @@ class Classes extends Model
         'class_name', 'grade_id', 'school_year_id'
     ];
 
-    public function CountKid()
+    public function kids()
     {
-        return $this->hasMany('App\Models\Kid', 'class_id', 'id');
+        return $this->hasMany(Kid::class, 'class_id', 'id');
+    }
+    public function grades()
+    {
+        return $this->belongsTo(GradeModel::class, 'grade_id', 'id');
+    }
+    public function school_years()
+    {
+        return $this->belongsTo(SchoolYearModel::class, 'school_year_id', 'id');
     }
 }
-

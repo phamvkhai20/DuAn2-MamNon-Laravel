@@ -148,7 +148,8 @@
                                         value="1">
                                         Hoạt Động</option>
                                     <option @if (old('parent_status')=="0" ) {{ 'selected' }} @endif value="0"
-                                        value="0">
+
+                             value="0">
                                         Khóa</option>
                                 </select>
                                 {!! ShowErrors($errors,'parent_status') !!}

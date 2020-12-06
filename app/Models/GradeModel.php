@@ -10,6 +10,6 @@ class GradeModel extends Model
     protected $fillable = ['grade'];
     public function classes()
     {
-        return $this->hasMany(ClassModel::class, 'grade_id', 'id');
+        return $this->hasMany(Classes::class, 'grade_id', 'id');
     }
 }

@@ -1,39 +1,31 @@
 @extends('./staff/nha-truong/layouts/layout')
-@section('title','Sửa thông tin khối học')
+@section('title','Sửa khối lớp')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
-
-    <!-- BEGIN: Subheader -->
-    <div class="m-subheader ">
-        <div class="d-flex align-items-center">
-            <div class="mr-auto">
-                <h3 class="m-subheader__title ">Sửa Khối</h3>
-            </div>
-        </div>
-    </div>
-
-    <!-- END: Subheader -->
     <div class="m-content">
-
-        <div class="row">
-            <div class="col-lg-12">
-
-                <div class="m-portlet">
-                    <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <span class="m-portlet__head-icon m--hide">
-                                    <i class="la la-gear"></i>
-                                </span>
-                                <h3 class="m-portlet__head-text">
-                                    Nhập thông tin vào form bên dưới
-                                </h3>
-                            </div>
+        <div class="">
+            <!--begin::Portlet-->
+            <div class="m-portlet ">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                @yield('title')
+                            </h3>
                         </div>
                     </div>
-
-                    <!--begin::Form-->
-                    <form action="{{route('khoi.save_edit',['id'=>$grade->id])}}" method="post"
+                    <div class="m-portlet__head-tools">
+                        <a href="{{route('nha-truong.nha-truong.index')}}"
+                            class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                            <span>
+                                <i class="la la-arrow-left"></i>
+                                <span>Quay lại</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            <div class="m-portlet__body">
+           <form action="{{route('khoi.save_edit',['id'=>$grade->id])}}" method="post"
                         class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                         @csrf
                         <div class="m-portlet__body">
@@ -62,13 +54,13 @@
                             </div>
                         </div>
                     </form>
-
-                    <!--end::Form-->
                 </div>
-
             </div>
+
         </div>
+
     </div>
 </div>
+
 
 @endsection
