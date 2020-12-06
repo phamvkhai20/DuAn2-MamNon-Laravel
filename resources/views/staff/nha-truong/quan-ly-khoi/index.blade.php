@@ -96,56 +96,56 @@
                     <div class="">
                         <div class="row">
                             <div class="table-responsive">
-                            <table
-                            class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
-                            id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 954px;">
-                            <thead>
-                                <tr>
-                                    <a href="{{route('nha-truong.khoi.them_moi')}}"
-                                        class="btn btn-sm btn-success">Thêm</a>
-                                </tr>
+                                <table
+                                    class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
+                                    id="m_table_1" role="grid" aria-describedby="m_table_1_info"
+                                    style="min-width: 990px;width:100%">
+                                    <thead>
+                                        <tr>
+                                            <a href="{{route('nha-truong.khoi.them_moi')}}"
+                                                class="btn btn-sm btn-success">Thêm</a>
+                                        </tr>
+                                        <tr>
+                                            <th rowspan="1" colspan="1">ID</th>
+                                            <th rowspan="1" colspan="1">Tên Khối</th>
+                                            <th></th>
+                                        </tr>
+                            </div>
+                            </thead>
+                            <tfoot>
                                 <tr>
                                     <th rowspan="1" colspan="1">ID</th>
-                                    <th rowspan="1" colspan="1">Tên Khối</th>
-                                    <th></th>
+                                    <th rowspan="1" colspan="1">Tên khối</th>
+
                                 </tr>
-                    </div>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th rowspan="1" colspan="1">ID</th>
-                            <th rowspan="1" colspan="1">Tên khối</th>
+                            </tfoot>
+                            <tbody>
+                                @foreach($grade as $gr)
+                                <tr role="row" class="odd">
+                                    <td class="sorting_1" tabindex="0">{{$gr->id}}</td>
+                                    <td>{{$gr->grade}}</td>
+                                    <td>
+                                        <a href="sua/{{$gr->id}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
+                                        <a href="xoa/{{$gr->id}}" class="btn btn-danger btn-sm btn-remove">Xóa</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                            </table>
 
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        @foreach($grade as $gr)
-                        <tr role="row" class="odd">
-                            <td class="sorting_1" tabindex="0">{{$gr->id}}</td>
-                            <td>{{$gr->grade}}</td>
-                            <td>
-                                <a href="sua/{{$gr->id}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
-                                <a href="xoa/{{$gr->id}}" class="btn btn-danger btn-sm btn-remove">Xóa</a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    </table>
-
-                                <div id="m_table_1_processing" class="dataTables_processing card"
-                                    style="display: none;">
-                                    Processing...</div>
-                            </div>
-                        </div>
-                        <div class="dataTables_paginate paging_simple_numbers" id="m_table_1_paginate">
-                            <ul class="pagination">
-                              sbc
-                            </ul>
+                            <div id="m_table_1_processing" class="dataTables_processing card" style="display: none;">
+                                Processing...</div>
                         </div>
                     </div>
-                </form>
+                    <div class="dataTables_paginate paging_simple_numbers" id="m_table_1_paginate">
+                        <ul class="pagination">
+                            sbc
+                        </ul>
+                    </div>
             </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
 @endsection

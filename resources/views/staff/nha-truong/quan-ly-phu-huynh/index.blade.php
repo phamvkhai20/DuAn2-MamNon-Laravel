@@ -96,61 +96,62 @@
                     <div class="">
                         <div class="row">
                             <div class="table-responsive">
-                            <table
-                            class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
-                            id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="width: 954px;">
-                            <thead>
-                                <tr>
-                                    <a href="{{route('nha-truong.phu-huynh.create')}}"
-                                        class="btn btn-sm btn-success">Thêm</a>
-                                </tr>
-                                <tr>
-                                    <th rowspan="1" colspan="1">ID</th>
-                                    <th rowspan="1" colspan="1">Họ và Tên</th>
-                                    <th rowspan="1" colspan="1">Ảnh đại diện</th>
-                                    <th rowspan="1" colspan="1">Số điện thoại</th>
-                                    <th rowspan="1" colspan="1">Email</th>
-                                    <th rowspan="1" colspan="1">Trạng thái</th>
-                                    <th rowspan="1" colspan="1"></th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th rowspan="1" colspan="1">ID</th>
-                                    <th rowspan="1" colspan="1">Họ và Tên</th>
-                                    <th rowspan="1" colspan="1">Ảnh đại diện</th>
-                                    <th rowspan="1" colspan="1">Số điện thoại</th>
-                                    <th rowspan="1" colspan="1">Email</th>
-                                    <th rowspan="1" colspan="1">Trạng thái</th>
-                                    <th rowspan="1" colspan="1"></th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                @foreach($parents as $parent)
-                                <tr role="row" class="odd">
-                                    <td class="sorting_1" tabindex="0">{{$parent->id}}</td>
-                                    <td>{{$parent->parent_name}}</td>
-                                    <td>
-                                        <img src="{{asset('/upload/avatar/'.$parent->parent_avatar)}}" alt="avatar"
-                                            width="100px">
-                                    </td>
-                                    <td>{{$parent->phone}}</td>
-                                    <td>{{$parent->email}}</td>
+                                <table
+                                    class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
+                                    id="m_table_1" role="grid" aria-describedby="m_table_1_info"
+                                    style="min-width: 990px;width:100%">
+                                    <thead>
+                                        <tr>
+                                            <a href="{{route('nha-truong.phu-huynh.create')}}"
+                                                class="btn btn-sm btn-success">Thêm</a>
+                                        </tr>
+                                        <tr>
+                                            <th rowspan="1" colspan="1">ID</th>
+                                            <th rowspan="1" colspan="1">Họ và Tên</th>
+                                            <th rowspan="1" colspan="1">Ảnh đại diện</th>
+                                            <th rowspan="1" colspan="1">Số điện thoại</th>
+                                            <th rowspan="1" colspan="1">Email</th>
+                                            <th rowspan="1" colspan="1">Trạng thái</th>
+                                            <th rowspan="1" colspan="1"></th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th rowspan="1" colspan="1">ID</th>
+                                            <th rowspan="1" colspan="1">Họ và Tên</th>
+                                            <th rowspan="1" colspan="1">Ảnh đại diện</th>
+                                            <th rowspan="1" colspan="1">Số điện thoại</th>
+                                            <th rowspan="1" colspan="1">Email</th>
+                                            <th rowspan="1" colspan="1">Trạng thái</th>
+                                            <th rowspan="1" colspan="1"></th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        @foreach($parents as $parent)
+                                        <tr role="row" class="odd">
+                                            <td class="sorting_1" tabindex="0">{{$parent->id}}</td>
+                                            <td>{{$parent->parent_name}}</td>
+                                            <td>
+                                                <img src="{{asset('/upload/avatar/'.$parent->parent_avatar)}}"
+                                                    alt="avatar" width="100px">
+                                            </td>
+                                            <td>{{$parent->phone}}</td>
+                                            <td>{{$parent->email}}</td>
 
-                                    @if($parent->parent_status == 0)
-                                    <td class="text-danger"> Khóa </td>
-                                    @else
-                                    <td class="text-success"> Hoạt động </td>
-                                    @endif
+                                            @if($parent->parent_status == 0)
+                                            <td class="text-danger"> Khóa </td>
+                                            @else
+                                            <td class="text-success"> Hoạt động </td>
+                                            @endif
 
-                                    <td>
-                                        <a href="{{route('nha-truong.phu-huynh.edit', $parent->id)}}"
-                                            class="btn btn-warning btn-sm ">Chi tiết</a>&nbsp;
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                            <td>
+                                                <a href="{{route('nha-truong.phu-huynh.edit', $parent->id)}}"
+                                                    class="btn btn-warning btn-sm ">Chi tiết</a>&nbsp;
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
 
                                 <div id="m_table_1_processing" class="dataTables_processing card"
                                     style="display: none;">

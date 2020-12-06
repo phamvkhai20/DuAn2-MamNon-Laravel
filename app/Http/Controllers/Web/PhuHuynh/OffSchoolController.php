@@ -57,9 +57,11 @@ class OffSchoolController extends Controller
             do {
                 $outArray[] = $tmpDate->format('Y-m-d');
             } while ($tmpDate->modify('+1 day') <= $tmpEndDate);
+            $countSuccess = 0;
             foreach ($outArray as $key => $day) {
                 $checkAttendance = Attendance::where('kid_id', $request->get('id'))->where('date',  $day)->get();
                 if (count($checkAttendance) < 1) {
+                    $countSuccess += 1;
                     $offSchool = new Attendance();
                     $offSchool->kid_id = $request->get('id');
                     $offSchool->leave_time = "00:00:00";
@@ -72,9 +74,13 @@ class OffSchoolController extends Controller
                     $offSchool->save();
                 }
             }
-            return response()->json(
-                ['data' =>   'Thành công']
-            );
+            if ($countSuccess == 0) {
+                return response()->json(['error' => 'Ngày nghỉ đã tồn tại'], 409);
+            } else {
+                return response()->json(
+                    ['data' =>   'Thành công']
+                );
+            }
         }
 
         // return redirect()->route('phu-huynh.xin-nghi-hoc', ['id' => session('id_kid_default')]);
