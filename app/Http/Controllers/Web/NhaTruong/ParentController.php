@@ -21,8 +21,7 @@ class ParentController extends Controller
    }
 
    public function store(ParentRequest $request){
-      $data = Arr::except($request->all(),['_token']);
-      
+      $data = Arr::except($request->all(),['_token']);   
       $data['password']= bcrypt('123456');
       if($request->hasFile('parent_avatar')){
          $avatar = $request->file('parent_avatar');
@@ -38,7 +37,7 @@ class ParentController extends Controller
       request()->flashOnly('email');
       request()->flashOnly('phone');
       request()->flashOnly('parent_status');
-      request()->flashOnly('parent_avatar');
+      // request()->flashOnly('parent_avatar');
       return redirect()->route('phu-huynh.list');
    }
    
