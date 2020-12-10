@@ -7,7 +7,8 @@
             <div class="m-demo__preview">
                 <div class="m-nav-grid">
                     <div class="m-nav-grid__row">
-                        <a href="#" class="m-nav-grid__item">
+                        <a href="{{route('phu-huynh.thong-tin-tre',['id'=>session('id_kid_default')])}}"
+                            class="m-nav-grid__item">
                             <i class="m-nav-grid__icon flaticon-list-1"></i>
                             <h5 class="m-nav-grid__text">Thông tin trẻ</h5>
                         </a>
@@ -53,51 +54,24 @@
             </div>
             <div class="m-portlet__body m-portlet__body--no-padding">
                 <div class="row m-row--no-padding m-row--col-separator-xl">
+                    @foreach($teachers as $teacher)
                     <div class="col-md-12 col-lg-12 col-xl-4">
                         <div class="m-widget1">
                             <div class="m-widget1__item">
                                 <div class="row m-row--no-padding align-items-center">
                                     <div class="col">
-                                        <h3 class="m-widget1__title"> Nick Bold</h3>
-                                        <span class="m-widget1__desc"> 03 345 345 04</span>
+                                        <h3 class="m-widget1__title"> {{$teacher->teacher->fullname}}</h3>
+                                        <span class="m-widget1__desc">{{$teacher->teacher->phone}}</span>
                                     </div>
                                     <div class="col m--align-right">
-                                        <img src="../../assets/app/media/img/users/100_11.jpg" width="50px" alt="">
+                                        <img src="<?php echo '/upload/avatar/' . $teacher->teacher->avatar ?> "
+                                            width="50px" alt="">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-12 col-xl-4">
-                        <div class="m-widget1">
-                            <div class="m-widget1__item">
-                                <div class="row m-row--no-padding align-items-center">
-                                    <div class="col">
-                                        <h3 class="m-widget1__title"> Nick Bold</h3>
-                                        <span class="m-widget1__desc"> 03 345 345 04</span>
-                                    </div>
-                                    <div class="col m--align-right">
-                                        <img src="../../assets/app/media/img/users/100_11.jpg" width="50px" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-lg-12 col-xl-4">
-                        <div class="m-widget1">
-                            <div class="m-widget1__item">
-                                <div class="row m-row--no-padding align-items-center">
-                                    <div class="col">
-                                        <h3 class="m-widget1__title"> Nick Bold</h3>
-                                        <span class="m-widget1__desc"> 03 345 345 04</span>
-                                    </div>
-                                    <div class="col m--align-right">
-                                        <img src="../../assets/app/media/img/users/100_11.jpg" width="50px" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -244,7 +218,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" onclick="guiXinNghiHoc()" class="btn btn-secondary m-btn">Gửi</button>
-                    <button type="button" class="btn btn-brand m-btn" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-brand m-btn" data-dismiss="modal">Đóng</button>
                 </div>
             </form>
         </div>
@@ -272,16 +246,15 @@ function guiXinNghiHoc() {
                         swal.showLoading();
                     },
                 }).then(function(e) {
-                    "timer" === e.dismiss &&
-                        window.location.reload();
+                    // "timer" === e.dismiss &&
+                    //     window.location.reload();
                 });
             }
         })
         .catch(function(error) {
             if (error.response) {
-                error.response.status === 400 && swal("Gửi thất bại!", "Vui lòng chọn ngày nghỉ", "Lỗi");
-                error.response.status === 409 && swal("Gửi thất bại!", "Đơn xin nghỉ học đã tồn tại", "Lỗi");
-
+                console.log(error.response);
+                swal(error.response.data.error, "Lỗi");
             }
         }).finally(function() {
             document.querySelector('#form_nghi_hoc').classList.remove("d-none")

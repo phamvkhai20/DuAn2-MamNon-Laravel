@@ -35,6 +35,7 @@
                     <form class="row" action="{{ route('giao-vien.diem_danh_den')}}" method="post">
                         @csrf
                         @foreach($kids as $index=>$kid)
+
                         <div class=" col image_kid_attendance m-portlet d-flex justify-content-center"
                             style="background-image: url({{asset('/upload/avatar/'.$kid->kid_avatar)}})">
                             <div class="box_group_name">
@@ -51,6 +52,13 @@
                                 <input hidden type="text" value="{{$kid->id}}" name="kid_id[{{$kid->id}}]" />
                                 <input hidden type="text" value="{{$kid->class_id}}" name="class_id[{{$kid->id}}]" />
                             </div>
+                            <div class="box_more">
+                                <a href="#" class="button_khac" data-toggle="modal" data-target="#m_modal_1_2"
+                                    class="m-portlet__nav-link m-dropdown__toggle btn m-btn m-btn--link"
+                                    style="padding: 0;padding-top:15px;">
+                                    <i class="la la-ellipsis-h icon_button_khac"></i>
+                                </a>
+                            </div>
                             <div class="box_time">
                                 <b>@if(!empty($kid->attendance[0]))
                                     {{$kid->attendance[0]->arrival_time}}
@@ -60,29 +68,34 @@
                                 <div class="row">
                                     <span class=" col-6 m-switch m-switch--outline m-switch--success">
                                         <label style="margin-bottom: 5px;margin-left:10px">
-                                            <input hidden type="text" value="off"
-                                                name="status[{{$kid->id}}]" />
+                                            <input hidden type="text" value="off" name="status[{{$kid->id}}]" />
                                             @if(!empty($kid->attendance[0])&&$kid->attendance[0]->status==1)
                                             <input data-switch="true" type="checkbox" checked="checked"
-                                                name="status[{{$kid->id}}]" data-on-color="success" data-on-text="P"
-                                                data-off-color="danger" data-off-text="A">
+                                                name="status[{{$kid->id}}]" data-on-color="success" data-on-text="Đ"
+                                                data-off-color="danger" data-off-text="N">
                                             @elseif(!empty($kid->attendance[0])&&$kid->attendance[0]->status==2)
-                                            <input hidden type="text" value="2" 
-                                                name="status[{{$kid->id}}]" />
+                                            Xin nghỉ
+                                            <input hidden type="text" value="2" name="status[{{$kid->id}}]" />
                                             @else
                                             <input data-switch="true" type="checkbox" name="status[{{$kid->id}}]"
-                                                data-on-color="success" data-on-text="P" data-off-color="danger"
-                                                data-off-text="A">
+                                                data-on-color="success" data-on-text="Đ" data-off-color="danger"
+                                                data-off-text="N">
                                             @endif
                                         </label>
                                     </span>
-                                    <div class="col-6">
-                                        <a href="#" class="button_khac" data-toggle="modal" data-target="#m_modal_1_2"
-                                            class="m-portlet__nav-link m-dropdown__toggle btn m-btn m-btn--link"
-                                            style="padding: 0;padding-top:15px;">
-                                            <i class="la la-ellipsis-h icon_button_khac"></i>
-                                        </a>
-                                    </div>
+                                    <span class=" col-6 m-switch m-switch--outline m-switch--success">
+                                        @if(!empty($kid->attendance[0])&&$kid->attendance[0]->meal=='off')
+                                        <input type="text" hidden value="off" name="meal[{{$kid->id}}]" />
+                                        <input data-switch="true" type="checkbox" checked="checked"
+                                            name="meal[{{$kid->id}}]" data-on-color="success" data-on-text="A"
+                                            data-off-color="danger" data-off-text="K">
+                                        @else
+                                        <input type="text" hidden value="on" name="meal[{{$kid->id}}]" />
+                                        <input data-switch="true" type="checkbox" checked="checked"
+                                            name="meal[{{$kid->id}}]" data-on-color="success" data-on-text="A"
+                                            data-off-color="danger" data-off-text="K">
+                                        @endif
+                                    </span>
                                 </div>
                             </div>
                             <div class="modal fade" id="m_modal_1_2" tabindex="-1" role="dialog"
@@ -96,13 +109,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="m-scrollable" data-scrollbar-shown="true" data-scrollable="true"
-                                                data-height="200">
-                                                <input type="text" hidden value="off" name="meal[{{$kid->id}}]" />
-                                                <input data-switch="true" type="checkbox" checked="checked"
-                                                    name="meal[{{$kid->id}}]" data-on-color="success" data-on-text="P"
-                                                    data-off-color="danger" data-off-text="A">
-                                            </div>
+
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-success"
@@ -120,7 +127,7 @@
                             .getMinutes()) + ':' + d.getSeconds();
                         </script>
                         @endforeach
-                        <div class="m-nav-sticky" style="margin-top: 30px;width:100px;height:100px">
+                        <div class="m-nav-sticky" style="margin-top: 30px;width:150px;height:70px">
                             <li class="m-nav-sticky__item" data-toggle="m-tooltip" data-placement="left">
                                 <button class="btn-primary button_attendance" type="submit">Điểm danh</button>
                             </li>
@@ -213,7 +220,7 @@
                             (d.getMinutes()) + ':' + d.getSeconds();
                         </script>
                         @endforeach
-                        <div class="m-nav-sticky " style="margin-top: 30px;width:100px;height:100px">
+                        <div class="m-nav-sticky" style="margin-top: 30px;width:150px;height:70px">
                             <li class="m-nav-sticky__item" data-toggle="m-tooltip" data-placement="left">
                                 <button class="btn-primary button_attendance" type="submit">Điểm danh</button>
                             </li>
