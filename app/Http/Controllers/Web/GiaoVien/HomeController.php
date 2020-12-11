@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web\GiaoVien;
 use App\Http\Controllers\Controller;
 use App\Models\Assignment;
 use App\Models\Attendance;
+use App\Models\Classes;
+use App\Models\Kid;
 use App\Models\Teacher;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -20,9 +22,16 @@ class HomeController extends Controller
         if ($day == 7 || $day == 6) {
             $ngayThu=0;
         }
+        $classes = Classes::where('id', session('class'))->with(['kids'=>function($query){
+            $query->with('parent');
+        }])->first();
         $teachers = Assignment::where('class_id', session('class'))->with('teacher')->get();
         $attendance= Attendance::where('class_id',session('class'))->where('date',substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 10))->get();
-       return view('staff.giao-vien.dashboard.index',['attendance'=>$attendance,'ngayThu'=>$ngayThu,'teachers'=>$teachers]);
+       return view('staff.giao-vien.dashboard.index',['attendance'=>$attendance,'ngayThu'=>$ngayThu,'teachers'=>$teachers,'classes'=>$classes]);
     }
- 
+    protected function infoKid($id)
+    {
+        $infoKid = Kid::where('id',$id)->with('getClass')->first();
+        return view('staff.giao-vien.thong-tin-tre.index', ['infoKid' => $infoKid]);
+    }
 }
