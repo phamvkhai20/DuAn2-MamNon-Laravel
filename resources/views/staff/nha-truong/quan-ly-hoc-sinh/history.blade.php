@@ -1,5 +1,5 @@
 @extends('./staff/nha-truong/layouts/layout')
-@section('title','Danh sách học sinh')
+@section('title','Lịch sử học của trẻ')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3 ">
     <div class="">
@@ -71,22 +71,6 @@
                         </h3>
                     </div>
                 </div>
-                <div class="m-portlet__head-tools">
-                    <a href="{{route('nha-truong.nha-truong.index')}}"
-                        class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                        <span>
-                            <i class="la la-arrow-left"></i>
-                            <span>Quay lại</span>
-                        </span>
-                    </a>
-                    <a href="{{route('nha-truong.tre.create')}}"
-                        class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                        <span>
-                            <i class="la la-plus"></i>
-                            <span>Thêm trẻ</span>
-                        </span>
-                    </a>
-                </div>
             </div>
             <div class="m-portlet__body">
 
@@ -103,67 +87,39 @@
                                     <thead>
 
                                         <tr>
-                                            <th rowspan="1" colspan="1">ID</th>
-                                            <th rowspan="1" colspan="1">Ảnh đại diện</th>
                                             <th rowspan="1" colspan="1">Họ và Tên</th>
-                                            <th rowspan="1" colspan="1">Giới tính</th>
-                                            <th rowspan="1" colspan="1">Ngày sinh</th>
-                                            <th rowspan="1" colspan="1">Địa chỉ</th>
+                                            <th rowspan="1" colspan="1">Lớp</th>
+                                            <th rowspan="1" colspan="1">Ngày</th>
                                             <th rowspan="1" colspan="1">Trạng thái</th>
-                                            <th rowspan="1" colspan="1"></th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th rowspan="1" colspan="1">ID</th>
-                                            <th rowspan="1" colspan="1">Ảnh đại diện</th>
                                             <th rowspan="1" colspan="1">Họ và Tên</th>
-                                            <th rowspan="1" colspan="1">Giới tính</th>
-                                            <th rowspan="1" colspan="1">Ngày sinh</th>
-                                            <th rowspan="1" colspan="1">Địa chỉ</th>
+                                            <th rowspan="1" colspan="1">Lớp</th>
+                                            <th rowspan="1" colspan="1">Ngày</th>
                                             <th rowspan="1" colspan="1">Trạng thái</th>
-                                            <th rowspan="1" colspan="1"></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @foreach($kids as $kid)
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1" tabindex="0">{{$kid->id}}</td>
-                                            <td>
-                                                <img src="{{asset('/upload/avatar/'.$kid->kid_avatar)}}" alt="avatar"
-                                                    style="width:50px;border-radius: 10px;">
-                                            </td>
-                                            <td>{{$kid->kid_name}}</td>
-                                            <td>
-                                                @if($kid->gender == 1)
-                                                Nam
-                                                @elseif($kid->gender == 0)
-                                                Nữ
-                                                @endif
-                                            </td>
-                                            <td>{{$kid->date_of_birth}}</td>
-                                            <td style="width:22%"><span>{{$kid->address}}</span></td>
+                                        @foreach($histories as $history)
+                                        <tr>
+                                            <td>{{$history->getKid->kid_name}}</td>
+                                            <td>{{$history->getClass->name}}</td>
+                                            <td>{{$history->date}}</td>
 
-                                            @if($kid->kid_status == 1)
-                                            <td class="text-success"> Đang học </td>
-                                            @elseif($kid->kid_status == 2)
+                                            @if($history->status == 1)
+                                            <td class="text-success"> Nhập học </td>
+                                            @elseif($history->status == 2)
+                                            <td class="text-success"> Chuyển lớp </td>
+                                            @elseif($history->status == 3)
+                                            <td class="text-success"> Lên lớp </td>
+                                            @elseif($history->status == 4)
                                             <td class="text-danger"> Thôi học </td>
-                                            @elseif($kid->kid_status == 3)
-                                            <td class="text-primary"> Đã tốt nghiệp </td>
+                                            @elseif($history->status == 3)
+                                            <td class="text-primary"> Tốt nghiệp </td>
                                             @endif
-                                            <td>
-                                                <a href="{{route('nha-truong.tre.edit', $kid->id)}}"
-                                                    class="btn btn-warning btn-sm ">Chi
-                                                    tiết</a>&nbsp;
-                                                    <a href="{{route('nha-truong.tre.change_class', $kid->id)}}"
-                                                    class="btn btn-primary btn-sm ">Chuyển lớp</a>&nbsp;
-                                                    <br>
-                                                    <a href="{{route('nha-truong.tre.stop', $kid->id)}}"
-                                                    class="btn btn-danger btn-sm ">Thôi học</a>&nbsp;
-                                                    <a href="{{route('nha-truong.tre.history', $kid->id)}}"
-                                                    class="btn btn-info btn-sm ">Lịch sử học</a>&nbsp;
-                                            </td>
-                                          
+                                         
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -175,7 +131,7 @@
                         </div>
                         <div class="dataTables_paginate paging_simple_numbers" id="m_table_1_paginate">
                             <ul class="pagination">
-                                {{ $kids->links() }}
+                                {{ $histories->links() }}
                             </ul>
                         </div>
                     </div>

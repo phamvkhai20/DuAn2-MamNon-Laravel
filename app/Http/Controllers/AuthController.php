@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\LoginRequest;
+
 use Auth;
 use Arr;
 use App\Models\{Parents, School, Teacher};
@@ -21,6 +22,7 @@ class AuthController extends Controller
    {
       return view('web.login.school');
    }
+   
    public function loginSchool(LoginRequest $request)
    {
       $data = Arr::except($request->all(), ['_token']);

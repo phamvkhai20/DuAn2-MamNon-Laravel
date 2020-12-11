@@ -54,7 +54,7 @@ class TeacherController extends Controller
       request()->flashOnly('gender');
       request()->flashOnly('teacher_type_id');
       request()->flashOnly('status');
-      request()->flashOnly('avatar');
+      // request()->flashOnly('avatar');
       return redirect()->route('giao-vien.index');
    }
 

@@ -11,7 +11,7 @@ class School extends Authenticatable
 {
 
     protected $fillable = [
-        'phone', 'password'
+        'password'
     ];
 
     protected $hidden = [

@@ -37,7 +37,7 @@
                             <div class="m-portlet__body">
                                 <div class="form-group m-form__group">
                                     <label>Số điện thoại</label>
-                                    <input name="phone" type="number" class="form-control m-input m-input--square"
+                                    <input name="phone" type="text" class="form-control m-input m-input--square"
                                         placeholder="Số điện thoại">
                                         {!! ShowErrors($errors,'phone') !!}
                                 </div>
