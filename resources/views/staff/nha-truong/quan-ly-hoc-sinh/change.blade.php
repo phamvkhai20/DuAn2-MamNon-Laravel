@@ -35,7 +35,7 @@
                                     >
                                     <thead>
                                         <tr>
-                                            <th rowspan="1" colspan="1"><input type="checkbox" id="check_all"></th>  
+                                            <th rowspan="1" colspan="1"><input type="checkbox" id="check_all" onclick="chekboxFull()"></th>  
                                             <th rowspan="1" colspan="1">Họ và Tên</th>
                                             <th rowspan="1" colspan="1">Giới tính</th>
                                             <th rowspan="1" colspan="1">Ngày sinh</th>
@@ -92,6 +92,21 @@ $(document).ready(function() {
     });
 });
 
+function chekboxFull(){
+            var x = document.querySelectorAll("input[type='checkbox']");
+            for (let i = 0; i < x.length; i++) {
+                x[i].checked=true;
+            }
+        }
+
+        let isStatus= false;
+        function chekboxFull(){
+            var x = document.querySelectorAll("input[type='checkbox']");
+            for (let i = 0; i < x.length; i++) {
+                isStatus?x[i].checked=true:x[i].checked=false;
+            }
+            isStatus = !isStatus;
+        }
 </script>
 
 

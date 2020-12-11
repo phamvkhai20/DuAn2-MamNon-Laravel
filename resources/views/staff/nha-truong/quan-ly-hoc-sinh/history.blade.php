@@ -116,7 +116,7 @@
                                             <td class="text-success"> Lên lớp </td>
                                             @elseif($history->status == 4)
                                             <td class="text-danger"> Thôi học </td>
-                                            @elseif($history->status == 3)
+                                            @elseif($history->status == 5)
                                             <td class="text-primary"> Tốt nghiệp </td>
                                             @endif
                                          

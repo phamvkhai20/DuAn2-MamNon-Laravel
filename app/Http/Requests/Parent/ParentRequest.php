@@ -30,7 +30,6 @@ class ParentRequest extends FormRequest
             'email'=>'required|email|unique:teachers',
             'phone' => ['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10','unique:parents'],
             'parent_avatar'=>'required|mimes:jpeg,jpg,png',
-            'parent_status'=>'required',
         ];
     }
     public function messages()
@@ -47,8 +46,6 @@ class ParentRequest extends FormRequest
             'phone.regex'=>'Số điện thoại không hợp lệ!',
             'phone.digits'=>'Số điện thoại phải đúng định dạng!',
             'phone.unique'=>'Số điện thoại đã tồn tại!',
-
-            'parent_status.required'=>'Vui lòng chọn trạng thái!',
 
             'parent_avatar.required'=>'Vui lòng chọn ảnh đại diện!',
             'parent_avatar.mimes'=>'Không đúng định dạng ảnh!',

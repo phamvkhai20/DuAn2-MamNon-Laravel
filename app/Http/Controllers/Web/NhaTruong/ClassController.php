@@ -10,6 +10,8 @@ use App\Models\Classes;
 use App\Models\ClassModel;
 use App\Models\SchoolYearModel;
 use App\Models\GradeModel;
+use App\Models\Kid;
+use App\Models\History;
 use PhpParser\Builder\Class_;
 
 class ClassController extends Controller
@@ -81,5 +83,30 @@ class ClassController extends Controller
         $class = ClassModel::find($id);
         $class->delete($id);
         return redirect()->back();
+    }
+    public function graduate($id)
+    {
+        $data['class'] = Classes::find($id);
+        return view('staff.nha-truong.quan-ly-lop.graduate', $data);
+    }
+    public function save_graduate(Request $request, $id)
+    {
+        $kids = Kid::where('class_id',$id)->get();
+       
+        foreach ($kids as $kid_id) {
+            $kid = Kid::find($kid_id->id);
+            $data['kid_status'] = '3';
+            $kid->update($data);
+        }
+        foreach ($kids as $kid_id) {
+            $history = new History();
+            $history->class_id = $id;
+            $history->kid_id = $kid_id->id;
+            $history->date = $request->date;
+            $history->status = '5';
+            $history->save();
+        }
+        
+        return redirect()->route('nha-truong.lop.index');
     }
 }

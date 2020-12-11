@@ -29,14 +29,14 @@ class TeacherController extends Controller
 
    public function create()
    {
-      $data['teacher_types'] = TeacherType::all();
-      return view('staff.nha-truong.quan-ly-giao-vien.add', $data);
+      return view('staff.nha-truong.quan-ly-giao-vien.add');
    }
    public function store(TeacherRequest $request)
    {
       $data = Arr::except($request->all(), ['_token']);
 
       $data['password'] = bcrypt('123456');
+      $data['status'] = '1';
       if ($request->hasFile('avatar')) {
          $avatar = $request->file('avatar');
          $getavatar = time() . '_' . $avatar->getClientOriginalName();
@@ -52,7 +52,6 @@ class TeacherController extends Controller
       request()->flashOnly('phone');
       request()->flashOnly('date_of_birth');
       request()->flashOnly('gender');
-      request()->flashOnly('teacher_type_id');
       request()->flashOnly('status');
       // request()->flashOnly('avatar');
       return redirect()->route('giao-vien.index');
@@ -61,7 +60,6 @@ class TeacherController extends Controller
    public function edit($id)
    {
       $data["teacher"] = Teacher::find($id);
-      $data['teacher_types'] = TeacherType::all();
       return view('staff.nha-truong.quan-ly-giao-vien.edit', $data);
    }
 

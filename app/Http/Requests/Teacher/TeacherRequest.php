@@ -31,7 +31,6 @@ class TeacherRequest extends FormRequest
             'phone' => ['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10','unique:teachers'],
             'date_of_birth'=>'required',
             'gender'=>'required',
-            'teacher_type_id'=>'required',
             'avatar'=>'required||mimes:jpeg,jpg,png',
         ];
     }
@@ -53,8 +52,6 @@ class TeacherRequest extends FormRequest
             'date_of_birth.required'=>'Vui lòng chọn ngày sinh!',
 
             'gender.required'=>'Vui lòng chọn giới tính!',
-
-            'teacher_type_id.required'=>'Vui lòng chọn vai trò!',
 
             'date_of_birth.required'=>'Vui lòng chọn ngày sinh!',
 

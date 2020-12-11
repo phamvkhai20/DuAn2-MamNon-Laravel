@@ -102,10 +102,6 @@
                                     style="min-width: 990px;width:100%">
                                     <thead>
                                         <tr>
-                                            <a href="{{route('nha-truong.phu-huynh.create')}}"
-                                                class="btn btn-sm btn-success">Thêm</a>
-                                        </tr>
-                                        <tr>
                                             <th rowspan="1" colspan="1">ID</th>
                                             <th rowspan="1" colspan="1">Họ và Tên</th>
                                             <th rowspan="1" colspan="1">Ảnh đại diện</th>

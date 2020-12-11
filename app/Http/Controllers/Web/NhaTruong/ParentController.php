@@ -27,8 +27,8 @@ class ParentController extends Controller
       request()->flashOnly('email');
       request()->flashOnly('parent_name');
       request()->flashOnly('phone');
-      request()->flashOnly('parent_status');
       $data['password'] = bcrypt('123456');
+      $data['parent_status'] = '1';
       if ($request->hasFile('parent_avatar')) {
          $avatar = $request->file('parent_avatar');
          $getAvatar = time() . '_' . $avatar->getClientOriginalName();

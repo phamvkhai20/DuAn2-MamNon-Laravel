@@ -133,7 +133,7 @@
                                 <td>{{$cl->school_years->school_year}}</td>
                                 <td>
                                     <a href="sua/{{$cl->id}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
-                                    <a href="xoa/{{$cl->id}}" class="btn btn-danger btn-sm btn-remove">Xóa</a>
+                                    <a href="{{route('nha-truong.lop.graduate', $cl->id)}}" class="btn btn-primary btn-sm">Tốt nghiệp</a>
                                 </td>
                             </tr>
                             @endforeach

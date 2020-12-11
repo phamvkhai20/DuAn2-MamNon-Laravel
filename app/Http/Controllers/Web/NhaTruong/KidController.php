@@ -92,7 +92,7 @@ class KidController extends Controller
             $kid->address = $request->address;
             $kid->admission_date = $request->admission_date;
             $kid->class_id = $request->class_id;
-            $kid->kid_status = $request->kid_status;
+            $kid->kid_status = '1';
             $kid->description = $request->description;
             if ($request->hasFile('kid_avatar')) {
                 $avatar = $request->file('kid_avatar');
@@ -110,7 +110,7 @@ class KidController extends Controller
             $parent->phone = $request->phone;
             $parent->email = $request->email;
             $parent->password = bcrypt('123456');
-            $parent->parent_status = $request->parent_status;
+            $parent->parent_status = '1';
             // $parent->parent_avatar=$request->file('parent_avatar');
             if ($request->hasFile('parent_avatar')) {
                 $avatar = $request->file('parent_avatar');

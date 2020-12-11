@@ -36,7 +36,6 @@ class KidRequest extends FormRequest
                 'admission_date'=>'required',
                 'class_id'=>'required',
                 'admission_date'=>'required',
-                'kid_status'=>'required',
                 'description'=>'required',
                 'kid_avatar'=>'required||mimes:jpeg,jpg,png',
             ];
@@ -51,14 +50,12 @@ class KidRequest extends FormRequest
                 'admission_date'=>'required',
                 'class_id'=>'required',
                 'admission_date'=>'required',
-                'kid_status'=>'required',
                 'description'=>'required',
                 'kid_avatar'=>'required||mimes:jpeg,jpg,png',
     
                 'parent_name'=>'required|min:6',
                 'phone' => ['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10'.'unique:parents'],
                 'email' => 'required|email|unique:parents',
-                'parent_status'=>'required',
                 'parent_avatar'=>'required||mimes:jpeg,jpg,png',
             ];
         }
@@ -75,7 +72,6 @@ class KidRequest extends FormRequest
             'admission_date.required'=>'Vui lòng chọn ngày nhập học!',
             'address.required'=>'Vui lòng nhập địa chỉ!',
             'class_id.required'=>'Vui lòng chọn lớp!',
-            'kid_status.required'=>'Vui lòng chọn trạng thái!',
             'description.required'=>'Vui lòng thêm chi tiết về trẻ',
             'kid_avatar.required'=>'Vui lòng chọn ảnh đại diện của trẻ!',
             'kid_avatar.mimes'=>'Không đúng định dạng ảnh!',
@@ -89,7 +85,6 @@ class KidRequest extends FormRequest
             'phone.regex'=>'Số điện thoại không hợp lệ!',
             'phone.digits'=>'Số điện thoại phải đúng định dạng!',
             'phone.unique'=>'Số điện thoại đã tồn tại!',
-            'parent_status.required'=>'Vui lòng chọn trạng thái!',
             'parent_avatar.required'=>'Vui lòng chọn ảnh đại diện!',
             'parent_avatar.mimes'=>'Không đúng định dạng ảnh!',
         ];

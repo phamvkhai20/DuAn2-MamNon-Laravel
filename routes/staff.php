@@ -37,6 +37,9 @@ Route::group([
             ->name('lop.save_add');
         Route::get('xoa/{id}', 'Web\NhaTruong\ClassController@delete')
             ->name('lop.xoa');
+
+        Route::get('tot-nghiep/{id}', 'Web\NhaTruong\ClassController@graduate')->name('lop.graduate');
+        Route::post('tot-nghiep/{id}', 'Web\NhaTruong\ClassController@save_graduate')->name('lop.save_graduate');
     });
 
     //khối

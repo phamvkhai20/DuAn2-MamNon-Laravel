@@ -22,8 +22,6 @@ class CreateTeachersTable extends Migration
             $table->text('avatar');
             $table->date('date_of_birth');
             $table->integer('gender');
-            $table->integer('teacher_type_id')->unsigned();
-            $table->foreign('teacher_type_id')->references('id')->on('teacher_types')->onDelete('cascade');
             $table->integer('status');
             $table->timestamps();
         });
