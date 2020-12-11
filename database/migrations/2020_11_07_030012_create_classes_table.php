@@ -20,6 +20,7 @@ class CreateClassesTable extends Migration
             $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
             $table->integer('school_year_id')->unsigned();
             $table->foreign('school_year_id')->references('id')->on('school_years')->onDelete('cascade');
+            $table->integer('status');
             $table->timestamps();
         });
     }

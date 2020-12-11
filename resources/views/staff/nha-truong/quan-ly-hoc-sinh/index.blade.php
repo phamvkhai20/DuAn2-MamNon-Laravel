@@ -151,6 +151,7 @@
                                             @elseif($kid->kid_status == 3)
                                             <td class="text-primary"> Đã tốt nghiệp </td>
                                             @endif
+                                            @if($kid->kid_status == 1)
                                             <td>
                                                 <a href="{{route('nha-truong.tre.edit', $kid->id)}}"
                                                     class="btn btn-warning btn-sm ">Chi
@@ -163,6 +164,15 @@
                                                     <a href="{{route('nha-truong.tre.history', $kid->id)}}"
                                                     class="btn btn-info btn-sm ">Lịch sử học</a>&nbsp;
                                             </td>
+                                            @elseif($kid->kid_status == 2 || $kid->kid_status == 3)
+                                            <td>
+                                                <a href="{{route('nha-truong.tre.edit', $kid->id)}}"
+                                                    class="btn btn-warning btn-sm ">Chi
+                                                    tiết</a>&nbsp;
+                                                    <a href="{{route('nha-truong.tre.history', $kid->id)}}"
+                                                    class="btn btn-info btn-sm ">Lịch sử học</a>&nbsp;
+                                            </td>
+                                            @endif
                                           
                                         </tr>
                                         @endforeach

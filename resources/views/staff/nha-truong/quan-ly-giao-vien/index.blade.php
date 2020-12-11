@@ -105,7 +105,6 @@
                                             <th rowspan="1" colspan="1">Ảnh</th>
                                             <th rowspan="1" colspan="1">SĐT</th>
                                             <th rowspan="1" colspan="1">Email</th>
-                                            <th rowspan="1" colspan="1">Vai Trò</th>
                                             <th rowspan="1" colspan="1">Trạng Thái</th>
                                             <th rowspan="1" colspan="1">
                                             </th>
@@ -118,7 +117,6 @@
                                             <th rowspan="1" colspan="1">Ảnh</th>
                                             <th rowspan="1" colspan="1">SĐT</th>
                                             <th rowspan="1" colspan="1">Email</th>
-                                            <th rowspan="1" colspan="1">Vai Trò</th>
                                             <th rowspan="1" colspan="1">Trạng Thái</th>
                                             <th rowspan="1" colspan="1">
                                             </th>
@@ -135,7 +133,6 @@
                                             </td>
                                             <td>{{$teacher->phone}}</td>
                                             <td>{{$teacher->email}}</td>
-                                            <td>{{ $teacher->getTeacherType->teacher_type}}</td>
 
                                             @if($teacher->status == 0)
                                             <td class="text-danger"> Khóa </td>

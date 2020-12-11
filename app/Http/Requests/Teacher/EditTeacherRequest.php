@@ -41,7 +41,6 @@ class EditTeacherRequest extends FormRequest
             'phone' => $phone,
             'date_of_birth'=>'required',
             'gender'=>'required',
-            'teacher_type_id'=>'required',
             'avatar'=>'mimes:jpeg,jpg,png',
         ];
     }
@@ -64,8 +63,6 @@ class EditTeacherRequest extends FormRequest
             'date_of_birth.required'=>'Vui lòng chọn ngày sinh!',
 
             'gender.required'=>'Vui lòng chọn giới tính!',
-
-            'teacher_type_id.required'=>'Vui lòng chọn vai trò!',
 
             'date_of_birth.required'=>'Vui lòng chọn ngày sinh!',
 

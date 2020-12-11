@@ -27,11 +27,10 @@
                 <form class="m-form row" action="{{ route('nha-truong.tre.store') }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
+                    
                     <div class="m-portlet__body col-lg-6">
                         <h3>Thông tin trẻ</h3>
-                        <input @if (old('check')==true) {{ 'checked' }} @endif name="check" type="checkbox" id="myCheck"
-                            onclick="myFunction()">
-                        <label for="myCheck">Đã có thông tin phụ huynh</label>
+                    
                         <div class="m-form__section m-form__section--first">
                             <div class="form-group m-form__group">
                                 <label for="example_input_full_name">Họ Tên học sinh: </label>
@@ -94,22 +93,14 @@
                                 {!! ShowErrors($errors,'class_id') !!}
                             </div>
                             <div class="form-group m-form__group">
-                                <label>Trạng thái</label>
-                                <select name="kid_status" id="cars" class="form-control">
-                                    <option value="">Chọn trạng thái</option>
-                                    <option @if (old('kid_status')=="1" ) {{ 'selected' }} @endif value="1">Đang học
-                                    </option>
-                                    <option @if (old('kid_status')=="0" ) {{ 'selected' }} @endif value="0">Đã nghỉ
-                                    </option>
-                                </select>
-                                {!! ShowErrors($errors,'kid_status') !!}
-                            </div>
-                            <div class="form-group m-form__group">
                                 <label>Chi tiết </label>
                                 <textarea name="description" class="form-control m-input" name="w3review" rows="10"
                                     cols="50">{{old('description')}}</textarea>
                                 {!! ShowErrors($errors,'description') !!}
                             </div>
+                            <input @if (old('check')==true) {{ 'checked' }} @endif name="check" type="checkbox" id="myCheck"
+                            onclick="myFunction()">
+                        <label for="myCheck">Đã có thông tin phụ huynh</label>
                         </div>
                     </div>
                     <div class="m-portlet__body col-lg-6">
@@ -139,20 +130,6 @@
                                 <input name="email" type="text" class="form-control m-input" placeholder="Nhập email"
                                     value="{{ old('email') }}">
                                 {!! ShowErrors($errors,'email') !!}
-                            </div>
-                            <div class="form-group m-form__group" class="parent">
-                                <label>Trạng thái</label>
-                                <select name="parent_status" id="cars" class="form-control">
-                                    <option value="">Chọn trạng thái</option>
-                                    <option @if (old('parent_status')=="1" ) {{ 'selected' }} @endif value="1"
-                                        value="1">
-                                        Hoạt Động</option>
-                                    <option @if (old('parent_status')=="0" ) {{ 'selected' }} @endif value="0"
-
-                             value="0">
-                                        Khóa</option>
-                                </select>
-                                {!! ShowErrors($errors,'parent_status') !!}
                             </div>
                         </div>
                         <div style="display:none" id="search_phone" class="m-form__section m-form__section--first">

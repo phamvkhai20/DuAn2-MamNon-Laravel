@@ -75,16 +75,6 @@
                                     {!! ShowErrors($errors,'gender') !!}
                                 </div>
                                 <div class="form-group m-form__group">
-                                    <label>Vai Trò :</label>
-                                    <select name="teacher_type_id" class="form-control">
-                                        @foreach ($teacher_types as $teacher_type)
-                                        <option @if($teacher_type->id == $teacher->teacher_type_id ) selected @endif
-                                            value="{{ $teacher_type->id }}">{{ $teacher_type->teacher_type }}</option>
-                                        @endforeach
-                                    </select>
-                                    {!! ShowErrors($errors,'teacher_type_id') !!}
-                                </div>
-                                <div class="form-group m-form__group">
                                     <label>Trạng Thái</label>
                                     <select name="status" class="form-control">
                                         <option value="">Chọn trạng thái</option>

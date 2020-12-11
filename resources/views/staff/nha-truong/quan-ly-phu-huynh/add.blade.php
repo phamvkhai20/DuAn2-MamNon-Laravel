@@ -46,39 +46,26 @@
                                     {!! ShowErrors($errors,'email') !!}
                                     <!-- <span class="m-form__help">We'll never share your email with anyone else</span> -->
                                 </div>
-                                <div class="form-group m-form__group">
-                                    <label>Số Điện Thoại</label>
-                                    <input name="phone" type="text" class="form-control m-input"
-                                        placeholder="Nhập sđt đầy đủ" value="{{ old('phone') }}">
-                                    {!! ShowErrors($errors,'phone') !!}
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="m-portlet__body">
-                            <div class="m-form__section m-form__section--first">
+                            <div class="form-group m-form__group">
+                                    <label>Số Điện Thoại</label>
+                                    <input name="phone" type="text" class="form-control m-input"
+                                        placeholder="Nhập sđt đầy đủ" value="{{ old('phone') }}">
+                                    {!! ShowErrors($errors,'phone') !!}
+                                </div>
                                 <div class="form-group m-form__group">
                                     <label>Ảnh đại diện</label>
                                     <br>
                                     <img id="avatar" width="300px">
-                                    <input name="parent_avatar" type="file" class="form-control m-input"
+                                    <input name="parent_avatar" type="file" class="m-input"
                                         onchange="readURL(this);">
                                     {!! ShowErrors($errors,'parent_avatar') !!}
                                 </div>
-                                <div class="form-group m-form__group">
-                                    <label>Trạng Thái</label>
-                                    <select name="parent_status" class="form-control">
-                                        <option value="">Chọn trạng thái</option>
-                                        <option @if (old('parent_status')=="1" ) {{ 'selected' }} @endif value="1">Hoạt
-                                            Động</option>
-                                        <option @if (old('parent_status')=="0" ) {{ 'selected' }} @endif value="0">Khóa
-                                        </option>
-
-                                    </select>
-                                    {!! ShowErrors($errors,'parent_status') !!}
-                                </div>
-
                             </div>
                         </div>
                         <div class="">

@@ -99,18 +99,6 @@
                                 </div>
                                 {!! ShowErrors($errors,'class_id') !!}
                             </div>
-
-                            <div class="form-group m-form__group">
-                                <label>Trạng thái</label>
-                                <div class="">
-                                    <select name="kid_status" id="cars" class="form-control">
-                                        <option value="">Chọn trạng thái</option>
-                                        <option @if ($kid->kid_status == 1) selected @endif value="1">Hoạt động</option>
-                                        <option @if ($kid->kid_status == 0) selected @endif value="0">Khóa</option>
-                                    </select>
-                                </div>
-                                {!! ShowErrors($errors,'kid_status') !!}
-                            </div>
                         </div>
 
                     </div>

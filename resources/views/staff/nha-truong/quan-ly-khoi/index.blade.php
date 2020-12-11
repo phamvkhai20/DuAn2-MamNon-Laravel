@@ -129,7 +129,7 @@
                         </div>
                         <div class="dataTables_paginate paging_simple_numbers" id="m_table_1_paginate">
                             <ul class="pagination">
-                                sbc
+                            
                             </ul>
                         </div>
                     </div>

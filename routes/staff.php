@@ -18,7 +18,7 @@ use RealRashid\SweetAlert\Facades\Aler;
 Route::group([
     'prefix' => 'nha-truong',
     'as' => 'nha-truong.',
-    'middleware' => ['check_school'],
+    // 'middleware' => ['check_school'],
 ], function () {
     Route::get('/', 'Web\NhaTruong\HomeController@index')->name('nha-truong.index');
     //lớp
@@ -37,6 +37,9 @@ Route::group([
             ->name('lop.save_add');
         Route::get('xoa/{id}', 'Web\NhaTruong\ClassController@delete')
             ->name('lop.xoa');
+
+        Route::get('tot-nghiep/{id}', 'Web\NhaTruong\ClassController@graduate')->name('lop.graduate');
+        Route::post('tot-nghiep/{id}', 'Web\NhaTruong\ClassController@save_graduate')->name('lop.save_graduate');
     });
 
     //khối

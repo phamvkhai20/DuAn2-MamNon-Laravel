@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ClassModel extends Model
 {
     protected $table = 'classes';
-    protected $fillable = ['name', 'grade_id', 'school_year_id'];
+    protected $fillable = ['name', 'grade_id', 'school_year_id', 'status'];
 
 
     public function grades()

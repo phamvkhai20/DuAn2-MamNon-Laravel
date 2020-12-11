@@ -51,19 +51,19 @@
                                 placeholder="Nhập sđt đầy đủ" value="{{ old('phone') }}">
                             {!! ShowErrors($errors,'phone') !!}
                         </div>
-                        <div class="form-group m-form__group">
-                            <label>Ngày Sinh</label>
-                            <input name="date_of_birth" type="date" class="form-control m-input" placeholder=""
-                                value="{{ old('date_of_birth') }}">
-                            {!! ShowErrors($errors,'date_of_birth') !!}
-                        </div>
+                        
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="m-portlet__body">
                     <div class="m-form__section m-form__section--first">
-
+                        <div class="form-group m-form__group">
+                            <label>Ngày Sinh</label>
+                            <input name="date_of_birth" type="date" class="form-control m-input" placeholder=""
+                                value="{{ old('date_of_birth') }}">
+                            {!! ShowErrors($errors,'date_of_birth') !!}
+                        </div>
                         <div class="form-group m-form__group">
                             <label for="example_input_full_name">Giới Tính:</label>
                             <select name="gender" class="form-control">
@@ -72,29 +72,6 @@
                                 <option @if (old('gender')=="0" ) {{ 'selected' }} @endif value="0">Nữ</option>
                             </select>
                             {!! ShowErrors($errors,'gender') !!}
-                        </div>
-                        <div class="form-group m-form__group">
-                            <label>Vai Trò :</label>
-                            <select name="teacher_type_id" class="form-control">
-                                <option value="">Chọn kiểu giáo viên</option>
-                                @foreach ($teacher_types as $teacher_type)
-                                <option {{(old('teacher_type_id')==$teacher_type->id)? 'selected':''}}
-                                    value="{{$teacher_type->id}}">{{$teacher_type->teacher_type}}</option>
-                                @endforeach
-                            </select>
-                            {!! ShowErrors($errors,'teacher_type_id') !!}
-                            <!-- <span class="m-form__help">We'll never share your email with anyone else</span> -->
-                        </div>
-                        <div class="form-group m-form__group">
-                            <label>Trạng Thái</label>
-                            <select name="status" class="form-control">
-                                <option value="">Chọn trạng thái</option>
-                                <option @if (old('status')=="1" ) {{ 'selected' }} @endif value="1">Hoạt động
-                                </option>
-                                <option @if (old('gender')=="0" ) {{ 'selected' }} @endif value="0">Khóa
-                                </option>
-                            </select>
-                            {!! ShowErrors($errors,'status') !!}
                         </div>
                         <div class="form-group m-form__group">
                             <label>Ảnh</label>
