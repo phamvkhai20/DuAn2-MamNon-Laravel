@@ -35,15 +35,22 @@ Route::group([
     'prefix' => 'phu-huynh',
     'middleware' => ['check_parent'],
 ], function () {
+
     Route::post('setDefaultKid', 'Web\PhuHuynh\HomeController@set_default_kid')->name('phu-huynh.set-default-kid');
     Route::group([
         'prefix' => '/{id}',
         'middleware' => ['check_parent'],
     ], function () {
+        Route::get('thong-tin-tre', 'Web\PhuHuynh\InfoKidController@index')->name('phu-huynh.thong-tin-tre');
+
         Route::post('/xin-nghi-hoc/them', 'Web\PhuHuynh\OffSchoolController@them_don_xin_nghi')->name('phu-huynh.them-don-xin-nghi');
         Route::get('/xin-nghi-hoc', 'Web\PhuHuynh\OffSchoolController@xin_nghi_hoc')->name('phu-huynh.xin-nghi-hoc');
         Route::get('/bang-tin', 'Web\PhuHuynh\HomeController@index')->name('phu-huynh.index');
+        Route::get('/dang-ki-don', 'Web\PhuHuynh\ChildReceiptHistoryController@form_dang_ki')->name('phu-huynh.dang-ki-don');
+        Route::get('/dang-ki-don/lich-su', 'Web\PhuHuynh\ChildReceiptHistoryController@lich_su_dang_ki_don')->name('phu-huynh.dang-ki-don.lich-su');
+        Route::post('/luu-dang-ki-don', 'Web\PhuHuynh\ChildReceiptHistoryController@save_dang_ki')->name('phu-huynh.luu-diem-danh');
         Route::get('/diem-danh', 'Web\PhuHuynh\AttendanceController@view_attendance')->name('phu-huynh.diem-danh');
+        Route::get('/lich-su-nghi', 'Web\PhuHuynh\AttendanceController@absence_history')->name('phu-huynh.lich-su-nghi');
     });
     //lớp
 });

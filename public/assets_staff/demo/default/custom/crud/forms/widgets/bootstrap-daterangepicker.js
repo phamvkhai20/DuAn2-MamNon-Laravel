@@ -105,10 +105,9 @@ var BootstrapDaterangepicker = {
                     buttonClasses: "m-btn btn",
                     applyClass: "btn-primary",
                     cancelClass: "btn-secondary",
-                    startDate: t,
-                    endDate: a,
                     ranges: {
-                        "Hôm Nay": [moment(), moment()],
+                        "Chọn ngày": [],
+                        "Hôm nay": [moment(), moment()],
                         "Ngày mai": [
                             moment().subtract(-1, "days"),
                             moment().subtract(-1, "days"),

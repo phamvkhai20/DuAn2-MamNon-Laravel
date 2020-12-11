@@ -1,5 +1,5 @@
 @extends('./staff/phu-huynh/layouts/layout')
-@section('title','Xem điểm danh')
+@section('title','Lịch sử nghỉ')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper container">
     <div class="m-content">
@@ -73,7 +73,7 @@
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                            @yield('title') - {{$kid->kid_name}}
+                            @yield('title')
                         </h3>
                     </div>
                 </div>
@@ -100,7 +100,6 @@
                                     id="m_table_1" role="grid" aria-describedby="m_table_1_info"
                                     style="min-width: 990px;width:100%">
                                     <thead>
-
                                         <tr>
                                             <th rowspan="1" colspan="1">STT</th>
                                             <th rowspan="1" colspan="1">Ngày</th>
@@ -112,7 +111,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($kid->attendance as $key=>$attendance)
+                                        <tr>
+                                            <td rowspan="1" colspan="1">
+                                                <h5>Dự kiến</h5>
+                                            </td>
+
+                                        </tr>
+                                        @foreach($future->attendance as $key=>$attendance)
                                         <tr>
                                             <td rowspan="1" colspan="1">{{$key+1}}</td>
                                             <td rowspan="1" colspan="1">
@@ -145,8 +150,57 @@
                                             <td rowspan="1" colspan="1"><a href="">Chi tiết</a> </td>
                                         </tr>
                                         @endforeach
-                                    </tbody>
+                                        <tr>
+                                            <td rowspan="1" colspan="1">
+                                                <h5>Lịch sử</h5>
+                                            </td>
 
+                                        </tr>
+                                        @foreach($history->attendance as $key=>$attendance)
+                                        <tr>
+                                            <td rowspan="1" colspan="1">{{$key+1+count($future->attendance)}}</td>
+                                            <td rowspan="1" colspan="1">
+                                                @php
+                                                $scheduled_day = $attendance->date;
+                                                $days = ['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ
+                                                7'];
+                                                $day = date('w',strtotime($scheduled_day));
+                                                $scheduled_day = $days[$day]."<br>".date('d-m-Y',
+                                                strtotime($scheduled_day));
+                                                echo $scheduled_day;
+                                                @endphp
+                                            </td>
+                                            <td rowspan="1" colspan="1">
+                                                @php
+                                                if($attendance->status==0){echo "Nghỉ không phép";}
+                                                if($attendance->status==1){echo "Đi học";}
+                                                if($attendance->status==2){echo "Nghỉ phép";}
+                                                @endphp
+                                            </td>
+                                            <td rowspan="1" colspan="1">{{$attendance->arrival_time}}</td>
+                                            <td rowspan="1" colspan="1">{{$attendance->leave_time}}</td>
+                                            <td rowspan="1" colspan="1">
+                                                @php
+                                                if($attendance->meal==0){echo "Không ăn";}else{
+                                                echo "Có ăn";
+                                                }
+                                                @endphp
+                                            </td>
+                                            <td rowspan="1" colspan="1"><a href="">Chi tiết</a> </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Tổng buổi nghỉ</th>
+                                        <th>{{count($future->attendance)+count($history->attendance)}}</th>
+                                    </tfoot>
+
+                                </table>
                             </div>
                 </form>
             </div>

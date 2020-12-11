@@ -66,13 +66,15 @@ class ClassController extends Controller
         $data = request()->all();
         $teachers = request()->get('param');
         $class = ClassModel::create($data);
-        foreach ($teachers as $teacher) {
-            $dataTeacher = [
-                'school_year_id' => request()->get('school_year_id'),
-                'class_id' => $class->id,
-                'teacher_id' => $teacher
-            ];
-            Assignment::create($dataTeacher);
+        if (!empty($teachers)) {
+            foreach ($teachers as $teacher) {
+                $dataTeacher = [
+                    'school_year_id' => request()->get('school_year_id'),
+                    'class_id' => $class->id,
+                    'teacher_id' => $teacher
+                ];
+                Assignment::create($dataTeacher);
+            }
         }
         return redirect()->route('nha-truong.lop.index');
     }
