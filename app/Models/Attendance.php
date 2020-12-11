@@ -22,6 +22,9 @@ class Attendance extends Model
     {
         return $this->belongsTo(Kid::class,'kid_id');
     }
+    public function don_ho(){
+        return $this-> hasOne(ChildReceiptHistory::class,'attendance','id');
+    }
     public function date()
     {
         return $this->belongsTo(Date::class,'date');

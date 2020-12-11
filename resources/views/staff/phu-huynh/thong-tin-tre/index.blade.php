@@ -62,8 +62,14 @@
                                     <div class="form-group m-form__group row">
                                         <label class="col-form-label col-lg-3 col-sm-12">Giới tinh</label>
                                         <div class="col-lg-4 col-md-9 col-sm-12">
-                                            <input type="text" disabled value="{{$infoKid->gender}}"
+                                            @if($infoKid->gender==1)
+                                                <input type="text" disabled value="Nam"
                                                 class="form-control" />
+                                            @else
+                                            <input type="text" disabled value="Nữ"
+                                                class="form-control" />
+                                            @endif
+                                            
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">

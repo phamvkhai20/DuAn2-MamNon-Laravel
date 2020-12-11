@@ -2,6 +2,7 @@
 @section('title','Lịch sử nghỉ')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper container">
+    <input type="hidden" id='receip' value="{{session('receip')}}">
     <div class="m-content">
         <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__body">
@@ -109,7 +110,7 @@
                                     <li>Điện thoại: {{$ChildReceiptHistory->phone}}</li>
                                     <li>Địa chỉ: {{$ChildReceiptHistory->address}}</li>
                                     <li>Quan hệ với bé: {{$ChildReceiptHistory->relationship}}</li>
-                                    <li>Thời gian: {{$ChildReceiptHistory->date}}</li>
+                                    <li>Thời gian: {{$ChildReceiptHistory->created_at}}</li>
                                 </ul>
                             </td>
                         </tr>
@@ -124,4 +125,21 @@
         </div>
     </div>
 </div>
+<script>
+    function getSession(){
+        var getSession=document.getElementById('receip').value;
+        if(getSession&&getSession==='success'){
+            swal("Gửi thông tin thành công!", "Bạn đã gửi thông tin đón trẻ thành công!", "success");
+        }
+        if(getSession&&getSession==='error') {
+            swal("Gửi thông tin thất bại!", "Thông tin đón trẻ đã tồn tại. Vui lòng kiểm tra lại!", "error");
+        }
+        if(getSession&&getSession==='error1') {
+            swal("Gửi thông tin thất bại!", "Trẻ hôm nay không có mặt tại lớp. Vui lòng liên hệ với cô giáo !", "error");
+        }
+    }
+    setTimeout(() => {
+        getSession()
+    }, 200);
+</script>
 @endsection

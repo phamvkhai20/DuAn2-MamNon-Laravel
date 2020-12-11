@@ -3,7 +3,6 @@
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper container">
     <div class="m-content">
-
         <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
@@ -30,8 +29,15 @@
                     @csrf
                     <input type="hidden" value="{{session('id_kid_default')}}" name="kid_id">
                     <input type="hidden" value="{{Auth::guard('parent')->user()->id}}" name="parent_id">
-                    <input type="hidden" value="{{session('id_kid_default')}}" name="date">
+                    <input type="hidden" value="{{session('id_kid_default')}}" id="date_dang_ki_don" name="date">
                     <input type="hidden" value="0" name="confirm">
+                    <script>
+                        var d = new Date();
+                        document.getElementById("date_dang_ki_don").value = d.getFullYear() + '-' + (
+                            d.getMonth() + 1) + '-' + d.getDate();
+                        document.getElementById("date_dang_ki_don").max = d.getFullYear() + '-' + (
+                            d.getMonth() + 1) + '-' + d.getDate();
+                    </script>
                     <div class="m-portlet__body">
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-6 col-md-5 col-sm-12">
