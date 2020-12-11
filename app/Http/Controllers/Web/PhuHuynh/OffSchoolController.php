@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\PhuHuynh;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\Kid;
+use Carbon\Carbon;
 use DateInterval;
 use DatePeriod;
 use DateTime;
@@ -25,9 +26,20 @@ class OffSchoolController extends Controller
         if (empty($data)) {
             return response()->json(['error' => 'Vui lòng chọn ngày nghỉ'], 400);
         }
+        $today = Carbon::now()->format('d-m-Y');
+        if ($start < $today) {
+            return response()->json(['error' => 'Ngày Nghỉ không hợp lệ !'], 409);
+        }
         if ($end === $start) {
-            $checkAttendance = Attendance::where('kid_id', $request->get('id'))->where('date', $request->get('start'))->get();
-            if (empty($checkAttendance)) {
+            $scheduled_day = Carbon::parse($start)->format('Y-m-d');
+            $days = ['Chủ nhật', 'Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ
+            Bảy'];
+            $day = date('w', strtotime($scheduled_day));
+            if ($day == 7 || $day == 6) {
+                return response()->json(['error' => 'Ngày nghỉ không hợp lệ'], 409);
+            }
+            $checkAttendance = Attendance::where('kid_id', $request->get('id'))->where('date', Carbon::parse($start)->format('Y-m-d'))->get();
+            if (count($checkAttendance) < 1) {
                 $kid = Kid::find($request->get('id'));
                 $offSchool = new Attendance();
                 $offSchool->kid_id = $request->get('id');
@@ -36,7 +48,7 @@ class OffSchoolController extends Controller
                 $offSchool->status = 2;
                 $offSchool->arrival_time = "00:00:00";
                 $offSchool->class_id = $kid->class_id;
-                $offSchool->date =  $request->get('start');
+                $offSchool->date =  Carbon::parse($start)->format('Y-m-d');
                 $offSchool->note =  "Xin Nghỉ học";
                 $offSchool->save();
                 return response()->json(
@@ -82,7 +94,5 @@ class OffSchoolController extends Controller
                 );
             }
         }
-
-        // return redirect()->route('phu-huynh.xin-nghi-hoc', ['id' => session('id_kid_default')]);
     }
 }

@@ -24,8 +24,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'phone'=>['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10'],
-            'password'=>'required',
+            'phone' => ['required', 'regex:/^0{1}[3|9]{1}[0-9]{8}/', 'digits:10'],
+            'password' => 'required',
         ];
     }
 
@@ -33,10 +33,10 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            // 'phone.required'=>'Vui lòng nhập số điện thoại!',
-            // 'phone.regex'=>'Số điện thoại không hợp lệ!',
-            // 'phone.digits'=>'Số điện thoại phải đúng định dạng!',
-            'password.required'=>'Vui lòng nhập mật khẩu!',
+            'phone.required' => 'Vui lòng nhập số điện thoại!',
+            'phone.regex' => 'Số điện thoại không hợp lệ!',
+            'phone.digits' => 'Số điện thoại phải đúng định dạng!',
+            'password.required' => 'Vui lòng nhập mật khẩu!',
         ];
     }
 }
