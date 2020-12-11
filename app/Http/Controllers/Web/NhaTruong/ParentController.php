@@ -20,7 +20,6 @@ class ParentController extends Controller
 
       return view('staff.nha-truong.quan-ly-phu-huynh.add');
    }
-
    public function store(ParentRequest $request)
    {
       $data = Arr::except($request->all(), ['_token']);

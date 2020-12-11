@@ -133,7 +133,7 @@ class KidController extends Controller
             $kid->address = $request->address;
             $kid->admission_date = $request->admission_date;
             $kid->class_id = $request->class_id;
-            $kid->kid_status = $request->kid_status;
+            $kid->kid_status = '1';
             $kid->description = $request->description;
             $avatar = $request->file('kid_avatar');
             $getAvatar = time() . '_' . $avatar->getClientOriginalName();

@@ -115,7 +115,17 @@
                                         @foreach($kid->attendance as $key=>$attendance)
                                         <tr>
                                             <td rowspan="1" colspan="1">{{$key+1}}</td>
-                                            <td rowspan="1" colspan="1">{{$attendance->date}}</td>
+                                            <td rowspan="1" colspan="1">
+                                                @php
+                                                $scheduled_day = $attendance->date;
+                                                $days = ['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ
+                                                7'];
+                                                $day = date('w',strtotime($scheduled_day));
+                                                $scheduled_day = $days[$day]."<br>".date('d-m-Y',
+                                                strtotime($scheduled_day));
+                                                echo $scheduled_day;
+                                                @endphp
+                                            </td>
                                             <td rowspan="1" colspan="1">
                                                 @php
                                                 if($attendance->status==0){echo "Nghỉ không phép";}

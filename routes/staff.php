@@ -18,7 +18,7 @@ use RealRashid\SweetAlert\Facades\Aler;
 Route::group([
     'prefix' => 'nha-truong',
     'as' => 'nha-truong.',
-    'middleware' => ['check_school'],
+    // 'middleware' => ['check_school'],
 ], function () {
     Route::get('/', 'Web\NhaTruong\HomeController@index')->name('nha-truong.index');
     //lớp

@@ -66,15 +66,18 @@ class ClassController extends Controller
     public function saveAdd(ClassRequest $request)
     {
         $data = request()->all();
+        $data['status'] = '1';
         $teachers = request()->get('param');
         $class = ClassModel::create($data);
-        foreach ($teachers as $teacher) {
-            $dataTeacher = [
-                'school_year_id' => request()->get('school_year_id'),
-                'class_id' => $class->id,
-                'teacher_id' => $teacher
-            ];
-            Assignment::create($dataTeacher);
+        if (!empty($teachers)) {
+            foreach ($teachers as $teacher) {
+                $dataTeacher = [
+                    'school_year_id' => request()->get('school_year_id'),
+                    'class_id' => $class->id,
+                    'teacher_id' => $teacher,
+                ];
+                Assignment::create($dataTeacher);
+            }
         }
         return redirect()->route('nha-truong.lop.index');
     }
@@ -90,7 +93,10 @@ class ClassController extends Controller
         return view('staff.nha-truong.quan-ly-lop.graduate', $data);
     }
     public function save_graduate(Request $request, $id)
-    {
+    {   
+        $class = Classes::find($id);
+        $data['status'] = '0';
+        $class->update($data);
         $kids = Kid::where('class_id',$id)->get();
        
         foreach ($kids as $kid_id) {

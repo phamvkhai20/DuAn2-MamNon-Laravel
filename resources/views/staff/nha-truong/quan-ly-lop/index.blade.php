@@ -113,6 +113,7 @@
                                 <th rowspan="1" colspan="1">Học sinh</th>
                                 <th rowspan="1" colspan="1">Giáo viên</th>
                                 <th rowspan="1" colspan="1">Năm Học</th>
+                                <th rowspan="1" colspan="1">Trạng thái</th>
                                 <th rowspan="1" colspan="1"></th>
                             </tr>
                         </thead>
@@ -131,10 +132,21 @@
 
                                 </td>
                                 <td>{{$cl->school_years->school_year}}</td>
+                                @if($cl->status == 1)
+                                <td class="text-success"> Đang học </td>
+                                @elseif($cl->status == 0)
+                                <td class="text-danger"> Đã kết thúc </td>
+                                @endif
+                                @if($cl->status == 1)
                                 <td>
                                     <a href="sua/{{$cl->id}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
                                     <a href="{{route('nha-truong.lop.graduate', $cl->id)}}" class="btn btn-primary btn-sm">Tốt nghiệp</a>
                                 </td>
+                                @elseif($cl->status == 0)
+                                <td>
+                                    <a href="sua/{{$cl->id}}" class="btn btn-warning btn-sm ">Sửa</a>&nbsp;
+                                </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
