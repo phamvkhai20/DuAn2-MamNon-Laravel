@@ -199,6 +199,8 @@
                                         <th>Tổng buổi nghỉ</th>
                                         <th>{{count($future->attendance)+count($history->attendance)}}</th>
                                     </tfoot>
+
+                                </table>
                             </div>
                 </form>
             </div>

@@ -1,8 +1,6 @@
 @extends('./staff/phu-huynh/layouts/layout')
 @section('title','Xin nghỉ học')
 @section('content')
-
-
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
     <div class=" ">
         <div class="row">

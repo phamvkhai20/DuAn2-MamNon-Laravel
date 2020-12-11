@@ -17,7 +17,8 @@
                             <i class="m-nav-grid__icon flaticon-chat-2"></i>
                             <span class="m-nav-grid__text">Xin nghỉ</span>
                         </a>
-                        <a href="#" class="m-nav-grid__item">
+                        <a href="{{route('phu-huynh.dang-ki-don',['id'=>session('id_kid_default')])}}"
+                            class="m-nav-grid__item">
                             <i class="m-nav-grid__icon flaticon-user-settings"></i>
                             <span class="m-nav-grid__text">Đăng kí đón</span>
                         </a>

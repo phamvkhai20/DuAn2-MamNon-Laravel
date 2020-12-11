@@ -107,7 +107,8 @@
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a
-                    href="" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-reorder"></i><span
+                    href="{{route('phu-huynh.dang-ki-don.lich-su',['id'=>session('id_kid_default')])}}"
+                    class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-reorder"></i><span
                         class="m-menu__link-text">Thông tin đón trẻ
                     </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
             </li>

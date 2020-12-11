@@ -55,6 +55,7 @@ class AttendanceController extends Controller
                     $attendance->date =  $data["date"][$index];
                     $attendance->note =  $data["note"][$index];
                     $attendance->save();
+                    $request->session()->flash('status', 'ok');
                 } else {
                     $attendance = new Attendance();
                     if ($data["status"][$index] == "off") {
@@ -88,6 +89,7 @@ class AttendanceController extends Controller
                     }
                     $find = Attendance::where("kid_id", $data["kid_id"][$index])->where("date", $data["date"][$index])->first();
                     $find->update($params);
+                    $request->session()->flash('status', 'ok');
                 }
             }
         }

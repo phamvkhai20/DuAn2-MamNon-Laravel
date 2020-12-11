@@ -12,7 +12,7 @@ class AttendanceController extends Controller
     public function view_attendance($id)
     {
         $kid = Kid::where('id', $id)->with(['attendance' => function ($query) {
-            $query->whereBetween("date", [substr(Carbon::now(), 0, 7) . '-1', substr(Carbon::now(), 0, 7) . '-31'])->orderByDesc('date');
+            $query->whereBetween("date", [substr(Carbon::now(), 0, 7) . '-1', substr(Carbon::now(), 0, 10)])->orderByDesc('date');
         }])->first();
         return view('staff.phu-huynh.diem-danh.index', ['kid' => $kid, 'id' => $id]);
     }
