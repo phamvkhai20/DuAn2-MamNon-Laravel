@@ -3,51 +3,68 @@
 @section('content')
 
 @if(!empty(session('class')))
+
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
+
+
     <div class="">
-        <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
-            <div class="m-demo__preview">
-                <div class="m-nav-grid">
-                    <div class="m-nav-grid__row">
-                        <a href="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}"
-                            class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-list-1"></i>
-                            <h5 class="m-nav-grid__text">Điểm danh</h5>
-                        </a>
-                        <a href="#" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-support"></i>
-                            <span class="m-nav-grid__text">Danh bạ</span>
-                        </a>
-                        <a href="#" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-speech-bubble"></i>
-                            <span class="m-nav-grid__text">Xin nghỉ</span>
-                        </a>
-                    </div>
-                    <div class="m-nav-grid__row">
-                        <a href="#" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-folder"></i>
-                            <span class="m-nav-grid__text">Sổ liên lạc</span>
-                        </a>
-                        <a href="#" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-gift"></i>
-                            <span class="m-nav-grid__text">Sinh nhật</span>
-                        </a>
-                        <a href="#" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-list"></i>
-                            <span class="m-nav-grid__text">Thông tin đón hộ</span>
-                        </a>
+        @if(count($attendance)<1&&$ngayThu>0)
+            <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30"
+                role="alert">
+                <div class="m-alert__icon">
+                    <i class="flaticon-exclamation m--font-brand"></i>
+                </div>
+                <div class="m-alert__text">
+                   Bạn chưa điểm danh cho buổi học ngày hôm nay ! <br>
+                   Vui lòng điểm danh !
+                   <a href="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}"
+                        target="_blank">Điểm danh</a>.
+                </div>
+            </div>
+            @endif
+            <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+                <div class="m-demo__preview">
+                    <div class="m-nav-grid">
+                        <div class="m-nav-grid__row">
+                            <a href="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}"
+                                class="m-nav-grid__item">
+                                <i class="m-nav-grid__icon flaticon-list-1"></i>
+                                <h5 class="m-nav-grid__text">Điểm danh</h5>
+                            </a>
+                            <a href="#" class="m-nav-grid__item">
+                                <i class="m-nav-grid__icon flaticon-support"></i>
+                                <span class="m-nav-grid__text">Danh bạ</span>
+                            </a>
+                            <a href="#" class="m-nav-grid__item">
+                                <i class="m-nav-grid__icon flaticon-speech-bubble"></i>
+                                <span class="m-nav-grid__text">Xin nghỉ</span>
+                            </a>
+                        </div>
+                        <div class="m-nav-grid__row">
+                            <a href="#" class="m-nav-grid__item">
+                                <i class="m-nav-grid__icon flaticon-folder"></i>
+                                <span class="m-nav-grid__text">Sổ liên lạc</span>
+                            </a>
+                            <a href="#" class="m-nav-grid__item">
+                                <i class="m-nav-grid__icon flaticon-gift"></i>
+                                <span class="m-nav-grid__text">Sinh nhật</span>
+                            </a>
+                            <a href="#" class="m-nav-grid__item">
+                                <i class="m-nav-grid__icon flaticon-list"></i>
+                                <span class="m-nav-grid__text">Thông tin đón hộ</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
-    <div>
+    <div class="">
         <div class="m-portlet">
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                            Giáo viên
+                        Giáo viên ({{count($teachers)}})
                         </h3>
                     </div>
                 </div>
@@ -55,51 +72,24 @@
             </div>
             <div class="m-portlet__body m-portlet__body--no-padding">
                 <div class="row m-row--no-padding m-row--col-separator-xl">
+                    @foreach($teachers as $teacher)
                     <div class="col-md-12 col-lg-12 col-xl-4">
                         <div class="m-widget1">
                             <div class="m-widget1__item">
                                 <div class="row m-row--no-padding align-items-center">
                                     <div class="col">
-                                        <h3 class="m-widget1__title"> Nick Bold</h3>
-                                        <span class="m-widget1__desc"> 03 345 345 04</span>
+                                        <h3 class="m-widget1__title"> {{$teacher->teacher->fullname}}</h3>
+                                        <span class="m-widget1__desc">{{$teacher->teacher->phone}}</span>
                                     </div>
                                     <div class="col m--align-right">
-                                        <img src="../../assets/app/media/img/users/100_11.jpg" width="50px" alt="">
+                                        <img src="<?php echo '/upload/avatar/' . $teacher->teacher->avatar ?> "
+                                            width="50px" alt="">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-12 col-xl-4">
-                        <div class="m-widget1">
-                            <div class="m-widget1__item">
-                                <div class="row m-row--no-padding align-items-center">
-                                    <div class="col">
-                                        <h3 class="m-widget1__title"> Nick Bold</h3>
-                                        <span class="m-widget1__desc"> 03 345 345 04</span>
-                                    </div>
-                                    <div class="col m--align-right">
-                                        <img src="../../assets/app/media/img/users/100_11.jpg" width="50px" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-lg-12 col-xl-4">
-                        <div class="m-widget1">
-                            <div class="m-widget1__item">
-                                <div class="row m-row--no-padding align-items-center">
-                                    <div class="col">
-                                        <h3 class="m-widget1__title"> Nick Bold</h3>
-                                        <span class="m-widget1__desc"> 03 345 345 04</span>
-                                    </div>
-                                    <div class="col m--align-right">
-                                        <img src="../../assets/app/media/img/users/100_11.jpg" width="50px" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -125,7 +115,6 @@
                                 </span>
                             </div>
                             <div class="d-md-none m--margin-bottom-10"></div>
-
                         </div>
                     </div>
                     <div class="m-portlet__body">

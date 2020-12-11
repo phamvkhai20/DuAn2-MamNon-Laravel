@@ -137,12 +137,17 @@ Route::group([
     'middleware' => ['check_teacher'],
 ], function () {
     Route::group([
+        'prefix' => '/{id}/so-lien-lac',
+    ], function () {
+        Route::post('/tao-moi', 'Web\GiaoVien\ContactBookController@save_add_contact_book')->name('giao-vien.them-so-lien-lac.them-moi');
+        Route::get('/', 'Web\GiaoVien\ContactBookController@form_add_contact_book')->name('giao-vien.them-so-lien-lac');
+    });
+    Route::group([
         'prefix' => 'diem-danh',
     ], function () {
         Route::get('/{id}', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh')->name('giao-vien.giao_dien_diem_danh');
         Route::post('/tao', 'Web\GiaoVien\AttendanceController@diem_danh_den')->name('giao-vien.diem_danh_den');
         Route::post('/update', 'Web\GiaoVien\AttendanceController@diem_danh_ve')->name('giao-vien.diem_danh_ve');
-
         Route::get('/{id}/lich-su', 'Web\GiaoVien\AttendanceController@xem_diem_danh')->name('giao-vien.xem_diem_danh');
     });
     Route::get('/', 'Web\GiaoVien\HomeController@index')->name('giao-vien.index');
