@@ -4,16 +4,17 @@ namespace App\Http\Controllers\Web\NhaTruong;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Kid, Classes, Parents};
+use App\Models\{Kid, Classes, Parents,Grade,History};
 use App\Http\Requests\Kid\{KidRequest, EditKidRequest};
 use DB;
 use Arr;
+use Carbon\Carbon;
 
 class KidController extends Controller
 {
     public function index()
     {
-        $data['kids'] = Kid::paginate(10);
+        $data['kids'] = Kid::orderBy('id', 'desc')->paginate(10);
         return view('staff.nha-truong.quan-ly-hoc-sinh.index', $data);
     }
     public function create()
@@ -141,6 +142,15 @@ class KidController extends Controller
             $kid->kid_avatar = $getAvatar;
             $kid->save();
         }
+
+            $history = new History();
+            $history->kid_id = $kid->id;
+            $history->class_id = $kid->class_id;
+            $history->date = date("Y-m-d");
+            $history->status = '1';
+           
+            $history->save();
+
         request()->flashOnly('check');
         request()->flashOnly('search');
         request()->flashOnly('kid_name');
@@ -164,6 +174,7 @@ class KidController extends Controller
         $data['classes'] = Classes::all();
         return view('staff.nha-truong.quan-ly-hoc-sinh.edit', $data);
     }
+    
     public function update(EditKidRequest $request, $id)
     {
         $kid = Kid::find($id);
@@ -181,4 +192,117 @@ class KidController extends Controller
         $kid->update($data);
         return redirect()->route('nha-truong.tre.index');
     }
+    public function change()
+    {
+        $data['classes'] = Classes::all();
+        return view('staff.nha-truong.quan-ly-hoc-sinh.change', $data);
+    }
+    public function save(Request $request)
+    {
+        foreach ($_POST['check'] as $id) {
+            $kid = Kid::find($id);
+            $data = Arr::except(request()->all(), ["_token ,'_method'"]);
+            $kid->update($data);
+        }
+        foreach ($_POST['check'] as $id) {
+            $history = new History();
+            $history->class_id = $request->class_id;
+            $history->kid_id = $id;
+            $history->date = date("Y-m-d");
+            $history->status = '2';
+            $history->save();
+        }
+        return redirect()->back();
+    }
+
+    public function change_list(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $query = $request->get('query');
+            
+            if ($query != '') {
+                $data = DB::table('kids')
+                        ->where("class_id", 'LIKE', $query)->get();
+            }   
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach($data as $row)
+                {
+                $output .= '
+                
+                                        <tr>
+                                            <th rowspan="1" colspan="1"><input type="checkbox" class="checkitem" name="check[]" value="'.$row->id.'" ></th>  
+                                            <th rowspan="1" colspan="1">'.$row->kid_name.'</th>
+                                            <th rowspan="1" colspan="1">'.$row->gender.'</th>
+                                            <th rowspan="1" colspan="1">'.$row->date_of_birth.'</th>
+                                        </tr>
+                                   
+            
+        ';
+            }
+        } else {
+                $output = '
+                <tr>
+                    <th colspan="4" class="text-center"><label class="col-lg-10 text-danger">Không có học sinh nào trong lớp này!</label> </th>
+                </tr>
+                
+       ';
+            }
+            $data = array(
+                'table_data'  => $output,
+                'total_data'  => $total_row
+            );
+
+            echo json_encode($data);
+        }
+        
+    }
+   
+    public function change_class($id)
+    {
+        $data['kid'] = Kid::find($id);
+        $data['class'] = Classes::find($data['kid']->class_id);
+        $grade_id = $data['class']->grade_id;
+        
+        $data['classes'] = DB::table('classes')
+                            ->where('grade_id','=',$grade_id)
+                            ->where('id','!=', $data['kid']->class_id)
+                            ->get();
+        // dd($data['classes']);
+        return view('staff.nha-truong.quan-ly-hoc-sinh.change_class', $data);
+    }
+    public function save_change(Request $request, $id)
+    {
+        $kid = Kid::find($id);
+        $data = Arr::except(request()->all(), ["_token ,'_method'"]);
+        $kid->update($data);
+        return redirect()->route('nha-truong.tre.index');
+    }
+    public function stop($id)
+    {
+        $data['kid'] = Kid::find($id);
+        return view('staff.nha-truong.quan-ly-hoc-sinh.stop', $data);
+    }
+    public function save_stop(Request $request, $id)
+    {
+        $kid = Kid::find($id);
+        $data['kid_status'] = '2';
+        $kid->update($data);
+
+        $history = new History();
+        $history->class_id = $kid->class_id;
+        $history->kid_id = $id;
+        $history->date = $request->date;
+        $history->status = '4';
+        $history->save();
+        return redirect()->route('nha-truong.tre.index');
+    }
+
+    public function history($id)
+    {
+        $data['histories'] = History::where('kid_id',$id)->orderBy('id','desc')->paginate(10);
+        return view('staff.nha-truong.quan-ly-hoc-sinh.history', $data);
+    }
+    
 }

@@ -28,6 +28,9 @@
     <link href="{{asset('assets_staff/vendors/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet"
         type="text/css" />
     <link rel="icon" href="{{asset('assets/demo/img/logo/icon-logo.png')}}" />
+    <script>
+    
+    </script>
 </head>
 
 <body

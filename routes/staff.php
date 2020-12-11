@@ -120,6 +120,16 @@ Route::group([
         Route::post('them', 'Web\NhaTruong\KidController@store')->name('tre.store');
         Route::get('sua/{id}', 'Web\NhaTruong\KidController@edit')->name('tre.edit');
         Route::post('sua/{id}', 'Web\NhaTruong\KidController@update')->name('tre.update');
+
+        Route::get('chuyen-lop', 'Web\NhaTruong\KidController@change')->name('tre.change');
+        Route::post('chuyen-lop', 'Web\NhaTruong\KidController@save')->name('tre.save');
+        Route::get('them/change_list', 'Web\NhaTruong\KidController@change_list')->name('tre.change_list');
+        Route::get('chuyen-lop/{id}', 'Web\NhaTruong\KidController@change_class')->name('tre.change_class');
+        Route::post('chuyen-lop/{id}', 'Web\NhaTruong\KidController@save_change')->name('tre.save_change');
+        Route::get('thoi-hoc/{id}', 'Web\NhaTruong\KidController@stop')->name('tre.stop');
+        Route::post('thoi-hoc/{id}', 'Web\NhaTruong\KidController@save_stop')->name('tre.save_stop');
+        Route::get('lich-su/{id}', 'Web\NhaTruong\KidController@history')->name('tre.history');
+
     });
 });
 Route::group([
