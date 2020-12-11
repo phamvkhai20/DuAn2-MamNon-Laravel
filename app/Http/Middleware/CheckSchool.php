@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+
 class CheckSchool
 {
     /**
@@ -15,10 +16,10 @@ class CheckSchool
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check()==false){
+        if (Auth::check() == false) {
             return redirect()->route('form.school');
-        }else{
+        } else {
             return $next($request);
-        // }
+        }
     }
-}}
+}

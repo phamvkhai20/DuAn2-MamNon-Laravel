@@ -17,6 +17,7 @@ use RealRashid\SweetAlert\Facades\Aler;
 
 Route::group([
     'prefix' => 'nha-truong',
+    'as' => 'nha-truong.',
     'middleware' => ['check_school'],
 ], function () {
     Route::get('/', 'Web\NhaTruong\HomeController@index')->name('nha-truong.index');
@@ -78,8 +79,10 @@ Route::group([
     Route::group([
         'prefix' => 'giao-vien',
     ], function () {
-        Route::get('', 'Web\NhaTruong\TeacherController@index')
+        Route::get('/get-list-teacher', 'Web\NhaTruong\TeacherController@index')
             ->name('giao-vien.list');
+        Route::get('', 'Web\NhaTruong\TeacherController@get_all_teacher')
+            ->name('giao-vien.get-list');
         Route::get('danh-sach', 'Web\NhaTruong\TeacherController@index')
             ->name('giao-vien.list');
 
@@ -117,10 +120,18 @@ Route::group([
         Route::post('them', 'Web\NhaTruong\KidController@store')->name('tre.store');
         Route::get('sua/{id}', 'Web\NhaTruong\KidController@edit')->name('tre.edit');
         Route::post('sua/{id}', 'Web\NhaTruong\KidController@update')->name('tre.update');
+
+        Route::get('chuyen-lop', 'Web\NhaTruong\KidController@change')->name('tre.change');
+        Route::post('chuyen-lop', 'Web\NhaTruong\KidController@save')->name('tre.save');
+        Route::get('them/change_list', 'Web\NhaTruong\KidController@change_list')->name('tre.change_list');
+        Route::get('chuyen-lop/{id}', 'Web\NhaTruong\KidController@change_class')->name('tre.change_class');
+        Route::post('chuyen-lop/{id}', 'Web\NhaTruong\KidController@save_change')->name('tre.save_change');
+        Route::get('thoi-hoc/{id}', 'Web\NhaTruong\KidController@stop')->name('tre.stop');
+        Route::post('thoi-hoc/{id}', 'Web\NhaTruong\KidController@save_stop')->name('tre.save_stop');
+        Route::get('lich-su/{id}', 'Web\NhaTruong\KidController@history')->name('tre.history');
+
     });
 });
-
-
 Route::group([
     'prefix' => 'giao-vien',
     'middleware' => ['check_teacher'],
@@ -132,17 +143,8 @@ Route::group([
         Route::post('/tao', 'Web\GiaoVien\AttendanceController@diem_danh_den')->name('giao-vien.diem_danh_den');
         Route::post('/update', 'Web\GiaoVien\AttendanceController@diem_danh_ve')->name('giao-vien.diem_danh_ve');
 
-        Route::get('/lich-su/{id}', 'Web\GiaoVien\AttendanceController@xem_diem_danh')->name('giao-vien.xem_diem_danh');
-        
+        Route::get('/{id}/lich-su', 'Web\GiaoVien\AttendanceController@xem_diem_danh')->name('giao-vien.xem_diem_danh');
     });
     Route::get('/', 'Web\GiaoVien\HomeController@index')->name('giao-vien.index');
-      //lớp
-});
-Route::group([
-    'prefix' => 'phu-huynh',
-    'middleware' => ['check_parent'],
-], function () {
-    
-    Route::get('/', 'Web\PhuHuynh\HomeController@index')->name('phu-huynh.index');
     //lớp
 });

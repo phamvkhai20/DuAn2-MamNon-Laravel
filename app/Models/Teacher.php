@@ -15,7 +15,10 @@ class Teacher extends Authenticatable
 
     public function getTeacherType()
     {
-        return $this->beLongsTo('App\Models\TeacherType', 'teacher_type_id','id');
+        return $this->beLongsTo('App\Models\TeacherType', 'teacher_type_id', 'id');
+    }
+    public function assignment()
+    {
+        return $this->hasMany(Assignment::class, 'teacher_id', 'id');
     }
 }
-

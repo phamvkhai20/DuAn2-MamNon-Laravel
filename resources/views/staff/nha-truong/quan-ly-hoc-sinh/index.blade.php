@@ -1,8 +1,8 @@
 @extends('./staff/nha-truong/layouts/layout')
 @section('title','Danh sách học sinh')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper container">
-    <div class="m-content">
+<div class="m-grid__item m-grid__item--fluid m-wrapper m-3 ">
+    <div class="">
         <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__body">
                 <div class="m-form m-form--label-align-right  ">
@@ -18,9 +18,6 @@
                                             <select class="form-control m-bootstrap-select m-bootstrap-select--solid"
                                                 id="m_form_status">
                                                 <option value="">All</option>
-                                                <option value="1">Pending</option>
-                                                <option value="2">Delivered</option>
-                                                <option value="3">Canceled</option>
                                             </select>
                                         </div>
                                     </div>
@@ -35,9 +32,6 @@
                                             <select class="form-control m-bootstrap-select m-bootstrap-select--solid"
                                                 id="m_form_type">
                                                 <option value="">All</option>
-                                                <option value="1">Online</option>
-                                                <option value="2">Retail</option>
-                                                <option value="3">Direct</option>
                                             </select>
                                         </div>
                                     </div>
@@ -56,7 +50,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="m-input-icon m-input-icon--left">
-                                    <button type="button" class="btn btn-secondary">Tìm kiếm</button>
+                                        <button type="button" class="btn btn-secondary">Tìm kiếm</button>
                                     </div>
                                 </div>
                             </div>
@@ -78,14 +72,14 @@
                     </div>
                 </div>
                 <div class="m-portlet__head-tools">
-                    <a href="{{route('nha-truong.index')}}"
+                    <a href="{{route('nha-truong.nha-truong.index')}}"
                         class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                         <span>
                             <i class="la la-arrow-left"></i>
                             <span>Quay lại</span>
                         </span>
                     </a>
-                    <a href="{{route('tre.create')}}"
+                    <a href="{{route('nha-truong.tre.create')}}"
                         class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                         <span>
                             <i class="la la-plus"></i>
@@ -99,12 +93,13 @@
                 <form class="m-form m-form--label-align-left- m-form--state-" id="m_form">
 
                     <!--begin: Form Body -->
-                    <div class="m-portlet__body">
+                    <div class="">
                         <div class="row">
                             <div class="table-responsive">
                                 <table
                                     class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
-                                    id="m_table_1" role="grid" aria-describedby="m_table_1_info" style="min-width: 990px;width:100%">
+                                    id="m_table_1" role="grid" aria-describedby="m_table_1_info"
+                                    style="min-width: 990px;width:100%">
                                     <thead>
 
                                         <tr>
@@ -147,18 +142,28 @@
                                                 @endif
                                             </td>
                                             <td>{{$kid->date_of_birth}}</td>
-                                            <td  style="width:22%"><span>{{$kid->address}}</span></td>
-                                          
-                                            @if($kid->kid_status == 0)
-                                            <td class="text-danger"> Khóa </td>
-                                            @else
-                                            <td class="text-success"> Hoạt động </td>
+                                            <td style="width:22%"><span>{{$kid->address}}</span></td>
+
+                                            @if($kid->kid_status == 1)
+                                            <td class="text-success"> Đang học </td>
+                                            @elseif($kid->kid_status == 2)
+                                            <td class="text-danger"> Thôi học </td>
+                                            @elseif($kid->kid_status == 3)
+                                            <td class="text-primary"> Đã tốt nghiệp </td>
                                             @endif
                                             <td>
-                                                <a href="{{route('tre.edit', $kid->id)}}"
+                                                <a href="{{route('nha-truong.tre.edit', $kid->id)}}"
                                                     class="btn btn-warning btn-sm ">Chi
                                                     tiết</a>&nbsp;
+                                                    <a href="{{route('nha-truong.tre.change_class', $kid->id)}}"
+                                                    class="btn btn-primary btn-sm ">Chuyển lớp</a>&nbsp;
+                                                    <br>
+                                                    <a href="{{route('nha-truong.tre.stop', $kid->id)}}"
+                                                    class="btn btn-danger btn-sm ">Thôi học</a>&nbsp;
+                                                    <a href="{{route('nha-truong.tre.history', $kid->id)}}"
+                                                    class="btn btn-info btn-sm ">Lịch sử học</a>&nbsp;
                                             </td>
+                                          
                                         </tr>
                                         @endforeach
                                     </tbody>

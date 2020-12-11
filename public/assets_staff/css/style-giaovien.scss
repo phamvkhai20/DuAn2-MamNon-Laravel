@@ -10,37 +10,43 @@
     .image_kid_attendance {
         min-height: 150px;
         min-width: 100px;
-        margin:20px
+        margin: 20px;
     }
 }
 @media screen and (min-width: 320px) {
     .image_kid_attendance {
         min-height: 230px;
         min-width: 230px;
-        margin:10px;
-        margin-bottom:20px;
+        margin: 10px;
+        margin-bottom: 20px;
     }
 }
 @media screen and (min-width: 350px) {
+    .box_button_attendance {
+        margin-top: 300px;
+    }
     .image_kid_attendance {
         min-height: 220px;
         min-width: 140px;
-        margin:10px;
-        margin-bottom:20px;
+        margin: 10px;
+        margin-bottom: 20px;
     }
 }
 @media screen and (min-width: 500px) {
+    .box_button_attendance {
+        margin-top: 300px;
+    }
     .image_kid_attendance {
         min-height: 220px;
         min-width: 150px;
-        margin:15px
+        margin: 15px;
     }
 }
 @media screen and (min-width: 760px) {
     .image_kid_attendance {
         min-height: 250px;
         min-width: 190px;
-        margin:20px
+        margin: 20px;
     }
 }
 
@@ -48,7 +54,7 @@
     .image_kid_attendance {
         min-height: 250px;
         min-width: 180px;
-        margin:10px;
+        margin: 10px;
         margin-bottom: 20px;
     }
 }
@@ -56,26 +62,24 @@
     .image_kid_attendance {
         min-height: 250px;
         min-width: 195px;
-        margin:10px;
-        margin-bottom:20px;
+        margin: 10px;
+        margin-bottom: 30px;
     }
 }
-.button_khac{
+.button_khac {
     width: 50%;
 }
-.icon_button_khac{
+.icon_button_khac {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     border: 1px solid rgb(126, 203, 233);
     padding-top: 5px;
     margin-top: 10px;
-    box-shadow:
-    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 100px 80px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(102, 101, 101, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 100px 80px rgba(0, 0, 0, 0.12);
 }
 .image_kid_attendance {
     width: 100%;
@@ -85,15 +89,14 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    box-shadow:
-    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(168, 166, 166, 0.048),
+        0 12.5px 10px rgba(179, 178, 178, 0.06),
+        0 22.3px 17.9px rgba(163, 161, 161, 0.072),
+        0 41.8px 33.4px rgba(158, 158, 158, 0.086),
+        0 100px 80px rgba(160, 159, 159, 0.12);
 }
-.box_group_name{
+.box_group_name {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     height: 30px;
@@ -105,7 +108,7 @@
     margin: auto;
     text-align: center;
 }
-.box_time{
+.box_time {
     padding-left: 15px;
     padding-right: 15px;
     opacity: 55%;
@@ -126,13 +129,37 @@
     margin: auto;
     text-align: center;
     border-radius: 5px;
-
 }
 
-.m-switch{
-    margin-top:5px;
+.m-switch {
+    margin-top: 5px;
     margin-bottom: 0;
 }
-.table_attendance{
-    
+.title_attendance {
+    padding: 20px;
+    min-height: 70px;
+    line-height: 70px;
+    h3 {
+        padding-top: 1000px;
+        line-height: 70px;
+    }
+}
+.box_tille_ {
+    margin: 5px;
+}
+.box_kid {
+    background-color: initial;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    width: 90%;
+    line-height: 40px;
+    text-align: center;
+    height: 40px;
+    margin: auto;
+    color: #fff;
+    @media screen and (min-width: 80px) {
+        .text_name {
+            display: none;
+        }
+    }
 }

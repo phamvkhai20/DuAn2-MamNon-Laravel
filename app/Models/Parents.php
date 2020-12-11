@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Parents extends Authenticatable
 {
-    protected $table ='parents';
+    protected $table = 'parents';
     protected $fillable = [
         'parent_name', 'parent_avatar', 'phone', 'email', 'password', 'parent_status'
     ];
@@ -18,4 +18,7 @@ class Parents extends Authenticatable
     {
         return $this->hasMany('App\Models\Kid', 'parent_id', 'id');
     }
+    protected $hidden = [
+        'password',
+    ];
 }

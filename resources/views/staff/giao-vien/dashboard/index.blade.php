@@ -1,13 +1,16 @@
 @extends('./staff/giao-vien/layouts/layout')
 @section('title','Bảng tin')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
-    <div class="container mt-5">
+
+@if(!empty(session('class')))
+<div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
+    <div class="">
         <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
             <div class="m-demo__preview">
                 <div class="m-nav-grid">
                     <div class="m-nav-grid__row">
-                        <a href="{{route('giao-vien.giao_dien_diem_danh',['id'=>'1'])}}" class="m-nav-grid__item">
+                        <a href="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}"
+                            class="m-nav-grid__item">
                             <i class="m-nav-grid__icon flaticon-list-1"></i>
                             <h5 class="m-nav-grid__text">Điểm danh</h5>
                         </a>
@@ -38,7 +41,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div>
         <div class="m-portlet">
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
@@ -101,7 +104,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div>
         <div class="row">
             <div class="col-lg-6">
                 <div class="m-portlet m-portlet--full-height ">
@@ -481,7 +484,7 @@
                                 </h3>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="m-portlet__body">
                         <div class="m-widget3">
@@ -570,4 +573,18 @@
         </div>
     </div>
 </div>
+@else
+<div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
+    <div class="">
+        <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+            <div class="m-demo__preview">
+                <div class="m-nav-grid">
+                    Bạn chưa có lớp
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@endif
 @endsection
