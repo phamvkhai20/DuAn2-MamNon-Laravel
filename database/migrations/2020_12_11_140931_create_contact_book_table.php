@@ -14,9 +14,11 @@ class CreateContactBookTable extends Migration
     public function up()
     {
         Schema::create('contact_book', function (Blueprint $table) {
-            $table->id();
-            $table->integer('kid_id');
-            $table->integer('teacher_id');
+            $table->increments('id');
+            $table->integer('kid_id')->unsigned();
+            $table->foreign('kid_id')->references('id')->on('kids')->onDelete('cascade');
+            $table->integer('teacher_id')->unsigned();
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
             $table->string('title');
             $table->timestamps();
         });

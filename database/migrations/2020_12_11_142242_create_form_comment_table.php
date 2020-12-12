@@ -14,7 +14,7 @@ class CreateFormCommentTable extends Migration
     public function up()
     {
         Schema::create('form_comment', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('title');
             $table->timestamps();
         });

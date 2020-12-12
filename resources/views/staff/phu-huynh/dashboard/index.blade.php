@@ -2,7 +2,6 @@
 @section('title','Bảng tin')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
-    <div class="mt-5">
         <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
             <div class="m-demo__preview">
                 <div class="m-nav-grid">
@@ -40,14 +39,13 @@
                 </div>
             </div>
         </div>
-    </div>
     <div class="">
         <div class="m-portlet">
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                            Giáo viên {{count($teachers)}}
+                            Giáo viên ({{count($teachers)}})
                         </h3> 
                     </div>
                 </div>
@@ -62,7 +60,8 @@
                                 <div class="row m-row--no-padding align-items-center">
                                     <div class="col">
                                         <h3 class="m-widget1__title"> {{$teacher->teacher->fullname}}</h3>
-                                        <span class="m-widget1__desc">{{$teacher->teacher->phone}}</span>
+                                        <input class="form-control" id="m_clipboard_2_{{$teacher->id}}" value="{{$teacher->teacher->phone}}" >
+										<a href="#" class="btn btn-secondary" data-clipboard="true" data-clipboard-target="#m_clipboard_2_{{$teacher->id}}"><i class="la la-clipboard"></i>Sao chép</a>
                                     </div>
                                     <div class="col m--align-right">
                                         <img src="<?php echo '/upload/avatar/' . $teacher->teacher->avatar ?> "
@@ -262,5 +261,18 @@ function guiXinNghiHoc() {
             document.querySelector('#loading').classList.add("d-none")
         });
 }
+
+
+var ClipboardDemo = {
+    init: function () {
+        new Clipboard("[data-clipboard=true]").on("success", function (e) {
+            e.clearSelection(), alert("Sao chép thành công");
+        });
+    },
+};
+jQuery(document).ready(function () {
+    ClipboardDemo.init();
+});
 </script>
+
 @endsection

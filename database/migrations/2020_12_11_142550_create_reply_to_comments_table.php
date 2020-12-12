@@ -14,10 +14,14 @@ class CreateReplyToCommentsTable extends Migration
     public function up()
     {
         Schema::create('reply_to_comments', function (Blueprint $table) {
-            $table->id();
-            $table->integer('comment_id');
-            $table->integer('response_comment_id');
-            $table->integer('contact_book_id');
+            $table->increments('id');
+            $table->integer('comment_id')->unsigned();
+            $table->foreign('comment_id')->references('id')->on('form_comment')->onDelete('cascade');
+            $table->integer('response_comment_id')->unsigned();
+            $table->foreign('response_comment_id')->references('id')->on('comment_response_form')->onDelete('cascade');
+            $table->integer('contact_book_id')->unsigned();
+            $table->foreign('contact_book_id')->references('id')->on('contact_book')->onDelete('cascade');
+            $table->string('note');
             $table->timestamps();
         });
     }

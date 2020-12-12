@@ -14,7 +14,7 @@ class CreateAdmissionRecordsTable extends Migration
     public function up()
     {
         Schema::create('admission_records', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('name_kid');
             $table->string('address1');
             $table->string('address2');

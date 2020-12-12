@@ -92,7 +92,7 @@
                                     <div class="form-group m-form__group row">
                                         <h4 class="col-lg-1 col-form-label">Khác:</h4>
                                         <div class="col-lg-12">
-                                            <input type="email" class="form-control m-input" placeholder="Full name">
+                                            <input type="text" name="note[{{$formComment->id}}]" class="form-control m-input" placeholder="Full name">
                                         </div>
                                     </div>
                                 </div>

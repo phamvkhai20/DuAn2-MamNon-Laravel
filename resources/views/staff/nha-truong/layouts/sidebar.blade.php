@@ -28,6 +28,10 @@
                                 class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Thêm mới trẻ</span></a></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.tre.change')}}"
+                                class="m-menu__link "><i
+                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                    class="m-menu__link-text">Chuyển lớp</span></a></li>
                     </ul>
                 </div>
             </li>
@@ -40,11 +44,11 @@
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.phu-huynh.list')}}"
                                 class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">Danh sách phụ huynh</span></a></li>
+                                    class="m-menu__link-text">Danh sách phụ hyunh</span></a></li>
                         <li class="m-menu__item " aria-haspopup="true"><a
                                 href="{{route('nha-truong.phu-huynh.create')}}" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">Thêm mới phụ huynh</span></a></li>
+                                    class="m-menu__link-text">Thêm mới phụ hyunh</span></a></li>
                     </ul>
                 </div>
             </li>

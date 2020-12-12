@@ -36,7 +36,7 @@ class CheckLogin
             } else  if (!empty(Auth::user()) == true) {
                 return redirect()->route('nha-truong.nha-truong.index');
             };
-        } else {
+                } else {
             return $next($request);
         }
     }
