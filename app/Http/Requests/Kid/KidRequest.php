@@ -36,7 +36,6 @@ class KidRequest extends FormRequest
                 'admission_date'=>'required',
                 'class_id'=>'required',
                 'admission_date'=>'required',
-                'description'=>'required',
                 'kid_avatar'=>'required||mimes:jpeg,jpg,png',
             ];
         }
@@ -50,7 +49,6 @@ class KidRequest extends FormRequest
                 'admission_date'=>'required',
                 'class_id'=>'required',
                 'admission_date'=>'required',
-                'description'=>'required',
                 'kid_avatar'=>'required||mimes:jpeg,jpg,png',
     
                 'parent_name'=>'required|min:6',
@@ -72,7 +70,6 @@ class KidRequest extends FormRequest
             'admission_date.required'=>'Vui lòng chọn ngày nhập học!',
             'address.required'=>'Vui lòng nhập địa chỉ!',
             'class_id.required'=>'Vui lòng chọn lớp!',
-            'description.required'=>'Vui lòng thêm chi tiết về trẻ',
             'kid_avatar.required'=>'Vui lòng chọn ảnh đại diện của trẻ!',
             'kid_avatar.mimes'=>'Không đúng định dạng ảnh!',
 

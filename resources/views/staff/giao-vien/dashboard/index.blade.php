@@ -5,8 +5,6 @@
 @if(!empty(session('class')))
 
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
-
-
     <div class="">
         @if(count($attendance)<1&&$ngayThu>0)
             <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30"

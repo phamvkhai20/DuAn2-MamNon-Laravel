@@ -2,43 +2,138 @@
 @section('title','Bảng tin')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
-        <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+    @php
+    use Carbon\Carbon;
+    $date= substr(Carbon::now('Asia/Ho_Chi_Minh'),11,5)
+    @endphp
+    @if($ngayThu!==1)
+    @if(empty($attendance)||$attendance->arrival_time=="00:00:00")
+    <div class="m-alert m-alert--icon alert alert-warning" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
+        </div>
+        <div class="m-alert__text">
+            <strong>Con của bạn chưa đến lớp</strong>
+        </div>
+        <div class="m-alert__close">
+            <button type="button" class="close" data-close="alert" aria-label="Hide">
+            </button>
+        </div>
+    </div>
+    @else
+        @if($date>"16:00:00"&&$attendance->leave_time=="00:00:00")
+        <div class="m-alert m-alert--icon alert alert-warning" role="alert">
+            <div class="m-alert__icon">
+                <i class="la la-warning"></i>
+            </div>
+            <div class="m-alert__text">
+                <strong style="color:#000">Con của bạn chưa được đón về</strong>
+            </div>
+            <div class="m-alert__close">
+                <button type="button" class="close" data-close="alert" aria-label="Hide">
+                </button>
+            </div>
+        </div>
+        @else
+        <div class="m-alert m-alert--icon alert alert-success" role="alert">
+            <div class="m-alert__icon">
+                <i class="la la-chevron-down"></i>
+            </div>
+            <div class="m-alert__text">
+                <strong>Con của bạn Đã đến lớp</strong>
+            </div>
+            <div class="m-alert__close">
+                <button type="button" class="close" data-close="alert" aria-label="Hide">
+                </button>
+            </div>
+        </div>
+        @endif
+    <div class="m-section__content">
+        <!--begin::Preview-->
+        <div class="m-demo">
             <div class="m-demo__preview">
-                <div class="m-nav-grid">
-                    <div class="m-nav-grid__row">
-                        <a href="{{route('phu-huynh.thong-tin-tre',['id'=>session('id_kid_default')])}}"
-                            class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-list-1"></i>
-                            <h5 class="m-nav-grid__text">Thông tin trẻ</h5>
-                        </a>
-                        <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false"
-                            data-target="#m_daterangepicker_modal" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-chat-2"></i>
-                            <span class="m-nav-grid__text">Xin nghỉ</span>
-                        </a>
-                        <a href="{{route('phu-huynh.dang-ki-don',['id'=>session('id_kid_default')])}}"
-                            class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-user-settings"></i>
-                            <span class="m-nav-grid__text">Đăng kí đón</span>
-                        </a>
+                <div class="m-list__content">
+
+                    <div class="m-list-badge m--margin-bottom-20">
+                        @if($attendance->arrival_time!=="00:00:00")
+                        <div class="m-list-badge__label m--font-success">
+                            {{$attendance->arrival_time}}
+                        </div>
+                        <div class="m-list-badge__items">
+                            <h4>Trẻ đã đến lớp</h4>
+                        </div>
+                        @else
+                        <div class="m-list-badge__label m--font-success">
+                            00:00:00
+                        </div>
+                        <div class="m-list-badge__items">
+                            <h4>Trẻ chưa đến lớp</h4>
+                        </div>
+                        @endif
                     </div>
-                    <div class="m-nav-grid__row">
-                        <a href="#" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-lifebuoy"></i>
-                            <h5 class="m-nav-grid__text">Dịch vụ</h5>
-                        </a>
-                        <a href="#" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-book"></i>
-                            <span class="m-nav-grid__text">Sổ liên lạc</span>
-                        </a>
-                        <a href="#" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-email"></i>
-                            <span class="m-nav-grid__text">Góp ý nhà trường</span>
-                        </a>
+
+                    <div class="m-list-badge m--margin-bottom-20">
+                        @if($attendance->leave_time!=="00:00:00")
+                        <div class="m-list-badge__label m--font-brand">
+                            {{$attendance->leave_time}}
+                        </div>
+                        <div class="m-list-badge__items">
+                            <h4>Trẻ đã được phụ huynh đón về</h4>
+                        </div>
+                        @else
+                        <div class="m-list-badge__label m--font-brand">
+                            00:00:00
+                        </div>
+                        <div class="m-list-badge__items">
+                            <h4>Trẻ chưa được phụ huynh đón về</h4>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
+
+        <!--end::Preview-->
+    </div>
+    @endif
+    @endif
+    <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+        <div class="m-demo__preview">
+            <div class="m-nav-grid">
+                <div class="m-nav-grid__row">
+                    <a href="{{route('phu-huynh.thong-tin-tre',['id'=>session('id_kid_default')])}}"
+                        class="m-nav-grid__item">
+                        <i class="m-nav-grid__icon flaticon-list-1"></i>
+                        <h5 class="m-nav-grid__text">Thông tin trẻ</h5>
+                    </a>
+                    <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false"
+                        data-target="#m_daterangepicker_modal" class="m-nav-grid__item">
+                        <i class="m-nav-grid__icon flaticon-chat-2"></i>
+                        <span class="m-nav-grid__text">Xin nghỉ</span>
+                    </a>
+                    <a href="{{route('phu-huynh.dang-ki-don',['id'=>session('id_kid_default')])}}"
+                        class="m-nav-grid__item">
+                        <i class="m-nav-grid__icon flaticon-user-settings"></i>
+                        <span class="m-nav-grid__text">Đăng kí đón</span>
+                    </a>
+                </div>
+                <div class="m-nav-grid__row">
+                    <a href="#" class="m-nav-grid__item">
+                        <i class="m-nav-grid__icon flaticon-lifebuoy"></i>
+                        <h5 class="m-nav-grid__text">Dịch vụ</h5>
+                    </a>
+                    <a href="#" class="m-nav-grid__item">
+                        <i class="m-nav-grid__icon flaticon-book"></i>
+                        <span class="m-nav-grid__text">Sổ liên lạc</span>
+                    </a>
+                    <a href="#" class="m-nav-grid__item">
+                        <i class="m-nav-grid__icon flaticon-email"></i>
+                        <span class="m-nav-grid__text">Góp ý nhà trường</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="">
         <div class="m-portlet">
             <div class="m-portlet__head">
@@ -46,7 +141,7 @@
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
                             Giáo viên ({{count($teachers)}})
-                        </h3> 
+                        </h3>
                     </div>
                 </div>
 
@@ -60,8 +155,11 @@
                                 <div class="row m-row--no-padding align-items-center">
                                     <div class="col">
                                         <h3 class="m-widget1__title"> {{$teacher->teacher->fullname}}</h3>
-                                        <input class="form-control" id="m_clipboard_2_{{$teacher->id}}" value="{{$teacher->teacher->phone}}" >
-										<a href="#" class="btn btn-secondary" data-clipboard="true" data-clipboard-target="#m_clipboard_2_{{$teacher->id}}"><i class="la la-clipboard"></i>Sao chép</a>
+                                        <input class="form-control" id="m_clipboard_2_{{$teacher->id}}"
+                                            value="{{$teacher->teacher->phone}}">
+                                        <a href="#" class="btn btn-secondary" data-clipboard="true"
+                                            data-clipboard-target="#m_clipboard_2_{{$teacher->id}}"><i
+                                                class="la la-clipboard"></i>Sao chép</a>
                                     </div>
                                     <div class="col m--align-right">
                                         <img src="<?php echo '/upload/avatar/' . $teacher->teacher->avatar ?> "
@@ -264,13 +362,13 @@ function guiXinNghiHoc() {
 
 
 var ClipboardDemo = {
-    init: function () {
-        new Clipboard("[data-clipboard=true]").on("success", function (e) {
+    init: function() {
+        new Clipboard("[data-clipboard=true]").on("success", function(e) {
             e.clearSelection(), alert("Sao chép thành công");
         });
     },
 };
-jQuery(document).ready(function () {
+jQuery(document).ready(function() {
     ClipboardDemo.init();
 });
 </script>

@@ -35,7 +35,6 @@ class EditKidRequest extends FormRequest
                 'admission_date'=>'required',
                 'class_id'=>'required',
                 'admission_date'=>'required',
-                'description'=>'required',
                 'kid_avatar'=>'mimes:jpeg,jpg,png',
             ];
         
@@ -51,7 +50,6 @@ class EditKidRequest extends FormRequest
             'admission_date.required'=>'Vui lòng chọn ngày nhập học!',
             'address.required'=>'Vui lòng nhập địa chỉ!',
             'class_id.required'=>'Vui lòng chọn lớp!',
-            'description.required'=>'Vui lòng thêm chi tiết về trẻ',
             'kid_avatar.mimes'=>'Không đúng định dạng ảnh!',
         ];
     }

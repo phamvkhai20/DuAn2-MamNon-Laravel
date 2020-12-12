@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Teacher extends Authenticatable
 {
     protected $fillable = [
-        'fullname', 'phone', 'email', 'password', 'avatar', 'date_of_birth', 'gender', 'teacher_type_id', 'status'
+        'fullname', 'phone', 'email', 'password', 'avatar', 'date_of_birth', 'gender', 'status'
     ];
 
     public function getTeacherType()

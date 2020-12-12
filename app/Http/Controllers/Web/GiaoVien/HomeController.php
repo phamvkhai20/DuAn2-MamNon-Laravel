@@ -10,7 +10,6 @@ use App\Models\Kid;
 use App\Models\Teacher;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
 class HomeController extends Controller
 {
     protected function index()

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Auth;
+
 class CheckParent
 {
     /**
@@ -15,10 +16,10 @@ class CheckParent
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::guard('parent')->check()==false){
+        if (Auth::guard('parent')->check() == false) {
             return redirect()->route('form.parent');
-        }else{
+        } else {
             return $next($request);
-        // }
+        }
     }
-}}
+}

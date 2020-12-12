@@ -1,5 +1,5 @@
 @extends('./staff/phu-huynh/layouts/layout')
-@section('title','Xin nghỉ học')
+@section('title','Thông tin trẻ')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
     <div class=" ">
@@ -11,15 +11,23 @@
                             <div class="m-card-profile__title m--hide">
                                 Your Profile
                             </div>
+                            <style>
+                            .image__kid {
+                                background-position: center;
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                                position: relative;
+                                width: 160px;
+                                height: 160px;
+                            }
+                            </style>
                             <div class="m-card-profile__pic">
-                                <div class="m-card-profile__pic-wrapper">
-
-                                    <img src="<?php echo '/upload/avatar/' . $infoKid->kid_avatar ?> " alt="" />
+                                <div class="m-card-profile__pic-wrapper image__kid" id="image__kid"
+                                    style="background-image: url(<?php echo '/upload/avatar/' . $infoKid->kid_avatar ?> )">
                                 </div>
                             </div>
                             <div class="m-card-profile__details">
                                 <span class="m-card-profile__name">{{$infoKid->kid_name}}</span>
-                                <a href="" class="m-card-profile__email m-link">mark.andre@gmail.com</a>
                             </div>
                         </div>
                         <div class="m-portlet__body-separator"></div>
@@ -63,13 +71,11 @@
                                         <label class="col-form-label col-lg-3 col-sm-12">Giới tinh</label>
                                         <div class="col-lg-4 col-md-9 col-sm-12">
                                             @if($infoKid->gender==1)
-                                                <input type="text" disabled value="Nam"
-                                                class="form-control" />
+                                            <input type="text" disabled value="Nam" class="form-control" />
                                             @else
-                                            <input type="text" disabled value="Nữ"
-                                                class="form-control" />
+                                            <input type="text" disabled value="Nữ" class="form-control" />
                                             @endif
-                                            
+
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">

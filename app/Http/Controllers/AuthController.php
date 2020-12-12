@@ -53,7 +53,7 @@ class AuthController extends Controller
             $findTeacher = Teacher::where('id', $idTeacher)->with(['assignment' => function ($query) {
                $query->with('class');
             }])->first();
-            if (!empty($findTeacher->assignment)) {
+            if (count($findTeacher->assignment)>0) {
                session(['classArray' => $findTeacher->assignment]);
                session(['class' => $findTeacher->assignment[0]->class_id]);
                return redirect()->route('giao-vien.index');
@@ -79,9 +79,7 @@ class AuthController extends Controller
             $idParent = Auth::guard('parent')->user()->id;
             $findInfoParent = Parents::where('id', $idParent)->with('kids')->first();
             $coutKids = count($findInfoParent->kids);
-            if ($coutKids === 1) {
-               return redirect()->route('phu-huynh.index', ['id' => $findInfoParent->kids[0]->id]);
-            } else if ($coutKids > 1) {
+          if ($coutKids > 0) {
                session(['kids' => $findInfoParent->kids]);
                session(['id_kid_default' => $findInfoParent->kids[0]->id]);
                return redirect()->route('phu-huynh.index', ['id' => $findInfoParent->kids[0]->id]);

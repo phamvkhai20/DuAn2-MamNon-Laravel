@@ -24,7 +24,7 @@ class CreateAttendanceTable extends Migration
             $table->text('note');
             $table->time('arrival_time');
             $table->time('leave_time');
-            $table->integer('meal');
+            $table->string('meal');
             $table->timestamps();
         });
     }
