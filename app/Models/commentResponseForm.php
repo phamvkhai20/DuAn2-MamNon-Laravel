@@ -11,9 +11,16 @@ class commentResponseForm extends Model
     protected $fillable =
     [
         'name',
-        'id_comment'];
+        'comment_id'];
         public function form_comment()
         {
-            return $this->beLongsTo(FormComment::class, 'id_comment', 'id');
+            return $this->belongsTo(FormComment::class, 'comment_id', 'id');
         }
+        public function replyToComment()
+        {
+            return $this->hasMany(ReplyToComments::class, 'response_comment_id', 'id');
+        }
+     
+        
 }
+

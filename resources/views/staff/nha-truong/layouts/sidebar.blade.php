@@ -5,7 +5,7 @@
             <li class="m-menu__item  m-menu__item--active" aria-haspopup="true"><a href="{{route('nha-truong.nha-truong.index')}}" class="m-menu__link "><i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-title"> <span class="m-menu__link-wrap"> <span class="m-menu__link-text">Bảng tin</span>
                 </a></li>
             <li class="m-menu__section ">
-                <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin học phí</h4>
+                <h4 class="m-menu__section-text" style="color:#f7f7fa;font-size:15px">Thông tin học phí</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-child"></i><span class="m-menu__link-text">Quản lý
@@ -29,7 +29,7 @@
                 </div>
             </li>
             <li class="m-menu__section ">
-                <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin trường học</h4>
+                <h4 class="m-menu__section-text" style="color:#f7f7fa;font-size:15px">Thông tin trường học</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-child"></i><span class="m-menu__link-text">Quản lý

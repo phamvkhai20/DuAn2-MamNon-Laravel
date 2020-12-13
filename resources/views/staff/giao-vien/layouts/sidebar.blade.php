@@ -21,7 +21,7 @@
                         @csrf
                         <button type="submit" class="box_kid row d-flex justify-content-center">
                             <span class=" m-menu__link-text">
-                                <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px;padding-top:10px">{{($class->class->name)}}</h4>
+                                <h4 class="m-menu__section-text" style="color:#f7f7fa;font-size:15px;padding-top:10px">{{($class->class->name)}}</h4>
                             </span>
                         </button>
                     </form>
@@ -40,7 +40,7 @@
             <li class="m-menu__section ">
 
                 <!-- classArray -->
-                <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin học phí</h4>
+                <h4 class="m-menu__section-text" style="color:#f7f7fa;font-size:15px">Thông tin học phí</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a
@@ -67,7 +67,7 @@
                 </div>
             </li>
             <li class="m-menu__section ">
-                <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin cho trẻ</h4>
+                <h4 class="m-menu__section-text" style="color:#f7f7fa;font-size:15px">Thông tin cho trẻ</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a
@@ -105,7 +105,7 @@
                 </div>
             </li>
             <li class="m-menu__section ">
-                <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin lớp học</h4>
+                <h4 class="m-menu__section-text" style="color:#f7f7fa;font-size:15px">Thông tin lớp học</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a

@@ -12,6 +12,7 @@ class FormComment extends Model
         'title'	];
         public function comment_response_forms()
         {
-            return $this->hasMany(commentResponseForm::class,'id_comment', 'id');
+            return $this->hasMany(commentResponseForm::class,'comment_id', 'id');
         }
+    
     }

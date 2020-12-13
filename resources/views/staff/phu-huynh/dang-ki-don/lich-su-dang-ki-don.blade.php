@@ -1,9 +1,9 @@
 @extends('./staff/phu-huynh/layouts/layout')
-@section('title','Lịch sử nghỉ')
+@section('title','Lịch sử đăng kí đón')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper container">
+<div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
     <input type="hidden" id='receip' value="{{session('receip')}}">
-    <div class="m-content">
+    <div class="">
         <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__body">
                 <div class="m-form m-form--label-align-right  ">

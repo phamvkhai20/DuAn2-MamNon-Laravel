@@ -15,9 +15,8 @@ class CreateCommentResponseFormTable extends Migration
     {
         Schema::create('comment_response_form', function (Blueprint $table) {
             $table->increments('id');
-             $table->integer('teacher_id')->unsigned();
-            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
-            $table->integer('comment_id');
+             $table->integer('comment_id')->unsigned();
+            $table->foreign('comment_id')->references('id')->on('form_comment')->onDelete('cascade');
             $table->string('name');
             $table->timestamps();
         });

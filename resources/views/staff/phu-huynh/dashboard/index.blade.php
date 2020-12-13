@@ -21,33 +21,33 @@
         </div>
     </div>
     @else
-        @if($date>"16:00:00"&&$attendance->leave_time=="00:00:00")
-        <div class="m-alert m-alert--icon alert alert-warning" role="alert">
-            <div class="m-alert__icon">
-                <i class="la la-warning"></i>
-            </div>
-            <div class="m-alert__text">
-                <strong style="color:#000">Con của bạn chưa được đón về</strong>
-            </div>
-            <div class="m-alert__close">
-                <button type="button" class="close" data-close="alert" aria-label="Hide">
-                </button>
-            </div>
+    @if($date>"16:00:00"&&$attendance->leave_time=="00:00:00")
+    <div class="m-alert m-alert--icon alert alert-warning" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-warning"></i>
         </div>
-        @else
-        <div class="m-alert m-alert--icon alert alert-success" role="alert">
-            <div class="m-alert__icon">
-                <i class="la la-chevron-down"></i>
-            </div>
-            <div class="m-alert__text">
-                <strong>Con của bạn Đã đến lớp</strong>
-            </div>
-            <div class="m-alert__close">
-                <button type="button" class="close" data-close="alert" aria-label="Hide">
-                </button>
-            </div>
+        <div class="m-alert__text">
+            <strong style="color:#000">Con của bạn chưa được đón về</strong>
         </div>
-        @endif
+        <div class="m-alert__close">
+            <button type="button" class="close" data-close="alert" aria-label="Hide">
+            </button>
+        </div>
+    </div>
+    @else
+    <div class="m-alert m-alert--icon alert alert-success" role="alert">
+        <div class="m-alert__icon">
+            <i class="la la-chevron-down"></i>
+        </div>
+        <div class="m-alert__text">
+            <strong>Con của bạn Đã đến lớp</strong>
+        </div>
+        <div class="m-alert__close">
+            <button type="button" class="close" data-close="alert" aria-label="Hide">
+            </button>
+        </div>
+    </div>
+    @endif
     <div class="m-section__content">
         <!--begin::Preview-->
         <div class="m-demo">
@@ -98,7 +98,7 @@
     @endif
     @endif
     <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
-        <div class="m-demo__preview">
+        <div class="p-3" style="border: 4px solid #f7f7fa;">
             <div class="m-nav-grid">
                 <div class="m-nav-grid__row">
                     <a href="{{route('phu-huynh.thong-tin-tre',['id'=>session('id_kid_default')])}}"
@@ -122,7 +122,8 @@
                         <i class="m-nav-grid__icon flaticon-lifebuoy"></i>
                         <h5 class="m-nav-grid__text">Dịch vụ</h5>
                     </a>
-                    <a href="#" class="m-nav-grid__item">
+                    <a href="{{route('phu-huynh.so-lien-lac',['id'=>session('id_kid_default')])}}"
+                        class="m-nav-grid__item">
                         <i class="m-nav-grid__icon flaticon-book"></i>
                         <span class="m-nav-grid__text">Sổ liên lạc</span>
                     </a>
@@ -148,22 +149,39 @@
             </div>
             <div class="m-portlet__body m-portlet__body--no-padding">
                 <div class="row m-row--no-padding m-row--col-separator-xl">
+                    <style>
+                    .image__teacher {
+                        width: 60px;
+                        height: 60px;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        position: relative;
+                        border-radius: 5px;
+                        padding: 10px;
+                        float: right;
+                    }
+                    </style>
                     @foreach($teachers as $teacher)
                     <div class="col-md-12 col-lg-12 col-xl-4">
                         <div class="m-widget1">
                             <div class="m-widget1__item">
-                                <div class="row m-row--no-padding align-items-center">
-                                    <div class="col">
+                                <div class="row m-row--no-padding align-items-center row">
+                                    <div class=" col-7">
                                         <h3 class="m-widget1__title"> {{$teacher->teacher->fullname}}</h3>
-                                        <input class="form-control" id="m_clipboard_2_{{$teacher->id}}"
-                                            value="{{$teacher->teacher->phone}}">
-                                        <a href="#" class="btn btn-secondary" data-clipboard="true"
-                                            data-clipboard-target="#m_clipboard_2_{{$teacher->id}}"><i
-                                                class="la la-clipboard"></i>Sao chép</a>
+                                        <div class="m-input-icon m-input-icon--right">
+                                            <input class="form-control mt-3" id="m_clipboard_2_{{$teacher->id}}"
+                                                value="{{$teacher->teacher->phone}}">
+                                            <a class="m-input-icon__icon m-input-icon__icon--right"
+                                                data-clipboard="true"
+                                                data-clipboard-target="#m_clipboard_2_{{$teacher->id}}"><span><i
+                                                        class="la la-clipboard"></i></span></a>
+                                        </div>
                                     </div>
-                                    <div class="col m--align-right">
-                                        <img src="<?php echo '/upload/avatar/' . $teacher->teacher->avatar ?> "
-                                            width="50px" alt="">
+                                    <div class="col-5 m--align-right">
+                                        <div class=" m-menu__link-icon image__teacher"
+                                            style="background-image: url(<?php echo '/upload/avatar/' . $teacher->teacher->avatar?> )">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

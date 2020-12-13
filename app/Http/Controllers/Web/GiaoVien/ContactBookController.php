@@ -21,6 +21,7 @@ class ContactBookController extends Controller
         $data=$request->all();
         $arrKid=$request->get('checkKid');
         $responses= $request->get('response');
+        $note= $request->get('note');
         foreach($arrKid as $key=>$Kid){
              $paramContactBook=array(
                 'kid_id'=>$key,
@@ -32,6 +33,7 @@ class ContactBookController extends Controller
              foreach($responses as $key=>$response){
                 $contactBook = new ReplyToComments();
                 $contactBook->comment_id = $key;
+                $contactBook->note=$note[$key]?$note[$key]:'null';
                 $contactBook->response_comment_id = $response;
                 $contactBook->contact_book_id = $idContactBook;
                 $CreateContactBook= $contactBook->save();
