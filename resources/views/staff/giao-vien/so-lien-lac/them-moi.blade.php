@@ -1,11 +1,9 @@
 @extends('./staff/giao-vien/layouts/layout')
 @section('title','Thêm sổ liên lạc')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
-    <div class="m-content">
+<div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
+    <div class="">
         <div class="">
-            
-            <!--begin::Portlet-->
             <div class="m-portlet ">
                 <div class="m-portlet__head">
                     <div class="m-portlet__head-caption">
@@ -32,8 +30,8 @@
                         method="post">
                         @csrf
                         <div class="m-portlet__body">
-                            <div class="form-group m-form__group row">
-                                <h4 class="col-lg-1 col-form-label">Tiêu đề:</h4>
+                            <div class=" row">
+                                <h6 class="col-lg-5 col-form-label">Tiêu đề (*) :</h6>
                                 <div class="col-lg-12">
                                 
                                 <input type="text" name="title" class="form-control m-input">
@@ -41,8 +39,8 @@
                                 </div>
                             </div>
                             <input type="hidden" name="teacher_id" value="{{Auth::guard('teacher')->user()->id}}">
-                            <div class="form-group m-form__group row">
-                                <h4 class="col-lg-1 col-form-label">Trẻ:</h4>
+                            <div class="row">
+                                <h6 class="col-lg-5 col-form-label">Trẻ:</h6>
                                 <table
                                     class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
                                     id="m_table_1" role="grid" aria-describedby="m_table_1_info">
@@ -88,7 +86,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="m-portlet__body">
+                                <div class="">
                                     <div class="form-group m-form__group row">
                                         <h4 class="col-lg-1 col-form-label">Khác:</h4>
                                         <div class="col-lg-12">
@@ -116,8 +114,8 @@
                                 <div class="row">
                                     <div class="col-lg-5"></div>
                                     <div class="col-lg-7">
-                                        <button type="submit" class="btn btn-brand">Submit</button>
-                                        <button type="button" class="btn btn-secondary">Cancel</button>
+                                        <button type="submit" class="btn btn-brand">Gửi sổ liên lạc</button>
+                                        <a href="{{route('giao-vien.index')}}" class="btn btn-secondary">Hủy</a>
                                     </div>
                                 </div>
                             </div>

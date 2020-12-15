@@ -4,22 +4,30 @@
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
     <div class=" ">
         <div class="row">
-            <div class="col-xl-3 col-lg-4">
+        <div class="col-xl-3 col-lg-4">
                 <div class="m-portlet m-portlet--full-height  ">
                     <div class="m-portlet__body">
                         <div class="m-card-profile">
                             <div class="m-card-profile__title m--hide">
                                 Your Profile
                             </div>
+                            <style>
+                            .image__kid {
+                                background-position: center;
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                                position: relative;
+                                width: 160px;
+                                height: 160px;
+                            }
+                            </style>
                             <div class="m-card-profile__pic">
-                                <div class="m-card-profile__pic-wrapper">
-
-                                    <img src="<?php echo '/upload/avatar/' . $infoKid->kid_avatar ?> " alt="" />
+                                <div class="m-card-profile__pic-wrapper image__kid" id="image__kid"
+                                    style="background-image: url(<?php echo '/upload/avatar/' . $infoKid->kid_avatar ?> )">
                                 </div>
                             </div>
                             <div class="m-card-profile__details">
                                 <span class="m-card-profile__name">{{$infoKid->kid_name}}</span>
-                                <a href="" class="m-card-profile__email m-link">mark.andre@gmail.com</a>
                             </div>
                         </div>
                         <div class="m-portlet__body-separator"></div>

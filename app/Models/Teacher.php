@@ -21,4 +21,7 @@ class Teacher extends Authenticatable
     {
         return $this->hasMany(Assignment::class, 'teacher_id', 'id');
     }
+    public function attendance(){
+        return $this-> belongsTo(Attendance::class,'teacher_1','id');
+    }
 }

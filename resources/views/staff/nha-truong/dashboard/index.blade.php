@@ -6,47 +6,18 @@
         <div class="m-portlet ">
             <div class="m-portlet__body  m-portlet__body--no-padding">
                 <div class="row m-row--no-padding m-row--col-separator-xl">
-                    <div class="col-md-12 col-lg-6 col-xl-3">
-                        <div class="m-widget24">
-                            <div class="m-widget24__item">
-                                <h4 class="m-widget24__title">
-                                    Total Frofit
-                                </h4><br>
-                                <span class="m-widget24__desc">
-                                    All Customs Value
-                                </span>
-                                <span class="m-widget24__stats m--font-brand">
-                                    $18M
-                                </span>
-                                <div class="m--space-10"></div>
-                                <div class="progress m-progress--sm">
-                                    <div class="progress-bar m--bg-brand" role="progressbar" style="width: 78%;"
-                                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <span class="m-widget24__change">
-                                    Change
-                                </span>
-                                <span class="m-widget24__number">
-                                    78%
-                                </span>
-                            </div>
-                        </div>
-
-                        <!--end::Total Profit-->
-                    </div>
-                    <div class="col-md-12 col-lg-6 col-xl-3">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
 
                         <!--begin::New Feedbacks-->
                         <div class="m-widget24">
                             <div class="m-widget24__item">
                                 <h4 class="m-widget24__title">
-                                    New Feedbacks
+                                    Trẻ nghỉ nhiều liên tục
                                 </h4><br>
                                 <span class="m-widget24__desc">
-                                    Customer Review
                                 </span>
                                 <span class="m-widget24__stats m--font-info">
-                                    1349
+                                    {{count($attendance)}}
                                 </span>
                                 <div class="m--space-10"></div>
                                 <div class="progress m-progress--sm">
@@ -64,19 +35,19 @@
 
                         <!--end::New Feedbacks-->
                     </div>
-                    <div class="col-md-12 col-lg-6 col-xl-3">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
 
                         <!--begin::New Orders-->
                         <div class="m-widget24">
                             <div class="m-widget24__item">
                                 <h4 class="m-widget24__title">
-                                    New Orders
+                                Đăng kí ăn ngày hôm nay
                                 </h4><br>
                                 <span class="m-widget24__desc">
-                                    Fresh Order Amount
+                                    
                                 </span>
                                 <span class="m-widget24__stats m--font-danger">
-                                    567
+                                  {{count($meal)}}
                                 </span>
                                 <div class="m--space-10"></div>
                                 <div class="progress m-progress--sm">
@@ -94,19 +65,19 @@
 
                         <!--end::New Orders-->
                     </div>
-                    <div class="col-md-12 col-lg-6 col-xl-3">
+                    <div class="col-md-12 col-lg-6 col-xl-4">
 
                         <!--begin::New Users-->
                         <div class="m-widget24">
                             <div class="m-widget24__item">
                                 <h4 class="m-widget24__title">
-                                    New Users
+                                   Trẻ nghỉ hôm nay
                                 </h4><br>
                                 <span class="m-widget24__desc">
-                                    Joined New User
+                                    
                                 </span>
                                 <span class="m-widget24__stats m--font-success">
-                                    276
+                                {{count($attendanceToday)}}
                                 </span>
                                 <div class="m--space-10"></div>
                                 <div class="progress m-progress--sm">

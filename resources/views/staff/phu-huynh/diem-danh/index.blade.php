@@ -119,7 +119,7 @@
                                                 @php
                                                 $scheduled_day = $attendance->date;
                                                 $days = ['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ
-                                                7'];
+                                                bảy'];
                                                 $day = date('w',strtotime($scheduled_day));
                                                 $scheduled_day = $days[$day]."<br>".date('d-m-Y',
                                                 strtotime($scheduled_day));

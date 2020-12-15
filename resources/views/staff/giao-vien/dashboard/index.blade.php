@@ -56,13 +56,14 @@
                 </div>
             </div>
     </div>
+   
     <div class="">
         <div class="m-portlet">
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                        Giáo viên ({{count($teachers)}})
+                            Giáo viên ({{count($teachers)}})
                         </h3>
                     </div>
                 </div>
@@ -70,18 +71,39 @@
             </div>
             <div class="m-portlet__body m-portlet__body--no-padding">
                 <div class="row m-row--no-padding m-row--col-separator-xl">
+                    <style>
+                    .image__teacher {
+                        width: 60px;
+                        height: 60px;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        position: relative;
+                        border-radius: 5px;
+                        padding: 10px;
+                        float: right;
+                    }
+                    </style>
                     @foreach($teachers as $teacher)
                     <div class="col-md-12 col-lg-12 col-xl-4">
                         <div class="m-widget1">
                             <div class="m-widget1__item">
-                                <div class="row m-row--no-padding align-items-center">
-                                    <div class="col">
+                                <div class="row m-row--no-padding align-items-center row">
+                                    <div class=" col-7">
                                         <h3 class="m-widget1__title"> {{$teacher->teacher->fullname}}</h3>
-                                        <span class="m-widget1__desc">{{$teacher->teacher->phone}}</span>
+                                        <div class="m-input-icon m-input-icon--right">
+                                            <input class="form-control mt-3" id="m_clipboard_2_{{$teacher->id}}"
+                                                value="{{$teacher->teacher->phone}}">
+                                            <a class="m-input-icon__icon m-input-icon__icon--right"
+                                                data-clipboard="true"
+                                                data-clipboard-target="#m_clipboard_2_{{$teacher->id}}"><span><i
+                                                        class="la la-clipboard"></i></span></a>
+                                        </div>
                                     </div>
-                                    <div class="col m--align-right">
-                                        <img src="<?php echo '/upload/avatar/' . $teacher->teacher->avatar ?> "
-                                            width="50px" alt="">
+                                    <div class="col-5 m--align-right">
+                                        <div class=" m-menu__link-icon image__teacher"
+                                            style="background-image: url(<?php echo '/upload/avatar/' . $teacher->teacher->avatar?> )">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -121,11 +143,26 @@
                                 style="height: 400px">
                                 <!--begin::Widget 14-->
                                 <div class="m-widget4">
+                                <style>
+                    .image__teacher {
+                        width: 60px;
+                        height: 60px;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        position: relative;
+                        border-radius: 5px;
+                        padding: 10px;
+                        float: right;
+                    }
+                    </style>
                                     <!--begin::Widget 14 Item-->
                                     @foreach ($classes->kids as $kid)
                                     <div class="m-widget4__item">
                                         <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="{{asset('/upload/avatar/'.$kid->kid_avatar)}}" style="width:50px;height:50px"  alt="" >
+                                        <div class=" m-menu__link-icon image__teacher"
+                                            style="background-image: url(<?php echo '/upload/avatar/' . $kid->kid_avatar?> )">
+                                        </div>
                                         </div>
                                         <div class="m-widget4__info">
                                             <span class="m-widget4__title">
@@ -172,4 +209,18 @@
 
 </div>
 @endif
+<script>
+
+
+var ClipboardDemo = {
+    init: function() {
+        new Clipboard("[data-clipboard=true]").on("success", function(e) {
+            e.clearSelection(), alert("Sao chép thành công");
+        });
+    },
+};
+jQuery(document).ready(function() {
+    ClipboardDemo.init();
+});
+</script>
 @endsection

@@ -49,10 +49,20 @@
                                 </div>
                             </div>
                             <div class="col-lg-6">
+                  
+                                            
                                 <label class="">Quan hệ với bé:</label>
                                 <div class="m-input-icon m-input-icon--right">
-                                    <input type="text" class="form-control m-input" name="relationship">
-                           
+                                    <select class="form-control m-input" name="relationship" >
+												<option>Ông/Bà</option>
+												<option>Cô/Gì</option>
+												<option>Chú</option>
+												<option>Cậu</option>
+												<option>Anh ruột</option>
+                                                <option>Chị ruột</option>
+                                                <option>Anh họ</option>
+												<option>Chị họ</option>
+                                            </select>
                                 </div>
                             </div>
                         </div>

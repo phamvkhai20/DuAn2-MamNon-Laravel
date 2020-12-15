@@ -6,8 +6,9 @@
     use Carbon\Carbon;
     $date= substr(Carbon::now('Asia/Ho_Chi_Minh'),11,5)
     @endphp
-    @if($ngayThu!==1)
-    @if(empty($attendance)||$attendance->arrival_time=="00:00:00")
+    @if($ngayThu==1)
+    
+    @if((empty($attendance)||$attendance->arrival_time=="00:00:00"||$attendance->status==0))
     <div class="m-alert m-alert--icon alert alert-warning" role="alert">
         <div class="m-alert__icon">
             <i class="la la-warning"></i>
@@ -34,71 +35,69 @@
             </button>
         </div>
     </div>
-    @else
-    <div class="m-alert m-alert--icon alert alert-success" role="alert">
-        <div class="m-alert__icon">
-            <i class="la la-chevron-down"></i>
-        </div>
-        <div class="m-alert__text">
-            <strong>Con của bạn Đã đến lớp</strong>
-        </div>
-        <div class="m-alert__close">
-            <button type="button" class="close" data-close="alert" aria-label="Hide">
-            </button>
-        </div>
-    </div>
     @endif
-    <div class="m-section__content">
-        <!--begin::Preview-->
-        <div class="m-demo">
-            <div class="m-demo__preview">
-                <div class="m-list__content">
-
-                    <div class="m-list-badge m--margin-bottom-20">
-                        @if($attendance->arrival_time!=="00:00:00")
-                        <div class="m-list-badge__label m--font-success">
-                            {{$attendance->arrival_time}}
-                        </div>
-                        <div class="m-list-badge__items">
-                            <h4>Trẻ đã đến lớp</h4>
-                        </div>
-                        @else
-                        <div class="m-list-badge__label m--font-success">
-                            00:00:00
-                        </div>
-                        <div class="m-list-badge__items">
-                            <h4>Trẻ chưa đến lớp</h4>
-                        </div>
-                        @endif
+    <div class="">
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            {{$prinDay}}
+                        </h3>
                     </div>
-
-                    <div class="m-list-badge m--margin-bottom-20">
-                        @if($attendance->leave_time!=="00:00:00")
-                        <div class="m-list-badge__label m--font-brand">
-                            {{$attendance->leave_time}}
+                </div>
+            </div>
+            <div class="m-portlet__body m-portlet__body--no-padding">
+                <div class="m-demo">
+                    <div class="m-demo__preview">
+                        <div class="m-list__content">
+                            <div class="m-list-badge m--margin-bottom-20">
+                                @if($attendance->arrival_time!=="00:00:00")
+                                <div class="m-list-badge__label m--font-success">
+                                    {{$attendance->arrival_time}}
+                                </div>
+                                <div class="m-list-badge__items">
+                                    <h5>Trẻ đã đến lớp</h5>
+                                </div>
+                                @else
+                                <div class="m-list-badge__label m--font-success">
+                                    00:00:00
+                                </div>
+                                <div class="m-list-badge__items">
+                                    <h5>Trẻ chưa đến lớp</h5>
+                                </div>
+                                @endif
+                            </div>
+                            <div class="m-list-badge m--margin-bottom-20">
+                                @if($attendance->leave_time!=="00:00:00")
+                                <div class="m-list-badge__label m--font-brand">
+                                    {{$attendance->leave_time}}
+                                </div>
+                                <div class="m-list-badge__items">
+                                    <h5>Trẻ đã được phụ huynh đón về</h5>
+                                </div>
+                                @else
+                                <div class="m-list-badge__label m--font-brand">
+                                    00:00:00
+                                </div>
+                                <div class="m-list-badge__items">
+                                    @if($date>"16:00:00")
+                                    <h5>Trẻ chưa được phụ huynh đón về</h5>
+                                    @endif
+                                </div>
+                                @endif
+                            </div>
                         </div>
-                        <div class="m-list-badge__items">
-                            <h4>Trẻ đã được phụ huynh đón về</h4>
-                        </div>
-                        @else
-                        <div class="m-list-badge__label m--font-brand">
-                            00:00:00
-                        </div>
-                        <div class="m-list-badge__items">
-                            <h4>Trẻ chưa được phụ huynh đón về</h4>
-                        </div>
-                        @endif
                     </div>
                 </div>
             </div>
         </div>
-
-        <!--end::Preview-->
     </div>
+
     @endif
     @endif
     <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
-        <div class="p-3" style="border: 4px solid #f7f7fa;">
+        <div class="p-3">
             <div class="m-nav-grid">
                 <div class="m-nav-grid__row">
                     <a href="{{route('phu-huynh.thong-tin-tre',['id'=>session('id_kid_default')])}}"

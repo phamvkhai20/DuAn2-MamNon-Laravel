@@ -1,22 +1,29 @@
-@extends('./staff/giao-vien/layouts/layout')
-@section('title','Điểm danh')
+@extends('./staff/nha-truong/layouts/layout')
+@section('title','Điểm danh lớp')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
+<div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
     <!-- END: Subheader -->
     <div class="">
-        <div class="m-portlet box_tille_ row title_attendance" role="tablist">
-            <h3 class="col-lg-5" style="padding-top:5px">
-                Điểm danh
-            </h3>
-            <div class="col-lg-4">
-                <input type="date" class="form-control m-input" id="date_attendance" />
+    <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            @yield('title')
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-portlet__head-tools">
+                    <a href="{{route('nha-truong.nha-truong.index')}}"
+                        class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                        <span>
+                            <i class="la la-arrow-left"></i>
+                            <span>Quay lại</span>
+                        </span>
+                    </a>
+                    
+                </div>
             </div>
-            <script>
-            var d = new Date();
-            document.getElementById("date_attendance").value = d.getFullYear() + '-' + (
-                d.getMonth() + 1) + '-' + d.getDate();
-            </script>
-        </div>
         <div class="m-portlet box_tille_">
             <div class="m-portlet__body">
                 <div class="m-section">
@@ -41,14 +48,7 @@
                                     <td width="140px">{{$student->kid_name}}</td>
                                     @foreach($student->attendance as $attendances)
                                     @if($attendances->status==1)
-                                    <td width="60px">
-                                        <select class="form-control m-bootstrap-select m_selectpicker border-0">
-												<option data-content="<span class='m-badge m-badge--success m-badge--wide m-badge--rounded'>Relish</span>"></option>
-												<option data-content="<span class='m-badge m-badge--warning m-badge--wide m-badge--rounded'>Ketchup</span>"></option>
-												<option data-content="<span class='m-badge m-badge--brand m-badge--wide m-badge--rounded'>Relish</span>"></option>
-												<option data-content="<span class='m-badge m-badge--danger m-badge--wide m-badge--rounded'>Chili</span>"></option>
-                                        </select>
-                                    </td>
+                                    <td width="60px">Đi</td>
                                     @elseif($attendances->status==0)
                                     <td width="60px">Vắng</td>
                                     @else

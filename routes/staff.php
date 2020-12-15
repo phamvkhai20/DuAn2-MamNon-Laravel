@@ -134,6 +134,13 @@ Route::group([
         Route::get('lich-su/{id}', 'Web\NhaTruong\KidController@history')->name('tre.history');
 
     });
+    Route::group([
+        'prefix' => 'diem-danh',
+        'as' => 'diem-danh.',
+    ], function () {
+        Route::get('diem-danh-chi-tiet-lop/{id}', 'Web\NhaTruong\AttendanceController@xem_diem_danh')->name('chi-tiet-lop');
+        Route::get('danh-sach-lop', 'Web\NhaTruong\AttendanceController@list_class')->name('list');
+    });
 });
 Route::group([
     'prefix' => 'giao-vien',

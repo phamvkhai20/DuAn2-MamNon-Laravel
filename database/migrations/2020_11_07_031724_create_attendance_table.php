@@ -20,7 +20,9 @@ class CreateAttendanceTable extends Migration
             $table->integer('class_id')->unsigned();
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->date('date');
-            $table->integer('status');
+            $table->integer('teacher_1')->nullable();
+            $table->integer('teacher_2')->nullable();
+            $table->integer('status')->nullable();
             $table->text('note');
             $table->time('arrival_time');
             $table->time('leave_time');
