@@ -122,6 +122,7 @@
                                             <th rowspan="1" colspan="1"></th>
                                         </tr>
                                     </tfoot>
+                                   
                                     <tbody>
                                         @foreach($parents as $parent)
                                         <tr role="row" class="odd">
