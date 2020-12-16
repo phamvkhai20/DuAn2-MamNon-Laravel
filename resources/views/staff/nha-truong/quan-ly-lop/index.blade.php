@@ -126,7 +126,7 @@
                                 <td>
                                     <ul>
                                         @foreach($cl->assignments as $teacher)
-                                        <li>{{($teacher->teacher->fullname)}}</li>
+                                        <li> <a href="{{ route('nha-truong.giao-vien.sua', $teacher->teacher->id) }}">{{($teacher->teacher->fullname)}}</a></li>
                                         @endforeach
                                     </ul>
 

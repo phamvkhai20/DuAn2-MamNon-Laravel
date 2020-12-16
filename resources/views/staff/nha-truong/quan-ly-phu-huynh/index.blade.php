@@ -107,6 +107,7 @@
                                             <th rowspan="1" colspan="1">Ảnh đại diện</th>
                                             <th rowspan="1" colspan="1">Số điện thoại</th>
                                             <th rowspan="1" colspan="1">Email</th>
+                                            <th rowspan="1" colspan="1">Trẻ</th>
                                             <th rowspan="1" colspan="1">Trạng thái</th>
                                             <th rowspan="1" colspan="1"></th>
                                         </tr>
@@ -118,6 +119,7 @@
                                             <th rowspan="1" colspan="1">Ảnh đại diện</th>
                                             <th rowspan="1" colspan="1">Số điện thoại</th>
                                             <th rowspan="1" colspan="1">Email</th>
+                                            <th rowspan="1" colspan="1">Trẻ</th>
                                             <th rowspan="1" colspan="1">Trạng thái</th>
                                             <th rowspan="1" colspan="1"></th>
                                         </tr>
@@ -134,7 +136,13 @@
                                             </td>
                                             <td>{{$parent->phone}}</td>
                                             <td>{{$parent->email}}</td>
-
+                                            <td>
+                                                <ul>
+                                                @foreach($parent->kids as $kid)
+                                                    <li><a href="{{route('nha-truong.tre.edit', $kid->id)}}">{{$kid->kid_name}}</a></li>
+                                                @endforeach
+                                                </ul>
+                                            </td>
                                             @if($parent->parent_status == 0)
                                             <td class="text-danger"> Khóa </td>
                                             @else
