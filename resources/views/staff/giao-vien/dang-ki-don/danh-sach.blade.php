@@ -157,7 +157,9 @@
         </div>
     </div>
 </div>
+
 <script>
+    
 function getSession() {
     var getSession = document.getElementById('receip').value;
     if (getSession && getSession === 'success') {

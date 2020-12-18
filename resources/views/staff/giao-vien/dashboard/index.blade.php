@@ -39,7 +39,7 @@
                             </a>
                         </div>
                         <div class="m-nav-grid__row">
-                            <a href="#" class="m-nav-grid__item">
+                            <a  href="{{route('giao-vien.them-so-lien-lac',['id'=>session('class')])}}" class="m-nav-grid__item">
                                 <i class="m-nav-grid__icon flaticon-folder"></i>
                                 <span class="m-nav-grid__text">Sổ liên lạc</span>
                             </a>

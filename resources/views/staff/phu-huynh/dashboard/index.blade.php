@@ -117,10 +117,6 @@
                     </a>
                 </div>
                 <div class="m-nav-grid__row">
-                    <a href="#" class="m-nav-grid__item">
-                        <i class="m-nav-grid__icon flaticon-lifebuoy"></i>
-                        <h5 class="m-nav-grid__text">Dịch vụ</h5>
-                    </a>
                     <a href="{{route('phu-huynh.so-lien-lac',['id'=>session('id_kid_default')])}}"
                         class="m-nav-grid__item">
                         <i class="m-nav-grid__icon flaticon-book"></i>

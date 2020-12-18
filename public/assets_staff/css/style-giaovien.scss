@@ -6,7 +6,12 @@
     margin-right: 30px;
     width: 120px;
 }
-
+.button_attendance{
+    .dropdown-toggle{
+        border: none;
+        border-color: #fff;
+    }
+}
 @media screen and (min-width: 280px) {
     .image_kid_attendance {
         min-height: 150px;
@@ -152,7 +157,6 @@
 .title_attendance {
     padding: 20px;
     min-height: 70px;
-    line-height: 70px;
     h3 {
         padding-top: 1000px;
         line-height: 70px;

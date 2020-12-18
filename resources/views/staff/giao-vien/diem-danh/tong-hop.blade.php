@@ -40,20 +40,19 @@
                                     <th width="40px">{{$index+1}}</th>
                                     <td width="140px">{{$student->kid_name}}</td>
                                     @foreach($student->attendance as $attendances)
-                                    @if($attendances->status==1)
                                     <td width="60px">
-                                        <select class="form-control m-bootstrap-select m_selectpicker border-0">
-												<option data-content="<span class='m-badge m-badge--success m-badge--wide m-badge--rounded'>Relish</span>"></option>
-												<option data-content="<span class='m-badge m-badge--warning m-badge--wide m-badge--rounded'>Ketchup</span>"></option>
-												<option data-content="<span class='m-badge m-badge--brand m-badge--wide m-badge--rounded'>Relish</span>"></option>
-												<option data-content="<span class='m-badge m-badge--danger m-badge--wide m-badge--rounded'>Chili</span>"></option>
-                                        </select>
+                                        
+                                            <select  onchange="updateAttendance({{$attendances->id}})" id="attendance_{{$attendances->id}}"
+                                                class="form-control m-bootstrap-select m_selectpicker button_attendance">
+                                                <option value="1" {{ $attendances->status==1?"selected":''}} data-content="<span  class='m-badge m-badge--success m-badge--wide m-badge--rounded '>Đi học</span>">
+                                                </option>
+                                                <option value="2" {{ $attendances->status==2?"selected":''}}  data-content="<span   class='m-badge m-badge--brand  m-badge--wide m-badge--rounded'>Có phép</span>">
+                                                </option>
+                                                <option value="0"   {{ $attendances->status==0?"selected":''}}  data-content="<span class='m-badge m-badge--danger  m-badge--wide m-badge--rounded'>Vắng</span>">
+                                                </option>
+                                               
+                                            </select>
                                     </td>
-                                    @elseif($attendances->status==0)
-                                    <td width="60px">Vắng</td>
-                                    @else
-                                    <td width="60px">Phép</td>
-                                    @endif
                                     @endforeach
                                     @if(!empty(count($present[$index]->attendance)))
                                     <td width="60px">{{count($present[$index]->attendance)}}</td>
@@ -81,4 +80,35 @@
 
     </div>
 </div>
+<script>
+     function updateAttendance(id){
+        const attendance = document.querySelector(`#attendance_${id}`).value;
+        swal({
+                title: 'Bạn muốn cập nhật điểm danh?',
+                text: "Trạng thái điểm danh sẽ được cập nhật!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Cập nhật'
+            }).then(function(result) {
+                axios.post("{{route('giao-vien.thay-doi-diem-danh')}}", {
+                id,attendance
+                })
+                .then((response) => {
+                    response.data.data==true&&swal(
+                        'Cập nhật thành công!',
+                        'Bạn đã cập nhật trạng thái điểm danh thành công.',
+                        'success'
+                    )
+                })
+                .catch(function(error) {
+                    swal(
+                        'Điểm danh không thành công!',
+                        'Cập nhật trạng thái điểm danh thất bại.',
+                        'error'
+                    )
+                })
+            });
+        
+     }
+</script>
 @endsection

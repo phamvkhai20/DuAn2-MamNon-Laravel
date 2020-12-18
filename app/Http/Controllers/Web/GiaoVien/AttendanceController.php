@@ -14,6 +14,7 @@ class AttendanceController extends Controller
 {
     public function giao_dien_diem_danh(Request $request, $id)
     {
+        $dateAttendance=request()->get('date')?$request->get('date'):substr(Carbon::now(), 0, 10);
         $idTeacher = Auth::guard('teacher')->user()->id;
         if ($request->ajax()) {
             $data = $request->get('data');
@@ -25,18 +26,18 @@ class AttendanceController extends Controller
             $attendanceTrue = Attendance::where('class_id', $id)->where("date", $data)->with('kid')->where("status", 1)->get();
             return response()->json(['attendanceTrue' => $attendanceTrue, 'kids' => $kids]);
         }
-        $date = Carbon::now();
-        $today = substr($date, 0, 10);
+        
         $kids = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
-            $query->where("date", substr(Carbon::now(), 0, 10))->with('don_ho');
+            $query->where("date",request()->get('date')?request()->get('date'):substr(Carbon::now(), 0, 10))->with('don_ho');
         }])->get();
-        $attendanceTrue = Attendance::where('class_id', $id)->where("date", $today)->with('kid','don_ho','teacher')->where("status", 1)->get();
-        return view('staff.giao-vien.diem-danh.diem-danh', compact('kids', 'attendanceTrue','idTeacher',));
+        $attendanceTrue = Attendance::where('class_id', $id)->where("date", $dateAttendance)->with('kid','don_ho','teacher')->where("status", 1)->get();
+        return view('staff.giao-vien.diem-danh.diem-danh', compact('kids', 'attendanceTrue','idTeacher','dateAttendance'));
     }
 
     public function diem_danh_den(Request $request)
     {
         $idTeacher = Auth::guard('teacher')->user()->id;
+        $date= request()->get('dateAttendance');
         $data = Arr::except($request->all(), ['_token']);
         foreach ($data["kid_id"] as $index => $kid) {
             $find = Attendance::where('kid_id', $data["kid_id"][$index])->where("date", $data["date"][$index])->get();
@@ -77,7 +78,7 @@ class AttendanceController extends Controller
                     $attendance->teacher_1 =  $idTeacher;
                     $attendance->class_id =  $data["class_id"][$index];
                     $attendance->note =  $data["note"][$index];
-                    if ($data["arrival_time"][$index] !== "00:00:00") {
+                    if ($data["arrival_time"][$index] != "00:00:00") {
                         $params = array(
                             'note'  => $attendance->note,
                             'status'  => $attendance->status,
@@ -122,7 +123,7 @@ class AttendanceController extends Controller
                     $attendance->arrival_time = "00:00:00";
                     $attendance->class_id =  $data["class_id"][$index];
                     $attendance->note =  $data["note"][$index];
-                    if ($data["arrival_time"][$index] !== "00:00:00") {
+                    if ($data["arrival_time"][$index] != "00:00:00") {
                         $params = array(
                             'note'  => $attendance->note,
                             'status'  => 2,
@@ -143,16 +144,13 @@ class AttendanceController extends Controller
                 }
             }
         }
-        return redirect()->route('giao-vien.giao_dien_diem_danh', ['id' => $data["class"]]);
+        return redirect()->route('giao-vien.giao_dien_diem_danh', ['id' => $data["class"],'date'=>$date]);
     }
     public function diem_danh_ve(Request $request)
     {
-        $date = Carbon::now();
-        $month = substr($date, 0, 7);
-        $today = substr($date, 0, 10);
+        $date= request()->get('dateAttendance');
         $data = Arr::except($request->all(), ['_token']);
         foreach ($data["kid_id"] as $index => $kid) {
-            
             $attendance = new Attendance();
             if ($data["status"][$index] == "off") {
                 $attendance->leave_time = "00:00:00";
@@ -165,7 +163,7 @@ class AttendanceController extends Controller
                 'leave_time' => $attendance->leave_time,
             );
 
-            if ($data["check_diem_danh_ve"][$index] !== "true") {
+            if ($data["check_diem_danh_ve"][$index] != "true") {
                 $params = array(
                     'note'  => $attendance->note,
                     'leave_time' => $attendance->leave_time,
@@ -175,7 +173,7 @@ class AttendanceController extends Controller
                     'leave_time' => $attendance->leave_time,
                     'note'  => $attendance->note,
                 );
-            } else if ($data["status"][$index] == "off" && $data["check_diem_danh_ve"][$index] !== "false") {
+            } else if ($data["status"][$index] == "off" && $data["check_diem_danh_ve"][$index] != "false") {
                 $params = array(
                     'leave_time' => $attendance->leave_time,
                     'note'  => $attendance->note,
@@ -185,10 +183,11 @@ class AttendanceController extends Controller
                     'note'  => $attendance->note,
                 );
             }
-            $find = Attendance::where("kid_id", $data["kid_id"][$index])->where("date", $data["date"][$index])->first();
+            $find = Attendance::where("kid_id", $data["kid_id"][$index])->where("date", $date)->first();
             $find->update($params);
         }
-        return redirect()->route('giao-vien.giao_dien_diem_danh', ['id' => $data["class"]]);
+        $request->session()->flash('status', 'ok');
+        return redirect()->route('giao-vien.giao_dien_diem_danh', ['id' => $data["class"],'date'=>$date]);
     }
     public function xem_diem_danh($id)
     {
@@ -225,6 +224,14 @@ class AttendanceController extends Controller
             $find->update($params);
         }
         return redirect()->route('giao-vien.giao_dien_diem_danh', ['id' => $class]);
+    }
 
+    public function update_attendance_history(Request $request){
+        $id=$request->get('id');
+        $attendance=$request->get('attendance');
+        $update_attendance= Attendance::find($id)->update(['status'=>$attendance]);
+        return response()->json(
+            ['data' =>   $update_attendance]
+        );
     }
 }

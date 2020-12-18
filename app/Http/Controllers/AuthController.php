@@ -25,8 +25,10 @@ class AuthController extends Controller
    
    public function loginSchool(LoginRequest $request)
    {
+     
       $data = Arr::except($request->all(), ['_token']);
-
+      request()->flashOnly('phone');
+      request()->flashOnly('password');
       if ($result = Auth::attempt($data)) {
          if (Auth::user()->status == 0) {
             return redirect()->route('form.school')->with('thongbao', 'Tài Khoản Của Bạn Đã Bị Khóa');
