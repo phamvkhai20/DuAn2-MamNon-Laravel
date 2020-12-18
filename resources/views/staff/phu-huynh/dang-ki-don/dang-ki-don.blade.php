@@ -29,6 +29,7 @@
                     action="{{route('phu-huynh.luu-diem-danh',['id'=>session('id_kid_default')])}}" method="post"
                     id="m_form">
                     @csrf
+                    <input type="hidden" class="form-control m-input" name="class_id" value="{{$kid->class_id}}">
                     <input type="hidden" value="{{session('id_kid_default')}}" name="kid_id">
                     <input type="hidden" value="{{Auth::guard('parent')->user()->id}}" name="parent_id">
                     <input type="hidden" value="{{session('id_kid_default')}}" id="date_dang_ki_don" name="date">
@@ -43,6 +44,7 @@
                     <div class="m-portlet__body">
                         <div class="form-group m-form__group row">
                             <div class="col-lg-6">
+
                                 <label>Họ và Tên:</label>
                                 <div class="m-input-icon m-input-icon--right">
                                     <input type="text" class="form-control m-input" name="name">

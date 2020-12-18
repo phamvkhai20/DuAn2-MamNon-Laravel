@@ -23,10 +23,11 @@
         </script>
     </div>
     <input type="hidden" id="thongbao" value="{{session('status')}}">
-    @if(count($attendanceTrue)>0&&$idTeacher!==$attendanceTrue[0]->teacher_1&&empty($attendanceTrue[0]->teacher_2))
+    @if(count($attendanceTrue)>0&&$idTeacher!==$attendanceTrue[0]->teacher_1)
     <div class="m-portlet box_tille_">
         <div class="m-portlet__body">
-            <form class="m-form m-form--label-align-left- m-form--state-" id="m_form">
+            <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" method="post" action="{{route('giao-vien.xac-nhan-diem-danh')}}">
+            @csrf
                 <div class="">
                     <div class="row">
                         <div class="table-responsive">
@@ -35,7 +36,6 @@
                                 id="m_table_1" role="grid" aria-describedby="m_table_1_info"
                                 style="min-width: 990px;width:100%">
                                 <thead>
-
                                     <tr>
                                         <th rowspan="1" colspan="1">ID</th>
                                         <th rowspan="1" colspan="1">Ảnh</th>
@@ -48,12 +48,14 @@
                                 </thead>
                                 <tbody>
                                     @foreach($attendanceTrue as $key=>$attendance)
+                                    @if(empty($attendance->teacher_2))
                                     <tr role="row" class="odd">
                                         <td>{{$key+1}}</td>
                                         <td>
                                             <img src="{{asset('/upload/avatar/'.$attendance->kid->kid_avatar)}}"
                                                 alt="avatar" style="width:50px;border-radius: 10px;">
                                         </td>
+                                        <input type="hidden" name="class" value="{{$attendance->kid->class_id}}">
                                         <td>{{$attendance->kid->kid_name}}</td>
                                         <td>{{$attendance->kid->gender==1?"Nam":"Nữ"}}</td>
                                         <td>{{$attendance->kid->date_of_birth}}</td>
@@ -61,12 +63,13 @@
                                         <td>
                                             <span class="m-switch m-switch--outline m-switch--icon m-switch--primary">
                                                 <label>
-                                                    <input type="checkbox" checked="checked" name="">
+                                                    <input type="checkbox" name="confirm[{{$attendance->kid->id}}]">
                                                     <span></span>
                                                 </label>
                                             </span>
                                         </td>
                                     </tr>
+                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>
@@ -75,6 +78,15 @@
                         </div>
                        
                     </div>
+                    <input type="hidden" name="dateConfirm" id="dateConfirm" >
+                    <script>
+        var d = new Date();
+        document.getElementById("dateConfirm").value = d.getFullYear() + '-' + (
+            d.getMonth() + 1) + '-' + d.getDate();
+        document.getElementById("dateConfirm").max = d.getFullYear() + '-' + (
+            d.getMonth() + 1) + '-' + d.getDate();
+        </script>
+                    <input type="hidden" name="id_teacher" value="{{$idTeacher}}">
                     <div class="m-form__actions m-form__actions--solid m-form__actions--right">
                             <button type="submit" class="btn btn-primary">Xác nhận & Lưu</button>
                             <a href="{{route('nha-truong.tre.index')}}" class="btn btn-secondary">Quay Lại</a>

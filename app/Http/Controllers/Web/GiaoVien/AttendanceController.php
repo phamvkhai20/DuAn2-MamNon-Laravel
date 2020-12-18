@@ -17,7 +17,7 @@ class AttendanceController extends Controller
         $idTeacher = Auth::guard('teacher')->user()->id;
         if ($request->ajax()) {
             $data = $request->get('data');
-            $date = Carbon::now('Asia/Ho_Chi_Minh');
+            $date = Carbon::now();
             $today = substr($date, 0, 10);
             $kids = Kid::where('class_id', $id)->with(['attendance' => function ($query) use ($data) {
                 $query->where("date", $data);
@@ -25,10 +25,10 @@ class AttendanceController extends Controller
             $attendanceTrue = Attendance::where('class_id', $id)->where("date", $data)->with('kid')->where("status", 1)->get();
             return response()->json(['attendanceTrue' => $attendanceTrue, 'kids' => $kids]);
         }
-        $date = Carbon::now('Asia/Ho_Chi_Minh');
+        $date = Carbon::now();
         $today = substr($date, 0, 10);
         $kids = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
-            $query->where("date", substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 10))->with('don_ho');
+            $query->where("date", substr(Carbon::now(), 0, 10))->with('don_ho');
         }])->get();
         $attendanceTrue = Attendance::where('class_id', $id)->where("date", $today)->with('kid','don_ho','teacher')->where("status", 1)->get();
         return view('staff.giao-vien.diem-danh.diem-danh', compact('kids', 'attendanceTrue','idTeacher',));
@@ -147,7 +147,7 @@ class AttendanceController extends Controller
     }
     public function diem_danh_ve(Request $request)
     {
-        $date = Carbon::now('Asia/Ho_Chi_Minh');
+        $date = Carbon::now();
         $month = substr($date, 0, 7);
         $today = substr($date, 0, 10);
         $data = Arr::except($request->all(), ['_token']);
@@ -192,25 +192,39 @@ class AttendanceController extends Controller
     }
     public function xem_diem_danh($id)
     {
-        $date = Carbon::now('Asia/Ho_Chi_Minh');
+        $date = Carbon::now();
         $month = substr($date, 0, 7);
         $today = substr($date, 0, 10);
         $getAttendance = Attendance::whereBetween("date", [$month . '-1', $today])->where('class_id', $id)->whereBetween('status', ['0', '1'])->orderBy('date', "asc")->distinct()->get(['date']);
         $studentInClass = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
-            $query->whereBetween("date", [substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 7) . '-1', substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 10)]);
+            $query->whereBetween("date", [substr(Carbon::now(), 0, 7) . '-1', substr(Carbon::now(), 0, 10)]);
         }])->get();
         $absent = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
-            $query->whereBetween("date", [substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 7) . '-1', substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 10)])->where('status', "0");
+            $query->whereBetween("date", [substr(Carbon::now(), 0, 7) . '-1', substr(Carbon::now(), 0, 10)])->where('status', "0");
         }])->get();
         $permission = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
-            $query->whereBetween("date", [substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 7) . '-1', substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 10)])->where('status', "2");
+            $query->whereBetween("date", [substr(Carbon::now(), 0, 7) . '-1', substr(Carbon::now(), 0, 10)])->where('status', "2");
         }])->get();
         $present = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
-            $query->whereBetween("date", [substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 7) . '-1', substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 10)])->where('status', "1");
+            $query->whereBetween("date", [substr(Carbon::now(), 0, 7) . '-1', substr(Carbon::now(), 0, 10)])->where('status', "1");
         }])->get();
         return view('staff.giao-vien.diem-danh.tong-hop', compact('getAttendance', 'studentInClass', 'absent', 'permission', 'present'));
     }
     public function confirm_attendance(Request $request){
+        $arrKids=$request->get('confirm');
+        $date=$request->get('dateConfirm');
+        $id_teacher=$request->get('id_teacher');
+        $class=$request->get('class');
+        foreach($arrKids as $kid=>$status){
+            $params = array(
+                'teacher_2'  => $id_teacher,
+                'status'=> $status=='on' ? 1 : 0,
+            );
+
+            $find = Attendance::where("kid_id", $kid)->where("date",  $date)->first();
+            $find->update($params);
+        }
+        return redirect()->route('giao-vien.giao_dien_diem_danh', ['id' => $class]);
 
     }
 }
