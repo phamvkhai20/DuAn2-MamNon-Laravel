@@ -27,7 +27,7 @@ class ParentRequest extends FormRequest
     {
         return [
             'parent_name'=>'required|min:6',
-            'email'=>'required|email|unique:teachers',
+            'email'=>'required|email|unique:parents',
             'phone' => ['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10','unique:parents'],
             'parent_avatar'=>'required|mimes:jpeg,jpg,png',
         ];

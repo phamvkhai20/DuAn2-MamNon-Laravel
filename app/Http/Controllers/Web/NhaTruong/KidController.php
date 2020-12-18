@@ -304,5 +304,66 @@ class KidController extends Controller
         $data['histories'] = History::where('kid_id',$id)->orderBy('id','desc')->paginate(10);
         return view('staff.nha-truong.quan-ly-hoc-sinh.history', $data);
     }
+
+    public function filter(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = '';
+            $name = $request->get('name');
+            $status = $request->get('stt');
+           
+            if ($name != '') {
+                $data = DB::table('kids')
+                        ->where("kid_name", 'LIKE', '%'.$name.'%')
+                        ->get();
+            }
+            else{
+                $data = DB::table('kids')
+                        ->orderBy('id', 'desc')
+                        ->get();
+            }
+            
+            $total_row = $data->count();
+            if ($total_row > 0) {
+                foreach($data as $row)
+                {
+                $output .= '
+                
+                                        <tr>
+                                            <td rowspan="1" colspan="1">'.$row->id.'</td>  
+                                            <td rowspan="1" colspan="1">'.$row->kid_name.'</td>
+                                            <td rowspan="1" colspan="1">
+                                            <img src="'.asset('/upload/avatar/'.$row->kid_avatar).'"
+                                            alt="avatar" width="100px">
+                                            </td>
+                                            <td rowspan="1" colspan="1">
+                                            '.$row->gender.'
+                                            </td>
+                                            <td rowspan="1" colspan="1">'.$row->date_of_birth.'</td>
+                                            <td rowspan="1" colspan="1">'.$row->address.'</td>
+                                            <td rowspan="1" colspan="1">'.$row->kid_status.'</td>
+                                        </tr>
+                                   
+            
+        ';
+            }
+        } else {
+                $output = '
+                <tr>
+                    <th colspan="7" class="text-center"><label class="col-lg-10 text-danger">Không tìm thấy học sinh nào!</label> </th>
+                </tr>
+                
+       ';
+            }
+            $data = array(
+                'table_data'  => $output,
+                'total_data'  => $total_row
+            );
+
+            echo json_encode($data);
+        }
+        
+    }
+    
     
 }

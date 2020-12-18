@@ -118,6 +118,7 @@ Route::group([
         'prefix' => 'tre',
     ], function () {
         Route::get('danh-sach', 'Web\NhaTruong\KidController@index')->name('tre.index');
+        Route::get('danh-sach/filter', 'Web\NhaTruong\KidController@filter')->name('tre.filter');
         Route::get('them', 'Web\NhaTruong\KidController@create')->name('tre.create');
         Route::get('them/search', 'Web\NhaTruong\KidController@search')->name('tre.search');
         Route::post('them', 'Web\NhaTruong\KidController@store')->name('tre.store');

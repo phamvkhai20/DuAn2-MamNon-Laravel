@@ -15,9 +15,13 @@
                                             <label>Status:</label>
                                         </div>
                                         <div class="m-form__control">
-                                            <select class="form-control m-bootstrap-select m-bootstrap-select--solid"
+                                            <select name="stt" class="form-control m-bootstrap-select m-bootstrap-select--solid"
                                                 id="m_form_status">
-                                                <option value="">All</option>
+                                                <option value="">Chọn trạng thái</option>
+                                                <option value="1">Đang học</option>
+                                                <option value="2">Thôi học</option>
+                                                <option value="3">Đã tốt nghiệp</option>
+                                                
                                             </select>
                                         </div>
                                     </div>
@@ -39,8 +43,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="m-input-icon m-input-icon--left">
-                                        <input type="text" class="form-control m-input m-input--solid"
-                                            placeholder="Search..." id="generalSearch">
+                                        <input id="searchByName" type="text" class="form-control m-input m-input--solid"
+                                            placeholder="Search...">
                                         <span class="m-input-icon__icon m-input-icon__icon--left">
                                             <span><i class="la la-search"></i></span>
                                         </span>
@@ -125,57 +129,8 @@
                                             <th rowspan="1" colspan="1"></th>
                                         </tr>
                                     </tfoot>
-                                    <tbody>
-                                        @foreach($kids as $kid)
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1" tabindex="0">{{$kid->id}}</td>
-                                            <td>
-                                                <img src="{{asset('/upload/avatar/'.$kid->kid_avatar)}}" alt="avatar"
-                                                    style="width:50px;border-radius: 10px;">
-                                            </td>
-                                            <td>{{$kid->kid_name}}</td>
-                                            <td>
-                                                @if($kid->gender == 1)
-                                                Nam
-                                                @elseif($kid->gender == 0)
-                                                Nữ
-                                                @endif
-                                            </td>
-                                            <td>{{$kid->date_of_birth}}</td>
-                                            <td style="width:22%"><span>{{$kid->address}}</span></td>
-
-                                            @if($kid->kid_status == 1)
-                                            <td class="text-success"> Đang học </td>
-                                            @elseif($kid->kid_status == 2)
-                                            <td class="text-danger"> Thôi học </td>
-                                            @elseif($kid->kid_status == 3)
-                                            <td class="text-primary"> Đã tốt nghiệp </td>
-                                            @endif
-                                            @if($kid->kid_status == 1)
-                                            <td>
-                                                <a href="{{route('nha-truong.tre.edit', $kid->id)}}"
-                                                    class="btn btn-warning btn-sm ">Chi
-                                                    tiết</a>&nbsp;
-                                                    <a href="{{route('nha-truong.tre.change_class', $kid->id)}}"
-                                                    class="btn btn-primary btn-sm ">Chuyển lớp</a>&nbsp;
-                                                    <br>
-                                                    <a href="{{route('nha-truong.tre.stop', $kid->id)}}"
-                                                    class="btn btn-danger btn-sm ">Thôi học</a>&nbsp;
-                                                    <a href="{{route('nha-truong.tre.history', $kid->id)}}"
-                                                    class="btn btn-info btn-sm ">Lịch sử học</a>&nbsp;
-                                            </td>
-                                            @elseif($kid->kid_status == 2 || $kid->kid_status == 3)
-                                            <td>
-                                                <a href="{{route('nha-truong.tre.edit', $kid->id)}}"
-                                                    class="btn btn-warning btn-sm ">Chi
-                                                    tiết</a>&nbsp;
-                                                    <a href="{{route('nha-truong.tre.history', $kid->id)}}"
-                                                    class="btn btn-info btn-sm ">Lịch sử học</a>&nbsp;
-                                            </td>
-                                            @endif
-                                          
-                                        </tr>
-                                        @endforeach
+                                    <tbody id="filter">
+                                        
                                     </tbody>
                                 </table>
                                 <div id="m_table_1_processing" class="dataTables_processing card"
@@ -185,7 +140,7 @@
                         </div>
                         <div class="dataTables_paginate paging_simple_numbers" id="m_table_1_paginate">
                             <ul class="pagination">
-                                {{ $kids->links() }}
+                            
                             </ul>
                         </div>
                     </div>
@@ -194,4 +149,28 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+    $("select[name='stt']").change(function(){
+        var status = $(this).val();
+    });
+    $(document).on('keyup', '#searchByName', function() {
+        var name = $(this).val();
+    });
+    console.log(name);
+        $.ajax({
+            url: "{{ route('nha-truong.tre.filter') }}",
+            method: 'GET',
+            data: {status: status, name: name},
+            dataType: 'json',
+            success: function(data) {
+                
+                $('#filter').html(data.table_data);
+            }
+        })
+
+    
+});
+</script>
 @endsection

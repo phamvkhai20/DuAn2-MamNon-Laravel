@@ -33,7 +33,7 @@ Route::get('/nop-ho-so', 'AuthController@nop_ho_so_nhap_hoc')->name('web.nop-ho-
 
 Route::group([
     'prefix' => 'phu-huynh',
-    'middleware' => ['check_parent'],
+    // 'middleware' => ['check_parent'],
 ], function () {
 
     Route::post('setDefaultKid', 'Web\PhuHuynh\HomeController@set_default_kid')->name('phu-huynh.set-default-kid');
