@@ -18,7 +18,7 @@ use RealRashid\SweetAlert\Facades\Aler;
 Route::group([
     'prefix' => 'nha-truong',
     'as' => 'nha-truong.',
-    // 'middleware' => ['check_school'],
+    'middleware' => ['check_school'],
 ], function () {
     Route::get('/', 'Web\NhaTruong\HomeController@index')->name('nha-truong.index');
     //lớp
@@ -135,20 +135,35 @@ Route::group([
         Route::get('lich-su/{id}', 'Web\NhaTruong\KidController@history')->name('tre.history');
 
     });
+    Route::group([
+        'prefix' => 'diem-danh',
+        'as' => 'diem-danh.',
+    ], function () {
+        Route::get('diem-danh-chi-tiet-lop/{id}', 'Web\NhaTruong\AttendanceController@xem_diem_danh')->name('chi-tiet-lop');
+        Route::get('danh-sach-lop', 'Web\NhaTruong\AttendanceController@list_class')->name('list');
+    });
 });
 Route::group([
     'prefix' => 'giao-vien',
     'middleware' => ['check_teacher'],
 ], function () {
+
+    
+    Route::group([
+        'prefix' => '/{id}/so-lien-lac',
+    ], function () {
+        Route::post('/tao-moi', 'Web\GiaoVien\ContactBookController@save_add_contact_book')->name('giao-vien.them-so-lien-lac.them-moi');
+        Route::get('/', 'Web\GiaoVien\ContactBookController@form_add_contact_book')->name('giao-vien.them-so-lien-lac');
+    });
     Route::group([
         'prefix' => 'diem-danh',
     ], function () {
         Route::get('/{id}', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh')->name('giao-vien.giao_dien_diem_danh');
         Route::post('/tao', 'Web\GiaoVien\AttendanceController@diem_danh_den')->name('giao-vien.diem_danh_den');
         Route::post('/update', 'Web\GiaoVien\AttendanceController@diem_danh_ve')->name('giao-vien.diem_danh_ve');
-
         Route::get('/{id}/lich-su', 'Web\GiaoVien\AttendanceController@xem_diem_danh')->name('giao-vien.xem_diem_danh');
     });
+    Route::get('/thong-tin-tre/{id}', 'Web\GiaoVien\HomeController@infoKid')->name('giao-vien.xem-thong-tin-tre');
     Route::get('/', 'Web\GiaoVien\HomeController@index')->name('giao-vien.index');
     //lớp
 });

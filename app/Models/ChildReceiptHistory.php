@@ -11,4 +11,8 @@ class ChildReceiptHistory extends Model
     [
         'kid_id',    'parent_id',    'attendance',    'name',    'image',    'phone',    'address',    'relationship',    'date',    'confirm'
     ];
+
+    public function  attendance(){
+        return $this->belongsTo(Attendance::class,'attendance');
+    }
 }

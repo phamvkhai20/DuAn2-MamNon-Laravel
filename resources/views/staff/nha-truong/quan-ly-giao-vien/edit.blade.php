@@ -1,8 +1,8 @@
 @extends('./staff/nha-truong/layouts/layout')
 @section('title','Sửa giáo viên')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
-    <div class="m-content">
+<div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
+    <div class="">
         <div class="">
             <!--begin::Portlet-->
             <div class="m-portlet ">
@@ -41,6 +41,8 @@
                                     {!! ShowErrors($errors,'fullname') !!}
                                     <!-- <span class="m-form__help">Please enter your full name</span> -->
                                 </div>
+                                <input name="teacher_type_id" type="hidden" class="form-control m-input"
+                                placeholder="Nhập sđt đầy đủ" value="1">
                                 <div class="form-group m-form__group">
                                     <label>Email :</label>
                                     <input name="email" type="text" class="form-control m-input"

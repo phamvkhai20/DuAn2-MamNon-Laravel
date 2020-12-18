@@ -1,8 +1,8 @@
 @extends('./staff/phu-huynh/layouts/layout')
 @section('title','Xem điểm danh')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper container">
-    <div class="m-content">
+<div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
+    <div class="">
         <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__body">
                 <div class="m-form m-form--label-align-right  ">
@@ -119,7 +119,7 @@
                                                 @php
                                                 $scheduled_day = $attendance->date;
                                                 $days = ['Chủ nhật','Thứ hai','Thứ ba','Thứ tư','Thứ năm','Thứ sáu','Thứ
-                                                7'];
+                                                bảy'];
                                                 $day = date('w',strtotime($scheduled_day));
                                                 $scheduled_day = $days[$day]."<br>".date('d-m-Y',
                                                 strtotime($scheduled_day));

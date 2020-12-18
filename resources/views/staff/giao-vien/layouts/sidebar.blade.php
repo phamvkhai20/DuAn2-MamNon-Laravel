@@ -20,10 +20,8 @@
                     <form method="post" action="{{route('phu-huynh.set-default-kid')}}">
                         @csrf
                         <button type="submit" class="box_kid row d-flex justify-content-center">
-                            <div class="image__kid m-menu__link-icon col-md-4">
-                            </div>
-                            <span class=" m-menu__link-text col-md-7">
-                                {{($class->class->name)}}
+                            <span class=" m-menu__link-text">
+                                <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px;padding-top:10px">{{($class->class->name)}}</h4>
                             </span>
                         </button>
                     </form>
@@ -51,16 +49,17 @@
                         danh</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
-                        <li class="m-menu__item " aria-haspopup="true"><a
-                                href="{{route('giao-vien.xem_diem_danh',['id'=>session('class')])}}"
-                                class="m-menu__link "><i
-                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">Xem điểm danh</span></a></li>
+                        
                         <li class="m-menu__item " aria-haspopup="true"><a
                                 href="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}"
                                 class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Điểm danh ngày</span></a></li>
+                                    <li class="m-menu__item " aria-haspopup="true"><a
+                                href="{{route('giao-vien.xem_diem_danh',['id'=>session('class')])}}"
+                                class="m-menu__link "><i
+                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                    class="m-menu__link-text">Xem điểm danh</span></a></li>
                         <li class="m-menu__item " aria-haspopup="true"><a href="" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Trẻ nghỉ nhiều liên tục</span></a></li>
@@ -77,12 +76,11 @@
                     </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
-
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.nam.index')}}"
                                 class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Danh sách</span></a></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.nam.them_moi')}}"
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.them-so-lien-lac',['id'=>session('class')])}}"
                                 class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Thêm mới</span></a></li>
@@ -117,18 +115,15 @@
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
 
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.index')}}"
+                        <li class="m-menu__item " aria-haspopup="true"><a href=""
                                 class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">Điểm danh toàn trường </span></a></li>
+                                    class="m-menu__link-text">Danh sách trẻ</span></a></li>
                         <li class="m-menu__item " aria-haspopup="true"><a
-                                href="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}"
+                                href=""
                                 class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">Điểm danh ngày</span></a></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a href="" class="m-menu__link "><i
-                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">Trẻ nghỉ nhiều liên tục</span></a></li>
+                                    class="m-menu__link-text">Thêm mới trẻ</span></a></li>
                     </ul>
                 </div>
             </li>

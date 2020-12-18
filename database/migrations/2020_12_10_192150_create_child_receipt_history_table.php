@@ -14,9 +14,11 @@ class CreateChildReceiptHistoryTable extends Migration
     public function up()
     {
         Schema::create('child_receipt_history', function (Blueprint $table) {
-            $table->id();
-            $table->integer('kid_id');
-            $table->integer('parent_id');
+            $table->increments('id');
+            $table->integer('kid_id')->unsigned();
+            $table->foreign('kid_id')->references('id')->on('kids')->onDelete('cascade');
+            $table->integer('parent_id')->unsigned();
+            $table->foreign('parent_id')->references('id')->on('parents')->onDelete('cascade');
             $table->integer('attendance');
             $table->string('name');
             $table->string('image');

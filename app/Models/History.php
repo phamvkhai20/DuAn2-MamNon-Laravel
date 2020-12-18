@@ -18,5 +18,4 @@ class History extends Model
     {
         return $this->beLongsTo(Kid::class, 'kid_id', 'id');
     }
-
 }

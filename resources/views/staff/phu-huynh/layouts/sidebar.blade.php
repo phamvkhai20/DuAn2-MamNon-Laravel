@@ -18,8 +18,8 @@
             <li class="m-menu__item m-menu__item--active" aria-haspopup="true"><a href="#" class="m-menu__link ">
                     <style>
                     .image__kid {
-                        width: 40px;
-                        height: 40px;
+                        width: 50px;
+                        height: 50px;
                         background-position: center;
                         background-repeat: no-repeat;
                         background-size: cover;
@@ -32,16 +32,16 @@
                         @csrf
                         <input type="hidden" name="id" value="{{ $kid->id }}">
                         <button type="submit" class="box_kid row d-flex justify-content-center">
-                            <div class=" m-menu__link-icon col-md-4 image__kid"
+                            <div class=" m-menu__link-icon image__kid"
                                 style="background-image: url(<?php echo '/upload/avatar/' . $kid->kid_avatar ?> )">
                             </div>
                             @if(session('id_kid_default')==$kid->id)
                             <span class=" m-menu__link-text col-md-7">
-                                {{$kid->kid_name}}
+                              {{strstr($kid->kid_name,' ')}}
                             </span>
                             @else
                             <span class=" m-menu__link-text col-md-7" style="color:#fff">
-                                {{$kid->kid_name}}
+                               {{strstr($kid->kid_name,' ')}}
                             </span>
                             @endif
 
@@ -92,7 +92,7 @@
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a
-                    href="" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-book"></i><span
+                    href="{{route('phu-huynh.so-lien-lac',['id'=>session('id_kid_default')])}}" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-book"></i><span
                         class="m-menu__link-text">Sổ liên lạc
                     </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
 

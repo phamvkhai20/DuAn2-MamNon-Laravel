@@ -58,7 +58,7 @@
             </ul>
         </div>
     </div>
-
+	<!-- <script src="{{asset('assets_staff/demo/default/custom/crud/forms/widgets/clipboard.js')}}" type="text/javascript"></script> -->
     <script src="{{asset('assets_staff/demo/default/custom/crud/forms/widgets/bootstrap-datepicker.js')}}"
         type="text/javascript"></script>
     <script src="{{asset('assets_staff/vendors/base/vendors.bundle.js')}}" type="text/javascript"></script>

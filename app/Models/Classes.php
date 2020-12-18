@@ -14,6 +14,10 @@ class Classes extends Model
     {
         return $this->hasMany(Kid::class, 'class_id', 'id');
     }
+    public function attendance()
+    {
+        return $this->hasMany(Attendance::class, 'class_id', 'id');
+    }
     public function grades()
     {
         return $this->belongsTo(GradeModel::class, 'grade_id', 'id');

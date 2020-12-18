@@ -1,8 +1,8 @@
 @extends('./staff/nha-truong/layouts/layout')
 @section('title','Sửa thông tin phụ huynh')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
-    <div class="m-content">
+<div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
+    <div class="">
         <div class="">
             <!--begin::Portlet-->
             <div class="m-portlet ">

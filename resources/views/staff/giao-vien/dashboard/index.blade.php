@@ -3,51 +3,67 @@
 @section('content')
 
 @if(!empty(session('class')))
+
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
     <div class="">
-        <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
-            <div class="m-demo__preview">
-                <div class="m-nav-grid">
-                    <div class="m-nav-grid__row">
-                        <a href="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}"
-                            class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-list-1"></i>
-                            <h5 class="m-nav-grid__text">Điểm danh</h5>
-                        </a>
-                        <a href="#" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-support"></i>
-                            <span class="m-nav-grid__text">Danh bạ</span>
-                        </a>
-                        <a href="#" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-speech-bubble"></i>
-                            <span class="m-nav-grid__text">Xin nghỉ</span>
-                        </a>
-                    </div>
-                    <div class="m-nav-grid__row">
-                        <a href="#" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-folder"></i>
-                            <span class="m-nav-grid__text">Sổ liên lạc</span>
-                        </a>
-                        <a href="#" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-gift"></i>
-                            <span class="m-nav-grid__text">Sinh nhật</span>
-                        </a>
-                        <a href="#" class="m-nav-grid__item">
-                            <i class="m-nav-grid__icon flaticon-list"></i>
-                            <span class="m-nav-grid__text">Thông tin đón hộ</span>
-                        </a>
+        @if(count($attendance)<1&&$ngayThu>0)
+            <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30"
+                role="alert">
+                <div class="m-alert__icon">
+                    <i class="flaticon-exclamation m--font-brand"></i>
+                </div>
+                <div class="m-alert__text">
+                   Bạn chưa điểm danh cho buổi học ngày hôm nay ! <br>
+                   Vui lòng điểm danh !
+                   <a href="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}"
+                        target="_blank">Điểm danh</a>.
+                </div>
+            </div>
+            @endif
+            <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
+                <div class="m-demo__preview">
+                    <div class="m-nav-grid">
+                        <div class="m-nav-grid__row">
+                            <a href="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}"
+                                class="m-nav-grid__item">
+                                <i class="m-nav-grid__icon flaticon-list-1"></i>
+                                <h5 class="m-nav-grid__text">Điểm danh</h5>
+                            </a>
+                            <a href="#" class="m-nav-grid__item">
+                                <i class="m-nav-grid__icon flaticon-support"></i>
+                                <span class="m-nav-grid__text">Danh bạ</span>
+                            </a>
+                            <a href="#" class="m-nav-grid__item">
+                                <i class="m-nav-grid__icon flaticon-speech-bubble"></i>
+                                <span class="m-nav-grid__text">Xin nghỉ</span>
+                            </a>
+                        </div>
+                        <div class="m-nav-grid__row">
+                            <a href="#" class="m-nav-grid__item">
+                                <i class="m-nav-grid__icon flaticon-folder"></i>
+                                <span class="m-nav-grid__text">Sổ liên lạc</span>
+                            </a>
+                            <a href="#" class="m-nav-grid__item">
+                                <i class="m-nav-grid__icon flaticon-gift"></i>
+                                <span class="m-nav-grid__text">Sinh nhật</span>
+                            </a>
+                            <a href="#" class="m-nav-grid__item">
+                                <i class="m-nav-grid__icon flaticon-list"></i>
+                                <span class="m-nav-grid__text">Thông tin đón hộ</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </div>
-    <div>
+   
+    <div class="">
         <div class="m-portlet">
             <div class="m-portlet__head">
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                            Giáo viên
+                            Giáo viên ({{count($teachers)}})
                         </h3>
                     </div>
                 </div>
@@ -55,51 +71,45 @@
             </div>
             <div class="m-portlet__body m-portlet__body--no-padding">
                 <div class="row m-row--no-padding m-row--col-separator-xl">
+                    <style>
+                    .image__teacher {
+                        width: 60px;
+                        height: 60px;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        position: relative;
+                        border-radius: 5px;
+                        padding: 10px;
+                        float: right;
+                    }
+                    </style>
+                    @foreach($teachers as $teacher)
                     <div class="col-md-12 col-lg-12 col-xl-4">
                         <div class="m-widget1">
                             <div class="m-widget1__item">
-                                <div class="row m-row--no-padding align-items-center">
-                                    <div class="col">
-                                        <h3 class="m-widget1__title"> Nick Bold</h3>
-                                        <span class="m-widget1__desc"> 03 345 345 04</span>
+                                <div class="row m-row--no-padding align-items-center row">
+                                    <div class=" col-7">
+                                        <h3 class="m-widget1__title"> {{$teacher->teacher->fullname}}</h3>
+                                        <div class="m-input-icon m-input-icon--right">
+                                            <input class="form-control mt-3" id="m_clipboard_2_{{$teacher->id}}"
+                                                value="{{$teacher->teacher->phone}}">
+                                            <a class="m-input-icon__icon m-input-icon__icon--right"
+                                                data-clipboard="true"
+                                                data-clipboard-target="#m_clipboard_2_{{$teacher->id}}"><span><i
+                                                        class="la la-clipboard"></i></span></a>
+                                        </div>
                                     </div>
-                                    <div class="col m--align-right">
-                                        <img src="../../assets/app/media/img/users/100_11.jpg" width="50px" alt="">
+                                    <div class="col-5 m--align-right">
+                                        <div class=" m-menu__link-icon image__teacher"
+                                            style="background-image: url(<?php echo '/upload/avatar/' . $teacher->teacher->avatar?> )">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-12 col-xl-4">
-                        <div class="m-widget1">
-                            <div class="m-widget1__item">
-                                <div class="row m-row--no-padding align-items-center">
-                                    <div class="col">
-                                        <h3 class="m-widget1__title"> Nick Bold</h3>
-                                        <span class="m-widget1__desc"> 03 345 345 04</span>
-                                    </div>
-                                    <div class="col m--align-right">
-                                        <img src="../../assets/app/media/img/users/100_11.jpg" width="50px" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-lg-12 col-xl-4">
-                        <div class="m-widget1">
-                            <div class="m-widget1__item">
-                                <div class="row m-row--no-padding align-items-center">
-                                    <div class="col">
-                                        <h3 class="m-widget1__title"> Nick Bold</h3>
-                                        <span class="m-widget1__desc"> 03 345 345 04</span>
-                                    </div>
-                                    <div class="col m--align-right">
-                                        <img src="../../assets/app/media/img/users/100_11.jpg" width="50px" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -125,7 +135,6 @@
                                 </span>
                             </div>
                             <div class="d-md-none m--margin-bottom-10"></div>
-
                         </div>
                     </div>
                     <div class="m-portlet__body">
@@ -134,442 +143,55 @@
                                 style="height: 400px">
                                 <!--begin::Widget 14-->
                                 <div class="m-widget4">
+                                <style>
+                    .image__teacher {
+                        width: 60px;
+                        height: 60px;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        position: relative;
+                        border-radius: 5px;
+                        padding: 10px;
+                        float: right;
+                    }
+                    </style>
                                     <!--begin::Widget 14 Item-->
+                                    @foreach ($classes->kids as $kid)
                                     <div class="m-widget4__item">
                                         <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_4.jpg" alt="">
+                                        <div class=" m-menu__link-icon image__teacher"
+                                            style="background-image: url(<?php echo '/upload/avatar/' . $kid->kid_avatar?> )">
+                                        </div>
                                         </div>
                                         <div class="m-widget4__info">
                                             <span class="m-widget4__title">
-                                                Anna Strong
+                                                {{$kid->kid_name}}
                                             </span><br>
                                             <span class="m-widget4__sub">
-                                                Visual Designer,Google Inc
+                                               {{$kid->parent->parent_name}}-{{$kid->parent->phone}} 
                                             </span>
                                         </div>
                                         <div class="m-widget4__ext">
-                                            <a href="#"
+                                            <a href="{{route('giao-vien.xem-thong-tin-tre',['id'=>$kid->id])}}"
                                                 class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
                                                 tiết</a>
                                         </div>
                                     </div>
-
-                                    <!--end::Widget 14 Item-->
-
-                                    <!--begin::Widget 14 Item-->
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_14.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Milano Esco
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                03 345 345 04
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
-
-                                    <!--end::Widget 14 Item-->
-
-                                    <!--begin::Widget 14 Item-->
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_11.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Nick Bold
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                03 345 345 04
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
-
-                                    <!--end::Widget 14 Item-->
-
-                                    <!--begin::Widget 14 Item-->
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_1.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Wiltor Delton
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                03 345 345 04
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
-
-                                    <!--end::Widget 14 Item-->
-
-                                    <!--begin::Widget 14 Item-->
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_5.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Nick Stone
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                03 345 345 04
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_4.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Anna Strong
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                Visual Designer,Google Inc
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
-
-                                    <!--end::Widget 14 Item-->
-
-                                    <!--begin::Widget 14 Item-->
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_14.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Milano Esco
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                03 345 345 04
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
-
-                                    <!--end::Widget 14 Item-->
-
-                                    <!--begin::Widget 14 Item-->
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_11.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Nick Bold
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                03 345 345 04
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
-
-                                    <!--end::Widget 14 Item-->
-
-                                    <!--begin::Widget 14 Item-->
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_1.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Wiltor Delton
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                03 345 345 04
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
-
-                                    <!--end::Widget 14 Item-->
-
-                                    <!--begin::Widget 14 Item-->
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_5.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Nick Stone
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                03 345 345 04
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                     <!--end::Widget 14 Item-->
                                 </div>
 
                                 <!--end::Widget 14-->
                             </div>
-                            <div class="tab-pane" id="m_widget4_tab2_content">
-
-                                <!--begin::Widget 14-->
-                                <div class="m-widget4">
-
-                                    <!--begin::Widget 14 Item-->
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_2.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Kristika Bold
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                03 345 345 04
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
-
-                                    <!--end::Widget 14 Item-->
-
-                                    <!--begin::Widget 14 Item-->
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_13.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Ron Silk
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                03 345 345 04
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
-
-                                    <!--end::Widget 14 Item-->
-
-                                    <!--begin::Widget 14 Item-->
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_9.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Nick Bold
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                03 345 345 04
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
-
-                                    <!--end::Widget 14 Item-->
-
-                                    <!--begin::Widget 14 Item-->
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_2.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Wiltor Delton
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                03 345 345 04
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
-                                    <div class="m-widget4__item">
-                                        <div class="m-widget4__img m-widget4__img--pic">
-                                            <img src="../../assets/app/media/img/users/100_8.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget4__info">
-                                            <span class="m-widget4__title">
-                                                Nick Bold
-                                            </span><br>
-                                            <span class="m-widget4__sub">
-                                                03 345 345 04
-                                            </span>
-                                        </div>
-                                        <div class="m-widget4__ext">
-                                            <a href="#"
-                                                class="m-btn m-btn--pill m-btn--hover-brand btn btn-sm btn-secondary">Chi
-                                                tiết</a>
-                                        </div>
-                                    </div>
-
-                                    <!--end::Widget 14 Item-->
-                                </div>
-
-                                <!--end::Widget 14-->
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
 
                 <!--end:: Widgets/New Users-->
             </div>
-            <div class="col-xl-6">
-
-                <!--begin:: Widgets/Support Tickets -->
-                <div class="m-portlet m-portlet--full-height ">
-                    <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">
-                                    Thông báo
-                                </h3>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="m-portlet__body">
-                        <div class="m-widget3">
-                            <div class="m-widget3__item">
-                                <div class="m-widget3__header">
-                                    <div class="m-widget3__user-img">
-                                        <img class="m-widget3__img" src="../../assets/app/media/img/users/user1.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="m-widget3__info">
-                                        <span class="m-widget3__username">
-                                            Melania Trump
-                                        </span><br>
-                                        <span class="m-widget3__time">
-                                            2 day ago
-                                        </span>
-                                    </div>
-                                    <span class="m-widget3__status m--font-info">
-                                        Pending
-                                    </span>
-                                </div>
-                                <div class="m-widget3__body">
-                                    <p class="m-widget3__text">
-                                        Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh
-                                        euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="m-widget3__item">
-                                <div class="m-widget3__header">
-                                    <div class="m-widget3__user-img">
-                                        <img class="m-widget3__img" src="../../assets/app/media/img/users/user4.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="m-widget3__info">
-                                        <span class="m-widget3__username">
-                                            Lebron King James
-                                        </span><br>
-                                        <span class="m-widget3__time">
-                                            1 day ago
-                                        </span>
-                                    </div>
-                                    <span class="m-widget3__status m--font-brand">
-                                        Open
-                                    </span>
-                                </div>
-                                <div class="m-widget3__body">
-                                    <p class="m-widget3__text">
-                                        Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh
-                                        euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad
-                                        minim veniam,quis nostrud exerci tation ullamcorper.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="m-widget3__item">
-                                <div class="m-widget3__header">
-                                    <div class="m-widget3__user-img">
-                                        <img class="m-widget3__img" src="../../assets/app/media/img/users/user5.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="m-widget3__info">
-                                        <span class="m-widget3__username">
-                                            Deb Gibson
-                                        </span><br>
-                                        <span class="m-widget3__time">
-                                            3 weeks ago
-                                        </span>
-                                    </div>
-                                    <span class="m-widget3__status m--font-success">
-                                        Closed
-                                    </span>
-                                </div>
-                                <div class="m-widget3__body">
-                                    <p class="m-widget3__text">
-                                        Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh
-                                        euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--end:: Widgets/Support Tickets -->
-            </div>
+            
         </div>
     </div>
 </div>
@@ -587,4 +209,18 @@
 
 </div>
 @endif
+<script>
+
+
+var ClipboardDemo = {
+    init: function() {
+        new Clipboard("[data-clipboard=true]").on("success", function(e) {
+            e.clearSelection(), alert("Sao chép thành công");
+        });
+    },
+};
+jQuery(document).ready(function() {
+    ClipboardDemo.init();
+});
+</script>
 @endsection

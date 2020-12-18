@@ -1,8 +1,8 @@
 @extends('./staff/phu-huynh/layouts/layout')
 @section('title','Lịch sử nghỉ')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper container">
-    <div class="m-content">
+<div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
+    <div class="">
         <div class="m-portlet m-portlet--mobile">
             <div class="m-portlet__body">
                 <div class="m-form m-form--label-align-right  ">

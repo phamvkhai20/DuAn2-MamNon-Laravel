@@ -1,8 +1,8 @@
 @extends('./staff/nha-truong/layouts/layout')
 @section('title','Thêm mới giáo viên')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper">
-    <div class="m-content">
+<div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
+    <div class="">
         <div class="">
             <!--begin::Portlet-->
             <div class="m-portlet ">
@@ -47,8 +47,11 @@
                         </div>
                         <div class="form-group m-form__group">
                             <label>Số Điện Thoại</label>
+                            
                             <input name="phone" type="text" class="form-control m-input"
                                 placeholder="Nhập sđt đầy đủ" value="{{ old('phone') }}">
+                                <input name="teacher_type_id" type="hidden" class="form-control m-input"
+                                placeholder="Nhập sđt đầy đủ" value="1">
                             {!! ShowErrors($errors,'phone') !!}
                         </div>
                         

@@ -12,12 +12,12 @@ class ParentController extends Controller
 {
    public function index()
    {
-      $data['parents'] = Parents::paginate(10);
+      $data['parents'] = Parents::with('Kids')->paginate(10);
       return view('staff.nha-truong.quan-ly-phu-huynh.index', $data);
    }
    public function create()
    {
-
+      
       return view('staff.nha-truong.quan-ly-phu-huynh.add');
    }
    public function store(ParentRequest $request)

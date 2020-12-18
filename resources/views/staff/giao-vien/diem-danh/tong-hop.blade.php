@@ -41,7 +41,14 @@
                                     <td width="140px">{{$student->kid_name}}</td>
                                     @foreach($student->attendance as $attendances)
                                     @if($attendances->status==1)
-                                    <td width="60px">Đi</td>
+                                    <td width="60px">
+                                        <select class="form-control m-bootstrap-select m_selectpicker border-0">
+												<option data-content="<span class='m-badge m-badge--success m-badge--wide m-badge--rounded'>Relish</span>"></option>
+												<option data-content="<span class='m-badge m-badge--warning m-badge--wide m-badge--rounded'>Ketchup</span>"></option>
+												<option data-content="<span class='m-badge m-badge--brand m-badge--wide m-badge--rounded'>Relish</span>"></option>
+												<option data-content="<span class='m-badge m-badge--danger m-badge--wide m-badge--rounded'>Chili</span>"></option>
+                                        </select>
+                                    </td>
                                     @elseif($attendances->status==0)
                                     <td width="60px">Vắng</td>
                                     @else
