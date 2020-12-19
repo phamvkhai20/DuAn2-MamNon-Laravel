@@ -10,7 +10,7 @@ class ChildReceiptController extends Controller
 {
     public function danh_sach_don_ho()
     {
-        $childReceiptsIsConfirmFalse = ChildReceiptHistory::where('class_id', session('class'))->with('kid')->get();
+        $childReceiptsIsConfirmFalse = ChildReceiptHistory::where('class_id', session('class'))->with('kid')->orderBy('id','desc')->get();
         return view('staff.giao-vien.dang-ki-don.danh-sach', ['childReceiptsIsConfirmFalse' => $childReceiptsIsConfirmFalse]);
     }
     public function xac_nhan_don_ho(Request $request,$id)

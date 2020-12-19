@@ -80,7 +80,7 @@ class AttendanceController extends Controller
                     $attendance->note =  $data["note"][$index];
                     if ($data["arrival_time"][$index] != "00:00:00") {
                         $params = array(
-                            'note'  => $attendance->note,
+                            'note'  => $attendance->note? $attendance->note: 'null',
                             'status'  => $attendance->status,
                             'leave_time' => "00:00:00",
                             'arrival_time' => $attendance->arrival_time,
@@ -88,7 +88,7 @@ class AttendanceController extends Controller
                         );
                     } else {
                         $params = array(
-                            'note'  => $attendance->note,
+                            'note'  => $attendance->note? $attendance->note:'null',
                             'status'  => $attendance->status,
                             'meal' => $attendance->meal
                         );
@@ -244,7 +244,18 @@ class AttendanceController extends Controller
             }
             $query->whereBetween("date", [$month.'-1', $today])->where('status', "1");
         }])->get();
-        return view('staff.giao-vien.diem-danh.tong-hop', compact('getAttendance', 'studentInClass', 'absent', 'permission', 'present','month'));
+        $meal = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
+            $date=request()->all()?(request()->get('date')):substr(Carbon::now(), 0, 10);
+            $month = substr($date, 0, 7);
+            $todayTemp = substr($date, 0, 10);
+            if($todayTemp==$month){
+                $today = substr($date, 0, 10)."-31";
+            }else{
+                $today=$todayTemp;
+            }
+            $query->whereBetween("date", [$month.'-1', $today])->where('meal', "on");
+        }])->get();
+        return view('staff.giao-vien.diem-danh.tong-hop', compact('getAttendance', 'studentInClass', 'absent', 'permission', 'present','month','meal'));
     }
     public function confirm_attendance(Request $request){
         $arrKids=$request->get('confirm');
@@ -266,7 +277,11 @@ class AttendanceController extends Controller
     public function update_attendance_history(Request $request){
         $id=$request->get('id');
         $attendance=$request->get('attendance');
-        $update_attendance= Attendance::find($id)->update(['status'=>$attendance]);
+        if($attendance==2||$attendance==0){
+            $update_attendance= Attendance::find($id)->update(['status'=>$attendance,'arrival_time'=>'00:00:00','leave_time'=>'00:00:00','meal'=>'off','note xin nghỉ']);
+        }else{
+            $update_attendance= Attendance::find($id)->update(['status'=>$attendance]);
+        }
         return response()->json(
             ['data' =>   $update_attendance]
         );

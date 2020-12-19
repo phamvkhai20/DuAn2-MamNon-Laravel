@@ -49,6 +49,9 @@
                             </a>
                             <a href="{{route('giao-vien.danh-sach-don-ho')}}" class="m-nav-grid__item">
                                 <i class="m-nav-grid__icon flaticon-list"></i>
+                                @if(count($childReceiptsIsConfirm)>0)
+                                <span class="m-badge m-badge--danger button_nottification">{{count($childReceiptsIsConfirm)}}</span>
+                                @endif
                                 <span class="m-nav-grid__text">Thông tin đón hộ</span>
                             </a>
                         </div>
