@@ -77,6 +77,23 @@ Route::group([
         Route::get('xoa/{id}', 'Web\NhaTruong\YearController@delete')
             ->name('nam.xoa');
     });
+    // dã ngoại
+    Route::group([
+        'prefix' => 'dangoai',
+    ], function () {
+        Route::get('danh-sach', 'Web\NhaTruong\PicnicController@index')
+            ->name('dangoai.index');
+        Route::get('sua/{id}', 'Web\NhaTruong\PicnicController@edit')
+            ->name('dangoai.sua');
+        Route::post('luu-sua/{id}', 'Web\NhaTruong\PicnicController@saveEdit')
+            ->name('dangoai.save_edit');
+        Route::get('them-moi', 'Web\NhaTruong\PicnicController@add')
+            ->name('dangoai.them_moi');
+        Route::post('luu', 'Web\NhaTruong\PicnicController@saveAdd')
+            ->name('dangoai.save_add');
+        // Route::get('xoa/{id}', 'Web\NhaTruong\YearController@delete')
+        //     ->name('nam.xoa');
+    });
 
     //giáo viên
     Route::group([
@@ -147,7 +164,7 @@ Route::group([
     'middleware' => ['check_teacher'],
 ], function () {
 
-    
+
     Route::group([
         'prefix' => '/{id}/so-lien-lac',
     ], function () {
