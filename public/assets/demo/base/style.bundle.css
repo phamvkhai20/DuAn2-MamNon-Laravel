@@ -29512,7 +29512,7 @@ select.m-bootstrap-select {
 .bootstrap-select > .dropdown-toggle.btn-light, .bootstrap-select > .dropdown-toggle.btn-secondary {
   background-color: transparent;
   color: #575962;
-  border-color: #ebedf2;
+  /* border-color: #ebedf2; */
   -webkit-box-shadow: none ;
   box-shadow: none ; }
   .bootstrap-select > .dropdown-toggle.btn-light:focus, .bootstrap-select > .dropdown-toggle.btn-light.active, .bootstrap-select > .dropdown-toggle.btn-secondary:focus, .bootstrap-select > .dropdown-toggle.btn-secondary.active {
@@ -29576,7 +29576,7 @@ select.m-bootstrap-select {
       filter: alpha(opacity=80) ; }
 
 .bootstrap-select.show > .dropdown-toggle.btn-light, .bootstrap-select.show > .dropdown-toggle.btn-secondary {
-  border-color: #716aca !important;
+  /* border-color: #716aca !important; */
   -webkit-box-shadow: none ;
   box-shadow: none ;
   background-color: transparent; }

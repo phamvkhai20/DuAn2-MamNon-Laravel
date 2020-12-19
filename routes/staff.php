@@ -151,17 +151,29 @@ Route::group([
     Route::group([
         'prefix' => '/{id}/so-lien-lac',
     ], function () {
+        
+        Route::get('/danh-sach', 'Web\GiaoVien\ContactBookController@contact_book_list')->name('giao-vien.danh-sach-so-lien-lac-ngay');
+
+        Route::get('/chi-tiet/{date}', 'Web\GiaoVien\ContactBookController@chi_tiet')->name('giao-vien.chi-tiet-so-lien-lac');
+
         Route::post('/tao-moi', 'Web\GiaoVien\ContactBookController@save_add_contact_book')->name('giao-vien.them-so-lien-lac.them-moi');
         Route::get('/', 'Web\GiaoVien\ContactBookController@form_add_contact_book')->name('giao-vien.them-so-lien-lac');
     });
     Route::group([
         'prefix' => 'diem-danh',
     ], function () {
+        
+        Route::post('/thay-doi-diem-danh', 'Web\GiaoVien\AttendanceController@update_attendance_history')->name('giao-vien.thay-doi-diem-danh');
+
+        Route::post('/xac-nhan', 'Web\GiaoVien\AttendanceController@confirm_attendance')->name('giao-vien.xac-nhan-diem-danh');
+        
         Route::get('/{id}', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh')->name('giao-vien.giao_dien_diem_danh');
         Route::post('/tao', 'Web\GiaoVien\AttendanceController@diem_danh_den')->name('giao-vien.diem_danh_den');
         Route::post('/update', 'Web\GiaoVien\AttendanceController@diem_danh_ve')->name('giao-vien.diem_danh_ve');
         Route::get('/{id}/lich-su', 'Web\GiaoVien\AttendanceController@xem_diem_danh')->name('giao-vien.xem_diem_danh');
     });
+    Route::post('/xac-nhan-don-ho/{id}', 'Web\GiaoVien\ChildReceiptController@xac_nhan_don_ho')->name('giao-vien.xac-nhan-don-ho');
+    Route::get('/danh-sach-don-ho', 'Web\GiaoVien\ChildReceiptController@danh_sach_don_ho')->name('giao-vien.danh-sach-don-ho');
     Route::get('/thong-tin-tre/{id}', 'Web\GiaoVien\HomeController@infoKid')->name('giao-vien.xem-thong-tin-tre');
     Route::get('/', 'Web\GiaoVien\HomeController@index')->name('giao-vien.index');
     //lớp

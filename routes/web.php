@@ -29,6 +29,9 @@ Route::post('/nop-ho-so/gui', 'AdmissionRecordsController@them_moi')->name('web.
 Route::get('/nop-ho-so', 'AuthController@nop_ho_so_nhap_hoc')->name('web.nop-ho-so');
 
 
+Route::get('/404', 'ErrorControler@page_error')->name('error.404');
+
+
 
 
 Route::group([
