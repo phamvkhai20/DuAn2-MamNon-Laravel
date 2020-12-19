@@ -47,7 +47,7 @@ class AttendanceController extends Controller
                     $attendance->kid_id = $data["kid_id"][$index];
                     $attendance->leave_time = "00:00:00";
                     if ($data["status"][$index] == "off") {
-                        $attendance->meal = 0;
+                        $attendance->meal = 'off';
                         $attendance->status = 0;
                         $attendance->arrival_time = "00:00:00";
                     } else {
@@ -103,7 +103,7 @@ class AttendanceController extends Controller
                     $attendance->kid_id = $data["kid_id"][$index];
                     $attendance->leave_time = "00:00:00";
                     if ($data["status"][$index] == "off") {
-                        $attendance->meal = 0;
+                        $attendance->meal = "off";
                         $attendance->status = 0;
                         $attendance->arrival_time = "00:00:00";
                     } else {
@@ -118,7 +118,7 @@ class AttendanceController extends Controller
                     $request->session()->flash('status', 'ok');
                 } else {
                     $attendance = new Attendance();
-                    $attendance->meal = 0;
+                    $attendance->meal = "off";
                     $attendance->status = 2;
                     $attendance->arrival_time = "00:00:00";
                     $attendance->class_id =  $data["class_id"][$index];
@@ -189,25 +189,62 @@ class AttendanceController extends Controller
         $request->session()->flash('status', 'ok');
         return redirect()->route('giao-vien.giao_dien_diem_danh', ['id' => $data["class"],'date'=>$date]);
     }
-    public function xem_diem_danh($id)
+    public function xem_diem_danh(Request $request,$id)
     {
-        $date = Carbon::now();
+        $date=request()->all()?(request()->get('date')):substr(Carbon::now(), 0, 10);
         $month = substr($date, 0, 7);
-        $today = substr($date, 0, 10);
+        $todayTemp = substr($date, 0, 10);
+        if($todayTemp==$month){
+            $today = substr($date, 0, 10)."-31";
+        }else{
+            $today=$todayTemp;
+        }
         $getAttendance = Attendance::whereBetween("date", [$month . '-1', $today])->where('class_id', $id)->whereBetween('status', ['0', '1'])->orderBy('date', "asc")->distinct()->get(['date']);
         $studentInClass = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
-            $query->whereBetween("date", [substr(Carbon::now(), 0, 7) . '-1', substr(Carbon::now(), 0, 10)]);
+            $date=request()->all()?(request()->get('date')):substr(Carbon::now(), 0, 10);
+            $month = substr($date, 0, 7);
+            $todayTemp = substr($date, 0, 10);
+            if($todayTemp==$month){
+                $today = substr($date, 0, 10)."-31";
+            }else{
+                $today=$todayTemp;
+            }
+            $query->whereBetween("date", [$month.'-1', $today]);
         }])->get();
         $absent = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
-            $query->whereBetween("date", [substr(Carbon::now(), 0, 7) . '-1', substr(Carbon::now(), 0, 10)])->where('status', "0");
+            $date=request()->all()?(request()->get('date')):substr(Carbon::now(), 0, 10);
+            $month = substr($date, 0, 7);
+            $todayTemp = substr($date, 0, 10);
+            if($todayTemp==$month){
+                $today = substr($date, 0, 10)."-31";
+            }else{
+                $today=$todayTemp;
+            }
+            $query->whereBetween("date", [$month.'-1', $today])->where('status', "0");
         }])->get();
         $permission = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
-            $query->whereBetween("date", [substr(Carbon::now(), 0, 7) . '-1', substr(Carbon::now(), 0, 10)])->where('status', "2");
+            $date=request()->all()?(request()->get('date')):Carbon::now();
+            $month = substr($date, 0, 7);
+            $todayTemp = substr($date, 0, 10);
+            if($todayTemp==$month){
+                $today = substr($date, 0, 10)."-31";
+            }else{
+                $today=$todayTemp;
+            }
+            $query->whereBetween("date", [$month.'-1', $today])->where('status', "2");
         }])->get();
         $present = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
-            $query->whereBetween("date", [substr(Carbon::now(), 0, 7) . '-1', substr(Carbon::now(), 0, 10)])->where('status', "1");
+            $date=request()->all()?(request()->get('date')):substr(Carbon::now(), 0, 10);
+            $month = substr($date, 0, 7);
+            $todayTemp = substr($date, 0, 10);
+            if($todayTemp==$month){
+                $today = substr($date, 0, 10)."-31";
+            }else{
+                $today=$todayTemp;
+            }
+            $query->whereBetween("date", [$month.'-1', $today])->where('status', "1");
         }])->get();
-        return view('staff.giao-vien.diem-danh.tong-hop', compact('getAttendance', 'studentInClass', 'absent', 'permission', 'present'));
+        return view('staff.giao-vien.diem-danh.tong-hop', compact('getAttendance', 'studentInClass', 'absent', 'permission', 'present','month'));
     }
     public function confirm_attendance(Request $request){
         $arrKids=$request->get('confirm');

@@ -19,7 +19,7 @@ class ContactBookController extends Controller
     }
     protected function contact_book_list()
     {
-        $contactBooks =ContactBook::where('class_id',session('class'))->distinct()->get('date');
+        $contactBooks =ContactBook::where('class_id',session('class'))->distinct()->orderBy('date','desc')->get('date');
         return view('staff.giao-vien.so-lien-lac.danh-sach',['contactBooks'=>$contactBooks]);
     }
     public function save_add_contact_book(Request $request){

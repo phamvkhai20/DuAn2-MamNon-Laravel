@@ -16,16 +16,13 @@ class AuthController extends Controller
    {
       return view('web.index');
    }
-
    // Đăng nhập nhà trường
    protected function form_login_school()
    {
       return view('web.login.school');
    }
-   
    public function loginSchool(LoginRequest $request)
    {
-     
       $data = Arr::except($request->all(), ['_token']);
       request()->flashOnly('phone');
       request()->flashOnly('password');

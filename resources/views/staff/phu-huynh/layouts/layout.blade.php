@@ -63,10 +63,8 @@
         type="text/javascript"></script>
     <script src="{{asset('assets_staff/vendors/base/vendors.bundle.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets_staff/demo/default/base/scripts.bundle.js')}}" type="text/javascript"></script>
-    <script src="{{asset('assets_staff/vendors/custom/fullcalendar/fullcalendar.bundle.js')}}" type="text/javascript">
-    </script>
-    <script src="{{asset('assets_staff/demo/default/custom/crud/forms/widgets/bootstrap-daterangepicker.js')}}"
-        type="text/javascript"></script>
+    <script src="{{asset('assets_staff/vendors/custom/fullcalendar/fullcalendar.bundle.js')}}" type="text/javascript"></script>
+    <script src="{{asset('assets_staff/demo/default/custom/crud/forms/widgets/bootstrap-daterangepicker.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets_staff/app/js/dashboard.js')}}" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

@@ -4,19 +4,42 @@
 <div class="m-grid__item m-grid__item--fluid m-wrapper">
     <!-- END: Subheader -->
     <div class="">
-        <div class="m-portlet box_tille_ row title_attendance" role="tablist">
+    <form class="m-portlet box_tille_ row title_attendance"  method="get" action="{{route('giao-vien.xem_diem_danh',['id'=>session('class')])}}">
+            {!! csrf_field() !!}
             <h3 class="col-lg-5" style="padding-top:5px">
                 Điểm danh
             </h3>
             <div class="col-lg-4">
-                <input type="date" class="form-control m-input" id="date_attendance" />
+                <div class="m-select2 m-select2--square">
+                    <select class="form-control m-select2" id="m_select2_12_4" checked="{{$month}}" name="date" data-placeholder="Square style">
+                        <option></option>
+                        <option value="2020-12"  {{ $month=='2020-12'?"selected":''}} >Tháng 12/2020</option>
+                        <option value="2020-11" {{ $month=='2020-11'?"selected":''}} >Tháng 11/2020</option>
+                        <option value="2020-10" {{ $month=='2020-10'?"selected":''}} >Tháng 10/2020</option>
+                        <option value="2020-09" {{ $month=='2020-09'?"selected":''}} >Tháng 9/2020</option>
+                        <option value="2020-08" {{ $month=='2020-08'?"selected":''}} >Tháng 8/2020</option>
+                        <option value="2020-07" {{ $month=='2020-07'?"selected":''}} >Tháng 7/2020</option>
+                        <option value="2020-06" {{ $month=='2020-06'?"selected":''}} >Tháng 6/2020</option>
+                    </select>
+                </div>
             </div>
             <script>
             var d = new Date();
             document.getElementById("date_attendance").value = d.getFullYear() + '-' + (
                 d.getMonth() + 1) + '-' + d.getDate();
             </script>
-        </div>
+            <div class="col-lg-3">
+                <button class="btn btn-primary " style="">
+                    Tìm kiếm
+                </button>
+            </div>
+       
+        <script>
+        var d = new Date();
+        document.getElementById("date_attendance").max = d.getFullYear() + '-' + (
+            d.getMonth() + 1) + '-' + d.getDate();
+        </script>
+    </form>
         <div class="m-portlet box_tille_">
             <div class="m-portlet__body">
                 <div class="m-section">
