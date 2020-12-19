@@ -37,13 +37,13 @@
                             <div class="m-portlet__body">
                                 <div class="form-group m-form__group">
                                     <label>Số điện thoại</label>
-                                    <input name="phone" type="number" class="form-control m-input m-input--square"
+                                    <input name="phone" type="number" value="{{ old('phone') }}" class="form-control m-input m-input--square"
                                         placeholder="Số điện thoại">
                                         {!! ShowErrors($errors,'phone') !!}
                                 </div>
                                 <div class="form-group m-form__group">
                                     <label>Mật khẩu</label>
-                                    <input name="password" type="password" class="form-control m-input m-input--square"
+                                    <input name="password" type="password" value="{{ old('password') }}"  class="form-control m-input m-input--square"
                                         placeholder="Mật khẩu">
                                         {!! ShowErrors($errors,'password') !!}
                                         <br>

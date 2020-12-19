@@ -92,6 +92,12 @@
                 <form class="m-form m-form--label-align-left- m-form--state-" id="m_form">
 
                     <!--begin: Form Body -->
+                    @php 
+                        $statusAttendance=['1'=>'Đi học','2'=>"Nghỉ phép",'0'=>'Nghỉ không phép'];
+                        $styleAttendance=['1'=>'m--font-success','2'=>"m--font-primary",'0'=>'m--font-danger'];
+                        $statusMeal=['on'=>"Có ăn",'off'=>"không ăn",'0'=>"không ăn"];
+                        $styleMeal=['on'=>'m--font-success','off'=>'m--font-danger','0'=>'m--font-danger'];
+                    @endphp
                     <div class="m-portlet__body">
                         <div class="row">
                             <div class="table-responsive">
@@ -127,26 +133,39 @@
                                                 @endphp
                                             </td>
                                             <td rowspan="1" colspan="1">
-                                                @php
-                                                if($attendance->status==0){echo "Nghỉ không phép";}
-                                                if($attendance->status==1){echo "Đi học";}
-                                                if($attendance->status==2){echo "Nghỉ phép";}
-                                                @endphp
+                                                <span class="{{$styleAttendance[$attendance->status]}}">
+                                                    {{$statusAttendance[$attendance->status]}}
+                                                </span>
                                             </td>
                                             <td rowspan="1" colspan="1">{{$attendance->arrival_time}}</td>
                                             <td rowspan="1" colspan="1">{{$attendance->leave_time}}</td>
                                             <td rowspan="1" colspan="1">
-                                                @php
-                                                if($attendance->meal==0){echo "Không ăn";}else{
-                                                echo "Có ăn";
-                                                }
-                                                @endphp
+                                                <span class="{{$styleMeal[$attendance->meal]}}">
+                                                    {{$statusMeal[$attendance->meal]}}
+                                                </span>
                                             </td>
-                                            <td rowspan="1" colspan="1"><a href="">Chi tiết</a> </td>
+                                            <td rowspan="1" colspan="1"><a href="#" data-toggle="modal" data-target="#m_modal_{{$attendance->id}}">Ghi chú</a> </td>
+                                            <div class="modal fade" id="m_modal_{{$attendance->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Khác</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>{{$attendance->note!="null"?$attendance->note:''}}</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </tr>
                                         @endforeach
                                     </tbody>
-
                             </div>
                 </form>
             </div>

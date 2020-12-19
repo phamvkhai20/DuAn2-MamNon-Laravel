@@ -13,6 +13,10 @@ class Kid extends Model
     {
         return $this->hasMany(Attendance::class, 'kid_id', 'id');
     }
+    public function childReceip()
+    {
+        return $this->hasMany(ChildReceiptHistory::class, 'kid_id', 'id');
+    }
     public function parent()
     {
         return $this->beLongsTo(Parents::class, 'parent_id', 'id');
@@ -20,5 +24,9 @@ class Kid extends Model
     public function getClass()
     {
         return $this->beLongsTo(Classes::class, 'class_id', 'id');
+    }
+    public function contactBooks()
+    {
+        return $this->hasMany(ContactBook::class, 'kid_id', 'id');
     }
 }

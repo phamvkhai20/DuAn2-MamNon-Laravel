@@ -39,7 +39,7 @@
                             </a>
                         </div>
                         <div class="m-nav-grid__row">
-                            <a href="#" class="m-nav-grid__item">
+                            <a  href="{{route('giao-vien.them-so-lien-lac',['id'=>session('class')])}}" class="m-nav-grid__item">
                                 <i class="m-nav-grid__icon flaticon-folder"></i>
                                 <span class="m-nav-grid__text">Sổ liên lạc</span>
                             </a>
@@ -47,7 +47,7 @@
                                 <i class="m-nav-grid__icon flaticon-gift"></i>
                                 <span class="m-nav-grid__text">Sinh nhật</span>
                             </a>
-                            <a href="#" class="m-nav-grid__item">
+                            <a href="{{route('giao-vien.danh-sach-don-ho')}}" class="m-nav-grid__item">
                                 <i class="m-nav-grid__icon flaticon-list"></i>
                                 <span class="m-nav-grid__text">Thông tin đón hộ</span>
                             </a>
@@ -90,7 +90,8 @@
                             <div class="m-widget1__item">
                                 <div class="row m-row--no-padding align-items-center row">
                                     <div class=" col-7">
-                                        <h3 class="m-widget1__title"> {{$teacher->teacher->fullname}}</h3>
+                                        <label class="m-widget1__title"  data-toggle="modal"
+                                            data-target="#m_info_teacher_{{$teacher->teacher->id}}"> {{$teacher->teacher->fullname}}</label>
                                         <div class="m-input-icon m-input-icon--right">
                                             <input class="form-control mt-3" id="m_clipboard_2_{{$teacher->id}}"
                                                 value="{{$teacher->teacher->phone}}">
@@ -101,10 +102,58 @@
                                         </div>
                                     </div>
                                     <div class="col-5 m--align-right">
-                                        <div class=" m-menu__link-icon image__teacher"
+                                        <div class=" m-menu__link-icon image__teacher" data-toggle="modal"
+                                            data-target="#m_info_teacher_{{$teacher->teacher->id}}"
                                             style="background-image: url(<?php echo '/upload/avatar/' . $teacher->teacher->avatar?> )">
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="m_info_teacher_{{$teacher->teacher->id}}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Thông tin giáo viên</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Họ và tên:</label>
+                                            <input type="text" class="form-control"
+                                                value="{{$teacher->teacher->fullname}}" id="recipient-name" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Ngày sinh:</label>
+                                            <input type="text" class="form-control"
+                                                value="{{$teacher->teacher->date_of_birth}}" id="recipient-name"
+                                                disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Số điện
+                                                thoại:</label>
+                                            <input type="text" class="form-control" value="{{$teacher->teacher->phone}}"
+                                                id="recipient-name" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Email:</label>
+                                            <input type="text" class="form-control" value="{{$teacher->teacher->email}}"
+                                                id="recipient-name" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="form-control-label">Địa chỉ:</label>
+                                            <input type="text" class="form-control" value="" id="recipient-name"
+                                                disabled>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                 </div>
                             </div>
                         </div>

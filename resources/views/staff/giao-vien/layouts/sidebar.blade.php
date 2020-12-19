@@ -76,7 +76,7 @@
                     </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.nam.index')}}"
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.danh-sach-so-lien-lac-ngay',['id'=>session('class')])}}"
                                 class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Danh sách</span></a></li>
@@ -87,7 +87,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a
+            <!-- <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a
                     href="javascript:;" class="m-menu__link m-menu__toggle"><i
                         class="m-menu__link-icon la la-bell"></i><span class="m-menu__link-text">Thông báo - sự kiện
                     </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
@@ -103,7 +103,7 @@
                                     class="m-menu__link-text">Thêm mới</span></a></li>
                     </ul>
                 </div>
-            </li>
+            </li> -->
             <li class="m-menu__section ">
                 <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin lớp học</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
@@ -119,12 +119,7 @@
                                 class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Danh sách trẻ</span></a></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a
-                                href=""
-                                class="m-menu__link "><i
-                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">Thêm mới trẻ</span></a></li>
-                    </ul>
+                     </ul>
                 </div>
             </li>
             @endif

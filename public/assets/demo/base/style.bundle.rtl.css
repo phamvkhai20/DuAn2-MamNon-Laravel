@@ -29495,7 +29495,7 @@ select.m-bootstrap-select {
 .bootstrap-select > .dropdown-toggle.btn-light, .bootstrap-select > .dropdown-toggle.btn-secondary {
   background-color: transparent;
   color: #575962;
-  border-color: #ebedf2;
+  /* border-color: #ebedf2; */
   -webkit-box-shadow: none ;
   box-shadow: none ; }
   .bootstrap-select > .dropdown-toggle.btn-light:focus, .bootstrap-select > .dropdown-toggle.btn-light.active, .bootstrap-select > .dropdown-toggle.btn-secondary:focus, .bootstrap-select > .dropdown-toggle.btn-secondary.active {
