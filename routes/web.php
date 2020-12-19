@@ -38,7 +38,7 @@ Route::group([
     'prefix' => 'phu-huynh',
     'middleware' => ['check_parent'],
 ], function () {
-
+    Route::get('/thong-bao', 'Web\PhuHuynh\ThongbaoController@index')->name('phu-huynh.thong-bao.index');
     Route::post('setDefaultKid', 'Web\PhuHuynh\HomeController@set_default_kid')->name('phu-huynh.set-default-kid');
     Route::group([
         'prefix' => '/{id}',
@@ -57,6 +57,7 @@ Route::group([
         Route::post('/luu-dang-ki-don', 'Web\PhuHuynh\ChildReceiptHistoryController@save_dang_ki')->name('phu-huynh.luu-diem-danh');
         Route::get('/diem-danh', 'Web\PhuHuynh\AttendanceController@view_attendance')->name('phu-huynh.diem-danh');
         Route::get('/lich-su-nghi', 'Web\PhuHuynh\AttendanceController@absence_history')->name('phu-huynh.lich-su-nghi');
+       
     });
     //lớp
 });
