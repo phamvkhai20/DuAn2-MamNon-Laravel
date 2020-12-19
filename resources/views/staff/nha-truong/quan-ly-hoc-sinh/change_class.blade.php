@@ -14,6 +14,11 @@
                     </div>
                 </div>
             </div>
+            @if(session('message'))
+        <div class="alert alert-success text-center" role="alert">
+            {{session('message') }}
+        </div>
+     @endif   
             <div class="m-portlet__body">
                 <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" action="{{ route('nha-truong.tre.save_change', $kid->id) }}" method="post">
                 @csrf

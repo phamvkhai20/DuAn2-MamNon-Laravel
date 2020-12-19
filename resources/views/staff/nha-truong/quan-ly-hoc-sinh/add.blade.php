@@ -12,8 +12,9 @@
                         </h3>
                     </div>
                 </div>
+                
                 <div class="m-portlet__head-tools">
-                    <a href="{{route('nha-truong.nha-truong.index')}}"
+                    <a href="{{route('nha-truong.tre.index')}}"
                         class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                         <span>
                             <i class="la la-arrow-left"></i>
@@ -22,6 +23,11 @@
                     </a>
                 </div>
             </div>
+            @if(session('message'))
+        <div class="alert alert-success text-center" role="alert">
+            {{session('message') }}
+        </div>
+     @endif   
             <div class="m-portlet__body">
 
                 <form class="m-form row" action="{{ route('nha-truong.tre.store') }}" method="post"

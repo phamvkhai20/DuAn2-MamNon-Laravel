@@ -14,6 +14,16 @@
                     </div>
                 </div>
             </div>
+            @if(session('message'))
+        <div class="alert alert-success text-center" role="alert">
+            {{session('message') }}
+        </div>
+     @endif   
+     @if(session('error'))
+        <div class="alert alert-danger text-center" role="alert">
+            {{session('error') }}
+        </div>
+     @endif   
             <div class="m-portlet__body">
                 <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" action="{{ route('nha-truong.tre.save') }}" method="post">
                 @csrf
@@ -50,7 +60,7 @@
                     <div class="form-group m-form__group row">
                         <label class="col-lg-2 col-form-label">Chọn lớp mới</label>
                         <div class="col-lg-6">
-                        <select name="class_id" name="old_class_id" class="form-control m-input" >
+                        <select name="class_id" class="form-control m-input" >
                         <option value="">Chọn lớp mới</option> 
                             @foreach($classes as $class)
                                 <option  value="{{$class->id}}" >{{$class->name}}</option> 

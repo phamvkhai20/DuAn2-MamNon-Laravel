@@ -21,6 +21,8 @@ Route::group([
     'middleware' => ['check_school'],
 ], function () {
     Route::get('/', 'Web\NhaTruong\HomeController@index')->name('nha-truong.index');
+    Route::get('/doi-mat-khau/{id}', 'Web\NhaTruong\HomeController@change_password')->name('nha-truong.change_password');
+    Route::post('/doi-mat-khau/{id}', 'Web\NhaTruong\HomeController@save_password')->name('nha-truong.save_password');
     //lớp
     Route::group([
         'prefix' => 'lop',
@@ -40,6 +42,10 @@ Route::group([
 
         Route::get('tot-nghiep/{id}', 'Web\NhaTruong\ClassController@graduate')->name('lop.graduate');
         Route::post('tot-nghiep/{id}', 'Web\NhaTruong\ClassController@save_graduate')->name('lop.save_graduate');
+
+        Route::get('len-lop', 'Web\NhaTruong\ClassController@class_up')->name('lop.class_up');
+        Route::post('len-lop', 'Web\NhaTruong\ClassController@save_class_up')->name('lop.save_class_up');
+        Route::post('grade', 'Web\NhaTruong\ClassController@grade')->name('lop.grade');
     });
 
     //khối
@@ -147,7 +153,8 @@ Route::group([
     'prefix' => 'giao-vien',
     'middleware' => ['check_teacher'],
 ], function () {
-
+    Route::get('/doi-mat-khau/{id}', 'Web\GiaoVien\HomeController@change_password')->name('giao-vien.change_password');
+    Route::post('/doi-mat-khau/{id}', 'Web\GiaoVien\HomeController@save_password')->name('giao-vien.save_password');
     
     Route::group([
         'prefix' => '/{id}/so-lien-lac',

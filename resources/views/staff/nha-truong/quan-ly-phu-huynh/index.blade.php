@@ -11,36 +11,27 @@
                             <div class="form-group m-form__group row align-items-center">
                                 <div class="col-md-3">
                                     <div class="m-form__group m-form__group--inline">
-                                        <div class="m-form__label">
-                                            <label>Status:</label>
-                                        </div>
-                                        <div class="m-form__control">
-                                            <select class="form-control m-bootstrap-select m-bootstrap-select--solid"
-                                                id="m_form_status">
-                                                <option value="">All</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="d-md-none m--margin-bottom-10"></div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="m-form__group m-form__group--inline">
-                                        <div class="m-form__label">
-                                            <label class="m-label m-label--single">Type:</label>
-                                        </div>
-                                        <div class="m-form__control">
-                                            <select class="form-control m-bootstrap-select m-bootstrap-select--solid"
-                                                id="m_form_type">
-                                                <option value="">All</option>
-                                            </select>
+                                        <div class="ml-4 dropdown pt-3 pb-4 mt-2">
+                                            <button class="mr-2 border-success bg-white btn btn-secondary dropdown-toggle" type="button"
+                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Lọc theo trạng thái
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="{{route('nha-truong.phu-huynh.list')}}">Tất cả</a>
+                                                <a class="dropdown-item" href="{{route('nha-truong.phu-huynh.list')}}?parent_status=1">Hoạt động</a>
+                                                <a class="dropdown-item" href="{{route('nha-truong.phu-huynh.list')}}?parent_status=2">Khóa</a>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="d-md-none m--margin-bottom-10"></div>
                                 </div>
-                                <div class="col-md-3">
+                                <form action="" class="d-flex">
+                                
+                                <div class="col-md-12">
+                                
                                     <div class="m-input-icon m-input-icon--left">
-                                        <input type="text" class="form-control m-input m-input--solid"
-                                            placeholder="Search..." id="generalSearch">
+                                        <input value="{{request()->get('parent_name')}}" name="parent_name" id="searchByName" type="text" class="form-control m-input m-input--solid"
+                                            placeholder="Tìm kiếm qua tên">
                                         <span class="m-input-icon__icon m-input-icon__icon--left">
                                             <span><i class="la la-search"></i></span>
                                         </span>
@@ -50,10 +41,12 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="m-input-icon m-input-icon--left">
-                                        <button type="button" class="btn btn-secondary">Tìm kiếm</button>
+                                        <button type="submit" class="btn btn-secondary">Tìm kiếm</button>
                                     </div>
                                 </div>
+                                </form>
                             </div>
+
                         </div>
 
                     </div>
@@ -79,11 +72,11 @@
                             <span>Quay lại</span>
                         </span>
                     </a>
-                    <a href="{{route('nha-truong.phu-huynh.create')}}"
+                    <a href="{{route('nha-truong.tre.create')}}"
                         class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                         <span>
                             <i class="la la-plus"></i>
-                            <span>Thêm phụ huynh</span>
+                            <span>Thêm trẻ</span>
                         </span>
                     </a>
                 </div>
@@ -91,15 +84,13 @@
             <div class="m-portlet__body">
 
                 <form class="m-form m-form--label-align-left- m-form--state-" id="m_form">
-
-                    <!--begin: Form Body -->
                     <div class="">
                         <div class="row">
                             <div class="table-responsive">
                                 <table
                                     class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
                                     id="m_table_1" role="grid" aria-describedby="m_table_1_info"
-                                    style="min-width: 990px;width:100%">
+                                    style="min-width: 954px;width:100%">
                                     <thead>
                                         <tr>
                                             <th rowspan="1" colspan="1">ID</th>
@@ -126,6 +117,11 @@
                                     </tfoot>
                                    
                                     <tbody>
+                                    @if(count($parents) == 0)
+                                    <tr>
+                                        <th colspan="8" class="text-center"><label class="col-lg-10 text-danger">Không tìm thấy phụ huynh nào!</label> </th>
+                                    </tr>
+                                    @endif
                                         @foreach($parents as $parent)
                                         <tr role="row" class="odd">
                                             <td class="sorting_1" tabindex="0">{{$parent->id}}</td>
@@ -158,6 +154,7 @@
                                     </tbody>
                                 </table>
 
+
                                 <div id="m_table_1_processing" class="dataTables_processing card"
                                     style="display: none;">
                                     Processing...</div>
@@ -174,4 +171,5 @@
         </div>
     </div>
 </div>
+
 @endsection

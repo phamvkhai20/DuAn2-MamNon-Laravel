@@ -41,7 +41,6 @@ class EditTeacherRequest extends FormRequest
             'phone' => $phone,
             'date_of_birth'=>'required',
             'gender'=>'required',
-            'avatar'=>'mimes:jpeg,jpg,png',
         ];
     }
     public function messages()
@@ -66,7 +65,7 @@ class EditTeacherRequest extends FormRequest
 
             'date_of_birth.required'=>'Vui lòng chọn ngày sinh!',
 
-            'avatar.mimes'=>'Không đúng định dạng ảnh!',
+
         ];
     }
 }

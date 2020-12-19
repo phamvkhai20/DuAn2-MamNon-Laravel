@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Web\GiaoVien;
-
+use Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Assignment;
 use App\Models\Attendance;
@@ -10,6 +10,7 @@ use App\Models\Kid;
 use App\Models\Teacher;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Requests\ChangePassRequest;
 class HomeController extends Controller
 {
     protected function index()
@@ -33,4 +34,34 @@ class HomeController extends Controller
         $infoKid = Kid::where('id',$id)->with('getClass')->first();
         return view('staff.giao-vien.thong-tin-tre.index', ['infoKid' => $infoKid]);
     }
+    function change_password($id){
+        $data['teacher'] = Teacher::find(Auth::guard('teacher')->user()->id);
+        return view('staff.giao-vien.doi-mat-khau.changepassword',$data);
+    }
+    function save_password(ChangePassRequest $request){
+        $hashedPassword = Auth::guard('teacher')->user()->password;
+ 
+       if (\Hash::check($request->oldpass , $hashedPassword )) {
+ 
+         if (!\Hash::check($request->password , $hashedPassword)) {
+ 
+              $teacher = Teacher::find(Auth::guard('teacher')->user()->id);
+              $teacher->password = bcrypt($request->password);
+              Teacher::where( 'id' , Auth::guard('teacher')->user()->id)->update( array( 'password' =>  $teacher->password));
+
+              session()->flash('message','Đã đổi mật khẩu thành công!');
+              return redirect()->back();
+            }
+ 
+            else{
+                  session()->flash('error','Mật khẩu mới không được giống mật khẩu cũ!');
+                  return redirect()->back();
+                }
+           }
+ 
+          else{
+               session()->flash('error','Kiểm tra lại mật khẩu cũ');
+               return redirect()->back();
+             }
+        } 
 }

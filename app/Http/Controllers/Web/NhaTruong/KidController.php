@@ -12,9 +12,26 @@ use Carbon\Carbon;
 
 class KidController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data['kids'] = Kid::orderBy('id', 'desc')->paginate(10);
+        
+        if($request->all() != null && $request['page'] == null){
+            foreach($request->all() as $key => $value){
+                if($key == 'kid_status'){
+                    $data['kids'] = Kid::where("$key","$value")->orderBy('id', 'desc')->paginate(10);
+                }
+                elseif($key == 'kid_name'){
+                    $data['kids'] = Kid::where("$key",'LIKE',"%$value%")->orderBy('id', 'desc')->paginate(10);
+                }
+                elseif($key == 'gender'){
+                    $data['kids'] = Kid::where("$key","$value")->orderBy('id', 'desc')->paginate(10);
+                }
+        
+            }
+        }else{
+            $data['kids'] = Kid::orderBy('id', 'desc')->paginate(10);
+        }
+        
         return view('staff.nha-truong.quan-ly-hoc-sinh.index', $data);
     }
     public function create()
@@ -166,7 +183,9 @@ class KidController extends Controller
         request()->flashOnly('phone');
         request()->flashOnly('email');
         request()->flashOnly('status');
-        return redirect()->route('nha-truong.tre.index');
+
+        session()->flash('message','Thêm mới học sinh thành công!');
+              return redirect()->back();
     }
     public function edit($id)
     {
@@ -190,29 +209,51 @@ class KidController extends Controller
             $data['kid_avatar'] = $kid->kid_avatar;
         }
         $kid->update($data);
-        return redirect()->route('nha-truong.tre.index');
+        session()->flash('message','Cập nhật thông tin trẻ thành công!');
+        return redirect()->back();
     }
     public function change()
     {
-        $data['classes'] = Classes::all();
+        $data['classes'] = Classes::where('status', '1')->get();
         return view('staff.nha-truong.quan-ly-hoc-sinh.change', $data);
     }
     public function save(Request $request)
     {
-        foreach ($_POST['check'] as $id) {
-            $kid = Kid::find($id);
-            $data = Arr::except(request()->all(), ["_token ,'_method'"]);
-            $kid->update($data);
+        if($request->old_class_id == ""){
+            session()->flash('error','Chưa chọn lớp cũ!');
+            return redirect()->back();
         }
-        foreach ($_POST['check'] as $id) {
-            $history = new History();
-            $history->class_id = $request->class_id;
-            $history->kid_id = $id;
-            $history->date = date("Y-m-d");
-            $history->status = '2';
-            $history->save();
+        if($request->class_id == ""){
+            session()->flash('error','Chưa chọn lớp mới!');
+            return redirect()->back();
         }
-        return redirect()->back();
+        if($request->old_class_id = $request->class_id){
+            session()->flash('error','Lớp mới và lớp cũ trùng nhau!');
+            return redirect()->back();
+        }
+        if ($request->has('check')) {
+            foreach ($_POST['check'] as $id) {
+                $kid = Kid::find($id);
+                $data = Arr::except(request()->all(), ["_token ,'_method'"]);
+                $kid->update($data);
+            }
+            foreach ($_POST['check'] as $id) {
+                $history = new History();
+                $history->class_id = $request->class_id;
+                $history->kid_id = $id;
+                $history->date = date("Y-m-d");
+                $history->status = '2';
+                $history->save();
+            }
+            session()->flash('message','Chuyển lớp thành công!');
+            return redirect()->back();
+        }
+        else{
+            session()->flash('error','Không có học sinh để chuyển!');
+            return redirect()->back();
+        
+        }
+        
     }
 
     public function change_list(Request $request)
@@ -277,7 +318,8 @@ class KidController extends Controller
         $kid = Kid::find($id);
         $data = Arr::except(request()->all(), ["_token ,'_method'"]);
         $kid->update($data);
-        return redirect()->route('nha-truong.tre.index');
+        session()->flash('message','Chuyển lớp thành công!');
+        return redirect()->back();
     }
     public function stop($id)
     {
@@ -305,65 +347,6 @@ class KidController extends Controller
         return view('staff.nha-truong.quan-ly-hoc-sinh.history', $data);
     }
 
-    public function filter(Request $request)
-    {
-        if ($request->ajax()) {
-            $output = '';
-            $name = $request->get('name');
-            $status = $request->get('stt');
-           
-            if ($name != '') {
-                $data = DB::table('kids')
-                        ->where("kid_name", 'LIKE', '%'.$name.'%')
-                        ->get();
-            }
-            else{
-                $data = DB::table('kids')
-                        ->orderBy('id', 'desc')
-                        ->get();
-            }
-            
-            $total_row = $data->count();
-            if ($total_row > 0) {
-                foreach($data as $row)
-                {
-                $output .= '
-                
-                                        <tr>
-                                            <td rowspan="1" colspan="1">'.$row->id.'</td>  
-                                            <td rowspan="1" colspan="1">'.$row->kid_name.'</td>
-                                            <td rowspan="1" colspan="1">
-                                            <img src="'.asset('/upload/avatar/'.$row->kid_avatar).'"
-                                            alt="avatar" width="100px">
-                                            </td>
-                                            <td rowspan="1" colspan="1">
-                                            '.$row->gender.'
-                                            </td>
-                                            <td rowspan="1" colspan="1">'.$row->date_of_birth.'</td>
-                                            <td rowspan="1" colspan="1">'.$row->address.'</td>
-                                            <td rowspan="1" colspan="1">'.$row->kid_status.'</td>
-                                        </tr>
-                                   
-            
-        ';
-            }
-        } else {
-                $output = '
-                <tr>
-                    <th colspan="7" class="text-center"><label class="col-lg-10 text-danger">Không tìm thấy học sinh nào!</label> </th>
-                </tr>
-                
-       ';
-            }
-            $data = array(
-                'table_data'  => $output,
-                'total_data'  => $total_row
-            );
-
-            echo json_encode($data);
-        }
-        
-    }
     
     
 }
