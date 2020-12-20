@@ -1,44 +1,160 @@
-<footer class="m-grid__item m-footer ">
-    <div class="m-container m-container--responsive m-container--xxl m-container--full-height m-page__container">
-        <div class="m-footer__wrapper">
-            <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
-                <div class="m-portlet__body  m-portlet__body--no-padding m-page--wide m-header--fixed m-header--fixed-mobile m-footer--push m-aside--offcanvas-default m-header--minimize-off">
-                    <div class="container-fluid  m-header__bottom" >
-                        <div class="container">
-                            <footer class="mb-5">
-                                <div class="row">
-                                    <div class="col-12 col-md-3 col-sm-12">
-                                        <a class="navbar-brand" href="index.php">
-                                            <span>
-                                                <img alt="" style="height:70px"
-                                                    src="{{asset('assets/demo/img/logo/logo-mamNon.png')}}"
-                                                    class="m-brand__logo-desktop" /> </span>
-                                        </a>
+<div class="home_background_black">
+                <div class="container">
+                    <div class="home_intro info_home" style="padding-bottom: 30px; padding-top: 30px">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="footer_box">
+                                    <a href="https://coniu.vn/">
+                                        <div class="footer_logo_box">
+                                            <div class="footer_logo">
+                                                <img class="img-responsive"
+                                                    src="./Phần mềm quản lý và kết nối mầm non Coniu_files/logo.png"
+                                                    alt="Coniu | Phần mềm quản lý và kết nối mầm non"
+                                                    title="Coniu | Phần mềm quản lý và kết nối mầm non" />
+                                            </div>
+                                            <div class="footer_slogan">
+                                                <p>Kết nối yêu thương</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="footer_address">
+                                        <ul>
+                                            <li>
+                                                <a href="https://www.noga.vn/" target="_blank"
+                                                    title="Công ty Cổ phần NOGA">CÔNG TY CỔ PHẦN NOGA</a>
+                                                <br />- ĐKKD: 0107455916, ngày cấp: 01/06/2016, nơi
+                                                cấp: Sở KHĐT HN. <br />- Website:
+                                                <a href="https://www.noga.vn/" target="_blank"
+                                                    title="Công ty Cổ phần NOGA">https://www.noga.vn</a>
+                                                <br />- Địa chỉ : Số 32/241, Đường Chiến Thắng, Hà
+                                                Đông, Hà Nội.
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div class="col-12 col-md-9  col-sm-12" style="margin-top:10px">
-                                        <h4>THÔNG TIN LIÊN HỆ</h4>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="mt-3">
-                                                    <h6 ><i class="fa fa-envelope pr-3"></i> Mamnontuoingoc@gmail.com
-                                                    </h6>
-                                                    <h6><i class="fa fa-phone pr-3 mt-3"></i> 03 345 345 04</h6>
+                                </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <div class="footer_box">
+                                    <div class="row">
+                                        <div class="col-sm-6" style="padding-right: 5px">
+                                            <div class="menu_box" align="left">
+                                                <div class="menu_header">
+                                                    <p>Phụ huynh</p>
+                                                </div>
+                                                <div class="menu_content">
+                                                    <ul>
+                                                        <li>
+                                                            <p>
+                                                                <a target="_blank"
+                                                                    href="https://blog.coniu.vn/coniu-la-gi/">Coniu là
+                                                                    gì?</a>
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <p>
+                                                                <a target="_blank"
+                                                                    href="https://blog.coniu.vn/coniu-la-gi/#faq_phuhuynh">Sử
+                                                                    dụng Coniu thế nào?</a>
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <p>
+                                                                <a target="_blank"
+                                                                    href="https://blog.coniu.vn/coniu-la-gi/#faq_phuhuynh">Người
+                                                                    dùng thắc mắc</a>
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <p>
+                                                                <a target="_blank" href="https://coniu.vn/#">Khi con đi
+                                                                    học</a>
+                                                            </p>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
-                                                <div class="mt-3">
-                                                    <h6>Địa chỉ</h6>
-                                                    <p>Xóm Bến, Tốt Động, Chương Mỹ, Hà Nội</p>
+                                        </div>
+                                        <div class="col-sm-6" style="padding-left: 5px">
+                                            <div class="menu_box" align="left">
+                                                <div class="menu_header">
+                                                    <p>Trường mầm non</p>
+                                                </div>
+                                                <div class="menu_content">
+                                                    <ul>
+                                                        <li>
+                                                            <p>
+                                                                <a target="_blank"
+                                                                    href="https://blog.coniu.vn/coniu-la-gi/">Coniu hỗ
+                                                                    trợ trường những gì?</a>
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <p>
+                                                                <a target="_blank"
+                                                                    href="https://blog.coniu.vn/coniu-la-gi/">Đặc điểm
+                                                                    nổi bật</a>
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <p>
+                                                                <a target="_blank"
+                                                                    href="https://blog.coniu.vn/coniu-la-gi/#faq_nhatruong">Câu
+                                                                    hỏi thường gặp</a>
+                                                            </p>
+                                                        </li>
+                                                        <li>
+                                                            <p>
+                                                                <a target="_blank"
+                                                                    href="https://blog.coniu.vn/category/tin-mam-non/huong-dan-su-dung-ung-dung-coniu/tai-khoan-quan-ly/">Hướng
+                                                                    dẫn sử dụng</a>
+                                                            </p>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </footer>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="footer_box">
+                                    <div class="menu_box" align="left">
+                                        <div class="menu_header">
+                                            <p>Hợp tác</p>
+                                        </div>
+                                        <div class="menu_content">
+                                            <ul>
+                                                <li>
+                                                    <p>
+                                                        <a target="_blank" href="https://coniu.vn/#">Chương trình hợp
+                                                            tác</a>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>
+                                                        Điện thoại:
+                                                        <strong><a href="tel:0966 900 466">0966 900 466</a></strong>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>
+                                                        Email:
+                                                        <a href="mailto:lienhe@coniu.vn">lienhe@coniu.vn</a>
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p>
+                                                        Facebook:
+                                                        <a href="https://facebook.com/coniu.vn"
+                                                            target="_blank">fb.com/coniu.vn</a>
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</footer>
