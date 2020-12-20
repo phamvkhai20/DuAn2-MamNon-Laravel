@@ -453,9 +453,9 @@
 
     function thongbao() {
         var x = document.querySelector('#thongbao').value;
-        x=="oke" && swal("Xong!", "Bạn đã cập nhật điểm danh thành công!", "success");
-        x=="error" && swal("Lỗi!", "Điểm danh không thành công!", "error");
-        
+        console.log(x);
+        x==="ok"&& swal("Xong!", "Bạn đã cập nhật điểm danh thành công!", "success");
+        x==="error"&& swal("Xong!", "Điểm danh không thành công!", "error");
     }
     setTimeout(() => {
         thongbao();
