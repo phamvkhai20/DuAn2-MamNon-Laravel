@@ -10,10 +10,22 @@ use Arr;
 
 class TeacherController extends Controller
 {
-   public function index()
+   public function index(Request $request)
    {
-      $data['teachers'] = Teacher::paginate(10);
-      return view('staff.nha-truong.quan-ly-giao-vien.index', $data);
+      if($request->all() != null && $request['page'] == null){
+         foreach($request->all() as $key => $value){
+             if($key == 'status'){
+                 $data['teachers'] = Teacher::where("$key","$value")->orderBy('id', 'desc')->paginate(10);
+             }
+             elseif($key == 'fullname'){
+               $data['teachers'] = Teacher::where("$key",'LIKE',"%$value%")->orderBy('id', 'desc')->paginate(10);
+          }
+
+         }
+     }else{
+         $data['teachers'] = Teacher::orderBy('id', 'desc')->paginate(10);
+     }
+     return view('staff.nha-truong.quan-ly-giao-vien.index', $data);
    }
    public function getTeacherInClass(Request $request)
    {
@@ -50,18 +62,19 @@ class TeacherController extends Controller
       request()->flashOnly('status');
       $data['password'] = bcrypt('123456');
       $data['status'] = '1';
-      $data['teacher_type_id'] = 1;
       if ($request->hasFile('avatar')) {
          $avatar = $request->file('avatar');
-         $getavatar = time() . '_' . $avatar->getClientOriginalName();
+         $getAvatar = time() . '_' . $avatar->getClientOriginalName();
          $destinationPath = public_path('upload/avatar');
-         $avatar->move($destinationPath, $getavatar);
-         $data['avatar'] = $getavatar;
+         $avatar->move($destinationPath, $getAvatar);
+         $data['avatar'] = $getAvatar;
       } else {
-         $data['avatar'] = '';
+         $data['avatar'] = "";
       }
+      // dd($data);
       Teacher::create($data);
-      return redirect()->route('nha-truong.giao-vien.list');
+      session()->flash('message','Thêm mới giáo viên thành công!');
+        return redirect()->back();
    }
 
    public function edit($id)
@@ -83,10 +96,11 @@ class TeacherController extends Controller
          $avatar->move($destinationPath, $getavatar);
          $data['avatar'] = $getavatar;
       } else {
-         $data['avatar'] = $teacher->avatar;
+         $data['avatar'] = '';
       }
-      $data['teacher_type_id'] = 1;
+      
       Teacher::find($id)->update($data);
-      return redirect()->route('nha-truong.giao-vien.list');
+      session()->flash('message','Cập nhật thông tin giáo viên thành công!');
+        return redirect()->back();
    }
 }

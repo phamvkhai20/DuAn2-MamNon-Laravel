@@ -21,6 +21,10 @@ Route::group([
     'middleware' => ['check_school'],
 ], function () {
     Route::get('/', 'Web\NhaTruong\HomeController@index')->name('nha-truong.index');
+    Route::get('/doi-mat-khau/{id}', 'Web\NhaTruong\HomeController@change_password')->name('nha-truong.change_password');
+    Route::post('/doi-mat-khau/{id}', 'Web\NhaTruong\HomeController@save_password')->name('nha-truong.save_password');
+    Route::get('/ho-so', 'AdmissionRecordsController@admission')->name('nha-truong.admission');
+    Route::get('/ho-so/updateStatus', 'AdmissionRecordsController@updateStatus')->name('nha-truong.updateStatus');
     //lớp
         
     Route::get('get-data-attendance', 'Web\NhaTruong\HomeController@chartAttendance')
@@ -44,6 +48,13 @@ Route::group([
 
         Route::get('tot-nghiep/{id}', 'Web\NhaTruong\ClassController@graduate')->name('lop.graduate');
         Route::post('tot-nghiep/{id}', 'Web\NhaTruong\ClassController@save_graduate')->name('lop.save_graduate');
+
+        Route::get('len-lop', 'Web\NhaTruong\ClassController@class_up')->name('lop.class_up');
+        Route::post('len-lop', 'Web\NhaTruong\ClassController@save_class_up')->name('lop.save_class_up');
+        Route::post('grade', 'Web\NhaTruong\ClassController@grade')->name('lop.grade');
+
+        Route::get('xep-lop', 'Web\NhaTruong\ClassController@arrange')->name('lop.arrange');
+        Route::post('xep-lop', 'Web\NhaTruong\ClassController@save_arrange')->name('lop.save_arrange');
     });
 
     //khối
@@ -134,6 +145,7 @@ Route::group([
         'prefix' => 'tre',
     ], function () {
         Route::get('danh-sach', 'Web\NhaTruong\KidController@index')->name('tre.index');
+        Route::get('danh-sach/filter', 'Web\NhaTruong\KidController@filter')->name('tre.filter');
         Route::get('them', 'Web\NhaTruong\KidController@create')->name('tre.create');
         Route::get('them/search', 'Web\NhaTruong\KidController@search')->name('tre.search');
         Route::post('them', 'Web\NhaTruong\KidController@store')->name('tre.store');
@@ -148,6 +160,9 @@ Route::group([
         Route::get('thoi-hoc/{id}', 'Web\NhaTruong\KidController@stop')->name('tre.stop');
         Route::post('thoi-hoc/{id}', 'Web\NhaTruong\KidController@save_stop')->name('tre.save_stop');
         Route::get('lich-su/{id}', 'Web\NhaTruong\KidController@history')->name('tre.history');
+        Route::get('xep-lop', 'Web\NhaTruong\KidController@arrange')->name('tre.arrange');
+        Route::post('search', 'Web\NhaTruong\KidController@searchByGrade')->name('tre.searchByGrade');
+        Route::post('xep-lop', 'Web\NhaTruong\KidController@save_arrange')->name('tre.save_arrange');
 
     });
     Route::group([
@@ -171,6 +186,9 @@ Route::group([
     'prefix' => 'giao-vien',
     'middleware' => ['check_teacher'],
 ], function () {
+    Route::get('/doi-mat-khau/{id}', 'Web\GiaoVien\HomeController@change_password')->name('giao-vien.change_password');
+    Route::post('/doi-mat-khau/{id}', 'Web\GiaoVien\HomeController@save_password')->name('giao-vien.save_password');
+    
 
     Route::group([
         'prefix' => 'thong-bao',

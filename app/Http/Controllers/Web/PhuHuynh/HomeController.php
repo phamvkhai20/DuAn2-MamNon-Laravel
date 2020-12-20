@@ -7,9 +7,12 @@ use App\Models\Assignment;
 use App\Models\Attendance;
 use App\Models\Classes;
 use App\Models\Kid;
+use App\Models\Parents;
 use Carbon\Carbon;
+use Auth;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use App\Http\Requests\ChangePassRequest;
 class HomeController extends Controller
 {
     protected function index()
@@ -32,4 +35,35 @@ class HomeController extends Controller
         session(['id_kid_default' => $request->get('id')]);
         return redirect()->route('phu-huynh.index', ['id' => $request->get('id')]);
     }
+
+    function change_password($id){
+        $data['parent'] = Parents::find(Auth::guard('parent')->user()->id);
+        return view('staff.phu-huynh.doi-mat-khau.changepassword',$data);
+    }
+    function save_password(ChangePassRequest $request){
+        $hashedPassword = Auth::guard('parent')->user()->password;
+ 
+       if (\Hash::check($request->oldpass , $hashedPassword )) {
+ 
+         if (!\Hash::check($request->password , $hashedPassword)) {
+ 
+              $parent =Parents::find(Auth::guard('parent')->user()->id);
+              $parent->password = bcrypt($request->password);
+              Parents::where( 'id' , Auth::guard('parent')->user()->id)->update( array( 'password' =>  $parent->password));
+
+              session()->flash('message','Đã đổi mật khẩu thành công!');
+              return redirect()->back();
+            }
+ 
+            else{
+                  session()->flash('error','Mật khẩu mới không được giống mật khẩu cũ!');
+                  return redirect()->back();
+                }
+           }
+ 
+          else{
+               session()->flash('error','Kiểm tra lại mật khẩu cũ');
+               return redirect()->back();
+             }
+        } 
 }

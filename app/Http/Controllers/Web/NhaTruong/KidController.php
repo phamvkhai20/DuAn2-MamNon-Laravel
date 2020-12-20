@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web\NhaTruong;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Kid, Classes, Parents,Grade,History};
+use App\Models\{Kid, Classes, Parents,GradeModel,History,SchoolYearModel, Grade};
 use App\Http\Requests\Kid\{KidRequest, EditKidRequest};
 use DB;
 use Arr;
@@ -12,9 +12,26 @@ use Carbon\Carbon;
 
 class KidController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data['kids'] = Kid::orderBy('id', 'desc')->paginate(10);
+        
+        if($request->all() != null && $request['page'] == null){
+            foreach($request->all() as $key => $value){
+                if($key == 'kid_status'){
+                    $data['kids'] = Kid::where("$key","$value")->orderBy('id', 'desc')->paginate(10);
+                }
+                elseif($key == 'kid_name'){
+                    $data['kids'] = Kid::where("$key",'LIKE',"%$value%")->orderBy('id', 'desc')->paginate(10);
+                }
+                elseif($key == 'gender'){
+                    $data['kids'] = Kid::where("$key","$value")->orderBy('id', 'desc')->paginate(10);
+                }
+        
+            }
+        }else{
+            $data['kids'] = Kid::orderBy('id', 'desc')->paginate(10);
+        }
+        
         return view('staff.nha-truong.quan-ly-hoc-sinh.index', $data);
     }
     public function create()
@@ -92,6 +109,8 @@ class KidController extends Controller
             $kid->address = $request->address;
             $kid->admission_date = $request->admission_date;
             $kid->class_id = $request->class_id;
+            $grade_id = Classes::where('id', $request->class_id)->first()->grade_id;
+            $kid->grade_id = $grade_id;
             $kid->kid_status = '1';
             $kid->description = $request->description;
             if ($request->hasFile('kid_avatar')) {
@@ -133,6 +152,9 @@ class KidController extends Controller
             $kid->address = $request->address;
             $kid->admission_date = $request->admission_date;
             $kid->class_id = $request->class_id;
+            $grade_id = Classes::where('id', $request->class_id)->first()->grade_id;
+            $kid->grade_id = $grade_id;
+            
             $kid->kid_status = '1';
             $kid->description = $request->description;
             $avatar = $request->file('kid_avatar');
@@ -166,7 +188,9 @@ class KidController extends Controller
         request()->flashOnly('phone');
         request()->flashOnly('email');
         request()->flashOnly('status');
-        return redirect()->route('nha-truong.tre.index');
+
+        session()->flash('message','Thêm mới học sinh thành công!');
+              return redirect()->back();
     }
     public function edit($id)
     {
@@ -190,29 +214,51 @@ class KidController extends Controller
             $data['kid_avatar'] = $kid->kid_avatar;
         }
         $kid->update($data);
-        return redirect()->route('nha-truong.tre.index');
+        session()->flash('message','Cập nhật thông tin trẻ thành công!');
+        return redirect()->back();
     }
     public function change()
     {
-        $data['classes'] = Classes::all();
+        $data['classes'] = Classes::where('status', '1')->get();
         return view('staff.nha-truong.quan-ly-hoc-sinh.change', $data);
     }
     public function save(Request $request)
     {
-        foreach ($_POST['check'] as $id) {
-            $kid = Kid::find($id);
-            $data = Arr::except(request()->all(), ["_token ,'_method'"]);
-            $kid->update($data);
+        if($request->old_class_id == ""){
+            session()->flash('error','Chưa chọn lớp cũ!');
+            return redirect()->back();
         }
-        foreach ($_POST['check'] as $id) {
-            $history = new History();
-            $history->class_id = $request->class_id;
-            $history->kid_id = $id;
-            $history->date = date("Y-m-d");
-            $history->status = '2';
-            $history->save();
+        if($request->class_id == ""){
+            session()->flash('error','Chưa chọn lớp mới!');
+            return redirect()->back();
         }
-        return redirect()->back();
+        if($request->old_class_id = $request->class_id){
+            session()->flash('error','Lớp mới và lớp cũ trùng nhau!');
+            return redirect()->back();
+        }
+        if ($request->has('check')) {
+            foreach ($_POST['check'] as $id) {
+                $kid = Kid::find($id);
+                $data = Arr::except(request()->all(), ["_token ,'_method'"]);
+                $kid->update($data);
+            }
+            foreach ($_POST['check'] as $id) {
+                $history = new History();
+                $history->class_id = $request->class_id;
+                $history->kid_id = $id;
+                $history->date = date("Y-m-d");
+                $history->status = '2';
+                $history->save();
+            }
+            session()->flash('message','Chuyển lớp thành công!');
+            return redirect()->back();
+        }
+        else{
+            session()->flash('error','Không có học sinh để chuyển!');
+            return redirect()->back();
+        
+        }
+        
     }
 
     public function change_list(Request $request)
@@ -268,8 +314,10 @@ class KidController extends Controller
         $data['classes'] = DB::table('classes')
                             ->where('grade_id','=',$grade_id)
                             ->where('id','!=', $data['kid']->class_id)
+                            ->where('status','=', '1')
                             ->get();
         // dd($data['classes']);
+        
         return view('staff.nha-truong.quan-ly-hoc-sinh.change_class', $data);
     }
     public function save_change(Request $request, $id)
@@ -277,7 +325,15 @@ class KidController extends Controller
         $kid = Kid::find($id);
         $data = Arr::except(request()->all(), ["_token ,'_method'"]);
         $kid->update($data);
-        return redirect()->route('nha-truong.tre.index');
+        
+        $history = new History();
+                $history->class_id = $request->class_id;
+                $history->kid_id = $id;
+                $history->date = date("Y-m-d");
+                $history->status = '2';
+                $history->save();
+        session()->flash('message','Chuyển lớp thành công!');
+        return redirect()->back();
     }
     public function stop($id)
     {
@@ -298,11 +354,67 @@ class KidController extends Controller
         $history->save();
         return redirect()->route('nha-truong.tre.index');
     }
+    
 
     public function history($id)
     {
         $data['histories'] = History::where('kid_id',$id)->orderBy('id','desc')->paginate(10);
         return view('staff.nha-truong.quan-ly-hoc-sinh.history', $data);
     }
-    
+    public function arrange(){
+        $data['grades'] = GradeModel::all();
+        return view('staff.nha-truong.quan-ly-hoc-sinh.arrange',$data);
+    }
+    public function save_arrange(Request $request)
+    {
+        if($request->class_id == "" || $request->grade_id == ""){
+            session()->flash('error','Chưa chọn khối hoặc lớp!');
+            return redirect()->back();
+        }
+        if ($request->has('check')) {
+            foreach ($_POST['check'] as $id) {
+                $kid = Kid::find($id);
+                $data['class_id'] = $request->class_id;
+                $kid->update($data);
+            }
+            foreach ($_POST['check'] as $id) {
+                $history = new History();
+                $history->class_id = $request->class_id;
+                $history->kid_id = $id;
+                $history->date = date("Y-m-d");
+                $history->status = '1';
+                $history->save();
+            }
+            session()->flash('message','Xếp lớp thành công!');
+            return redirect()->back();
+        }
+        else{
+            session()->flash('error','Chưa chọn học sinh!');
+            return redirect()->back();
+        
+        }
+    }
+    public function searchByGrade(Request $request)
+    {    
+        if ($request->ajax()) {
+            $school_year_id = SchoolYearModel::orderBy('id', 'desc')->limit(1)->first()->id;
+            $classes = Classes::where("grade_id",$request->grade_id)
+                        ->where("school_year_id", $school_year_id)
+                        ->select('id', 'name')->get();
+
+            $kids = Kid::where("grade_id",$request->grade_id)
+                        ->where("class_id", null)
+                        ->get();
+            $response = [
+                            'classes' => $classes,
+                            'kids' => $kids,
+                        ];
+                        
+
+            return response()->json($response);
+            
+
+		
+    }
+}
 }

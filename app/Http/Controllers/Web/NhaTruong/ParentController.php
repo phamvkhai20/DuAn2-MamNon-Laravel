@@ -11,9 +11,21 @@ use App\Models\Classes;
 
 class ParentController extends Controller
 {
-   public function index()
+   public function index(Request $request)
    {
-      $data['parents'] = Parents::with('Kids')->paginate(10);
+      if($request->all() != null && $request['page'] == null){
+         foreach($request->all() as $key => $value){
+             if($key == 'parent_status'){
+                 $data['parents'] = Parents::where("$key","$value")->orderBy('id', 'desc')->paginate(10);
+             }
+             elseif($key == 'parent_name'){
+               $data['parents'] = Parents::where("$key",'LIKE',"%$value%")->orderBy('id', 'desc')->paginate(10);
+          }
+         
+         }
+     }else{
+         $data['parents'] = Parents::orderBy('id', 'desc')->paginate(10);
+     }
       return view('staff.nha-truong.quan-ly-phu-huynh.index', $data);
    }
    public function getParent(Request $request)
@@ -50,7 +62,8 @@ class ParentController extends Controller
          $data['parent_avatar'] = "";
       }
       Parents::create($data);
-      return redirect()->route('nha-truong.phu-huynh.list');
+      session()->flash('message','Thêm mới phụ huynh thành công!');
+        return redirect()->back();
    }
 
    public function edit($id)
@@ -74,6 +87,7 @@ class ParentController extends Controller
          $data['parent_avatar'] = $parent->parent_avatar;
       }
       $parent->update($data);
-      return redirect()->route('nha-truong.phu-huynh.list');
+      session()->flash('message','Cập nhật thông tin phụ huynh thành công!');
+        return redirect()->back();
    }
 }

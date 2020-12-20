@@ -52,7 +52,7 @@ class KidRequest extends FormRequest
                 'kid_avatar'=>'required||mimes:jpeg,jpg,png',
     
                 'parent_name'=>'required|min:6',
-                'phone' => ['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10'.'unique:parents'],
+                'phone' => ['required','regex:/^0{1}[3|9]{1}[0-9]{8}/','digits:10','unique:parents'],
                 'email' => 'required|email|unique:parents',
                 'parent_avatar'=>'required||mimes:jpeg,jpg,png',
             ];

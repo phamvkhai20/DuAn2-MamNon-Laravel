@@ -1,8 +1,9 @@
+
 @extends('./staff/nha-truong/layouts/layout')
 @section('title','Thêm mới giáo viên')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
-    <div class="">
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <div class="m-content">
         <div class="">
             <!--begin::Portlet-->
             <div class="m-portlet ">
@@ -24,80 +25,94 @@
                         </a>
                     </div>
                 </div>
-            <div class="m-portlet__body">
-            <form class="m-form row" enctype="multipart/form-data"
-            action="{{ route('nha-truong.giao-vien.store') }}" method="post">
-            @csrf
-            <div class="col-lg-6">
+                @if(session('message'))
+        <div class="alert alert-success text-center" role="alert">
+            {{session('message') }}
+        </div>
+     @endif   
                 <div class="m-portlet__body">
-                    <div class="m-form__section m-form__section--first">
-                        <div class="form-group m-form__group">
-                            <label for="example_input_full_name">Tên:</label>
-                            <input name="fullname" type="text" class="form-control m-input"
-                                placeholder="Nhập đầy đủ tên" value="{{ old('fullname') }}">
-                            {!! ShowErrors($errors,'fullname') !!}
-                            <!-- <span class="m-form__help">Please enter your full name</span> -->
-                        </div>
-                        <div class="form-group m-form__group">
-                            <label>Email :</label>
-                            <input name="email" type="text" class="form-control m-input"
-                                placeholder="Nhập email đầy đủ" value="{{ old('email') }}">
+                    <form enctype="multipart/form-data" action="{{route('nha-truong.giao-vien.store')}}" method="post"
+                        class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                        @csrf
+                        <div class="m-portlet__body">
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">Tên giáo viên</label>
+                                <div class="col-lg-6">
+                                    <input name="fullname" type="text" class="form-control m-input"
+                                        placeholder="Nhập tên giáo viên" value="{{ old('fullname') }}">
+                                        
+                                    {!! ShowErrors($errors,'fullname') !!}
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">Email</label>
+                                <div class="col-lg-6">
+                                <input name="email" type="text" class="form-control m-input"
+                                placeholder="Nhập email " value="{{ old('email') }}">
+                                
                             {!! ShowErrors($errors,'email') !!}
-                            <!-- <span class="m-form__help">We'll never share your email with anyone else</span> -->
-                        </div>
-                        <div class="form-group m-form__group">
-                            <label>Số Điện Thoại</label>
-                            
-                            <input name="phone" type="text" class="form-control m-input"
-                                placeholder="Nhập sđt đầy đủ" value="{{ old('phone') }}">
-                                <input name="teacher_type_id" type="hidden" class="form-control m-input"
-                                placeholder="Nhập sđt đầy đủ" value="1">
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">Số điện thoại</label>
+                                <div class="col-lg-6">
+                                <input name="phone" type="text" class="form-control m-input"
+                                placeholder="Nhập số điện thoại" value="{{ old('phone') }}">
+                                
                             {!! ShowErrors($errors,'phone') !!}
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="m-portlet__body">
-                    <div class="m-form__section m-form__section--first">
-                        <div class="form-group m-form__group">
-                            <label>Ngày Sinh</label>
-                            <input name="date_of_birth" type="date" class="form-control m-input" placeholder=""
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">Ngày sinh</label>
+                                <div class="col-lg-6">
+                                <input name="date_of_birth" type="date" class="form-control m-input" placeholder=""
                                 value="{{ old('date_of_birth') }}">
                             {!! ShowErrors($errors,'date_of_birth') !!}
-                        </div>
-                        <div class="form-group m-form__group">
-                            <label for="example_input_full_name">Giới Tính:</label>
-                            <select name="gender" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">Giới tính</label>
+                                <div class="col-lg-6">
+                                <select name="gender" class="form-control">
                                 <option value="">Chọn giới tính</option>
                                 <option @if (old('gender')=="1" ) {{ 'selected' }} @endif value="1">Nam</option>
                                 <option @if (old('gender')=="0" ) {{ 'selected' }} @endif value="0">Nữ</option>
                             </select>
+             
                             {!! ShowErrors($errors,'gender') !!}
-                        </div>
-                        <div class="form-group m-form__group">
-                            <label>Ảnh</label>
-                            <img id="avatar">
-                            <input name="avatar" type="file" class="form-control m-input"
-                                onchange="readURL(this);">
-                            {!! ShowErrors($errors,'avatar') !!}
-                        </div>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="m-form__actions m-form__actions">
-                        <button type="submit" class="btn btn-primary">Thêm</button>
-                        <a href="{{route('giao-vien.index')}}" class="btn btn-secondary">Quay Lại</a>
-                    </div>
-                </div>
-            </div>
-        </form>
-                </div>
-            </div>
+                                </div>
+                            </div>
+                            <div class="form-group m-form__group row">
+                                <label class="col-lg-2 col-form-label">Ảnh đại diện</label>
+                                <div class="col-lg-6">
+                                <img id="avatar">
+                                <br>
+                                <input name="avatar" type="file" onchange="readURL(this);">
+                                <br>
+                                {!! ShowErrors($errors,'avatar') !!}
+                                </div>
+                            </div>
 
+                        </div>
+                        <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                            <div class="m-form__actions m-form__actions--solid">
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-success">Thêm</button>
+                                        <a href="{{route('nha-truong.lop.index')}}" class="btn btn-secondary">Quay
+                                            Lại</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="hahaa">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-
     </div>
 </div>
 <script>
@@ -113,5 +128,4 @@ function readURL(input) {
     }
 }
 </script>
-
 @endsection

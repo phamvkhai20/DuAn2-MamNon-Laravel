@@ -122,4 +122,100 @@ class ClassController extends Controller
         }
         return redirect()->route('nha-truong.lop.index');
     }
+
+    public function class_up()
+    {
+        $data['classes'] = Classes::where('status', '1')->get();
+        $data['grades'] = GradeModel::all();
+        return view('staff.nha-truong.quan-ly-lop.classup',$data);
+    }
+    public function save_class_up(Request $request)
+    {   
+            request()->flashOnly('old_class_id');
+            request()->flashOnly('class_id');
+            request()->flashOnly('grade_id');
+        if ($request->has('check')) {
+            
+            if($request->old_class_id == $request->class_id){
+                session()->flash('error','Lớp mới và lớp cũ trùng nhau!');
+                return redirect()->back();
+            }
+            if($request->old_class_id == ""){
+                session()->flash('error','Chưa chọn lớp cũ!');
+                return redirect()->back();
+            }
+            if($request->class_id == ""){
+                session()->flash('error','Chưa chọn lớp mới!');
+                return redirect()->back();
+            }
+            $class = Classes::find($request->old_class_id);
+            $data['status'] = '0';
+            $class->update($data);
+
+            $kids = Kid::where('class_id',$request->old_class_id)->get();
+            foreach ($kids as $kid_id) {
+            $kid = Kid::find($kid_id->id);
+            $data['class_id'] = $request->class_id;
+            $kid->update($data);
+
+            $history = new History();
+            $history->class_id = $request->class_id;
+            $history->kid_id = $kid_id->id;
+            $history->date = date("Y-m-d");
+            $history->status = '3';
+            $history->save();
+            }
+        }
+        else{
+            if($request->old_class_id == ""){
+                session()->flash('error','Chưa chọn lớp cũ!');
+                return redirect()->back();
+            }
+            if($request->grade_id == ""){
+                session()->flash('error','Chưa chọn khối!');
+                return redirect()->back();
+            }
+            if($request->class_name == ""){
+                session()->flash('error','Vui lòng nhập tên lớp mới!');
+                return redirect()->back();
+            }
+            
+            $class = Classes::find($request->old_class_id);
+            $data['status'] = '0';
+            $class->update($data);
+
+            $new_class = new Classes();
+            $new_class->name = $request->class_name;
+            $new_class->grade_id = $request->grade_id;
+            $new_class->school_year_id = SchoolYearModel::orderBy('id', 'desc')->limit(1)->first()->id;
+            $new_class->status = '1';
+
+            $new_class->save($data);
+
+            $kids = Kid::where('class_id',$request->old_class_id)->get();
+            foreach ($kids as $kid_id) {
+            $kid = Kid::find($kid_id->id);
+            $data['class_id'] = $new_class->id;
+            $kid->update($data);
+
+            $history = new History();
+            $history->class_id = $new_class->id;
+            $history->kid_id = $kid_id->id;
+            $history->date = date("Y-m-d");
+            $history->status = '3';
+            $history->save();
+        }
+    } 
+        session()->flash('message','Lên lớp thành công!');
+        return redirect()->back();
+    }
+    public function grade(Request $request)
+    {    
+        if ($request->ajax()) {
+            $classes = Classes::where('grade_id', $request->grade_id)->where('status', '1')
+            ->select('id', 'name')->get();
+			return response()->json($classes);
+        }  
+    }
+    
 }

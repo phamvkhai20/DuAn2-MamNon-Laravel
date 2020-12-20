@@ -24,6 +24,11 @@
                         </a>
                     </div>
                 </div>
+                @if(session('message'))
+        <div class="alert alert-success text-center" role="alert">
+            {{session('message') }}
+        </div>
+     @endif   
             <div class="m-portlet__body">
              <form class="m-form row" enctype="multipart/form-data"
                     action="{{ route('nha-truong.phu-huynh.update', $parent->id) }}" method="post">
