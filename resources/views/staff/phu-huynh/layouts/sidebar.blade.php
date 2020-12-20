@@ -37,11 +37,11 @@
                             </div>
                             @if(session('id_kid_default')==$kid->id)
                             <span class=" m-menu__link-text col-md-7">
-                              {{strstr($kid->kid_name,' ')}}
+                                {{strstr($kid->kid_name,' ')}}
                             </span>
                             @else
                             <span class=" m-menu__link-text col-md-7" style="color:#fff">
-                               {{strstr($kid->kid_name,' ')}}
+                                {{strstr($kid->kid_name,' ')}}
                             </span>
                             @endif
 
@@ -72,35 +72,16 @@
                     </ul>
                 </div>
             </li>
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a
-                    href="javascript:;" class="m-menu__link m-menu__toggle"><i
-                        class="m-menu__link-icon la la-life-saver"></i><span class="m-menu__link-text">Dịch vụ
-                    </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
-                <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
-                    <ul class="m-menu__subnav">
-                        <li class="m-menu__item " aria-haspopup="true"><a href="" class="m-menu__link "><i
-                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">Đăng kí dịch vụ</span></a></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a href="" class="m-menu__link "><i
-                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">Thông tin sử dụng dịch vụ</span></a></li>
-                    </ul>
-                </div>
-            </li>
             <li class="m-menu__section ">
                 <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin cho trẻ</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a
-                    href="" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-book"></i><span
+                    href="{{route('phu-huynh.so-lien-lac',['id'=>session('id_kid_default')])}}"
+                    class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-book"></i><span
                         class="m-menu__link-text">Sổ liên lạc
                     </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
 
-            </li>
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a
-                    href="" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-bell"></i><span
-                        class="m-menu__link-text">Thông báo - sự kiện
-                    </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
             </li>
             <li class="m-menu__section ">
                 <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Tiện ích nhà trường</h4>

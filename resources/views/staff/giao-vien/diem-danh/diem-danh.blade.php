@@ -3,30 +3,37 @@
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper" onload="thongbao()">
     <!-- END: Subheader -->
-    <div class="m-portlet box_tille_ row title_attendance" role="tablist">
-        <h3 class="col-lg-5" style="padding-top:5px">
-            Điểm danh
-            @php
-            use Carbon\Carbon;
-            $date= substr(Carbon::now('Asia/Ho_Chi_Minh'),11,5)
-            @endphp
-        </h3>
-        <div class="col-lg-4">
-            <input type="date" class="form-control m-input" id="date_attendance" />
-        </div>
+        <form class="m-portlet box_tille_ row title_attendance"  method="get" action="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}">
+            @csrf
+            <h3 class="col-lg-4" style="padding-top:5px">
+                Điểm danh
+                @php
+                use Carbon\Carbon;
+                $date= substr(Carbon::now('Asia/Ho_Chi_Minh'),11,5)
+                @endphp
+            </h3>
+            <div class="col-lg-4">
+                <input type="date" name="date" class="form-control m-input" id="date_attendance" value="{{$dateAttendance}}"/>
+            </div>
+            <div class="col-lg-3">
+                <button class="btn btn-primary " style="">
+                    Tìm kiếm
+                </button>
+            </div>
+       
         <script>
         var d = new Date();
-        document.getElementById("date_attendance").value = d.getFullYear() + '-' + (
-            d.getMonth() + 1) + '-' + d.getDate();
         document.getElementById("date_attendance").max = d.getFullYear() + '-' + (
             d.getMonth() + 1) + '-' + d.getDate();
         </script>
-    </div>
+    </form>
     <input type="hidden" id="thongbao" value="{{session('status')}}">
-    @if(count($attendanceTrue)>0&&$idTeacher!==$attendanceTrue[0]->teacher_1&&empty($attendanceTrue[0]->teacher_2))
+    @if(count($attendanceTrue)>0&&$idTeacher!==$attendanceTrue[0]->teacher_1)
     <div class="m-portlet box_tille_">
         <div class="m-portlet__body">
-            <form class="m-form m-form--label-align-left- m-form--state-" id="m_form">
+            <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" method="post"
+                action="{{route('giao-vien.xac-nhan-diem-danh')}}">
+                @csrf
                 <div class="">
                     <div class="row">
                         <div class="table-responsive">
@@ -35,7 +42,6 @@
                                 id="m_table_1" role="grid" aria-describedby="m_table_1_info"
                                 style="min-width: 990px;width:100%">
                                 <thead>
-
                                     <tr>
                                         <th rowspan="1" colspan="1">ID</th>
                                         <th rowspan="1" colspan="1">Ảnh</th>
@@ -48,12 +54,14 @@
                                 </thead>
                                 <tbody>
                                     @foreach($attendanceTrue as $key=>$attendance)
+                                    @if(empty($attendance->teacher_2))
                                     <tr role="row" class="odd">
                                         <td>{{$key+1}}</td>
                                         <td>
                                             <img src="{{asset('/upload/avatar/'.$attendance->kid->kid_avatar)}}"
                                                 alt="avatar" style="width:50px;border-radius: 10px;">
                                         </td>
+                                        <input type="hidden" name="class" value="{{$attendance->kid->class_id}}">
                                         <td>{{$attendance->kid->kid_name}}</td>
                                         <td>{{$attendance->kid->gender==1?"Nam":"Nữ"}}</td>
                                         <td>{{$attendance->kid->date_of_birth}}</td>
@@ -61,24 +69,34 @@
                                         <td>
                                             <span class="m-switch m-switch--outline m-switch--icon m-switch--primary">
                                                 <label>
-                                                    <input type="checkbox" checked="checked" name="">
+                                                    <input type="checkbox" name="confirm[{{$attendance->kid->id}}]">
                                                     <span></span>
                                                 </label>
                                             </span>
                                         </td>
                                     </tr>
+                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>
                             <div id="m_table_1_processing" class="dataTables_processing card" style="display: none;">
                                 Processing...</div>
                         </div>
-                       
+
                     </div>
+                    <input type="hidden" name="dateConfirm" id="dateConfirm">
+                    <script>
+                    var d = new Date();
+                    document.getElementById("dateConfirm").value = d.getFullYear() + '-' + (
+                        d.getMonth() + 1) + '-' + d.getDate();
+                    document.getElementById("dateConfirm").max = d.getFullYear() + '-' + (
+                        d.getMonth() + 1) + '-' + d.getDate();
+                    </script>
+                    <input type="hidden" name="id_teacher" value="{{$idTeacher}}">
                     <div class="m-form__actions m-form__actions--solid m-form__actions--right">
-                            <button type="submit" class="btn btn-primary">Xác nhận & Lưu</button>
-                            <a href="{{route('nha-truong.tre.index')}}" class="btn btn-secondary">Quay Lại</a>
-                        </div>
+                        <button type="submit" class="btn btn-primary">Xác nhận & Lưu</button>
+                        <a href="{{route('nha-truong.tre.index')}}" class="btn btn-secondary">Quay Lại</a>
+                    </div>
                 </div>
             </form>
         </div>
@@ -120,9 +138,9 @@
                                     @endif
                                     <div class="box_group_name">
                                         <b> {{$kid->kid_name}}</b>
-
+                                        <input type="hidden" name="dateAttendance" class="form-control m-input" id="date_attendance" value="{{$dateAttendance}}"/>
                                         <input hidden type="text" value="{{$kid->class_id}}" name="class" />
-                                        <input hidden type="text" id="date[{{$kid->id}}]" name="date[{{$kid->id}}]" />
+                                        <input hidden type="text" name="date[{{$kid->id}}]" value="{{$dateAttendance}}"/>
                                         <input hidden type="text" id="arrival_time[{{$kid->id}}]"
                                             name="arrival_time[{{$kid->id}}]" />
                                         @if(!empty($kid->attendance[0])&&$kid->attendance[0]->arrival_time!=="00:00:00")
@@ -264,8 +282,7 @@
                                 </div>
                                 <script>
                                 var d = new Date();
-                                document.getElementById("date[{{$kid->id}}]").value = d.getFullYear() + '-' + (d
-                                    .getMonth() + 1) + '-' + d.getDate();
+                            
                                 document.getElementById("arrival_time[{{$kid->id}}]").value = d.getHours() + ':' + (d
                                     .getMinutes()) + ':' + d.getSeconds();
                                 </script>
@@ -273,7 +290,7 @@
                                 <div class="m-nav-sticky" style="margin-top: 30px;width:150px;height:70px">
                                     <li class="m-nav-sticky__item" data-toggle="m-tooltip" data-placement="left">
                                         <button id="diem_danh_den" disabled class="btn btn-metal button_attendance"
-                                            type="submit">Điểm danh</button>
+                                            type="submit">Điểm danh đến</button>
                                     </li>
                                 </div>
                         </form>
@@ -295,7 +312,8 @@
                                         @endif
                                         <div class="box_group_name">
                                             <b> {{$attendance->kid->kid_name}}</b>
-                                            <input hidden type="text" id="dates[{{$attendance->kid->id}}]"
+                                            <input type="hidden" name="dateAttendance" class="form-control m-input" id="date_attendance" value="{{$dateAttendance}}"/>
+                                            <input hidden type="text" value="{{$dateAttendance}}"
                                                 name="date[{{$attendance->kid->id}}]" />
                                             <input hidden type="text" value="{{$attendance->kid->id}}"
                                                 name="kid_id[{{$attendance->kid->id}}]" />
@@ -335,6 +353,7 @@
                                                         class="m-switch m-switch--outline m-switch--icon m-switch--success">
                                                         <label style="margin-bottom:0px">
                                                             <input type="checkbox" checked="checked"
+                                                                onchange="handleClickAttendance2('{{$attendance->kid->id}}')"
                                                                 name="status[{{$attendance->kid->id}}]">
                                                             <span></span>
                                                         </label>
@@ -343,7 +362,7 @@
                                                     <span
                                                         class="m-switch m-switch--outline m-switch--icon m-switch--success">
                                                         <label style="margin-bottom:0px">
-                                                            <input type="checkbox"
+                                                            <input type="checkbox" onchange="handleClickAttendance2('{{$attendance->kid->id}}')"
                                                                 name="status[{{$attendance->kid->id}}]">
                                                             <span></span>
                                                         </label>
@@ -364,7 +383,10 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                    <textarea class="form-control" name="note[{{$attendance->kid->id}}]" placeholder="Nhập thông tin khác" rows="6">{{$attendance->note=="null"?"":$attendance->note}}</textarea>
+                                                        <textarea class="form-control"
+                                                            name="note[{{$attendance->kid->id}}]"
+                                                            placeholder="Nhập thông tin khác"
+                                                            rows="6">{{$attendance->note=="null"?"":$attendance->note}}</textarea>
                                                         @if(!empty($attendance->don_ho))
                                                         <h4 class="mt-3">Thông tin đón trẻ</h4>
                                                         <div class="row">
@@ -410,9 +432,7 @@
                                     </div>
                                     <script>
                                     var d = new Date();
-                                    document.getElementById("dates[{{$attendance->kid->id}}]").value = d.getFullYear() +
-                                        '-' + (
-                                            d.getMonth() + 1) + '-' + d.getDate();
+                                   
                                     document.getElementById("leave_time[{{$attendance->kid->id}}]").value = d
                                         .getHours() + ':' +
                                         (d.getMinutes()) + ':' + d.getSeconds();
@@ -420,8 +440,8 @@
                                     @endforeach
                                     <div class="m-nav-sticky" style="margin-top: 30px;width:150px;height:70px">
                                         <li class="m-nav-sticky__item" data-toggle="m-tooltip" data-placement="left">
-                                            <button id="diem_danh_ve" class="btn-primary button_attendance"
-                                                type="submit">Điểm danh</button>
+                                            <button id="diem_danh_ve" class="btn btn-metal button_attendance" disabled
+                                                type="submit">Điểm danh về</button>
                                         </li>
 
                                     </div>
@@ -482,6 +502,28 @@ function handleClickP(id) {
         document.getElementById('diem_danh_den').disabled = true
     }
 }
+
+
+function handleClickAttendance2(id) {
+    console.log(id);
+    if (idTemp.includes(id) == true) {
+        const arrTemp = idTemp
+        idTemp = arrTemp.filter(item => item !== id)
+    } else {
+        idTemp.push(id)
+    }
+    if (idTemp.length > 0) {
+        document.getElementById('diem_danh_ve').classList.remove('btn-metal');
+        document.getElementById('diem_danh_ve').classList.add('btn-primary')
+        document.getElementById('diem_danh_ve').disabled = false
+    } else {
+        document.getElementById('diem_danh_ve').classList.add('btn-metal')
+        document.getElementById('diem_danh_ve').classList.remove('btn-primary');
+        document.getElementById('diem_danh_ve').disabled = true
+    }
+}
+
+
 
 function thongbao() {
     var x = document.querySelector('#thongbao').value;
