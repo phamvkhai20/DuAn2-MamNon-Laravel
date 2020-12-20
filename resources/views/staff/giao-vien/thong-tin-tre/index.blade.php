@@ -1,195 +1,123 @@
 @extends('./staff/giao-vien/layouts/layout')
-@section('title','Xin nghỉ học')
+@section('title','Chi tiết trẻ')
 @section('content')
-<div class="m-grid__item m-grid__item--fluid m-wrapper m-3 ">
-    <div class="">
-        <div class="m-portlet m-portlet--mobile">
-            <div class="m-portlet__body">
-                <div class="m-form m-form--label-align-right  ">
                     <div class="row align-items-center">
-                        <div class="col-xl-12 order-2 order-xl-1">
-                            <div class="form-group m-form__group row align-items-center">
-                                <div class="col-md-3">
-                                    <div class="m-form__group m-form__group--inline">
-                                        <div class="m-form__label">
-                                            <label>Status:</label>
-                                        </div>
-                                        <div class="m-form__control">
-                                            <select class="form-control m-bootstrap-select m-bootstrap-select--solid"
-                                                id="m_form_status">
-                                                <option value="">All</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="d-md-none m--margin-bottom-10"></div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="m-form__group m-form__group--inline">
-                                        <div class="m-form__label">
-                                            <label class="m-label m-label--single">Type:</label>
-                                        </div>
-                                        <div class="m-form__control">
-                                            <select class="form-control m-bootstrap-select m-bootstrap-select--solid"
-                                                id="m_form_type">
-                                                <option value="">All</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="d-md-none m--margin-bottom-10"></div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="m-input-icon m-input-icon--left">
-                                        <input type="text" class="form-control m-input m-input--solid"
-                                            placeholder="Search..." id="generalSearch">
-                                        <span class="m-input-icon__icon m-input-icon__icon--left">
-                                            <span><i class="la la-search"></i></span>
-                                        </span>
-                                    </div>
-                                    <div class="d-md-none m--margin-bottom-10"></div>
-
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="m-input-icon m-input-icon--left">
-                                        <button type="button" class="btn btn-secondary">Tìm kiếm</button>
-                                    </div>
+<div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
+    <div class=" ">
+        <div class="row">
+        <div class="col-xl-3 col-lg-4">
+                <div class="m-portlet m-portlet--full-height  ">
+                    <div class="m-portlet__body">
+                        <div class="m-card-profile">
+                            <div class="m-card-profile__title m--hide">
+                                Your Profile
+                            </div>
+                            <style>
+                            .image__kid {
+                                background-position: center;
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                                position: relative;
+                                width: 160px;
+                                height: 160px;
+                            }
+                            </style>
+                            <div class="m-card-profile__pic">
+                                <div class="m-card-profile__pic-wrapper image__kid" id="image__kid"
+                                    style="background-image: url(<?php echo '/upload/avatar/' . $infoKid->kid_avatar ?> )">
                                 </div>
                             </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="m_datatable" id="column_rendering"></div>
-
-            </div>
-        </div>
-        <div class="m-portlet m-portlet--mobile">
-            <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                    <div class="m-portlet__head-title">
-                        <h3 class="m-portlet__head-text">
-                            @yield('title')
-                        </h3>
-                    </div>
-                </div>
-                <div class="m-portlet__head-tools">
-                    <a href="{{route('nha-truong.nha-truong.index')}}"
-                        class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                        <span>
-                            <i class="la la-arrow-left"></i>
-                            <span>Quay lại</span>
-                        </span>
-                    </a>
-                    <a href="{{route('nha-truong.tre.create')}}"
-                        class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                        <span>
-                            <i class="la la-plus"></i>
-                            <span>Thêm trẻ</span>
-                        </span>
-                    </a>
-                </div>
-            </div>
-            <div class="m-portlet__body">
-
-                <form class="m-form m-form--label-align-left- m-form--state-" id="m_form">
-
-                    <!--begin: Form Body -->
-                    <div class="">
-                        <div class="row">
-                            <div class="table-responsive">
-                                <table
-                                    class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
-                                    id="m_table_1" role="grid" aria-describedby="m_table_1_info"
-                                    style="min-width: 990px;width:100%">
-                                    <thead>
-
-                                        <tr>
-                                            <th rowspan="1" colspan="1">ID</th>
-                                            <th rowspan="1" colspan="1">Ảnh đại diện</th>
-                                            <th rowspan="1" colspan="1">Họ và Tên</th>
-                                            <th rowspan="1" colspan="1">Giới tính</th>
-                                            <th rowspan="1" colspan="1">Ngày sinh</th>
-                                            <th rowspan="1" colspan="1">Địa chỉ</th>
-                                            <th rowspan="1" colspan="1">Trạng thái</th>
-                                            <th rowspan="1" colspan="1"></th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th rowspan="1" colspan="1">ID</th>
-                                            <th rowspan="1" colspan="1">Ảnh đại diện</th>
-                                            <th rowspan="1" colspan="1">Họ và Tên</th>
-                                            <th rowspan="1" colspan="1">Giới tính</th>
-                                            <th rowspan="1" colspan="1">Ngày sinh</th>
-                                            <th rowspan="1" colspan="1">Địa chỉ</th>
-                                            <th rowspan="1" colspan="1">Trạng thái</th>
-                                            <th rowspan="1" colspan="1"></th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        @foreach($kids as $kid)
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1" tabindex="0">{{$kid->id}}</td>
-                                            <td>
-                                                <img src="{{asset('/upload/avatar/'.$kid->kid_avatar)}}" alt="avatar"
-                                                    style="width:50px;border-radius: 10px;">
-                                            </td>
-                                            <td>{{$kid->kid_name}}</td>
-                                            <td>
-                                                @if($kid->gender == 1)
-                                                Nam
-                                                @elseif($kid->gender == 0)
-                                                Nữ
-                                                @endif
-                                            </td>
-                                            <td>{{$kid->date_of_birth}}</td>
-                                            <td style="width:22%"><span>{{$kid->address}}</span></td>
-
-                                            @if($kid->kid_status == 1)
-                                            <td class="text-success"> Đang học </td>
-                                            @elseif($kid->kid_status == 2)
-                                            <td class="text-danger"> Thôi học </td>
-                                            @elseif($kid->kid_status == 3)
-                                            <td class="text-primary"> Đã tốt nghiệp </td>
-                                            @endif
-                                            @if($kid->kid_status == 1)
-                                            <td>
-                                                <a href="{{route('nha-truong.tre.edit', $kid->id)}}"
-                                                    class="btn btn-warning btn-sm ">Chi
-                                                    tiết</a>&nbsp;
-                                                    <a href="{{route('nha-truong.tre.change_class', $kid->id)}}"
-                                                    class="btn btn-primary btn-sm ">Chuyển lớp</a>&nbsp;
-                                                    <br>
-                                                    <a href="{{route('nha-truong.tre.stop', $kid->id)}}"
-                                                    class="btn btn-danger btn-sm ">Thôi học</a>&nbsp;
-                                                    <a href="{{route('nha-truong.tre.history', $kid->id)}}"
-                                                    class="btn btn-info btn-sm ">Lịch sử học</a>&nbsp;
-                                            </td>
-                                            @elseif($kid->kid_status == 2 || $kid->kid_status == 3)
-                                            <td>
-                                                <a href="{{route('nha-truong.tre.edit', $kid->id)}}"
-                                                    class="btn btn-warning btn-sm ">Chi
-                                                    tiết</a>&nbsp;
-                                                    <a href="{{route('nha-truong.tre.history', $kid->id)}}"
-                                                    class="btn btn-info btn-sm ">Lịch sử học</a>&nbsp;
-                                            </td>
-                                            @endif
-                                          
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                <div id="m_table_1_processing" class="dataTables_processing card"
-                                    style="display: none;">
-                                    Processing...</div>
+                            <div class="m-card-profile__details">
+                                <span class="m-card-profile__name">{{$infoKid->kid_name}}</span>
                             </div>
                         </div>
-                        <div class="dataTables_paginate paging_simple_numbers" id="m_table_1_paginate">
-                            <ul class="pagination">
-                                {{ $kids->links() }}
+                        <div class="m-portlet__body-separator"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-8">
+                <div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-tools">
+                            <ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary"
+                                role="tablist">
+                                <li class="nav-item m-tabs__item">
+                                    <a class="nav-link m-tabs__link active" data-toggle="tab"
+                                        href="#m_user_profile_tab_1" role="tab">
+                                        <i class="flaticon-share m--hide"></i>
+                                        Thông tin trẻ
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
-                </form>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="m_user_profile_tab_1">
+                            <form class="m-form m-form--fit m-form--label-align-right">
+                                <div class="m-portlet__body">
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-3 col-sm-12">Họ và tên</label>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <input type="text" disabled value="{{$infoKid->kid_name}}"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-3 col-sm-12">Tên gọi ở nhà</label>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <input type="text" value="{{$infoKid->nickname}}" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-3 col-sm-12">Giới tinh</label>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            @if($infoKid->gender==1)
+                                                <input type="text" disabled value="Nam"
+                                                class="form-control" />
+                                            @else
+                                            <input type="text" disabled value="Nữ"
+                                                class="form-control" />
+                                            @endif
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-3 col-sm-12">Sinh nhật</label>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <input type="text" disabled value="{{$infoKid->date_of_birth}}"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-3 col-sm-12">Địa chỉ</label>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <input type="text" disabled value="{{$infoKid->address}}"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-3 col-sm-12">Lớp</label>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <input type="text" disabled value="{{$infoKid->getClass->name}}"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-3 col-sm-12">Ngày nhập học</label>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <input type="text" disabled value="{{$infoKid->admission_date}}"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane " id="m_user_profile_tab_2">
+                        </div>
+                        <div class="tab-pane " id="m_user_profile_tab_3">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
