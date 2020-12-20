@@ -1,7 +1,6 @@
 @extends('./staff/giao-vien/layouts/layout')
 @section('title','Chi tiết trẻ')
 @section('content')
-                    <div class="row align-items-center">
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
     <div class=" ">
         <div class="row">
