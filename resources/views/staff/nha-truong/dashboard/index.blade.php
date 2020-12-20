@@ -95,75 +95,317 @@
                 </div>
             </div>
         </div>
-        <div class="m-portlet m-portlet--bordered-semi m-portlet--half-height m-portlet--fit " style="min-height: 300px">
-            <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                    <div class="m-portlet__head-title">
-                        <h3 class="m-portlet__head-text">
-                            Outbound Bandwidth
-                        </h3>
-                    </div>
-                </div>
-                <div class="m-portlet__head-tools">
-                    <ul class="m-portlet__nav">
-                        <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
-                            <a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand">
-                                Today
-                            </a>
-                            <div class="m-dropdown__wrapper">
-                                <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 36.5px;"></span>
-                                <div class="m-dropdown__inner">
-                                    <div class="m-dropdown__body">
-                                        <div class="m-dropdown__content">
-                                            <ul class="m-nav">
-                                                <li class="m-nav__item">
-                                                    <a href="" class="m-nav__link">
-                                                        <i class="m-nav__link-icon flaticon-share"></i>
-                                                        <span class="m-nav__link-text">Activity</span>
-                                                    </a>
-                                                </li>
-                                                <li class="m-nav__item">
-                                                    <a href="" class="m-nav__link">
-                                                        <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                        <span class="m-nav__link-text">Messages</span>
-                                                    </a>
-                                                </li>
-                                                <li class="m-nav__item">
-                                                    <a href="" class="m-nav__link">
-                                                        <i class="m-nav__link-icon flaticon-info"></i>
-                                                        <span class="m-nav__link-text">FAQ</span>
-                                                    </a>
-                                                </li>
-                                                <li class="m-nav__item">
-                                                    <a href="" class="m-nav__link">
-                                                        <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                        <span class="m-nav__link-text">Support</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="m-portlet__body">
+        <div class="row">
+							<div class="col-xl-6">
+								<div class="m-portlet m-portlet--full-height m-portlet--skin-light m-portlet--fit ">
+									<div class="m-portlet__head">
+										<div class="m-portlet__head-caption">
+											<div class="m-portlet__head-title">
+												<h3 class="m-portlet__head-text">
+													Thống kê nghỉ học
+												</h3>
+											</div>
+										</div>
+									</div>
+									<div class="m-portlet__body">
+										<div class="m-widget21" style="min-height: 300px">
+											<div class="m-widget21__chart m-portlet-fit--sides" style="height:310px;">
+                                            <canvas id="m_chart_activities"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
 
-                <!--begin::Widget5-->
-                <div class="m-widget20">
-                    <div class="m-widget20__number m--font-warning">340</div>
-                    <div class="m-widget20__chart" style="height:160px;">
-                        <canvas id="m_chart_activities"></canvas>
-                    </div>
-                </div>
+							</div>
+							<div class="col-xl-6">
+								<div class="m-portlet m-portlet--full-height m-portlet--skin-light m-portlet--fit ">
+									<div class="m-portlet__head">
+										<div class="m-portlet__head-caption">
+											<div class="m-portlet__head-title">
+												<h3 class="m-portlet__head-text">
+													Thống kê đăng kí ăn
+												</h3>
+											</div>
+										</div>
+									</div>
+									<div class="m-portlet__body">
+										<div class="m-widget21" style="min-height: 300px">
+											<div class="m-widget21__chart m-portlet-fit--sides" style="height:310px;">
+                                            <canvas id="chart_meal"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
 
-                <!--end::Widget 5-->
-            </div>
-        </div>
+							</div>
+						</div>
     </div>
-  
-</div>
 
+</div>
+<script>
+    var Dashboard = function() {
+        let arrays=[];
+        let arraysMeal=[];
+        axios.get("{{ route('nha-truong.axios.get-data-attendance')}}").then((response) => {
+            console.log(response);
+            arrays=response.data.arrayDate
+            arraysMeal=response.data.arrayMeal
+        }).catch((error) => {
+            if (error.response) {
+                console.log(error.response);
+            }
+        });
+        // var arrays= [100, 25, 12, 10, 9, 2, 0, 9, 3, 7]
+        var e = function(e, t, a, r) {
+                if (0 != e.length) {
+                    var o = {
+                        type: "line",
+                        data: {
+                            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October"],
+                            datasets: [{
+                                label: "",
+                                borderColor: a,
+                                borderWidth: r,
+                                pointHoverRadius: 4,
+                                pointHoverBorderWidth: 12,
+                                pointBackgroundColor: Chart.helpers.color("#000000").alpha(0).rgbString(),
+                                pointBorderColor: Chart.helpers.color("#000000").alpha(0).rgbString(),
+                                pointHoverBackgroundColor: mApp.getColor("danger"),
+                                pointHoverBorderColor: Chart.helpers.color("#000000").alpha(.1).rgbString(),
+                                fill: !1,
+                                data: t
+                            }]
+                        },
+                        options: {
+                            title: {
+                                display: !1
+                            },
+                            tooltips: {
+                                enabled: !1,
+                                intersect: !1,
+                                mode: "nearest",
+                                xPadding: 10,
+                                yPadding: 10,
+                                caretPadding: 10
+                            },
+                            legend: {
+                                display: !1,
+                                labels: {
+                                    usePointStyle: !1
+                                }
+                            },
+                            responsive: !0,
+                            maintainAspectRatio: !0,
+                            hover: {
+                                mode: "index"
+                            },
+                            scales: {
+                                xAxes: [{
+                                    display: !1,
+                                    gridLines: !1,
+                                    scaleLabel: {
+                                        display: !0,
+                                        labelString: "Month"
+                                    }
+                                }],
+                                yAxes: [{
+                                    display: !1,
+                                    gridLines: !1,
+                                    scaleLabel: {
+                                        display: !0,
+                                        labelString: "Value"
+                                    },
+                                    ticks: {
+                                        beginAtZero: !0
+                                    }
+                                }]
+                            },
+                            elements: {
+                                point: {
+                                    radius: 4,
+                                    borderWidth: 12
+                                }
+                            },
+                            layout: {
+                                padding: {
+                                    left: 0,
+                                    right: 10,
+                                    top: 5,
+                                    bottom: 0
+                                }
+                            }
+                        }
+                    };
+                    return new Chart(e, o)
+                }
+            }
+        return {
+            init: function() {
+                var a, r;
+                ! function() {
+                        if (0 != $("#m_chart_activities").length) {
+                            var e = document.getElementById("m_chart_activities").getContext("2d"),
+                                t = e.createLinearGradient(0, 0, 0, 240);
+                            t.addColorStop(0, Chart.helpers.color("#e14c86").alpha(1).rgbString()), t.addColorStop(1, Chart.helpers.color("#e14c86").alpha(.3).rgbString());
+                            var a = {
+                                type: "line",
+                                data: {
+                                    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October"],
+                                    datasets: [{
+                                        label: "Tổng trẻ nghỉ",
+                                        backgroundColor: t,
+                                        borderColor: "#e13a58",
+                                        pointBackgroundColor: Chart.helpers.color("#000000").alpha(0).rgbString(),
+                                        pointBorderColor: Chart.helpers.color("#000000").alpha(0).rgbString(),
+                                        pointHoverBackgroundColor: mApp.getColor("light"),
+                                        pointHoverBorderColor: Chart.helpers.color("#ffffff").alpha(.1).rgbString(),
+                                        data: arrays
+                                    }]
+                                },
+                                options: {
+                                    title: {
+                                        display: !1
+                                    },
+                                    tooltips: {
+                                        mode: "nearest",
+                                        intersect: !1,
+                                        position: "nearest",
+                                        xPadding: 10,
+                                        yPadding: 10,
+                                        caretPadding: 10
+                                    },
+                                    legend: {
+                                        display: !1
+                                    },
+                                    responsive: !0,
+                                    maintainAspectRatio: !1,
+                                    scales: {
+                                        xAxes: [{
+                                            display: !1,
+                                            gridLines: !1,
+                                            scaleLabel: {
+                                                display: !0,
+                                                labelString: "Month"
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            display: !1,
+                                            gridLines: !1,
+                                            scaleLabel: {
+                                                display: !0,
+                                                labelString: "Value"
+                                            },
+                                            ticks: {
+                                                beginAtZero: !0
+                                            }
+                                        }]
+                                    },
+                                    elements: {
+                                        line: {
+                                            tension: 1e-7
+                                        },
+                                        point: {
+                                            radius: 4,
+                                            borderWidth: 12
+                                        }
+                                    },
+                                    layout: {
+                                        padding: {
+                                            left: 0,
+                                            right: 0,
+                                            top: 10,
+                                            bottom: 0
+                                        }
+                                    }
+                                }
+                            };
+                            new Chart(e, a)
+                        }
+                    }(),function() {
+                        if (0 != $("#chart_meal").length) {
+                            var e = document.getElementById("chart_meal").getContext("2d"),
+                                t = e.createLinearGradient(0, 0, 0, 240);
+                            t.addColorStop(0, Chart.helpers.color("#e14c86").alpha(1).rgbString()), t.addColorStop(1, Chart.helpers.color("#e14c86").alpha(.3).rgbString());
+                            var a = {
+                                type: "line",
+                                data: {
+                                    labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October"],
+                                    datasets: [{
+                                        label: "Tổng đăng kí",
+                                        backgroundColor: t,
+                                        borderColor: "#e13a58",
+                                        pointBackgroundColor: Chart.helpers.color("#000000").alpha(0).rgbString(),
+                                        pointBorderColor: Chart.helpers.color("#000000").alpha(0).rgbString(),
+                                        pointHoverBackgroundColor: mApp.getColor("light"),
+                                        pointHoverBorderColor: Chart.helpers.color("#ffffff").alpha(.1).rgbString(),
+                                        data: arraysMeal
+                                    }]
+                                },
+                                options: {
+                                    title: {
+                                        display: !1
+                                    },
+                                    tooltips: {
+                                        mode: "nearest",
+                                        intersect: !1,
+                                        position: "nearest",
+                                        xPadding: 10,
+                                        yPadding: 10,
+                                        caretPadding: 10
+                                    },
+                                    legend: {
+                                        display: !1
+                                    },
+                                    responsive: !0,
+                                    maintainAspectRatio: !1,
+                                    scales: {
+                                        xAxes: [{
+                                            display: !1,
+                                            gridLines: !1,
+                                            scaleLabel: {
+                                                display: !0,
+                                                labelString: "Month"
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            display: !1,
+                                            gridLines: !1,
+                                            scaleLabel: {
+                                                display: !0,
+                                                labelString: "Value"
+                                            },
+                                            ticks: {
+                                                beginAtZero: !0
+                                            }
+                                        }]
+                                    },
+                                    elements: {
+                                        line: {
+                                            tension: 1e-7
+                                        },
+                                        point: {
+                                            radius: 4,
+                                            borderWidth: 12
+                                        }
+                                    },
+                                    layout: {
+                                        padding: {
+                                            left: 0,
+                                            right: 0,
+                                            top: 10,
+                                            bottom: 0
+                                        }
+                                    }
+                                }
+                            };
+                            new Chart(e, a)
+                        }
+                    }()
+            }
+        }
+    }();
+    jQuery(document).ready(function() {
+        Dashboard.init()
+    });
+</script>
 @endsection

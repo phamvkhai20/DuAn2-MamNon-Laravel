@@ -22,6 +22,10 @@ Route::group([
 ], function () {
     Route::get('/', 'Web\NhaTruong\HomeController@index')->name('nha-truong.index');
     //lớp
+        
+    Route::get('get-data-attendance', 'Web\NhaTruong\HomeController@chartAttendance')
+    ->name('axios.get-data-attendance');
+
     Route::group([
         'prefix' => 'lop',
     ], function () {
@@ -167,7 +171,6 @@ Route::group([
     'prefix' => 'giao-vien',
     'middleware' => ['check_teacher'],
 ], function () {
-    
 
     Route::group([
         'prefix' => 'thong-bao',
@@ -213,4 +216,6 @@ Route::group([
     Route::get('/', 'Web\GiaoVien\HomeController@index')->name('giao-vien.index');
     //lớp
 });
+
+
 

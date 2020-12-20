@@ -32,6 +32,8 @@ class HomeController extends Controller
        return view('staff.giao-vien.dashboard.index',['attendance'=>$attendance,'ngayThu'=>$ngayThu,'teachers'=>$teachers,'classes'=>$classes,'childReceiptsIsConfirm'=>$childReceiptsIsConfirm]);
     }
 
+
+
     protected function infoKid($id)
     {
         $infoKid = Kid::where('id',$id)->with('getClass','parent')->first();

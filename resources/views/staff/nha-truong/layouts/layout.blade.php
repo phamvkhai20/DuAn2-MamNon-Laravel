@@ -68,7 +68,5 @@
     <script src="{{asset('assets_staff/demo/default/base/scripts.bundle.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets_staff/vendors/custom/fullcalendar/fullcalendar.bundle.js')}}" type="text/javascript">
     </script>
-    <script src="{{asset('assets_staff/app/js/dashboard.js')}}" type="text/javascript"></script>
 </body>
-
 </html>
