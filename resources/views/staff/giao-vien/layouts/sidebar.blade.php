@@ -129,7 +129,7 @@
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
                     <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.thong-bao.index')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Danh sách các thông báo</span></a></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a href="" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Thêm mới thông báo</span></a></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.thong-bao.them_moi')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Thêm mới thông báo</span></a></li>
                     </ul>
                 </div>
             </li>

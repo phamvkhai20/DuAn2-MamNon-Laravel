@@ -83,7 +83,7 @@
                                                 </li>
                                                 <li class="m-menu__item  m-menu__item--submenu m-menu__item--tabs">
                                                     <a style="background:#fff" class="m-menu__link "
-                                                        href="{{route('web.nop-ho-so')}}"><span
+                                                        href="{{route('web.gioi-thieu')}}"><span
                                                             class="m-menu__link-text">
                                                            Giới thiệu
                                                         </span>

@@ -54,7 +54,7 @@
                             <div class="form-group m-form__group row">
                                 <label class="col-lg-2 col-form-label">Nội dung:</label>
                                 <div class="col-lg-6">
-                                    <input type="text" name="school_year" class="form-control m-input" placeholder="Nhập tên đầy đủ">
+                                <textarea class="form-control" name="" placeholder="Nhập nội dung" rows="6"></textarea>
                                 </div>
                             </div>
                         </div>
