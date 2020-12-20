@@ -167,6 +167,8 @@ Route::group([
     'prefix' => 'giao-vien',
     'middleware' => ['check_teacher'],
 ], function () {
+    
+
     Route::group([
         'prefix' => 'thong-bao',
     ], function () {
@@ -203,6 +205,8 @@ Route::group([
         Route::post('/update', 'Web\GiaoVien\AttendanceController@diem_danh_ve')->name('giao-vien.diem_danh_ve');
         Route::get('/{id}/lich-su', 'Web\GiaoVien\AttendanceController@xem_diem_danh')->name('giao-vien.xem_diem_danh');
     });
+    Route::get('{id}/danh-sach', 'Web\GiaoVien\HomeController@list_kid')
+    ->name('giao-vien.danh-sach-tre');
     Route::post('/xac-nhan-don-ho/{id}', 'Web\GiaoVien\ChildReceiptController@xac_nhan_don_ho')->name('giao-vien.xac-nhan-don-ho');
     Route::get('/danh-sach-don-ho', 'Web\GiaoVien\ChildReceiptController@danh_sach_don_ho')->name('giao-vien.danh-sach-don-ho');
     Route::get('/thong-tin-tre/{id}', 'Web\GiaoVien\HomeController@infoKid')->name('giao-vien.xem-thong-tin-tre');

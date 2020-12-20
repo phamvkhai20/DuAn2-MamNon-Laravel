@@ -31,9 +31,18 @@ class HomeController extends Controller
         $attendance= Attendance::where('class_id',session('class'))->where('date',substr(Carbon::now('Asia/Ho_Chi_Minh'), 0, 10))->get();
        return view('staff.giao-vien.dashboard.index',['attendance'=>$attendance,'ngayThu'=>$ngayThu,'teachers'=>$teachers,'classes'=>$classes,'childReceiptsIsConfirm'=>$childReceiptsIsConfirm]);
     }
+
     protected function infoKid($id)
     {
         $infoKid = Kid::where('id',$id)->with('getClass')->first();
         return view('staff.giao-vien.thong-tin-tre.index', ['infoKid' => $infoKid]);
     }
+    protected function list_kid($id)
+    {
+        $classes = Classes::where('id',$id)->with(['kids'=>function($query){
+            $query->with('parent');
+        }])->first();
+        return view('staff.giao-vien.thong-tin-tre.danh-sach', ['classes' => $classes]);
+    }
+    
 }

@@ -25,6 +25,8 @@ class ClassController extends Controller
         }])->get();
         return view('staff.nha-truong.quan-ly-lop.index', compact('grades'));
     }
+
+
     public function getClassAll()
     {
         $classes = Classes::with('assignments')->get();
@@ -39,6 +41,7 @@ class ClassController extends Controller
         $year = SchoolYearModel::orderBy('id', 'desc')->limit(1)->first();;
         return view('staff.nha-truong.quan-ly-lop.edit', compact('class', 'grade', 'year'));
     }
+
     public function saveEdit(ClassRequest $request, $id)
     {
 
