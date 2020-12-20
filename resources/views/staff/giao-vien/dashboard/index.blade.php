@@ -3,7 +3,6 @@
 @section('content')
 
 @if(!empty(session('class')))
-
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
     <div class="">
         @if(count($attendance)<1&&$ngayThu>0)
@@ -13,10 +12,10 @@
                     <i class="flaticon-exclamation m--font-brand"></i>
                 </div>
                 <div class="m-alert__text">
-                   Bạn chưa điểm danh cho buổi học ngày hôm nay ! <br>
-                   Vui lòng điểm danh !
-                   <a href="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}"
-                        target="_blank">Điểm danh</a>.
+                    Bạn chưa điểm danh cho buổi học ngày hôm nay ! <br>
+                    Vui lòng điểm danh !
+                    <a href="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}" target="_blank">Điểm
+                        danh</a>.
                 </div>
             </div>
             @endif
@@ -39,7 +38,8 @@
                             </a>
                         </div>
                         <div class="m-nav-grid__row">
-                            <a  href="{{route('giao-vien.them-so-lien-lac',['id'=>session('class')])}}" class="m-nav-grid__item">
+                            <a href="{{route('giao-vien.them-so-lien-lac',['id'=>session('class')])}}"
+                                class="m-nav-grid__item">
                                 <i class="m-nav-grid__icon flaticon-folder"></i>
                                 <span class="m-nav-grid__text">Sổ liên lạc</span>
                             </a>
@@ -50,7 +50,8 @@
                             <a href="{{route('giao-vien.danh-sach-don-ho')}}" class="m-nav-grid__item">
                                 <i class="m-nav-grid__icon flaticon-list"></i>
                                 @if(count($childReceiptsIsConfirm)>0)
-                                <span class="m-badge m-badge--danger button_nottification">{{count($childReceiptsIsConfirm)}}</span>
+                                <span
+                                    class="m-badge m-badge--danger button_nottification">{{count($childReceiptsIsConfirm)}}</span>
                                 @endif
                                 <span class="m-nav-grid__text">Thông tin đón hộ</span>
                             </a>
@@ -59,7 +60,7 @@
                 </div>
             </div>
     </div>
-   
+
     <div class="">
         <div class="m-portlet">
             <div class="m-portlet__head">
@@ -93,8 +94,9 @@
                             <div class="m-widget1__item">
                                 <div class="row m-row--no-padding align-items-center row">
                                     <div class=" col-7">
-                                        <label class="m-widget1__title"  data-toggle="modal"
-                                            data-target="#m_info_teacher_{{$teacher->teacher->id}}"> {{$teacher->teacher->fullname}}</label>
+                                        <label class="m-widget1__title" data-toggle="modal"
+                                            data-target="#m_info_teacher_{{$teacher->teacher->id}}">
+                                            {{$teacher->teacher->fullname}}</label>
                                         <div class="m-input-icon m-input-icon--right">
                                             <input class="form-control mt-3" id="m_clipboard_2_{{$teacher->id}}"
                                                 value="{{$teacher->teacher->phone}}">
@@ -195,33 +197,33 @@
                                 style="height: 400px">
                                 <!--begin::Widget 14-->
                                 <div class="m-widget4">
-                                <style>
-                    .image__teacher {
-                        width: 60px;
-                        height: 60px;
-                        background-position: center;
-                        background-repeat: no-repeat;
-                        background-size: cover;
-                        position: relative;
-                        border-radius: 5px;
-                        padding: 10px;
-                        float: right;
-                    }
-                    </style>
+                                    <style>
+                                    .image__teacher {
+                                        width: 60px;
+                                        height: 60px;
+                                        background-position: center;
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+                                        position: relative;
+                                        border-radius: 5px;
+                                        padding: 10px;
+                                        float: right;
+                                    }
+                                    </style>
                                     <!--begin::Widget 14 Item-->
                                     @foreach ($classes->kids as $kid)
                                     <div class="m-widget4__item">
                                         <div class="m-widget4__img m-widget4__img--pic">
-                                        <div class=" m-menu__link-icon image__teacher"
-                                            style="background-image: url(<?php echo '/upload/avatar/' . $kid->kid_avatar?> )">
-                                        </div>
+                                            <div class=" m-menu__link-icon image__teacher"
+                                                style="background-image: url(<?php echo '/upload/avatar/' . $kid->kid_avatar?> )">
+                                            </div>
                                         </div>
                                         <div class="m-widget4__info">
                                             <span class="m-widget4__title">
                                                 {{$kid->kid_name}}
                                             </span><br>
                                             <span class="m-widget4__sub">
-                                               {{$kid->parent->parent_name}}-{{$kid->parent->phone}} 
+                                                {{$kid->parent->parent_name}}-{{$kid->parent->phone}}
                                             </span>
                                         </div>
                                         <div class="m-widget4__ext">
@@ -236,14 +238,14 @@
 
                                 <!--end::Widget 14-->
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
 
                 <!--end:: Widgets/New Users-->
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -262,7 +264,6 @@
 </div>
 @endif
 <script>
-
 
 var ClipboardDemo = {
     init: function() {
