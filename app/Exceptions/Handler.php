@@ -54,13 +54,10 @@ class Handler extends ExceptionHandler
         {
             switch ($exception->getStatusCode()) 
                 {
-                // not found
                 case 404:
                     return redirect()->route('error.404');
                     break;
-    
-                // internal error
-                case '500':
+                case 500:
                     return redirect()->route('error.404');
                     break;
     

@@ -7,7 +7,6 @@
     $date= substr(Carbon::now('Asia/Ho_Chi_Minh'),11,5)
     @endphp
     @if($ngayThu==1)
-
     @if((empty($attendance)||$attendance->arrival_time=="00:00:00"||$attendance->status==0))
     <div class="m-alert m-alert--icon alert alert-warning" role="alert">
         <div class="m-alert__icon">
@@ -52,7 +51,7 @@
                     <div class="m-demo__preview">
                         <div class="m-list__content">
                             <div class="m-list-badge m--margin-bottom-20">
-                                @if($attendance->arrival_time!=="00:00:00")
+                                @if($attendance->arrival_time!=="00:00:00"&&!empty($attendance->teacher_1)&&!empty($attendance->teacher_2))
                                 <div class="m-list-badge__label m--font-success">
                                     {{$attendance->arrival_time}}
                                 </div>
@@ -121,10 +120,6 @@
                         class="m-nav-grid__item">
                         <i class="m-nav-grid__icon flaticon-book"></i>
                         <span class="m-nav-grid__text">Sổ liên lạc</span>
-                    </a>
-                    <a href="#" class="m-nav-grid__item">
-                        <i class="m-nav-grid__icon flaticon-email"></i>
-                        <span class="m-nav-grid__text">Góp ý nhà trường</span>
                     </a>
                 </div>
             </div>

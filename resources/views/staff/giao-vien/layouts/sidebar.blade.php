@@ -46,7 +46,7 @@
 
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Điểm danh ngày</span></a></li>
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.xem_diem_danh',['id'=>session('class')])}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Xem điểm danh</span></a></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a href="" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Trẻ nghỉ nhiều liên tục</span></a></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.giao_dien_diem_danh_don_muon',['id'=>session('class')])}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Đón muộn</span></a></li>
                     </ul>
                 </div>
             </li>
@@ -63,23 +63,7 @@
                     </ul>
                 </div>
             </li>
-            <!-- <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a
-                    href="javascript:;" class="m-menu__link m-menu__toggle"><i
-                        class="m-menu__link-icon la la-bell"></i><span class="m-menu__link-text">Thông báo - sự kiện
-                    </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
-                <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
-                    <ul class="m-menu__subnav">
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.nam.index')}}"
-                                class="m-menu__link "><i
-                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">Danh sách</span></a></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.nam.them_moi')}}"
-                                class="m-menu__link "><i
-                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">Thêm mới</span></a></li>
-                    </ul>
-                </div>
-            </li> -->
+
             <li class="m-menu__section ">
                 <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin lớp học</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
@@ -92,10 +76,8 @@
                     </ul>
                 </div>
             </li>
-
-
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-yc-square"></i><span class="m-menu__link-text">Quản lý thông báo
-                        học</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
+                        </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.thong-bao.index')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Danh sách các thông báo</span></a></li>
