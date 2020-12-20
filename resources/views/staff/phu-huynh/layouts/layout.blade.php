@@ -22,6 +22,7 @@
         }
     });
     </script>
+    <script src="{{asset('assets_staff/demo/default/custom/crud/forms/widgets/summernote.js')}}"  type="text/javascript"></script>
     <link href="{{asset('assets_staff/vendors/base/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets_staff/demo/default/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets_staff/vendors/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet"

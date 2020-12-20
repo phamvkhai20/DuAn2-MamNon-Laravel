@@ -95,6 +95,7 @@ class AuthController extends Controller
       $data['grades'] = GradeModel::all();
       return view('web.page.nop-ho-so', $data);
    }
+ 
    // Đăng xuất
    public function logoutSchool(Request $request)
    {

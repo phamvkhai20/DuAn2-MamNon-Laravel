@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Web\NhaTruong;
 
-use App\Models\{Assignment, Teacher, TeacherType};
+use App\Models\{Assignment, Classes, Teacher, TeacherType};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Teacher\{TeacherRequest, EditTeacherRequest};
@@ -26,6 +26,14 @@ class TeacherController extends Controller
          $data['teachers'] = Teacher::orderBy('id', 'desc')->paginate(10);
      }
      return view('staff.nha-truong.quan-ly-giao-vien.index', $data);
+   }
+   public function getTeacherInClass(Request $request)
+   {
+      $id = $request->get('id');
+       $teachers = Classes::where('id',$id)->with(['assignments' => function ($querys) {
+         $querys->with('teacher');
+     }])->first();
+       return response()->json(['teachers' => $teachers->assignments]);
    }
    public function get_all_teacher(Request $request)
    {
