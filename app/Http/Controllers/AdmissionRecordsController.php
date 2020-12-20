@@ -18,9 +18,22 @@ class AdmissionRecordsController extends Controller
             ['data' =>   $AdmissionRecords]
         );
     }
-    public function admission()
+    public function admission(Request $request)
     {
-        $data['admissions'] = AdmissionRecords::all();
+        if($request->all() != null && $request['page'] == null){
+            foreach($request->all() as $key => $value){
+                if($key == 'status'){
+                    $data['admissions'] = AdmissionRecords::where("$key","$value")->orderBy('id', 'desc')->paginate(10);
+                }
+                elseif($key == 'kid_name'){
+                    $data['admissions'] = AdmissionRecords::where("$key",'LIKE',"%$value%")->orderBy('id', 'desc')->paginate(10);
+                }
+        
+            }
+        }else{
+            $data['admissions'] = AdmissionRecords::orderBy('id', 'desc')->paginate(10);
+        }
+        
         return view('staff.nha-truong.quan-ly-ho-so.index', $data);
     }
     public function updateStatus(Request $request)
