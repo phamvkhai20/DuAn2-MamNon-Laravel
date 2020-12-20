@@ -32,14 +32,12 @@ Route::get('/gioi-thieu', 'GioithieuController@gioi_thieu_truong_hoc')->name('we
 
 Route::get('/404', 'ErrorControler@page_error')->name('error.404');
 
-
-
-
 Route::group([
     'prefix' => 'phu-huynh',
     'middleware' => ['check_parent'],
 ], function () {
-    Route::get('/thong-bao', 'Web\PhuHuynh\ThongbaoController@index')->name('phu-huynh.thong-bao.index');
+    Route::get('danh-sach-cac-thong-bao', 'Web\NhaTruong\NotificationController@indexParent')
+    ->name('phu-huynh.thong-bao.index');
     Route::post('setDefaultKid', 'Web\PhuHuynh\HomeController@set_default_kid')->name('phu-huynh.set-default-kid');
     Route::group([
         'prefix' => '/{id}',

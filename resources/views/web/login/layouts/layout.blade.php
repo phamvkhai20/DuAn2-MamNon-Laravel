@@ -45,6 +45,7 @@
     class="m-page--fluid m-page--loading-enabled m-page--loading m-header--fixed m-header--fixed-mobile m-footer--push m-aside--offcanvas-default">
     @include('web/login/layouts/header')
     @yield('content')
+    @include('web/login/layouts/footer')
     <script src="{{asset('assets/vendors/base/vendors.bundle.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/demo/demo10/base/scripts.bundle.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js')}}" type="text/javascript">

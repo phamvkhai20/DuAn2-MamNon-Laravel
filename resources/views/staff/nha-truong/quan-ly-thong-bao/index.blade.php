@@ -72,8 +72,7 @@
                     </div>
                 </div>
                 <div class="m-portlet__head-tools">
-                    <a href="#"
-                        class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
+                    <a href="#" class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                         <span>
                             <i class="la la-arrow-left"></i>
                             <span>Quay lại</span>
@@ -88,60 +87,36 @@
                     </a>
                 </div>
             </div>
-            <div class="m-portlet__body">
-
-                <form class="m-form m-form--label-align-left- m-form--state-" id="m_form">
-
-                    <!--begin: Form Body -->
-                    <div class="">
-                        <div class="row">
-                            <div class="table-responsive">
-                                <table
-                                    class="table table-striped- table-bordered table-hover table-checkable dataTable dtr-inline"
-                                    id="m_table_1" role="grid" aria-describedby="m_table_1_info"
-                                    style="min-width: 990px;width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th rowspan="1" colspan="1">ID</th>
-                                            <th rowspan="1" colspan="1">Tiêu đề</th>
-                                            <th rowspan="1" colspan="1">Phạm vi</th>
-                                            <th rowspan="1" colspan="1">Ảnh</th>
-                                            <th rowspan="1" colspan="1">Nội dung</th>
-                                            <th></th>
-                                        </tr>
-
-                                    </thead>
-                                    
-                                    <tbody>
-                                       
-                                        <tr role="row" class="odd">
-                                            <td class="sorting_1" tabindex="0">1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                            <td>
-                                                <a href="{{route('nha-truong.thong-bao.detail')}}" class="btn btn-warning btn-sm ">Chi tiết</a>&nbsp;
-                                                <a href="#"
-                                                    class="btn btn-danger btn-sm btn-remove">Xóa</a>
-                                            </td>
-                                        </tr>
-                                      
-                                    </tbody>
-                                </table>
-
+                        <div class="m-portlet__body">
+                            @foreach($notifications as $notification)
+                            <div class="m-accordion m-accordion--default" id="m_accordion_{{$notification->id}}" role="tablist">
+                                <div class="m-accordion__item">
+                                    <div class="m-accordion__item-head collapsed" role="tab"
+                                        id="m_accordion_1_item_{{$notification->id}}_head" data-toggle="collapse"
+                                        href="#m_accordion_1_item_{{$notification->id}}_body" aria-expanded="false">
+                                        <span class="m-accordion__item-icon"><i class="fa fa-bullhorn m--font-info"></i></span>
+                                        <span class="m-accordion__item-title">{{$notification->title}} - {{$notification->created_at}}</span>
+                                        <span class="m-accordion__item-mode"></span>
+                                    </div>
+                                    <div class="m-accordion__item-body collapse" id="m_accordion_1_item_{{$notification->id}}_body"
+                                        class=" " role="tabpanel" aria-labelledby="m_accordion_1_item_{{$notification->id}}_head"
+                                        data-parent="#m_accordion_{{$notification->id}}">
+                                        <div class="m-accordion__item-content">
+                                            {!!$notification->note!!}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="m_table_1_processing" class="dataTables_processing card" style="display: none;">
-                                Processing...</div>
+                            @endforeach
                         </div>
-                    </div>
+                        <div id="m_table_1_processing" class="dataTables_processing card" style="display: none;">
+                            Processing...</div>
                     <div class="dataTables_paginate paging_simple_numbers" id="m_table_1_paginate">
-
+                            <ul class="pagination">
+                                {{ $notifications->links() }}
+                            </ul>
                     </div>
-
             </div>
-            </form>
-        </div>
     </div>
 </div>
 </div>

@@ -81,20 +81,14 @@ Route::group([
     Route::group([
         'prefix' => 'thong-bao',
     ], function () {
-        Route::get('danh-sach-cac-thong-bao', 'Web\NhaTruong\ThongbaoController@index')
+        Route::get('danh-sach-cac-thong-bao', 'Web\NhaTruong\NotificationController@index')
             ->name('thong-bao.index');
-        Route::get('chi-tiet', 'Web\NhaTruong\ThongbaoController@detail')
+        Route::get('chi-tiet', 'Web\NhaTruong\NotificationController@detail')
             ->name('thong-bao.detail');
-        // Route::post('luu-sua/{id}', 'Web\NhaTruong\ThongbaoController@saveEdit')
-        //     ->name('nam.save_edit');
-        Route::get('them-moi', 'Web\NhaTruong\ThongbaoController@add')
+        Route::post('them-moi/tao', 'Web\NhaTruong\NotificationController@save_add')
+        ->name('thong-bao.them_moi.tao');   
+        Route::get('them-moi', 'Web\NhaTruong\NotificationController@add')
             ->name('thong-bao.them_moi');
-        // Route::post('luu', 'Web\NhaTruong\ThongbaoController@saveAdd')
-        //     ->name('nam.save_add');
-        // Route::get('xoa/{id}', 'Web\NhaTruong\ThongbaoController@delete')
-        //     ->name('nam.xoa');
-     
-
     });
     //giáo viên
     Route::group([
@@ -160,6 +154,15 @@ Route::group([
         Route::get('danh-sach-lop', 'Web\NhaTruong\AttendanceController@list_class')->name('list');
     });
 });
+
+Route::get('lay-danh-sach-lop', 'Web\NhaTruong\ClassController@getClassAll')
+->name('get-axios.class');
+Route::post('lay-danh-sach-giao-vien', 'Web\NhaTruong\TeacherController@getTeacherInClass')
+->name('get-axios.teacher');
+Route::post('lay-danh-sach-phu-huynh', 'Web\NhaTruong\ParentController@getParent')
+->name('get-axios.parent');
+
+
 Route::group([
     'prefix' => 'giao-vien',
     'middleware' => ['check_teacher'],
@@ -167,14 +170,15 @@ Route::group([
     Route::group([
         'prefix' => 'thong-bao',
     ], function () {
-        Route::get('danh-sach-cac-thong-bao', 'Web\GiaoVien\ThongbaoController@index')
+        Route::get('danh-sach-cac-thong-bao', 'Web\NhaTruong\NotificationController@indexTeacher')
         ->name('giao-vien.thong-bao.index');
-    Route::get('chi-tiet', 'Web\GiaoVien\ThongbaoController@detail')
+    Route::get('chi-tiet', 'Web\NhaTruong\NotificationController@detail')
         ->name('giao-vien.thong-bao.detail');
-    Route::get('them-moi', 'Web\GiaoVien\ThongbaoController@add')
+    Route::get('them-moi', 'Web\NhaTruong\NotificationController@teacher_add')
         ->name('giao-vien.thong-bao.them_moi');   
+        Route::post('them-moi/tao', 'Web\NhaTruong\NotificationController@save_teacher_add')
+        ->name('giao-vien.thong-bao.them_moi.tao');   
     });
-    
     Route::group([
         'prefix' => '/{id}/so-lien-lac',
     ], function () {

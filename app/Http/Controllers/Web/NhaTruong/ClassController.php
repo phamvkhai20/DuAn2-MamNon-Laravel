@@ -25,6 +25,11 @@ class ClassController extends Controller
         }])->get();
         return view('staff.nha-truong.quan-ly-lop.index', compact('grades'));
     }
+    public function getClassAll()
+    {
+        $classes = Classes::with('assignments')->get();
+        return response()->json(['classes' => $classes]);
+    }
     public function edit($id)
     {
         $class = Classes::where("id", $id)->with(['assignments' => function ($querys) {
@@ -112,7 +117,6 @@ class ClassController extends Controller
             $history->status = '5';
             $history->save();
         }
-        
         return redirect()->route('nha-truong.lop.index');
     }
 }

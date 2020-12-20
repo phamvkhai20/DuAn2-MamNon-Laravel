@@ -88,7 +88,6 @@
                         class="m-menu__link-icon la la-power-off"></i><span class="m-menu__link-text">Đăng xuất</span><i
                         class="m-menu__ver-arrow la la-angle-right"></i></a>
             </li>
-           
         </ul>
     </div>
 </div>
