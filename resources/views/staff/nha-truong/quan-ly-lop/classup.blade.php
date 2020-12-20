@@ -94,9 +94,7 @@
                                 <div class="col-lg-6">
                                     <select name="class_id" class="form-control">
                                         <option value="">Chọn lớp</option>
-                                        @foreach($classes as $class)
-                                        <option {{(old('class_id')==$class->id)? 'selected':''}} value="{{$class->id}}">{{$class->name}}</option>
-                                        @endforeach
+                                        
                                     </select>
                                 </div>
                                 

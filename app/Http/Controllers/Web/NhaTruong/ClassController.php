@@ -208,6 +208,7 @@ class ClassController extends Controller
             $classes = Classes::where('grade_id', $request->grade_id)->where('status', '1')
             ->select('id', 'name')->get();
 			return response()->json($classes);
+        }  
     }
-}
+    
 }

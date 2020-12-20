@@ -146,7 +146,12 @@
                                                 <img src="{{asset('upload/avatar/'.$kid->kid_avatar)}}" alt="avatar"
                                                     width="100px">
                                             </td>
-                                            <td>{{$kid->gender}}</td>
+                                            @if($kid->gender == 0)
+                                            <td > Nữ </td>
+                                            @elseif($kid->gender == 1)
+                                            <td > Nam </td>
+                                           
+                                            @endif
                                             <td>{{$kid->date_of_birth}}</td>
                                             <td>{{$kid->address}}</td>
 

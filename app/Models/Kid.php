@@ -21,4 +21,8 @@ class Kid extends Model
     {
         return $this->beLongsTo(Classes::class, 'class_id', 'id');
     }
+    public function getGrade()
+    {
+        return $this->beLongsTo(GradeModel::class, 'grade_id', 'id');
+    }
 }

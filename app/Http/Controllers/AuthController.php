@@ -7,7 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 
 use Auth;
 use Arr;
-use App\Models\{Parents, School, Teacher};
+use App\Models\{Parents, School, Teacher, GradeModel};
 
 class AuthController extends Controller
 
@@ -93,7 +93,8 @@ class AuthController extends Controller
    }
    public function nop_ho_so_nhap_hoc()
    {
-      return view('web.page.nop-ho-so');
+      $data['grades'] = GradeModel::all();
+      return view('web.page.nop-ho-so', $data);
    }
    // Đăng xuất
    public function logoutSchool(Request $request)

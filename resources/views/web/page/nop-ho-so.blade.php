@@ -77,45 +77,53 @@
                                         <div class="form-group m-form__group row">
                                             <label class="col-xl-3 col-lg-3 ">* Họ và tên trẻ:</label>
                                             <div class="col-xl-9 col-lg-9">
-                                                <input type="text" name="name_kid" class="form-control m-input">
+                                                <input type="text" name="kid_name" class="form-control m-input">
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-xl-3 col-lg-3 ">* Tên gọi ở nhà</label>
+                                            <div class="col-xl-9 col-lg-9">
+                                                <input type="text" name="nickname" class="form-control m-input">
                                             </div>
                                         </div>
                                         <div class="form-group m-form__group row">
                                             <label class="col-xl-3 col-lg-3 l">* Ngày sinh:</label>
                                             <div class="col-xl-9 col-lg-9">
-                                                <input type="date" name="birthday" class="form-control m-input">
+                                                <input type="date" name="date_of_birth" class="form-control m-input">
                                             </div>
                                         </div>
                                         <div class="form-group m-form__group row">
                                             <label class="col-xl-3 col-lg-3 ">* Giới tính</label>
                                             <div class="col-xl-9 col-lg-9">
                                                 <label class="m-radio m-radio--solid m-radio--brand ml-3">
-                                                    <input type="radio" name="sex" value="1"> Nam
+                                                    <input type="radio" name="gender" value="1"> Nam
                                                     <span></span>
                                                 </label>
                                                 <label class="m-radio m-radio--solid m-radio--brand ml-3">
-                                                    <input type="radio" name="sex" value="2"> Nữ
+                                                    <input type="radio" name="gender" value="0"> Nữ
                                                     <span></span>
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="form-group m-form__group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">* Hộ khẩu thường trú</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label">* Hiện đang cư trú tại</label>
                                             <div class="col-xl-9 col-lg-9">
                                                 <div class="input-group">
-                                                    <input type="text" name="address1" class="form-control m-input"
+                                                    <input type="text" name="address" class="form-control m-input"
                                                         placeholder="">
-
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group m-form__group row">
-                                            <label class="col-xl-3 col-lg-3 col-form-label">* Hiện đang cư chú
-                                                tại</label>
+                                            <label class="col-xl-3 col-lg-3 col-form-label">* Lứa tuổi</label>
                                             <div class="col-xl-9 col-lg-9">
                                                 <div class="input-group">
-                                                    <input type="text" name="address2" class="form-control m-input"
-                                                        placeholder="">
+                                                    <select  class="form-control m-input" name="grade_id" id="grade">
+                                                        <option value="">Chọn lứa tuổi</option>
+                                                        @foreach ($grades as $grade)
+                                                        <option value="{{$grade->id}}">{{$grade->grade}}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -129,63 +137,23 @@
                             <div class="row">
                                 <div class="col-xl-8 offset-xl-2">
                                     <div class="m-form__section m-form__section--first">
-                                        <div class="m-form__heading">
-                                            <h3 class="m-form__heading-title">Thông tin bố</h3>
-                                        </div>
-                                        <div class="form-group m-form__group ">
-                                            <div class="row">
-                                                <div class="col-lg-6 m-form__group-sub">
-                                                    <label class="form-control-label">* Họ và tên:</label>
-                                                    <input type="text" name="full_name_father"
-                                                        class="form-control m-input" placeholder="">
-                                                </div>
-                                                <div class="col-lg-6 m-form__group-sub">
-                                                    <label class="form-control-label">* Điện thoại:</label>
-                                                    <input type="tel" name="number_phone_father"
-                                                        class="form-control m-input" placeholder="">
-                                                </div>
-                                            </div>
-                                            <div class="row mt-5">
-                                                <div class="col-lg-6 m-form__group-sub">
-                                                    <label class="form-control-label">* Nghề nghiệp:</label>
-                                                    <input type="text" name="job_father" class="form-control m-input"
-                                                        placeholder="">
-                                                </div>
-                                                <div class="col-lg-6 m-form__group-sub">
-                                                    <label class="form-control-label">* Nơi công tác:</label>
-                                                    <input type="text" name="work_plance_father"
-                                                        class="form-control m-input" placeholder="">
-                                                </div>
+
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-xl-3 col-lg-3 ">* Họ và tên phụ huynh:</label>
+                                            <div class="col-xl-9 col-lg-9">
+                                                <input type="text" name="parent_name" class="form-control m-input">
                                             </div>
                                         </div>
-                                        <div class="m-separator m-separator--dashed m-separator--lg"></div>
-                                        <div class="m-form__heading">
-                                            <h3 class="m-form__heading-title">Thông tin mẹ</h3>
-                                        </div>
-                                        <div class="form-group m-form__group">
-                                            <div class="row">
-                                                <div class="col-lg-6 m-form__group-sub">
-                                                    <label class="form-control-label">* Họ và tên:</label>
-                                                    <input type="text" name="full_name_mother"
-                                                        class="form-control m-input" placeholder="">
-                                                </div>
-                                                <div class="col-lg-6 m-form__group-sub">
-                                                    <label class="form-control-label">* Điện thoại:</label>
-                                                    <input type="tel" name="number_phone_mother"
-                                                        class="form-control m-input" placeholder="">
-                                                </div>
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-xl-3 col-lg-3 ">* Số điện thoại:</label>
+                                            <div class="col-xl-9 col-lg-9">
+                                                <input type="text" name="phone" class="form-control m-input">
                                             </div>
-                                            <div class="row mt-5">
-                                                <div class="col-lg-6 m-form__group-sub">
-                                                    <label class="form-control-label">* Nghề nghiệp:</label>
-                                                    <input type="text" name="job_mother" class="form-control m-input"
-                                                        placeholder="">
-                                                </div>
-                                                <div class="col-lg-6 m-form__group-sub">
-                                                    <label class="form-control-label">* Nơi công tác:</label>
-                                                    <input type="text" name="work_plance_mother"
-                                                        class="form-control m-input" placeholder="">
-                                                </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-xl-3 col-lg-3 l">* Email:</label>
+                                            <div class="col-xl-9 col-lg-9">
+                                                <input type="text" name="email" class="form-control m-input">
                                             </div>
                                         </div>
                                     </div>
@@ -223,117 +191,77 @@
                                                         trẻ:</label>
                                                     <div class="col-xl-9 col-lg-9">
                                                         <span class="m-form__control-static"
-                                                            name="name_kid_text"></span>
+                                                            name="kid_name_text"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group m-form__group m-form__group--sm row">
+                                                    <label class="col-xl-3 col-lg-3 col-form-label">Tên gọi ở nhà:</label>
+                                                    <div class="col-xl-9 col-lg-9">
+                                                        <span class="m-form__control-static"
+                                                            name="nickname_text"></span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group m-form__group m-form__group--sm row">
                                                     <label class="col-xl-3 col-lg-3 col-form-label">Ngày sinh:</label>
                                                     <div class="col-xl-9 col-lg-9">
                                                         <span class="m-form__control-static"
-                                                            name="birthday_text"></span>
+                                                            name="date_of_birth_text"></span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group m-form__group m-form__group--sm row">
                                                     <label class="col-xl-3 col-lg-3 col-form-label">Giới tính:</label>
                                                     <div class="col-xl-9 col-lg-9">
-                                                        <span class="m-form__control-static" name="sex_text"></span>
+                                                        <span class="m-form__control-static" name="gender_text"></span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group m-form__group m-form__group--sm row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label">Hộ khẩu thường
-                                                        trú:</label>
+                                                    <label class="col-xl-3 col-lg-3 col-form-label">Hiện đang cư trú tại:</label>
                                                     <div class="col-xl-9 col-lg-9">
                                                         <span class="m-form__control-static"
-                                                            name="address1_text"></span>
+                                                            name="address_text"></span>
                                                     </div>
                                                 </div>
                                                 <div class="form-group m-form__group m-form__group--sm row">
-                                                    <label class="col-xl-3 col-lg-3 col-form-label">Hiện đang cư chú
-                                                        tại:
-                                                        trú:</label>
+                                                    <label class="col-xl-3 col-lg-3 col-form-label">Lứa tuổi</label>
                                                     <div class="col-xl-9 col-lg-9">
                                                         <span class="m-form__control-static"
-                                                            name="address2_text"></span>
+                                                            name="grade_id_text"></span>
                                                     </div>
                                                 </div>
+                                                
                                             </div>
                                             <div class="m-separator m-separator--dashed m-separator--lg"></div>
                                             <div class="tab-pane" id="m_form_confirm_2" role="tabpanel">
                                                 <div class="m-form__section m-form__section--first">
                                                     <div class="m-form__heading">
-                                                        <h4 class="m-form__heading-title">Thông tin bố</h4>
+                                                        <h4 class="m-form__heading-title">Thông tin phụ huynh</h4>
                                                     </div>
                                                     <div class="form-group m-form__group m-form__group--sm row">
                                                         <label class="col-xl-3 col-lg-3 col-form-label">Họ và
-                                                            tên:</label>
+                                                            tên phụ huynh:</label>
                                                         <div class="col-xl-9 col-lg-9">
                                                             <span class="m-form__control-static"
-                                                                name="full_name_father_text"></span>
+                                                                name="parent_name_text"></span>
                                                         </div>
                                                     </div>
                                                     <div class="form-group m-form__group m-form__group--sm row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">Điện
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">Số điện
                                                             thoại:</label>
                                                         <div class="col-xl-9 col-lg-9">
                                                             <span class="m-form__control-static"
-                                                                name="number_phone_father_text"></span>
+                                                                name="phone_text"></span>
                                                         </div>
                                                     </div>
                                                     <div class="form-group m-form__group m-form__group--sm row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">Nghề
-                                                            nghiệp:</label>
+                                                        <label class="col-xl-3 col-lg-3 col-form-label">Email:</label>
                                                         <div class="col-xl-9 col-lg-9">
                                                             <span class="m-form__control-static"
-                                                                name="job_father_text"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group m-form__group m-form__group--sm row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">Nơi công
-                                                            tác:</label>
-                                                        <div class="col-xl-9 col-lg-9">
-                                                            <span class="m-form__control-static"
-                                                                name="work_plance_father_text"></span>
+                                                                name="email_text"></span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="m-separator m-separator--dashed m-separator--lg"></div>
-                                                <div class="m-form__section m-form__section--first">
-                                                    <div class="m-form__heading">
-                                                        <h4 class="m-form__heading-title">Thông tin mẹ</h4>
-                                                    </div>
-                                                    <div class="form-group m-form__group m-form__group--sm row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">Họ và
-                                                            tên:</label>
-                                                        <div class="col-xl-9 col-lg-9">
-                                                            <span class="m-form__control-static"
-                                                                name="full_name_mother_text"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group m-form__group m-form__group--sm row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">Điện
-                                                            thoại:</label>
-                                                        <div class="col-xl-9 col-lg-9">
-                                                            <span class="m-form__control-static"
-                                                                name="number_phone_mother_text"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group m-form__group m-form__group--sm row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">Nghề
-                                                            nghiệp:</label>
-                                                        <div class="col-xl-9 col-lg-9">
-                                                            <span class="m-form__control-static"
-                                                                name="job_mother_text"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group m-form__group m-form__group--sm row">
-                                                        <label class="col-xl-3 col-lg-3 col-form-label">Nơi công
-                                                            tác:</label>
-                                                        <div class="col-xl-9 col-lg-9">
-                                                            <span class="m-form__control-static"
-                                                                name="work_plance_mother_text"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
                                         </div>
 
@@ -397,82 +325,66 @@
 
 <script>
 function fillData1() {
-    var name_kid = document.querySelector("input[name = 'name_kid']").value;
-    var address1 = document.querySelector("input[name = 'address1']").value;
-    var address2 = document.querySelector("input[name = 'address2']").value;
-    var birthday = document.querySelector("input[name = 'birthday']").value;
-    var sex = document.querySelector("input[name = 'sex']").value;
-    var full_name_father = document.querySelector("input[name = 'full_name_father']").value;
-    var number_phone_father = document.querySelector("input[name = 'number_phone_father']").value;
-    var job_father = document.querySelector("input[name = 'job_father']").value;
-    var work_plance_father = document.querySelector("input[name = 'work_plance_father']").value;
-    var full_name_mother = document.querySelector("input[name = 'full_name_mother']").value;
-    var number_phone_mother = document.querySelector("input[name = 'number_phone_mother']").value;
-    var job_mother = document.querySelector("input[name = 'job_mother']").value;
-    var work_plance_mother = document.querySelector("input[name = 'work_plance_mother']").value;
+    var kid_name = document.querySelector("input[name = 'kid_name']").value;
+    var nickname = document.querySelector("input[name = 'nickname']").value;
+    var address = document.querySelector("input[name = 'address']").value;
+    var date_of_birth = document.querySelector("input[name = 'date_of_birth']").value;
+    var gender = document.querySelector("input[name = 'gender']").value;
+    var grade = $( "#grade option:selected" ).text();
+    var parent_name = document.querySelector("input[name = 'parent_name']").value;
+    var email = document.querySelector("input[name = 'email']").value;
+    var phone = document.querySelector("input[name = 'phone']").value;
 
-    const name_kid_text = document.querySelector("span[name = 'name_kid_text']");
-    const address1_text = document.querySelector("span[name = 'address1_text']");
-    const address2_text = document.querySelector("span[name = 'address2_text']");
-    const birthday_text = document.querySelector("span[name = 'birthday_text']");
-    const sex_text = document.querySelector("span[name = 'sex_text']");
-    const full_name_father_text = document.querySelector("span[name = 'full_name_father_text']");
-    const number_phone_father_text = document.querySelector("span[name = 'number_phone_father_text']");
-    const job_father_text = document.querySelector("span[name = 'job_father_text']");
-    const work_plance_father_text = document.querySelector("span[name = 'work_plance_father_text']");
-    const full_name_mother_text = document.querySelector("span[name = 'full_name_mother_text']");
-    const number_phone_mother_text = document.querySelector("span[name = 'number_phone_mother_text']");
-    const job_mother_text = document.querySelector("span[name = 'job_mother_text']");
-    const work_plance_mother_text = document.querySelector("span[name = 'work_plance_mother_text']");
 
-    name_kid_text.innerHTML = name_kid;
-    address1_text.innerHTML = address1;
-    address2_text.innerHTML = address2;
-    birthday_text.innerHTML = birthday;
-    sex_text.innerHTML = sex == 1 ? "Nam" : "Nữ";
-    full_name_father_text.innerHTML = full_name_father;
-    number_phone_father_text.innerHTML = number_phone_father;
-    job_father_text.innerHTML = job_father;
-    work_plance_father_text.innerHTML = work_plance_father;
-    full_name_mother_text.innerHTML = full_name_mother;
-    number_phone_mother_text.innerHTML = number_phone_mother;
-    job_mother_text.innerHTML = job_mother;
-    work_plance_mother_text.innerHTML = work_plance_mother;
+    const kid_name_text = document.querySelector("span[name = 'kid_name_text']");
+    const nickname_text = document.querySelector("span[name = 'nickname_text']");
+    const address_text = document.querySelector("span[name = 'address_text']");
+    const date_of_birth_text = document.querySelector("span[name = 'date_of_birth_text']");
+    const gender_text = document.querySelector("span[name = 'gender_text']");
+    const grade_id_text = document.querySelector("span[name = 'grade_id_text']");
+    const parent_name_text = document.querySelector("span[name = 'parent_name_text']");
+    const phone_text = document.querySelector("span[name = 'phone_text']");
+    const email_text = document.querySelector("span[name = 'email_text']");
+
+    kid_name_text.innerHTML = kid_name;
+    nickname_text.innerHTML = nickname;
+    address_text.innerHTML = address;
+    date_of_birth_text.innerHTML = date_of_birth;
+    grade_id_text.innerHTML = grade;
+    gender_text.innerHTML = gender == 1 ? "Nam" : "Nữ";
+    parent_name_text.innerHTML = parent_name;
+    phone_text.innerHTML = phone;
+    email_text.innerHTML = email;
 
 }
 
 function myFunction() {
     event.preventDefault();
 
-    var name_kid = document.querySelector("input[name = 'name_kid']").value;
-    var address1 = document.querySelector("input[name = 'address1']").value;
-    var address2 = document.querySelector("input[name = 'address2']").value;
-    var birthday = document.querySelector("input[name = 'birthday']").value;
-    var sex = document.querySelector("input[name = 'sex']").value;
-    var full_name_father = document.querySelector("input[name = 'full_name_father']").value;
-    var number_phone_father = document.querySelector("input[name = 'number_phone_father']").value;
-    var job_father = document.querySelector("input[name = 'job_father']").value;
-    var work_plance_father = document.querySelector("input[name = 'work_plance_father']").value;
-    var full_name_mother = document.querySelector("input[name = 'full_name_mother']").value;
-    var number_phone_mother = document.querySelector("input[name = 'number_phone_mother']").value;
-    var job_mother = document.querySelector("input[name = 'job_mother']").value;
-    var work_plance_mother = document.querySelector("input[name = 'work_plance_mother']").value;
-
+    var kid_name = document.querySelector("input[name = 'kid_name']").value;
+    var nickname = document.querySelector("input[name = 'nickname']").value;
+    var address = document.querySelector("input[name = 'address']").value;
+    var date_of_birth = document.querySelector("input[name = 'date_of_birth']").value;
+    var gender = document.querySelector("input[name = 'gender']").value;
+    var grade_id = $( "#grade option:selected" ).val();
+    
+    var parent_name = document.querySelector("input[name = 'parent_name']").value;
+    var email = document.querySelector("input[name = 'email']").value;
+    var phone = document.querySelector("input[name = 'phone']").value;
+    var status = '0';
     const data = {
-        name_kid: name_kid,
-        address1: address1,
-        address2: address2,
-        birthday: birthday,
-        sex: sex,
-        full_name_father: full_name_father,
-        number_phone_father: number_phone_father,
-        job_father: job_father,
-        work_plance_father: work_plance_father,
-        full_name_mother: full_name_mother,
-        number_phone_mother: number_phone_mother,
-        job_mother: job_mother,
-        work_plance_mother: work_plance_mother
+        kid_name: kid_name,
+        nickname: nickname,
+        address: address,
+        date_of_birth: date_of_birth,
+        gender: gender,
+        grade_id: grade_id,
+        parent_name: parent_name,
+        email: email,
+        phone: phone,
+        status:status
     }
+    console.log(data);
     swal({
         title: "Bạn có chắc chắn gửi",
         text: "Thông tin của bạn sẽ được gửi đến trường mầm non Tuổi Ngọc!",

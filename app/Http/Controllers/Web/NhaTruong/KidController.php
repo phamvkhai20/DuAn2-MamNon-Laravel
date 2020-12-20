@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web\NhaTruong;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Kid, Classes, Parents,Grade,History};
+use App\Models\{Kid, Classes, Parents,GradeModel,History,SchoolYearModel};
 use App\Http\Requests\Kid\{KidRequest, EditKidRequest};
 use DB;
 use Arr;
@@ -340,13 +340,67 @@ class KidController extends Controller
         $history->save();
         return redirect()->route('nha-truong.tre.index');
     }
+    
 
     public function history($id)
     {
         $data['histories'] = History::where('kid_id',$id)->orderBy('id','desc')->paginate(10);
         return view('staff.nha-truong.quan-ly-hoc-sinh.history', $data);
     }
+    public function arrange(){
+        $data['grades'] = GradeModel::all();
+        return view('staff.nha-truong.quan-ly-hoc-sinh.arrange',$data);
+    }
+    public function save_arrange(Request $request)
+    {
+        if($request->class_id == "" || $request->grade_id == ""){
+            session()->flash('error','Chưa chọn khối hoặc lớp!');
+            return redirect()->back();
+        }
+        if ($request->has('check')) {
+            foreach ($_POST['check'] as $id) {
+                $kid = Kid::find($id);
+                $data['class_id'] = $request->class_id;
+                $kid->update($data);
+            }
+            foreach ($_POST['check'] as $id) {
+                $history = new History();
+                $history->class_id = $request->class_id;
+                $history->kid_id = $id;
+                $history->date = date("Y-m-d");
+                $history->status = '1';
+                $history->save();
+            }
+            session()->flash('message','Xếp lớp thành công!');
+            return redirect()->back();
+        }
+        else{
+            session()->flash('error','Chưa chọn học sinh!');
+            return redirect()->back();
+        
+        }
+    }
+    public function searchByGrade(Request $request)
+    {    
+        if ($request->ajax()) {
+            $school_year_id = SchoolYearModel::orderBy('id', 'desc')->limit(1)->first()->id;
+            $classes = Classes::where("grade_id",$request->grade_id)
+                        ->where("school_year_id", $school_year_id)
+                        ->select('id', 'name')->get();
 
-    
-    
+            $kids = Kid::where("grade_id",$request->grade_id)
+                        ->where("class_id", null)
+                        ->get();
+            $response = [
+                            'classes' => $classes,
+                            'kids' => $kids,
+                        ];
+                        
+
+            return response()->json($response);
+            
+
+		
+    }
+}
 }
