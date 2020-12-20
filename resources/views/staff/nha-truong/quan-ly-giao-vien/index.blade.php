@@ -72,11 +72,11 @@
                             <span>Quay lại</span>
                         </span>
                     </a>
-                    <a href="{{route('nha-truong.tre.create')}}"
+                    <a href="{{route('nha-truong.giao-vien.them')}}"
                         class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                         <span>
                             <i class="la la-plus"></i>
-                            <span>Thêm trẻ</span>
+                            <span>Thêm giáo viên</span>
                         </span>
                     </a>
                 </div>

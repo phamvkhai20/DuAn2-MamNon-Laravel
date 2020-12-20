@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Web\NhaTruong;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Kid, Classes, Parents,GradeModel,History,SchoolYearModel};
+use App\Models\{Kid, Classes, Parents,GradeModel,History,SchoolYearModel, Grade};
 use App\Http\Requests\Kid\{KidRequest, EditKidRequest};
 use DB;
 use Arr;
@@ -109,6 +109,8 @@ class KidController extends Controller
             $kid->address = $request->address;
             $kid->admission_date = $request->admission_date;
             $kid->class_id = $request->class_id;
+            $grade_id = Classes::where('id', $request->class_id)->first()->grade_id;
+            $kid->grade_id = $grade_id;
             $kid->kid_status = '1';
             $kid->description = $request->description;
             if ($request->hasFile('kid_avatar')) {
@@ -150,6 +152,9 @@ class KidController extends Controller
             $kid->address = $request->address;
             $kid->admission_date = $request->admission_date;
             $kid->class_id = $request->class_id;
+            $grade_id = Classes::where('id', $request->class_id)->first()->grade_id;
+            $kid->grade_id = $grade_id;
+            
             $kid->kid_status = '1';
             $kid->description = $request->description;
             $avatar = $request->file('kid_avatar');
@@ -309,8 +314,10 @@ class KidController extends Controller
         $data['classes'] = DB::table('classes')
                             ->where('grade_id','=',$grade_id)
                             ->where('id','!=', $data['kid']->class_id)
+                            ->where('status','=', '1')
                             ->get();
         // dd($data['classes']);
+        
         return view('staff.nha-truong.quan-ly-hoc-sinh.change_class', $data);
     }
     public function save_change(Request $request, $id)
@@ -318,6 +325,13 @@ class KidController extends Controller
         $kid = Kid::find($id);
         $data = Arr::except(request()->all(), ["_token ,'_method'"]);
         $kid->update($data);
+        
+        $history = new History();
+                $history->class_id = $request->class_id;
+                $history->kid_id = $id;
+                $history->date = date("Y-m-d");
+                $history->status = '2';
+                $history->save();
         session()->flash('message','Chuyển lớp thành công!');
         return redirect()->back();
     }

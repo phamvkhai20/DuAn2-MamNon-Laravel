@@ -30,7 +30,7 @@
                                 <div class="col-md-12">
                                 
                                     <div class="m-input-icon m-input-icon--left">
-                                        <input value="{{request()->get('parent_name')}}" name="parent_name" id="searchByName" type="text" class="form-control m-input m-input--solid"
+                                        <input value="{{request()->get('kid_name')}}" name="kid_name" id="searchByName" type="text" class="form-control m-input m-input--solid"
                                             placeholder="Tìm kiếm qua tên">
                                         <span class="m-input-icon__icon m-input-icon__icon--left">
                                             <span><i class="la la-search"></i></span>
@@ -124,9 +124,7 @@
                                             </td>
                                         </tr>
                                         @endforeach
-                                    <tr>
-                                        <th colspan="8" class="text-center"><label class="col-lg-10 text-danger">Không tìm thấy hồ sơ nào!</label> </th>
-                                    </tr>
+                    
                                     
                                     </tbody>
                                 </table>
@@ -139,7 +137,7 @@
                         </div>
                         <div class="dataTables_paginate paging_simple_numbers" id="m_table_1_paginate">
                             <ul class="pagination">
-                               
+                            {{ $admissions->links() }}
                             </ul>
                         </div>
                     </div>

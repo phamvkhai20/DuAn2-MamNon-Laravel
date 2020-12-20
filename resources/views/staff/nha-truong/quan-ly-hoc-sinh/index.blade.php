@@ -35,8 +35,8 @@
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item" href="{{route('nha-truong.tre.index')}}">Tất cả</a>
-                                                <a class="dropdown-item" href="{{route('nha-truong.tre.index')}}?gender=0">Đang học</a>
-                                                <a class="dropdown-item" href="{{route('nha-truong.tre.index')}}?gender=1">Thôi học</a>
+                                                <a class="dropdown-item" href="{{route('nha-truong.tre.index')}}?gender=0">Nữ</a>
+                                                <a class="dropdown-item" href="{{route('nha-truong.tre.index')}}?gender=1">Name</a>
                                             </div>
                                         </div>
                                     </div>
@@ -197,7 +197,7 @@
                                     Processing...</div>
                             </div>
                         </div>
-                        <div class="dataTables_paginate paging_simple_numbers" id="m_table_1_paginate">
+                        <div  class="dataTables_paginate paging_simple_numbers " id="m_table_1_paginate">
                             <ul class="pagination">
                                 {{ $kids->links() }}
                             </ul>
