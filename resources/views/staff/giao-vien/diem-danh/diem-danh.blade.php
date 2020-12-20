@@ -16,7 +16,7 @@
             <input type="date" name="date" class="form-control m-input" id="date_attendance" value="{{$dateAttendance}}" />
         </div>
         <div class="col-lg-3">
-            <button class="btn btn-primary " style="">
+            <button class="btn btn-primary ">
                 Tìm kiếm
             </button>
         </div>
@@ -100,7 +100,8 @@
     <div class="m-portlet box_tille_">
         <div class="m-portlet__body">
             <ul class="nav nav-pills nav-fill" role="tablist">
-                @if($date<"12:00:00") <li class="nav-item">
+                @if($date<"12:00:00"||count($attendanceTrue)==0) 
+                <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#m_tabs_5_1">Điểm danh đến</a>
                     </li>
                     <li class="nav-item">
@@ -116,7 +117,7 @@
                     @endif
             </ul>
             <div class="tab-content">
-                @if($date<"12:00") <div class="tab-pane active" id="m_tabs_5_1" role="tabpanel">
+                @if($date<"12:00"||count($attendanceTrue)==0) <div class="tab-pane active" id="m_tabs_5_1" role="tabpanel">
                     @else
                     <div class="tab-pane " id="m_tabs_5_1" role="tabpanel">
                         @endif
@@ -207,7 +208,8 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <textarea class="form-control" name="note[{{$kid->id}}]" placeholder="Nhập thông tin khác" rows="6">{{!empty($kid->attendance[0])&&$kid->attendance[0]->note=="null"?"":$kid->attendance[0]->note}}</textarea>
+                                                <input type="text" name="note[{{$kid->id}}]" value="null">
+                                                <textarea class="form-control" name="note[{{$kid->id}}]" placeholder="Nhập thông tin khác" rows="6">{{!empty($kid->attendance[0])&&$kid->attendance[0]->note!="null"?$kid->attendance[0]->note:"null"}}</textarea>
                                                 @if(!empty($kid->attendance[0])&&$kid->attendance[0]->status==2)
                                                 <p>Xin nghỉ trên hệ thống nhưng có đi học !</p>
                                                 <p>Thay đổi trạng thái</p>
@@ -451,7 +453,9 @@
 
     function thongbao() {
         var x = document.querySelector('#thongbao').value;
-        x && swal("Xong!", "Bạn đã cập nhật điểm danh thành công!", "success");
+        x=="oke" && swal("Xong!", "Bạn đã cập nhật điểm danh thành công!", "success");
+        x=="error" && swal("Lỗi!", "Điểm danh không thành công!", "error");
+        
     }
     setTimeout(() => {
         thongbao();

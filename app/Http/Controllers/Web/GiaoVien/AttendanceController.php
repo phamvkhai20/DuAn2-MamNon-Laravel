@@ -38,7 +38,12 @@ class AttendanceController extends Controller
     {
         $idTeacher = Auth::guard('teacher')->user()->id;
         $date= request()->get('dateAttendance');
+        
         $data = Arr::except($request->all(), ['_token']);
+        if($date>substr(Carbon::now(), 0, 10)){
+            $request->session()->flash('status', 'error');
+            return redirect()->route('giao-vien.giao_dien_diem_danh', ['id' => $data["class"],'date'=>$date]);
+        }
         foreach ($data["kid_id"] as $index => $kid) {
             $find = Attendance::where('kid_id', $data["kid_id"][$index])->where("date", $data["date"][$index])->get();
             if ($data["status"][$index] != "2") {

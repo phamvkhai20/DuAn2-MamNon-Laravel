@@ -53,7 +53,7 @@ class NotificationController extends Controller
     }
     public function indexTeacher()
     {
-        $notifications=Notification::where('role','2')->orWhere('sender_id',Auth::guard('teacher')->user()->id)->orWhere('range','1')->orWhere('sender_id','2')->orderBy('id', 'desc')->paginate(5);
+        $notifications=Notification::where('range','3')->where('receiver_id',Auth::guard('teacher')->user()->id)->orWhere('range','1')->orderBy('id', 'desc')->paginate(5);
        return view('staff.giao-vien.quan-ly-thong-bao.index',['notifications'=>$notifications]);
     }
     public function save_teacher_add(NotificationRequest $request)

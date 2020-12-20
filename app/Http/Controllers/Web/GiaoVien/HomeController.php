@@ -34,7 +34,7 @@ class HomeController extends Controller
 
     protected function infoKid($id)
     {
-        $infoKid = Kid::where('id',$id)->with('getClass')->first();
+        $infoKid = Kid::where('id',$id)->with('getClass','parent')->first();
         return view('staff.giao-vien.thong-tin-tre.index', ['infoKid' => $infoKid]);
     }
     protected function list_kid($id)
