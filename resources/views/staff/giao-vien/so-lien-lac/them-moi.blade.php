@@ -23,7 +23,6 @@
                         </a>
                     </div>
                 </div>
-                
                 <div class="m-portlet__body">
                     <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed"
                         action="{{route('giao-vien.them-so-lien-lac.them-moi',['id'=>session('class')])}}"
@@ -33,7 +32,6 @@
                             <div class=" row">
                                 <h6 class="col-lg-5 col-form-label">Tiêu đề (*) :</h6>
                                 <div class="col-lg-12">
-                                
                                 <input type="text" name="title" class="form-control m-input">
                                 <input type="hidden" id="contactBook" value="{{session('contactBook')}}" class="form-control m-input">
                                 </div>

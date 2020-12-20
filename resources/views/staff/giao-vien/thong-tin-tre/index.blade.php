@@ -1,10 +1,10 @@
 @extends('./staff/giao-vien/layouts/layout')
-@section('title','Xin nghỉ học')
+@section('title','Chi tiết trẻ')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3">
     <div class=" ">
         <div class="row">
-        <div class="col-xl-3 col-lg-4">
+            <div class="col-xl-3 col-lg-4">
                 <div class="m-portlet m-portlet--full-height  ">
                     <div class="m-portlet__body">
                         <div class="m-card-profile">
@@ -46,7 +46,15 @@
                                         <i class="flaticon-share m--hide"></i>
                                         Thông tin trẻ
                                     </a>
+
                                 </li>
+                                <li class="nav-item m-tabs__item">
+                                    <a class="nav-link m-tabs__link" data-toggle="tab" href="#infoParent"
+                                        role="tab">
+                                        Thông tin phụ huynh
+                                    </a>
+                                </li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -71,13 +79,11 @@
                                         <label class="col-form-label col-lg-3 col-sm-12">Giới tinh</label>
                                         <div class="col-lg-4 col-md-9 col-sm-12">
                                             @if($infoKid->gender==1)
-                                                <input type="text" disabled value="Nam"
-                                                class="form-control" />
+                                            <input type="text" disabled value="Nam" class="form-control" />
                                             @else
-                                            <input type="text" disabled value="Nữ"
-                                                class="form-control" />
+                                            <input type="text" disabled value="Nữ" class="form-control" />
                                             @endif
-                                            
+
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -111,7 +117,44 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="tab-pane " id="m_user_profile_tab_2">
+                        <div class="tab-pane " id="infoParent">
+                        <form class="m-form m-form--fit m-form--label-align-right">
+                                <div class="m-portlet__body">
+                                <style>
+                            .image__kid {
+                                background-position: center;
+                                background-repeat: no-repeat;
+                                background-size: cover;
+                                position: relative;
+                                width: 160px;
+                                height: 160px;
+                            }
+                            </style>
+                        
+                            <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-3 col-sm-12">Ảnh</label>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                                <div class="m-card-profile__pic-wrapper image__kid" id="image__kid"
+                                    style="background-image: url(<?php echo '/upload/avatar/' . $infoKid->parent->parent_avatar ?> )">
+                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-3 col-sm-12">Họ và tên</label>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <input type="text" disabled value="{{$infoKid->parent->parent_name}}"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-form-label col-lg-3 col-sm-12">Số điện thoại</label>
+                                        <div class="col-lg-4 col-md-9 col-sm-12">
+                                            <input type="text" disabled value="{{$infoKid->parent->phone}}"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="tab-pane " id="m_user_profile_tab_3">
                         </div>

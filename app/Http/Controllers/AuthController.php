@@ -94,6 +94,7 @@ class AuthController extends Controller
    {
       return view('web.page.nop-ho-so');
    }
+ 
    // Đăng xuất
    public function logoutSchool(Request $request)
    {

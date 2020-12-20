@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Arr;
 use App\Http\Requests\Parent\{ParentRequest, EditParentRequest};
+use App\Models\Classes;
 
 class ParentController extends Controller
 {
@@ -14,6 +15,17 @@ class ParentController extends Controller
    {
       $data['parents'] = Parents::with('Kids')->paginate(10);
       return view('staff.nha-truong.quan-ly-phu-huynh.index', $data);
+   }
+   public function getParent(Request $request)
+   {
+         $id = $request->get('id');
+         $teachers = Classes::where('id',$id)->with('Kids')->first();
+         $array=[];
+         foreach($teachers->Kids as $kid){
+            array_push($array,$kid->parent_id);
+         }
+         $parents = Parents::whereIn('id',$array)->distinct()->get();
+       return response()->json(['parents' =>$parents]);
    }
    public function create()
    {

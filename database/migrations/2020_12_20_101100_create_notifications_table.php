@@ -15,15 +15,17 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('title');
-            $table->longtext('content');
-            $table->text('range');
-            $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->integer('range');
+            $table->integer('class_id');
+            $table->integer('receiver_id');
+            $table->text('note');
+            $table->integer('sender_id');
+            $table->integer('role');
+            $table->integer('status')->default(0);
+            $table->string('title');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

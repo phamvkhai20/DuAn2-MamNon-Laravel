@@ -1,0 +1,678 @@
+/* Taila */
+@media (min-width: 768px) {
+    .js_play-video-home_hidden {
+        display: none;
+    }
+    .js_play-video-home {
+        display: block;
+    }
+}
+@media (max-width: 768px) {
+    .box_school {
+        width: 100%;
+        padding-bottom: 150px!important;
+    }
+    .box_reg_school {
+        width: 100%;
+        top: 0;
+        left: 0;
+        margin-top: 20px;
+        margin-left: 0;
+
+    }
+    .box_school .btn {
+        width: 100%!important;
+    }
+    .box_reg_school .btn {
+        width: 100%!important;
+    }
+    .box_reg_school a {
+        top: 0;
+        right: 10px;
+        color: #000;
+    }
+    .js_play-video-home_hidden {
+        display: block;
+    }
+    .js_play-video-home {
+        display: none;
+    }
+    .logo-slogan {
+        display: none;
+    }
+    .logo-img {
+        margin-top: 10px;
+    }
+    .banner_left_col {
+        padding-left: 100px;
+    }
+    .banner_title h1 {
+        margin-top: 20px;
+        font-size: 15px;
+    }
+    .video_play .icon-video {
+        margin: 10px;
+        width: 50px;
+        height: 50px;
+    }
+    .banner-trial {
+        margin-top: 0;
+    }
+    .banner-trial h4 {
+        font-size: 12px;
+        margin-top: 0;
+    }
+    .google, .ios {
+        margin-right: 0;
+        padding: 0;
+    }
+    .username_col {
+        padding-right: 15px;
+    }
+    .password_col {
+        padding-left: 15px;
+    }
+    .btn-facebook {
+        margin-bottom: 10px!important;
+    }
+    .banner-content {
+        position: initial;
+    }
+    .banner_left_col {
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    .home_background {
+        padding: 10px 0;
+    }
+    .intro_title {
+        padding: 0;
+    }
+    .content_pad {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #b7b7b7;
+    }
+    .content_text {
+        padding: 10px;
+    }
+    .content_pad ul li {
+        padding-left: 5px;
+    }
+    .home_background_none {
+        padding: 10px 0;
+    }
+    .around_parent {
+        width: 20%;
+        position: absolute;
+        top: 8px;
+        left: 35px;
+    }
+    .home_around h4 {
+        font-size: 12px;
+    }
+    .parent_content {
+        display: none;
+    }
+    .parent_title {
+        border-bottom: none;
+    }
+    .around_chef {
+        width: 20%;
+        position: absolute;
+        top: 8px;
+        right: 39px;
+    }
+    .around_teacher {
+        width: 20%;
+        position: absolute;
+        top: 80px;
+        left: 20px;
+    }
+    .around_accountant {
+        width: 20%;
+        position: absolute;
+        top: 80px;
+        right: 23px;
+    }
+    .around_principal {
+        width: 22%;
+        position: absolute;
+        bottom: 35px;
+    }
+    .intro_des {
+        margin-bottom: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .customer_img_box {
+        width: 90px;
+        height: 90px;
+    }
+    #myCarousel {
+        margin-bottom: 10px;
+    }
+    .phone_img {
+        height: auto!important;
+    }
+    .phone_img_box {
+        height: auto!important;
+    }
+    .news_box {
+        margin-bottom: 10px;
+    }
+    .footer_box .col-sm-6 {
+        padding-left: 15px!important;
+    }
+    .menu_header {
+        margin-bottom: 0;
+    }
+    .menu_box {
+        margin-bottom: 10px;
+    }
+    .news_img_box {
+        width: 100%;
+    }
+    .news_img {
+        width: 100%;
+    }
+    .google {
+        display: none;
+    }
+    .banner-trial {
+        display: none;
+    }
+    .soicial_left_box {
+        display: none;
+        /*bottom: 55px;*/
+        /*top: auto;*/
+    }
+    .qr_code h5 {
+        font-size: 12px;
+        margin-bottom: 0px;
+    }
+    .qr_code p {
+        font-size: 11px;
+        margin-bottom: 3px;
+    }
+    .qr_code_box {
+        padding: 3px 3px 0 3px;
+        border: 1px solid #b0b0b0;
+    }
+    .qr_code {
+        padding: 0;
+    }
+}
+@media (min-width: 524px) and (max-width: 767px) {
+    .around_parent {
+        width: 20%;
+        position: absolute;
+        top: 35px;
+        left: 70px;
+    }
+    .around_chef {
+        width: 20%;
+        position: absolute;
+        top: 35px;
+        right: 70px;
+    }
+    .around_accountant {
+        width: 20%;
+        position: absolute;
+        top: 150px;
+        right: 35px;
+    }
+    .around_principal {
+        bottom: 70px;
+    }
+    .around_teacher {
+        top: 150px;
+        left: 30px;
+    }
+    .banner_left_col {
+        padding-left: 130px;
+    }
+    .banner_title h1 {
+        font-size: 20px;
+    }
+    .video_play .icon-video {
+        width: 80px;
+        height: 80px;
+    }
+    .banner-trial h4 {
+        font-size: 15px;
+    }
+    .video_play {
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    .banner_title {
+        margin-top: 30px;
+    }
+}
+@media (max-width: 374px) {
+    .banner_title h1 {
+        margin-top: 10px;
+        font-size: 13px;
+        margin-bottom: 0;
+    }
+    .video_play .icon-video {
+        width: 40px;
+        height: 40px;
+    }
+    .icon-video::after {
+        margin-top: -10px;
+        margin-right: -12px;
+        border-bottom: 10px solid transparent;
+        border-top: 10px solid transparent;
+        border-left: 20px solid #fff;
+    }
+    .google_img, .ios_img {
+        max-width: 60px;
+    }
+    .customer_text_box {
+        padding: 20px;
+    }
+    .customer_img_box {
+        width: 70px;
+        height: 70px;
+    }
+    .customer_name {
+        color: #58A850;
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+    .customer_position {
+        font-size: 12px;
+    }
+    .customer_link {
+        font-size: 12px;
+    }
+    .around_principal {
+        bottom: 20px;
+    }
+    .qr_code p {
+        font-size: 10px;
+        margin-bottom: 0px;
+    }
+    .qr_code h5 {
+        font-size: 10px;
+    }
+}
+@media (min-width: 375px) and (max-width: 524px) {
+    .banner_title h1 {
+        margin-top: 15px;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+    .video_play .icon-video {
+        width: 50px;
+        height: 50px;
+    }
+    .google_img, .ios_img {
+        max-width: 70px;
+    }
+    .icon-video::after {
+        margin-top: -12px;
+        margin-right: -13px;
+        border-bottom: 15px solid transparent;
+        border-top: 10px solid transparent;
+        border-left: 20px solid #fff;
+    }
+    .qr_code p {
+        font-size: 11px;
+        margin-bottom: 0;
+    }
+    .qr_code h5 {
+        font-size: 10px;
+    }
+}
+@media (min-width: 768px) and (max-width: 799px) {
+    .banner_right_col {
+        width: 100%;
+    }
+    .banner_title h1 {
+        font-size: 24px;
+        margin-top: 30px;
+    }
+    .video_play .icon-video {
+        margin-top: 0;
+        max-width: 100px;
+        max-height: 100px;
+    }
+    .banner-trial {
+        margin-top: 10px;
+    }
+    .banner_left_col {
+        padding-left: 200px;
+    }
+    .video_play .icon-video {
+        margin-top: 0;
+        width: 100px;
+        height: 100px;
+    }
+    .logo-img {
+        margin-top: 30px;
+    }
+    .banner-content {
+        position: initial;
+    }
+    .banner_left_col {
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    .banner-content .container {
+        margin: 0!important;
+        width: 100%;
+    }
+    .around_parent {
+        top: 35px;
+        left: 70px;
+    }
+    .around_chef {
+        top: 35px;
+        right: 80px;
+    }
+    .around_accountant {
+        top: 190px;
+        right: 40px;
+    }
+    .around_principal {
+        bottom: 100px;
+    }
+    .around_teacher {
+        top: 190px;
+        left: 40px;
+    }
+    .content_pad {
+        border-bottom: none;
+    }
+    .customer_text_box {
+        padding: 10px;
+    }
+    .customer_img_box {
+        width: 80px;
+        height: 80px;
+    }
+    .parent_content {
+        display: none;
+    }
+    .intro_des {
+        margin-bottom: 20px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    .qr_code {
+        /*display: none;*/
+    }
+    .soicial_left_box {
+        bottom: 55px;
+        top: auto;
+    }
+}
+@media (min-width: 800px) and (max-width: 990px) {
+    .intro_title {
+        padding: 20px 20px 20px 20px;
+    }
+    .banner-content .container {
+        width: 100%;
+    }
+    .banner_right_col {
+        width: 100%;
+    }
+    .banner_title h1 {
+        font-size: 24px;
+        margin-top: 30px;
+    }
+    .video_play .icon-video {
+        margin-top: 0;
+        max-width: 100px;
+        max-height: 100px;
+    }
+    .banner-trial {
+        margin-top: 10px;
+    }
+    .banner-content {
+        position: initial;
+    }
+    .banner_left_col {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+    .banner_left_col {
+        padding-left: 200px;
+    }
+    .around_parent {
+        top: 25px;
+        left: 65px;
+    }
+    .around_chef {
+        top: 25px;
+        right: 70px;
+    }
+    .around_accountant {
+        top: 167px;
+        right: 35px;
+    }
+    .around_principal {
+        bottom: 12px;
+        width: 40%;
+    }
+    .around_teacher {
+        top: 167px;
+        left: 30px;
+    }
+    .customer_img_box {
+        width: 80px;
+        height: 80px;
+    }
+    .intro_des {
+        margin-bottom: 20px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    /*.qr_code {*/
+        /*display: none;*/
+    /*}*/
+    .soicial_left_box {
+        bottom: 55px;
+        top: auto;
+    }
+}
+@media (min-width: 991px) and (max-width: 1139px) {
+    .banner_title h1 {
+        font-size: 24px;
+        margin-top: 30px;
+    }
+    .video_play .icon-video {
+        margin-top: 0;
+        max-width: 100px;
+        max-height: 100px;
+    }
+    .banner-trial {
+        margin-top: 10px;
+    }
+    .banner_left_col {
+        padding-left: 200px;
+    }
+    .video_play .icon-video {
+        margin-top: 0;
+        width: 100px;
+        height: 100px;
+    }
+    .logo-img {
+        margin-top: 10px;
+    }
+    .banner-content .container {
+        margin: 0!important;
+        width: 100%;
+    }
+    .around_parent {
+        top: 35px;
+        left: 80px;
+    }
+    .around_chef {
+        top: 35px;
+        right: 85px;
+    }
+    .around_accountant {
+        top: 190px;
+        right: 45px;
+    }
+    .around_principal {
+        bottom: 100px;
+    }
+    .around_teacher {
+        top: 190px;
+        left: 50px;
+    }
+    .content_pad {
+        border-bottom: none;
+    }
+    .customer_text_box {
+        padding: 10px;
+    }
+    .banner_log h3 {
+        display: none;
+    }
+    .p_soicial_text {
+        display: none;
+    }
+    .banner_log {
+        margin-top: 5px;
+    }
+    .around_parent {
+        top: 28px;
+        left: 80px;
+    }
+    .around_chef {
+        top: 30px;
+        right: 85px;
+    }
+    .around_accountant {
+        top: 220px;
+        right: 45px;
+    }
+    .around_principal {
+        bottom: 10px;
+    }
+    .around_teacher {
+        top: 220px;
+        left: 37px;
+    }
+}
+@media (min-width: 1140px) and (max-width: 1200px) {
+    .banner_title h1 {
+        font-size: 30px;
+        margin-top: 50px;
+    }
+    .video_play .icon-video {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        max-width: 120px;
+        max-height: 120px;
+        width: 120px;
+        height: 120px;
+    }
+    .banner-trial {
+        margin-top: 30px;
+    }
+    .banner_left_col {
+        padding-left: 250px;
+    }
+    .logo-img {
+        margin-top: 10px;
+    }
+    .banner-content .container {
+        margin: 0!important;
+        width: 100%;
+    }
+    .around_parent {
+        top: 35px;
+        left: 80px;
+    }
+    .around_chef {
+        top: 35px;
+        right: 85px;
+    }
+    .around_accountant {
+        top: 190px;
+        right: 45px;
+    }
+    .around_principal {
+        bottom: 100px;
+    }
+    .around_teacher {
+        top: 190px;
+        left: 50px;
+    }
+    .content_pad {
+        border-bottom: none;
+    }
+    .customer_text_box {
+        padding: 10px;
+    }
+    .banner_log h3 {
+        display: none;
+    }
+    .p_soicial_text {
+        display: none;
+    }
+    .banner_log {
+        margin-top: 5px;
+    }
+    .around_parent {
+        top: 28px;
+        left: 80px;
+    }
+    .around_chef {
+        top: 30px;
+        right: 85px;
+    }
+    .around_accountant {
+        top: 220px;
+        right: 45px;
+    }
+    .around_principal {
+        bottom: 10px;
+    }
+    .around_teacher {
+        top: 220px;
+        left: 37px;
+    }
+}
+@media (min-width: 1201px) and (max-width: 1368px) {
+    .banner_title h1 {
+        margin-bottom: 30px;
+    }
+    .banner-trial {
+        margin-top: 40px;
+    }
+}
+@media (min-width: 1369px) {
+    .banner_title h1 {
+        margin-bottom: 30px;
+    }
+    .banner-trial {
+        margin-top: 40px;
+    }
+}
+@media (min-width: 1920px) {
+    .img_hd {
+        display: none;
+    }
+    .banner_left_col {
+        padding-left: 30px;
+    }
+    .banner_log {
+        margin-top: 15px;
+    }
+}
+@media (max-width: 1919px) {
+    .img_fullhd {
+        display: none;
+    }
+}

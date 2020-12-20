@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <!--begin::Web font -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
     <script>
     WebFont.load({
@@ -63,11 +63,10 @@
     </div>
     <script src="{{asset('assets_staff/demo/default/custom/crud/forms/widgets/select2.js')}}" type="text/javascript">
     </script>
+    <script src="{{asset('assets_staff/demo/default/custom/crud/forms/widgets/summernote.js')}}"  type="text/javascript"></script>
     <script src="{{asset('assets_staff/vendors/base/vendors.bundle.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets_staff/demo/default/base/scripts.bundle.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets_staff/vendors/custom/fullcalendar/fullcalendar.bundle.js')}}" type="text/javascript">
     </script>
-    <script src="{{asset('assets_staff/app/js/dashboard.js')}}" type="text/javascript"></script>
 </body>
-
 </html>
