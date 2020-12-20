@@ -1,5 +1,5 @@
 @extends('./staff/giao-vien/layouts/layout')
-@section('title','Xin nghỉ học')
+@section('title','Danh sách các thông báo')
 @section('content')
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3 ">
     <div class="">
@@ -72,18 +72,18 @@
                     </div>
                 </div>
                 <div class="m-portlet__head-tools">
-                    <a href="{{route('nha-truong.nha-truong.index')}}"
+                    <a href="#"
                         class="btn btn-secondary m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                         <span>
                             <i class="la la-arrow-left"></i>
                             <span>Quay lại</span>
                         </span>
                     </a>
-                    <a href="{{route('nha-truong.tre.create')}}"
+                    <a href="{{route('giao-vien.thong-bao.them_moi')}}"
                         class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
                         <span>
                             <i class="la la-plus"></i>
-                            <span>Thêm trẻ</span>
+                            <span>Thêm thông báo</span>
                         </span>
                     </a>
                 </div>
@@ -101,97 +101,48 @@
                                     id="m_table_1" role="grid" aria-describedby="m_table_1_info"
                                     style="min-width: 990px;width:100%">
                                     <thead>
-
                                         <tr>
                                             <th rowspan="1" colspan="1">ID</th>
-                                            <th rowspan="1" colspan="1">Ảnh đại diện</th>
-                                            <th rowspan="1" colspan="1">Họ và Tên</th>
-                                            <th rowspan="1" colspan="1">Giới tính</th>
-                                            <th rowspan="1" colspan="1">Ngày sinh</th>
-                                            <th rowspan="1" colspan="1">Địa chỉ</th>
-                                            <th rowspan="1" colspan="1">Trạng thái</th>
-                                            <th rowspan="1" colspan="1"></th>
+                                            <th rowspan="1" colspan="1">Tiêu đề</th>
+                                            <th rowspan="1" colspan="1">Phạm vi</th>
+                                            <th rowspan="1" colspan="1">Ảnh</th>
+                                            <th rowspan="1" colspan="1">Nội dung</th>
+                                            <th></th>
                                         </tr>
+
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th rowspan="1" colspan="1">ID</th>
-                                            <th rowspan="1" colspan="1">Ảnh đại diện</th>
-                                            <th rowspan="1" colspan="1">Họ và Tên</th>
-                                            <th rowspan="1" colspan="1">Giới tính</th>
-                                            <th rowspan="1" colspan="1">Ngày sinh</th>
-                                            <th rowspan="1" colspan="1">Địa chỉ</th>
-                                            <th rowspan="1" colspan="1">Trạng thái</th>
-                                            <th rowspan="1" colspan="1"></th>
-                                        </tr>
-                                    </tfoot>
+                                    
                                     <tbody>
-                                        @foreach($kids as $kid)
+                                       
                                         <tr role="row" class="odd">
-                                            <td class="sorting_1" tabindex="0">{{$kid->id}}</td>
+                                            <td class="sorting_1" tabindex="0">1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                            <td>1</td>
                                             <td>
-                                                <img src="{{asset('/upload/avatar/'.$kid->kid_avatar)}}" alt="avatar"
-                                                    style="width:50px;border-radius: 10px;">
+                                                <a href="{{route('giao-vien.thong-bao.detail')}}" class="btn btn-warning btn-sm ">Chi tiết</a>&nbsp;
+                                                <a href="#"
+                                                    class="btn btn-danger btn-sm btn-remove">Xóa</a>
                                             </td>
-                                            <td>{{$kid->kid_name}}</td>
-                                            <td>
-                                                @if($kid->gender == 1)
-                                                Nam
-                                                @elseif($kid->gender == 0)
-                                                Nữ
-                                                @endif
-                                            </td>
-                                            <td>{{$kid->date_of_birth}}</td>
-                                            <td style="width:22%"><span>{{$kid->address}}</span></td>
-
-                                            @if($kid->kid_status == 1)
-                                            <td class="text-success"> Đang học </td>
-                                            @elseif($kid->kid_status == 2)
-                                            <td class="text-danger"> Thôi học </td>
-                                            @elseif($kid->kid_status == 3)
-                                            <td class="text-primary"> Đã tốt nghiệp </td>
-                                            @endif
-                                            @if($kid->kid_status == 1)
-                                            <td>
-                                                <a href="{{route('nha-truong.tre.edit', $kid->id)}}"
-                                                    class="btn btn-warning btn-sm ">Chi
-                                                    tiết</a>&nbsp;
-                                                    <a href="{{route('nha-truong.tre.change_class', $kid->id)}}"
-                                                    class="btn btn-primary btn-sm ">Chuyển lớp</a>&nbsp;
-                                                    <br>
-                                                    <a href="{{route('nha-truong.tre.stop', $kid->id)}}"
-                                                    class="btn btn-danger btn-sm ">Thôi học</a>&nbsp;
-                                                    <a href="{{route('nha-truong.tre.history', $kid->id)}}"
-                                                    class="btn btn-info btn-sm ">Lịch sử học</a>&nbsp;
-                                            </td>
-                                            @elseif($kid->kid_status == 2 || $kid->kid_status == 3)
-                                            <td>
-                                                <a href="{{route('nha-truong.tre.edit', $kid->id)}}"
-                                                    class="btn btn-warning btn-sm ">Chi
-                                                    tiết</a>&nbsp;
-                                                    <a href="{{route('nha-truong.tre.history', $kid->id)}}"
-                                                    class="btn btn-info btn-sm ">Lịch sử học</a>&nbsp;
-                                            </td>
-                                            @endif
-                                          
                                         </tr>
-                                        @endforeach
+                                      
                                     </tbody>
                                 </table>
-                                <div id="m_table_1_processing" class="dataTables_processing card"
-                                    style="display: none;">
-                                    Processing...</div>
+
                             </div>
-                        </div>
-                        <div class="dataTables_paginate paging_simple_numbers" id="m_table_1_paginate">
-                            <ul class="pagination">
-                                {{ $kids->links() }}
-                            </ul>
+                            <div id="m_table_1_processing" class="dataTables_processing card" style="display: none;">
+                                Processing...</div>
                         </div>
                     </div>
-                </form>
+                    <div class="dataTables_paginate paging_simple_numbers" id="m_table_1_paginate">
+
+                    </div>
+
             </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
 @endsection

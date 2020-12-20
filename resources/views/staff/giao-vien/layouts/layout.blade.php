@@ -24,6 +24,7 @@
     </script>
     <link href="{{asset('assets_staff/vendors/base/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets_staff/demo/default/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets_staff/demo/demo10/base/style.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets_staff/vendors/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet"
         type="text/css" />
     <link href="{{asset('assets_staff/css/style-giaovien.scss')}}" rel="stylesheet" type="text/css" />
