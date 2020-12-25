@@ -24,11 +24,11 @@ class OffSchoolController extends Controller
         $start = substr($data, 0, 10);
         $end = substr($data, 13, 10);
         if (empty($data)) {
-            return response()->json(['error' => 'Vui lòng chọn ngày nghỉ'], 400);
+            return response()->json(['error' => 'Vui lòng chọn ngày nghỉ,1'], 400);
         }
         $today = Carbon::now()->format('d-m-Y');
-        if ($start < $today) {
-            return response()->json(['error' => 'Ngày Nghỉ không hợp lệ !'], 409);
+        if (strtotime($start )< strtotime($today) || strtotime($end) < strtotime($today)) {
+            return response()->json(['error' => $start], 409);
         }
         if ($end === $start) {
             $scheduled_day = Carbon::parse($start)->format('Y-m-d');
@@ -36,7 +36,7 @@ class OffSchoolController extends Controller
             Bảy'];
             $day = date('w', strtotime($scheduled_day));
             if ($day == 7 || $day == 6) {
-                return response()->json(['error' => 'Ngày nghỉ không hợp lệ'], 409);
+                return response()->json(['error' => 'Ngày nghỉ không hợp lệ,3'], 409);
             }
             $checkAttendance = Attendance::where('kid_id', $request->get('id'))->where('date', Carbon::parse($start)->format('Y-m-d'))->get();
             if (count($checkAttendance) < 1) {
@@ -57,7 +57,7 @@ class OffSchoolController extends Controller
             } else {
                 return response()->json(['error' => 'Ngày nghỉ đã tồn tại'], 409);
             }
-        } else if ($end < $start) {
+        } else if (strtotime($end )<strtotime( $start)) {
             return response('Đã tồn tại', 402)->json(
                 ['data' =>   'Ngày nghỉ không hợp lệ']
             );

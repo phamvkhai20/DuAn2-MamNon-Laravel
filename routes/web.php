@@ -48,7 +48,7 @@ Route::group([
         'prefix' => '/{id}',
         'middleware' => ['check_parent'],
     ], function () {
-    Route::post('/so-lien-lac', 'Web\PhuHuynh\ContactBookController@danh_sach_so_lien_lac')->name('phu-huynh.so-lien-lac');
+        Route::get('/so-lien-lac', 'Web\PhuHuynh\ContactBookController@danh_sach_so_lien_lac')->name('phu-huynh.so-lien-lac');
         Route::get('thong-tin-tre', 'Web\PhuHuynh\InfoKidController@index')->name('phu-huynh.thong-tin-tre');
         Route::post('/xin-nghi-hoc/them', 'Web\PhuHuynh\OffSchoolController@them_don_xin_nghi')->name('phu-huynh.them-don-xin-nghi');
         Route::get('/xin-nghi-hoc', 'Web\PhuHuynh\OffSchoolController@xin_nghi_hoc')->name('phu-huynh.xin-nghi-hoc');
