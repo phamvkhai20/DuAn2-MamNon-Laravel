@@ -92,9 +92,9 @@
             </div>
         </div>
     </div>
+    @endif
+    @endif
 
-    @endif
-    @endif
     <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
         <div class="p-3">
             <div class="m-nav-grid">
@@ -197,6 +197,7 @@
                                             <input type="text" class="form-control"
                                                 value="{{$teacher->teacher->fullname}}" id="recipient-name" disabled>
                                         </div>
+                                        
                                         <div class="form-group">
                                             <label for="recipient-name" class="form-control-label">Ngày sinh:</label>
                                             <input type="text" class="form-control"

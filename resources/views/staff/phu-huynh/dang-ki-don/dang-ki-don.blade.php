@@ -100,6 +100,10 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group m-form__group row">
+                        <div class="col-lg-12">
+                        <div class="summernote"></div>
+                        </div>
                         <div class="d-flex justify-content-end mt-5">
                             <button type="submit" class="btn btn-primary mr-5">Gửi</button>
                         </div>

@@ -18,6 +18,8 @@ class ChildReceiptHistoryController extends Controller
     }
     public function save_dang_ki(Request $request)
     {
+        $data = Arr::except($request->all(), ['_token']);
+        dd($data);
         $findReceip= ChildReceiptHistory::where('kid_id', $request->get('kid_id'))->where('date',$request->get('date'))->get();
         $attendance = Attendance::where('kid_id', $request->get('kid_id'))->where('date',$request->get('date'))->where('status','1')->first();
         if(empty($attendance)){
@@ -25,6 +27,8 @@ class ChildReceiptHistoryController extends Controller
         }else{
             if(count($findReceip)==0){
                 $data = Arr::except($request->all(), ['_token']);
+        dd($data);
+
                 $data['attendance'] = $attendance->id;
                 if ($request->hasFile('image')) {
                     $avatar = $request->file('image');
