@@ -1,6 +1,7 @@
 @extends('./staff/giao-vien/layouts/layout')
-@section('title','Xin nghỉ học')
+@section('title','Danh sách các học sinh')
 @section('content')
+
 <div class="m-grid__item m-grid__item--fluid m-wrapper m-3 ">
     <div class="">
         <div class="m-portlet m-portlet--mobile">
@@ -79,13 +80,6 @@
                             <span>Quay lại</span>
                         </span>
                     </a>
-                    <a href="{{route('nha-truong.tre.create')}}"
-                        class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                        <span>
-                            <i class="la la-plus"></i>
-                            <span>Thêm trẻ</span>
-                        </span>
-                    </a>
                 </div>
             </div>
             <div class="m-portlet__body">
@@ -156,13 +150,7 @@
                                                 <a href="{{route('nha-truong.tre.edit', $kid->id)}}"
                                                     class="btn btn-warning btn-sm ">Chi
                                                     tiết</a>&nbsp;
-                                                    <a href="{{route('nha-truong.tre.change_class', $kid->id)}}"
-                                                    class="btn btn-primary btn-sm ">Chuyển lớp</a>&nbsp;
-                                                    <br>
-                                                    <a href="{{route('nha-truong.tre.stop', $kid->id)}}"
-                                                    class="btn btn-danger btn-sm ">Thôi học</a>&nbsp;
-                                                    <a href="{{route('nha-truong.tre.history', $kid->id)}}"
-                                                    class="btn btn-info btn-sm ">Lịch sử học</a>&nbsp;
+                                                    
                                             </td>
                                             @elseif($kid->kid_status == 2 || $kid->kid_status == 3)
                                             <td>

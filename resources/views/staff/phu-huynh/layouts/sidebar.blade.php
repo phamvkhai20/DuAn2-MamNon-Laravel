@@ -17,7 +17,7 @@
             @foreach(session('kids') as $key=>$kid)
             <li class="m-menu__item m-menu__item--active" aria-haspopup="true"><a href="#" class="m-menu__link ">
                     <style>
-                    .image__kid {
+                    .image__kid {   
                         width: 50px;
                         height: 50px;
                         background-position: center;
@@ -94,7 +94,7 @@
                     </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a
-                    href="" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-envelope-o"></i><span
+                    href="{{route('phu-huynh.gop-y.index')}}" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-envelope-o"></i><span
                         class="m-menu__link-text">Góp ý nhà trường
                     </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
             </li>
@@ -106,6 +106,12 @@
                    </ul>
                 </div>
             </li>
+            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a
+                    href="{{route('phu-huynh.ho-so-ca-nhan.index')}}" class="m-menu__link m-menu__toggle"><i
+                        class="m-menu__link-icon la la-yc-square"></i><span class="m-menu__link-text">Hồ sơ cá nhân</span><i
+                        class="m-menu__ver-arrow la la-angle-right"></i></a>
+            </li>
+           
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a
                     href="{{ route('logout.parent') }}" class="m-menu__link m-menu__toggle"><i
                         class="m-menu__link-icon la la-power-off"></i><span class="m-menu__link-text">Đăng xuất</span><i

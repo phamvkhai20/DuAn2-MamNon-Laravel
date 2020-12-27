@@ -39,7 +39,13 @@ Route::group([
     'prefix' => 'phu-huynh',
     'middleware' => ['check_parent'],
 ], function () {
+    //thông báo
     Route::get('/thong-bao', 'Web\PhuHuynh\ThongbaoController@index')->name('phu-huynh.thong-bao.index');
+    //hồ sơ cá nhân
+    Route::get('ho-so-ca-nhan', 'Web\PhuHuynh\HosoController@index')->name('phu-huynh.ho-so-ca-nhan.index');
+     //góp ý
+     Route::get('gop-y', 'Web\PhuHuynh\GopyController@index')->name('phu-huynh.gop-y.index');
+    
     Route::post('setDefaultKid', 'Web\PhuHuynh\HomeController@set_default_kid')->name('phu-huynh.set-default-kid');
     Route::group([
         'prefix' => '/{id}',

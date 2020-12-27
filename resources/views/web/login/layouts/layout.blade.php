@@ -27,7 +27,7 @@
     }
     </style>
     <link href="{{asset('assets/vendors/base/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('assets/demo/demo10/style.css')}}" rel="stylesheet" type="text/css" />
+    
     <link href="{{asset('assets/demo/demo10/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet"
         type="text/css" />

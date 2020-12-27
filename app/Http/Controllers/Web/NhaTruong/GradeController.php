@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Web\NhaTruong;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\GradeRequest;
+use App\Http\Requests\GradeRquest;
 use App\Models\GradeModel;
 
 class GradeController extends Controller
 {
     public function index()
     {
-        $grade = GradeModel::with(['classes' => function ($query) {
+        $grade = GradeModel::with(['classes' => function ($query) {e
             $query->count();
         }])->get();
         return view('staff.nha-truong.quan-ly-khoi.index', compact('grade'));

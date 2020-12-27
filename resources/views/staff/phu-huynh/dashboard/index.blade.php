@@ -122,7 +122,7 @@
                         <i class="m-nav-grid__icon flaticon-book"></i>
                         <span class="m-nav-grid__text">Sổ liên lạc</span>
                     </a>
-                    <a href="#" class="m-nav-grid__item">
+                    <a href="{{route('phu-huynh.gop-y.index')}}" class="m-nav-grid__item">
                         <i class="m-nav-grid__icon flaticon-email"></i>
                         <span class="m-nav-grid__text">Góp ý nhà trường</span>
                     </a>
