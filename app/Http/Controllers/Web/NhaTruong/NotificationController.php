@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\NotificationRequest;
 use App\Models\Notification;
 use App\Models\Parents;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,21 +21,32 @@ class NotificationController extends Controller
     {
         $data = $request->all();
         if ($data['range'] == 1) {
-
             $parents = Parents::get('id');
-            $id_parents = [];
+            $teachers = Teacher::get('id');
             foreach ($parents as $key => $parent) {
-                array_push($id_parents, $parent->id);
+                $params = [
+                    'title' => $data['title'],
+                    'range' => '4',
+                    'note' => $data['note'],
+                    'sender_id' => $data['sender_id'],
+                    'role' => $data['role'],
+                    'class_id' => 0,
+                    'receiver_id' => $parent->id,
+                ];
+                $add = Notification::create($params);
             }
-            $params = [
-                'title' => $data['title'],
-                'range' => $data['range'],
-                'note' => $data['note'],
-                'sender_id' => $data['sender_id'],
-                'role' => $data['role'],
-                'class_id' => 0,
-                'receiver_id' => '0',
-            ];
+            foreach ($teachers as $key => $teacher) {
+                $params = [
+                    'title' => $data['title'],
+                    'range' => '3',
+                    'note' => $data['note'],
+                    'sender_id' => $data['sender_id'],
+                    'role' => $data['role'],
+                    'class_id' => 0,
+                    'receiver_id' => $teacher->id,
+                ];
+                $add = Notification::create($params);
+            }
         }
         if ($data['range'] == 2) {
             $params = [
@@ -58,7 +70,6 @@ class NotificationController extends Controller
                 'receiver_id' => $data['receiver_id'],
             ];
         }
-        $add = Notification::create($params);
         return redirect()->route('nha-truong.thong-bao.index');
     }
     public function indexTeacher()
@@ -70,15 +81,33 @@ class NotificationController extends Controller
     {
         $data = $request->all();
         if ($data['range'] == 2) {
-            $params = [
-                'title' => $data['title'],
-                'range' => $data['range'],
-                'sender_id' => $data['sender_id'],
-                'role' => $data['role'],
-                'note' => $data['note'],
-                'class_id' => $data['class_id'],
-                'receiver_id' => 0,
-            ];
+           
+            $parents = Parents::where('class')->get('id');
+            $teachers = Teacher::get('id');
+            foreach ($parents as $key => $parent) {
+                $params = [
+                    'title' => $data['title'],
+                    'range' => $data['range'],
+                    'sender_id' => $data['sender_id'],
+                    'role' => $data['role'],
+                    'note' => $data['note'],
+                    'class_id' => $data['class_id'],
+                    'receiver_id' => 0,
+                ];
+                $add = Notification::create($params);
+            }
+            foreach ($teachers as $key => $teacher) {
+                $params = [
+                    'title' => $data['title'],
+                    'range' => $data['range'],
+                    'sender_id' => $data['sender_id'],
+                    'role' => $data['role'],
+                    'note' => $data['note'],
+                    'class_id' => $data['class_id'],
+                    'receiver_id' => 0,
+                ];
+                $add = Notification::create($params);
+            }
         }
         if ($data['range'] == 4) {
             $params = [

@@ -25,7 +25,7 @@
                 <div class="m-portlet__body">
                     <form action="{{route('giao-vien.thong-bao.them_moi.tao')}}" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                         @csrf
-                        <input type="hidden" name="" id="class" value="{{session('class')}}">
+                        <input type="hidden" name="class_id" id="class" value="{{session('class')}}">
                         <input type="hidden" name="role" value="2">
                         <input type="hidden" name="sender_id" value="{{Auth::guard('teacher')->user()->id}}">
                         <div class="m-portlet__body">

@@ -11,4 +11,8 @@ class Notification extends Model
     protected $fillable = [
         'range'	,'class_id'	,'receiver_id',	'note',	'title','sender_id','role'
     ];
+    public function teacher_sender()
+    {
+        return $this->beLongsTo(Teacher::class, 'sender_id', 'id');
+    }
 }
