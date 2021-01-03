@@ -22,6 +22,8 @@ class CreateKidsTable extends Migration
             $table->date('date_of_birth');
             $table->text('address');
             $table->date('admission_date');
+            $table->integer('grade_id')->unsigned();
+            $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
             $table->integer('class_id')->unsigned();
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->integer('parent_id')->unsigned();
