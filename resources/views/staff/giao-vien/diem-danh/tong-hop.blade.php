@@ -53,8 +53,9 @@
                                     <th>{{substr($gg->date,8,2)}}</th>
                                     @endforeach
                                     <th>Đi học</th>
-                                    <th>Nghỉ không phép</th>
-                                    <th>Nghỉ có phép</th>
+                                    <th>Vắng</th>
+                                    <th>Có phép</th>
+                                    <th>Ăn</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,9 +72,8 @@
                                                 </option>
                                                 <option value="2" {{ $attendances->status==2?"selected":''}}  data-content="<span   class='m-badge m-badge--brand  m-badge--wide m-badge--rounded'>Có phép</span>">
                                                 </option>
-                                                <option value="0"   {{ $attendances->status==0?"selected":''}}  data-content="<span class='m-badge m-badge--danger  m-badge--wide m-badge--rounded'>Vắng</span>">
+                                                <option value="0"   {{ $attendances->status==0?"selected":''}} data-content="<span class='m-badge m-badge--danger  m-badge--wide m-badge--rounded'>Vắng</span>">
                                                 </option>
-                                               
                                             </select>
                                     </td>
                                     @endforeach
@@ -92,6 +92,7 @@
                                     @else
                                     <td width="60px">0</td>
                                     @endif
+                                    <td>{{count($meal[$index]->attendance)}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

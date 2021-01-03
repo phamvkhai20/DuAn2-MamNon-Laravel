@@ -15,19 +15,16 @@ class CreateAdmissionRecordsTable extends Migration
     {
         Schema::create('admission_records', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name_kid');
-            $table->string('address1');
-            $table->string('address2');
+            $table->string('kid_name');
+            $table->string('nickname');
+            $table->string('address');
             $table->date('birthday');
-            $table->integer('sex');
-            $table->string('full_name_father');
-            $table->string('number_phone_father');
-            $table->string('job_father');
-            $table->string('work_plance_father');
-            $table->string('full_name_mother');
-            $table->string('number_phone_mother');
-            $table->string('job_mother');
-            $table->string('work_plance_mother');
+            $table->integer('gender');
+            $table->integer('grade_id')->unsigned();
+            $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
+            $table->string('parent_name');
+            $table->string('phone')->unique();
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }

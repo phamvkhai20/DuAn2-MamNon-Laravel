@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["PsAyf"]); }
+
+__d("FalcoBladeRunnerTransport",["AnalyticsCoreData","promiseDone"],(function(a,b,c,d,e,f){"use strict";function g(a){return JSON.stringify(a)}function h(a){a={name:a.name,extra:a.extra,rate:a.rate,time:a.time/1e3};return{events:[a]}}a=function(){function a(a,b){var c=this;this.$1=a;b.start(function(a){c.$2(a)})}var c=a.prototype;c.$2=function(a){};c.log=function(a,c){b("AnalyticsCoreData").enable_ack?b("promiseDone")(this.$1.amendWithAck(g(h(a))).then(function(a){return c(a)})["catch"](function(a){return c(!1)})):(this.$1.amendFireAndForget(g(h(a))),c(!0))};c.logImmediately=function(a,b){this.log(a,b)};c.logCritical=function(a,b){this.log(a,b)};return a}();e.exports=a}),null);

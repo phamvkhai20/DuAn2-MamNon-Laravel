@@ -142,11 +142,12 @@ function chekboxFull(){
                     );
                 });
                 $("#kid_list").html('');
-                $.each(data.kids, function(key, value){
+                    $.each(data.kids, function(key, value){
                     $("#kid_list").append(
                         "<tr><td><input type='checkbox' class='checkitem' name='check[]' value='"+value.id+"'"+ "></td><td>" + value.kid_name + "</td><td>" + value.nickname + "</td><td>" + value.date_of_birth + "</td><td>" + value.gender +"</td><td>" + value.address + "</td><tr>"
                     );
                 });
+                
             }
         });
     });

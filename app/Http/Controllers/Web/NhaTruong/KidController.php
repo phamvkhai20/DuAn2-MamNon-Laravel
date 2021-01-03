@@ -402,9 +402,7 @@ class KidController extends Controller
                         ->where("school_year_id", $school_year_id)
                         ->select('id', 'name')->get();
 
-            $kids = Kid::where("grade_id",$request->grade_id)
-                        ->where("class_id", null)
-                        ->get();
+            $kids = Kid::where("grade_id",$request->grade_id)->where("class_id", null)->get();
             $response = [
                             'classes' => $classes,
                             'kids' => $kids,
