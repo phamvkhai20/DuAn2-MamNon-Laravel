@@ -32,11 +32,11 @@
                             </div>
                             @if(session('id_kid_default')==$kid->id)
                             <span class=" m-menu__link-text col-md-7">
-                                {{strstr($kid->kid_name,' ')}}
+                                {{  $kid->kid_name}}
                             </span>
                             @else
                             <span class=" m-menu__link-text col-md-7" style="color:#fff">
-                                {{strstr($kid->kid_name,' ')}}
+                                {{$kid->kid_name}}
                             </span>
                             @endif
 

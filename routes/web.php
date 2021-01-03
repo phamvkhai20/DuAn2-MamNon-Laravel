@@ -34,7 +34,7 @@ Route::get('/404', 'ErrorControler@page_error')->name('error.404');
 
 Route::group([
     'prefix' => 'phu-huynh',
-    'middleware' => ['check_parent'],
+    // 'middleware' => ['check_parent'],
 ], function () {
     Route::get('danh-sach-cac-thong-bao', 'Web\NhaTruong\NotificationController@indexParent')
     ->name('phu-huynh.thong-bao.index');
@@ -46,7 +46,7 @@ Route::group([
     
     Route::group([
         'prefix' => '/{id}',
-        'middleware' => ['check_parent'],
+        // 'middleware' => ['check_parent'],
     ], function () {
     Route::post('/so-lien-lac', 'Web\PhuHuynh\ContactBookController@danh_sach_so_lien_lac')->name('phu-huynh.so-lien-lac');
         Route::get('thong-tin-tre', 'Web\PhuHuynh\InfoKidController@index')->name('phu-huynh.thong-tin-tre');
