@@ -124,7 +124,6 @@
                         <form class="row" action="{{ route('giao-vien.diem_danh_den')}}" method="post">
                             @csrf
                             @foreach($kids as $index=>$kid)
-
                             <div class=" col image_kid_attendance m-portlet d-flex justify-content-center" style="background-image: url({{asset('/upload/avatar/'.$kid->kid_avatar)}})">
                                 <div class="box_group_name">
                                     <b> {{$kid->kid_name}}</b>
@@ -208,8 +207,9 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <input type="text" name="note[{{$kid->id}}]" value="null">
-                                                <textarea class="form-control" name="note[{{$kid->id}}]" placeholder="Nhập thông tin khác" rows="6">{{!empty($kid->attendance[0])&&$kid->attendance[0]->note!="null"?$kid->attendance[0]->note:"null"}}</textarea>
+                                                <input type="hidden" name="note[{{$kid->id}}]" value="null">
+                                                <p class="mb-3">Số điện thoại phụ huynh : <b>{{$kid->parent->phone}}</b></p>
+                                                <textarea class="form-control" name="note[{{$kid->id}}]" placeholder="Nhập thông tin khác" rows="6">{{!empty($kid->attendance[0])&&$kid->attendance[0]->note!="null"?$kid->attendance[0]->note:""}}</textarea>
                                                 @if(!empty($kid->attendance[0])&&$kid->attendance[0]->status==2)
                                                 <p>Xin nghỉ trên hệ thống nhưng có đi học !</p>
                                                 <p>Thay đổi trạng thái</p>
@@ -320,6 +320,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
+                                                    <p class="mb-3">Số điện thoại phụ huynh : <b>{{$attendance->kid->parent->phone}}</b></p>
                                                     <textarea class="form-control" name="note[{{$attendance->kid->id}}]" placeholder="Nhập thông tin khác" rows="6">{{$attendance->note=="null"?"":$attendance->note}}</textarea>
                                                     @if(!empty($attendance->don_ho))
                                                     <h4 class="mt-3">Thông tin đón trẻ</h4>
@@ -453,9 +454,9 @@
 
     function thongbao() {
         var x = document.querySelector('#thongbao').value;
-        x=="oke" && swal("Xong!", "Bạn đã cập nhật điểm danh thành công!", "success");
-        x=="error" && swal("Lỗi!", "Điểm danh không thành công!", "error");
-        
+        console.log(x);
+        x==="ok"&& swal("Xong!", "Bạn đã cập nhật điểm danh thành công!", "success");
+        x==="error"&& swal("Xong!", "Điểm danh không thành công!", "error");
     }
     setTimeout(() => {
         thongbao();

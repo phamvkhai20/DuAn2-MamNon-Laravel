@@ -186,6 +186,9 @@ Route::group([
     'prefix' => 'giao-vien',
     'middleware' => ['check_teacher'],
 ], function () {
+    Route::get('/doi-mat-khau/{id}', 'Web\GiaoVien\HomeController@change_password')->name('giao-vien.change_password');
+    Route::post('/doi-mat-khau/{id}', 'Web\GiaoVien\HomeController@save_password')->name('giao-vien.save_password');
+    
 
     Route::group([
         'prefix' => 'thong-bao',
@@ -219,6 +222,10 @@ Route::group([
         Route::post('/xac-nhan', 'Web\GiaoVien\AttendanceController@confirm_attendance')->name('giao-vien.xac-nhan-diem-danh');
         
         Route::get('/{id}', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh')->name('giao-vien.giao_dien_diem_danh');
+        Route::get('/don-muon/{id}', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh_don_muon')->name('giao-vien.giao_dien_diem_danh_don_muon');
+        Route::post('/diem-danh-ve-muon/update', 'Web\GiaoVien\AttendanceController@diem_danh_ve_muon')->name('giao-vien.diem_danh_ve_muon');
+
+
         Route::post('/tao', 'Web\GiaoVien\AttendanceController@diem_danh_den')->name('giao-vien.diem_danh_den');
         Route::post('/update', 'Web\GiaoVien\AttendanceController@diem_danh_ve')->name('giao-vien.diem_danh_ve');
         Route::get('/{id}/lich-su', 'Web\GiaoVien\AttendanceController@xem_diem_danh')->name('giao-vien.xem_diem_danh');
