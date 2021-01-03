@@ -25,7 +25,7 @@ class ClassRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|min:6|unique:classes,name'
+            'name'=>'required|min:6'
 
         ];
     }
@@ -33,7 +33,6 @@ class ClassRequest extends FormRequest
         return[
             'name.required'=>'Vui lòng nhập tên lớp',
             'name.min'=>'Tên lớp yêu cầu ít nhất 6 kí tự',
-            'name.unique' => 'Tên lớp bị trùng'
         ];
     }
     public function attributes(){
