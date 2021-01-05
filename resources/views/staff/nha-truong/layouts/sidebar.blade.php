@@ -110,6 +110,8 @@
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.nha-truong.change_password',[Auth::user()->id])}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Đổi mật khẩu</span></a></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.nha-truong.cau-hinh-email')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Cấu hình email</span></a></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.tempalte_email')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Template email</span></a></li>
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('logout.school') }}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Đăng xuất</span></a></li>
                     </ul>
                 </div>

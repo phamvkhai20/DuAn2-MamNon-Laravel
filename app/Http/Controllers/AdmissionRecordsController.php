@@ -18,6 +18,7 @@ class AdmissionRecordsController extends Controller
             ['data' =>   $AdmissionRecords]
         );
     }
+
     public function admission(Request $request)
     {
         if($request->all() != null && $request['page'] == null){
@@ -28,12 +29,12 @@ class AdmissionRecordsController extends Controller
                 elseif($key == 'kid_name'){
                     $data['admissions'] = AdmissionRecords::where("$key",'LIKE',"%$value%")->orderBy('id', 'desc')->paginate(10);
                 }
-        
+
             }
         }else{
             $data['admissions'] = AdmissionRecords::orderBy('id', 'desc')->paginate(10);
         }
-        
+
         return view('staff.nha-truong.quan-ly-ho-so.index', $data);
     }
     public function updateStatus(Request $request)

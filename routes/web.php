@@ -6,10 +6,7 @@ use App\Http\Controllers\AuthController;
 Route::group([
     'prefix' => 'dang-nhap',
 ], function () {
-    Route::group([
-        'middleware' => ['check_login']
-    ], function () {
-
+    Route::group(['middleware' => ['check_login']], function () {
         Route::get('phu-huynh', 'AuthController@form_login_parent')->name('form.parent');
         Route::post('phu-huynh', 'AuthController@loginParent')->name('login.parent');
 
@@ -43,7 +40,7 @@ Route::group([
     Route::post('/doi-mat-khau/{id}', 'Web\PhuHuynh\HomeController@save_password')->name('phu-huynh.save_password');
 
 
-    
+
     Route::group([
         'prefix' => '/{id}',
         // 'middleware' => ['check_parent'],
@@ -58,7 +55,6 @@ Route::group([
         Route::post('/luu-dang-ki-don', 'Web\PhuHuynh\ChildReceiptHistoryController@save_dang_ki')->name('phu-huynh.luu-diem-danh');
         Route::get('/diem-danh', 'Web\PhuHuynh\AttendanceController@view_attendance')->name('phu-huynh.diem-danh');
         Route::get('/lich-su-nghi', 'Web\PhuHuynh\AttendanceController@absence_history')->name('phu-huynh.lich-su-nghi');
-       
     });
     //lớp
 });
