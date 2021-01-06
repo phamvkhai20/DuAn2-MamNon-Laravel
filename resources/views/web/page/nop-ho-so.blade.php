@@ -228,7 +228,7 @@
                                                             name="grade_id_text"></span>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="m-separator m-separator--dashed m-separator--lg"></div>
                                             <div class="tab-pane" id="m_form_confirm_2" role="tabpanel">
@@ -261,7 +261,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="m-separator m-separator--dashed m-separator--lg"></div>
-                                                
+
                                             </div>
                                         </div>
 
@@ -367,7 +367,7 @@ function myFunction() {
     var date_of_birth = document.querySelector("input[name = 'date_of_birth']").value;
     var gender = document.querySelector("input[name = 'gender']").value;
     var grade_id = $( "#grade option:selected" ).val();
-    
+
     var parent_name = document.querySelector("input[name = 'parent_name']").value;
     var email = document.querySelector("input[name = 'email']").value;
     var phone = document.querySelector("input[name = 'phone']").value;
@@ -404,8 +404,8 @@ function myFunction() {
                         swal.showLoading();
                     },
                 }).then(function(e) {
-                    "timer" === e.dismiss &&
-                        window.location.reload();
+                    // "timer" === e.dismiss &&
+                        // window.location.reload();
                 });
             }
         }).catch((error) => {

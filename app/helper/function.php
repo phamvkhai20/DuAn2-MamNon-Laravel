@@ -1,7 +1,9 @@
 <?php
 
 
-function ShowErrors($errors,$name){
+use PHPMailer\PHPMailer\PHPMailer;
+
+function ShowErrors($errors, $name){
 if($errors->has($name)){
 return
  "<span style='color: red'>". $errors->first($name)."</span>";
@@ -12,12 +14,12 @@ function sendMail($name, $to, $subject, $body, $title = '')
 {
     try {
         $mail = new PHPMailer(true);
-        $mail_smtp_username = \App\Model\Config::cfg('mail_smtp_username'); // Tài khoản
-        $mail_smtp_pass = \App\Model\Config::cfg('mail_smtp_pass'); // Mật khẩu
+        $mail_smtp_username = \App\Models\Config::cfg('mail_smtp_username'); // Tài khoản
+        $mail_smtp_pass = \App\Models\Config::cfg('mail_smtp_pass'); // Mật khẩu
 
-        $mail_smtp_server = \App\Model\Config::cfg('mail_smtp_serve'); // Tên host
-        $mail_encoding = \App\Model\Config::cfg('mail_encoding'); // Type cổng
-        $mail_smtp_port = \App\Model\Config::cfg('mail_smtp_port'); // Cổng
+        $mail_smtp_server = \App\Models\Config::cfg('mail_smtp_serve'); // Tên host
+        $mail_encoding = \App\Models\Config::cfg('mail_encoding'); // Type cổng
+        $mail_smtp_port = \App\Models\Config::cfg('mail_smtp_port'); // Cổng
 
         $mail->SMTPDebug = 0;                                     // Enable verbose debug output
         $mail->isSMTP();                                            // Set mailer to use SMTP

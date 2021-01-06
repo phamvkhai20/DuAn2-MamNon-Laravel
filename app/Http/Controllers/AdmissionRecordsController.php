@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdmissionRecords;
+use App\Models\Config;
 use App\Models\Kid;
 use App\Models\Parents;
 use Illuminate\Http\Request;
@@ -12,7 +13,26 @@ class AdmissionRecordsController extends Controller
 {
     public function them_moi(Request $request)
     {
-        dd($request);
+//        kid_name: kid_name,
+//        nickname: nickname,
+//        address: address,
+//        date_of_birth: date_of_birth,
+//        gender: gender,
+//        grade_id: grade_id,
+//        parent_name: parent_name,
+//        email: email,
+//        phone: phone,
+//        status:status
+        $content1 = str_replace('__hoTenTre__', $request->kid_name, Config::cfg('template_email_nhop_ho_so'));
+        $content1 = str_replace('__tenGoiONha__', $request->nickname, Config::cfg('template_email_nhop_ho_so'));
+        $content1 = str_replace('__ngaySinh__', $request->date_of_birth, Config::cfg('template_email_nhop_ho_so'));
+        $content1 = str_replace('__gioiTinh__', $request->gender, Config::cfg('template_email_nhop_ho_so'));
+        $content1 = str_replace('__hienTaiDangCutruTai__', $request->address, Config::cfg('template_email_nhop_ho_so'));
+        $content1 = str_replace('__luaTuoi__', $request->grade_id, Config::cfg('template_email_nhop_ho_so'));
+        $content1 = str_replace('__hoTenPhuHuyng__', $request->parent_name, Config::cfg('template_email_nhop_ho_so'));
+        $content1 = str_replace('__soDienThoai__', $request->phone, Config::cfg('template_email_nhop_ho_so'));
+        $content1 = str_replace('__email__', $request->email, Config::cfg('template_email_nhop_ho_so'));
+        sendMail($request->parent_name, $request->email, Config::cfg('title_nhap_ho_so'), $content1, '');
         $data = $request->all();
         $AdmissionRecords = AdmissionRecords::create($data);
         return response()->json(
