@@ -54,11 +54,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6d4a73d-1c45-471d-b117-ef5ce102dd65" name="Default Changelist" comment="Xong config email, template email hồ sơ nhập học">
+    <list default="true" id="c6d4a73d-1c45-471d-b117-ef5ce102dd65" name="Default Changelist" comment="Hồ sơ nhập học :)">
+      <change beforePath="$PROJECT_DIR$/.idea/DuAn2-MamNon-Laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DuAn2-MamNon-Laravel.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DuAn2-MamNon-Laravel/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdmissionRecordsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdmissionRecordsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/staff/nha-truong/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/staff/nha-truong/layouts/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helper/function.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helper/function.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/web/page/nop-ho-so.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/web/page/nop-ho-so.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,6 +190,7 @@
       <path value="$PROJECT_DIR$/vendor/graham-campbell/result-type" />
       <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
       <path value="$PROJECT_DIR$/vendor/scrivo/highlight.php" />
+      <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
     </include_path>
   </component>
   <component name="ProjectId" id="1mhQJqx9bQAiuZ9GSWbfqeFCMj2" />
@@ -197,9 +202,13 @@
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -210,8 +219,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1609943274226</updated>
-      <workItem from="1609943275275" duration="1211000" />
+      <workItem from="1609943275275" duration="4084000" />
     </task>
+    <task id="LOCAL-00001" summary="Hồ sơ nhập học :)">
+      <created>1609944794824</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1609944794824</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,17 +248,22 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Xong config email, template email hồ sơ nhập học" />
-    <option name="LAST_COMMIT_MESSAGE" value="Xong config email, template email hồ sơ nhập học" />
+    <MESSAGE value="Hồ sơ nhập học :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hồ sơ nhập học :)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1609944752496">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="100" y="100" width="1480" height="850" key="DiffContextDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1609944752496" />
-    <state x="440" y="263" key="Vcs.Push.Dialog.v2" timestamp="1609943829919">
+    <state x="379" y="175" key="SettingsEditor" timestamp="1609946158964">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="263" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1609943829919" />
+    <state x="379" y="175" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1609946158964" />
+    <state x="440" y="263" key="Vcs.Push.Dialog.v2" timestamp="1609944799444">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="440" y="263" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1609944799444" />
     <state x="619" y="458" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609943532191">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
