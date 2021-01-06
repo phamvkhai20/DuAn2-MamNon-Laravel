@@ -54,27 +54,27 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30253aa2-6ad0-4958-b370-f08ab66aedaf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/Config.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/staff/nha-truong/config-email/config.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/staff/nha-truong/config-email/templateEmail.blade.php" afterDir="false" />
+    <list default="true" id="c6d4a73d-1c45-471d-b117-ef5ce102dd65" name="Default Changelist" comment="Xong config email, template email hồ sơ nhập học">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DuAn2-MamNon-Laravel/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdmissionRecordsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdmissionRecordsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Web/NhaTruong/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Web/NhaTruong/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helper/function.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helper/function.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/staff/nha-truong/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/staff/nha-truong/layouts/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/staff.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/staff.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
@@ -183,52 +183,34 @@
       <path value="$PROJECT_DIR$/vendor/league/commonmark" />
       <path value="$PROJECT_DIR$/vendor/league/flysystem" />
       <path value="$PROJECT_DIR$/vendor/league/mime-type-detection" />
+      <path value="$PROJECT_DIR$/vendor/graham-campbell/result-type" />
+      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/vendor/scrivo/highlight.php" />
     </include_path>
   </component>
-  <component name="ProjectId" id="1mebauo8cB39d8E2wgAVCivty78" />
+  <component name="ProjectId" id="1mhQJqx9bQAiuZ9GSWbfqeFCMj2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/staff/nha-truong/config-email" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/staff/nha-truong/config-email" />
-      <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/app/Models" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner scope="XML" />
-      <method v="2" />
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SshConsoleOptionsProvider">
-    <option name="myEncoding" value="UTF-8" />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="30253aa2-6ad0-4958-b370-f08ab66aedaf" name="Default Changelist" comment="" />
-      <created>1609857071530</created>
+      <changelist id="c6d4a73d-1c45-471d-b117-ef5ce102dd65" name="Default Changelist" comment="Xong config email, template email hồ sơ nhập học" />
+      <created>1609943274226</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1609857071530</updated>
-      <workItem from="1609857072792" duration="4908000" />
+      <updated>1609943274226</updated>
+      <workItem from="1609943275275" duration="1211000" />
     </task>
     <servers />
   </component>
@@ -245,15 +227,28 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Xong config email, template email hồ sơ nhập học" />
+    <option name="LAST_COMMIT_MESSAGE" value="Xong config email, template email hồ sơ nhập học" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="578" y="299" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1609859411661">
+    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1609944752496">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="578" y="299" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1609859411661" />
-    <state x="505" y="254" width="670" height="676" key="search.everywhere.popup" timestamp="1609861431165">
+    <state x="100" y="100" width="1480" height="850" key="DiffContextDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1609944752496" />
+    <state x="440" y="263" key="Vcs.Push.Dialog.v2" timestamp="1609943829919">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="505" y="254" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1609861431165" />
+    <state x="440" y="263" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1609943829919" />
+    <state x="619" y="458" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609943532191">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="619" y="458" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1680.1050@0.0.1680.1050" timestamp="1609943532191" />
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup" timestamp="1609944037040">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="505" y="233" width="670" height="676" key="search.everywhere.popup/0.0.1680.1050@0.0.1680.1050" timestamp="1609944037040" />
   </component>
 </project>
