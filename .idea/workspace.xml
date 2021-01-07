@@ -54,22 +54,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6d4a73d-1c45-471d-b117-ef5ce102dd65" name="Default Changelist" comment="Hồ sơ nhập học :)">
-      <change beforePath="$PROJECT_DIR$/.idea/DuAn2-MamNon-Laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DuAn2-MamNon-Laravel.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+    <list default="true" id="c6d4a73d-1c45-471d-b117-ef5ce102dd65" name="Default Changelist" comment="Xong gửi email nộp hồ sơ, Nhớ chạy: composer i">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AdmissionRecordsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdmissionRecordsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helper/function.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helper/function.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/web/page/nop-ho-so.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/web/page/nop-ho-so.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -219,7 +213,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1609943274226</updated>
-      <workItem from="1609943275275" duration="4084000" />
+      <workItem from="1609943275275" duration="4846000" />
+      <workItem from="1610030255621" duration="499000" />
     </task>
     <task id="LOCAL-00001" summary="Hồ sơ nhập học :)">
       <created>1609944794824</created>
@@ -228,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609944794824</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Xong gửi email nộp hồ sơ, Nhớ chạy: composer i">
+      <created>1609947922179</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1609947922179</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,7 +251,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Xong config email, template email hồ sơ nhập học" />
     <MESSAGE value="Hồ sơ nhập học :)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hồ sơ nhập học :)" />
+    <MESSAGE value="Xong gửi email, Nhớ chạy: composer i" />
+    <MESSAGE value="Xong gửi email nộp hồ sơ, Nhớ chạy: composer i" />
+    <option name="LAST_COMMIT_MESSAGE" value="Xong gửi email nộp hồ sơ, Nhớ chạy: composer i" />
   </component>
   <component name="WindowStateProjectService">
     <state x="100" y="100" width="1480" height="850" key="DiffContextDialog" timestamp="1609944752496">
@@ -260,10 +264,10 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="379" y="175" key="SettingsEditor/0.0.1680.1050@0.0.1680.1050" timestamp="1609946158964" />
-    <state x="440" y="263" key="Vcs.Push.Dialog.v2" timestamp="1609944799444">
+    <state x="440" y="263" key="Vcs.Push.Dialog.v2" timestamp="1609948010595">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="440" y="263" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1609944799444" />
+    <state x="440" y="263" key="Vcs.Push.Dialog.v2/0.0.1680.1050@0.0.1680.1050" timestamp="1609948010595" />
     <state x="619" y="458" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609943532191">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
