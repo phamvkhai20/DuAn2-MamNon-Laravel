@@ -58,3 +58,4 @@ Route::group([
     });
     //lớp
 });
+Route::post('/export-csv','AdmissionRecordsController@export_csv');
