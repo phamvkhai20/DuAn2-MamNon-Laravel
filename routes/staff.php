@@ -97,6 +97,12 @@ Route::group([
         Route::get('xoa/{id}', 'Web\NhaTruong\YearController@delete')
             ->name('nam.xoa');
     });
+    Route::group([
+        'prefix' => 'lien-he',
+    ], function () {
+        Route::get('danh-sach-lien-he', 'Web\NhaTruong\ContactController@index')
+            ->name('lien-he.index');
+    }); 
     //thông báo
     Route::group([
         'prefix' => 'thong-bao',
