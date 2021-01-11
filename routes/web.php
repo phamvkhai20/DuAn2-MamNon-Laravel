@@ -25,7 +25,19 @@ Route::get('/', 'AuthController@home')->name('web.home');
 Route::post('/nop-ho-so/gui', 'AdmissionRecordsController@them_moi')->name('web.ho-so-nhap-hoc');
 Route::get('/nop-ho-so', 'AuthController@nop_ho_so_nhap_hoc')->name('web.nop-ho-so');
 Route::get('/gioi-thieu', 'GioithieuController@gioi_thieu_truong_hoc')->name('web.gioi-thieu');
-Route::get('/lien-he', 'ContactController@lien_he_truong_hoc')->name('web.lien-he');
+
+
+Route::group([
+    'prefix' => 'lien-he',
+], function () {
+    Route::get('/', 'ContactController@lien_he_truong_hoc')
+    ->name('web.lien-he');
+    Route::get('them-moi', 'ContactController@add')
+    ->name('lien-he.them_moi');
+    Route::post('luu', 'ContactController@saveAdd')
+    ->name('lien-he.save_add');
+
+});
 
 Route::get('/404', 'ErrorControler@page_error')->name('error.404');
 

@@ -10,4 +10,5 @@ class GioithieuController extends Controller
     {
        return view('web.page.gioi-thieu');
     }
+    
 }
