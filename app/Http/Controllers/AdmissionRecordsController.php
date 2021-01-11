@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdmissionRecords;
+use App\Exports\ExcelExport;
+use Excel;
 use App\Models\Config;
 use App\Models\Kid;
 use App\Models\Parents;
@@ -13,6 +15,7 @@ class AdmissionRecordsController extends Controller
 {
     public function them_moi(Request $request)
     {
+
 //        kid_name: kid_name,
 //        nickname: nickname,
 //        address: address,
@@ -23,12 +26,14 @@ class AdmissionRecordsController extends Controller
 //        email: email,
 //        phone: phone,
 //        status:status
-        $gender = null;
-        if($request->gender == 1) {
-            $gender = 'Nam';
-        } else {
-            $gender = 'Nữ';
-        }
+      
+//        $gender = null;
+//        if($request->gender == 1) {
+//            $gender = 'Nam';
+//        } else {
+//            $gender = 'Nữ';
+//        }
+
         $content1 = str_replace('__hoTenTre__', $request->kid_name, Config::cfg('template_email_nhop_ho_so'));
         $content1 = str_replace('__tenGoiONha__', $request->nickname, $content1);
         $content1 = str_replace('__ngaySinh__', $request->date_of_birth, $content1);
@@ -114,4 +119,8 @@ class AdmissionRecordsController extends Controller
 
     return response()->json(['message' => 'Xác nhận thành công']);
 }
+    public function export_csv()
+    {
+        return Excel::download(new ExcelExport , 'AdmissionRecordsController.xlsx');
+    }
 }

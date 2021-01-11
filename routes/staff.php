@@ -207,6 +207,7 @@ Route::group([
         Route::post('them-moi/tao', 'Web\NhaTruong\NotificationController@save_teacher_add')
         ->name('giao-vien.thong-bao.them_moi.tao');
     });
+   
     Route::group([
         'prefix' => '/{id}/so-lien-lac',
     ], function () {
@@ -218,6 +219,7 @@ Route::group([
         Route::post('/tao-moi', 'Web\GiaoVien\ContactBookController@save_add_contact_book')->name('giao-vien.them-so-lien-lac.them-moi');
         Route::get('/', 'Web\GiaoVien\ContactBookController@form_add_contact_book')->name('giao-vien.them-so-lien-lac');
     });
+
     Route::group([
         'prefix' => 'diem-danh',
     ], function () {
