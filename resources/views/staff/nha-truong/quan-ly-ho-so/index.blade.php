@@ -153,7 +153,8 @@
         </div>
     </div>
 </div>
-<script>let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+<script>
+let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
 elems.forEach(function(html) {
     let switchery = new Switchery(html,  { size: 'medium' });
