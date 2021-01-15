@@ -9,7 +9,7 @@ class ContactBook extends Model
     protected $table = 'contact_book';
     protected $fillable =
     [
-        'kid_id',	'teacher_id',	'title','class_id','date'];
+        'kid_id',	'teacher_id',	'health','class_id','date', 'eating','learning'];
         public function replyToComment()
         {
             return $this->hasMany(ReplyToComments::class, 'contact_book_id', 'id');

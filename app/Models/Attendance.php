@@ -10,15 +10,15 @@ class Attendance extends Model
     protected $fillable =
     ['kid_id',
     'class_id',
-    'school_year_id',
     "date",
     "status",
     "note",
     "arrival_time",
     "leave_time",
-    "teacher_1",
-    "teacher_2",
-    "meal"];
+    "teacher_id",
+    "health",
+    "learning",
+    "eating",];
 
     public function kid()
     {

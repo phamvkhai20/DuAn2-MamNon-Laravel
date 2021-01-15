@@ -30,6 +30,10 @@
         type="text/css" />
     <link href="{{asset('assets_staff/css/style-giaovien.scss')}}" rel="stylesheet" type="text/css" />
     <link rel="icon" href="{{asset('assets/demo/img/logo/icon-logo.png')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 
 <body
@@ -71,6 +75,7 @@
     <script src="{{asset('assets_staff/demo/default/base/scripts.bundle.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets_staff/app/js/dashboard.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets_staff/demo/default/custom/crud/forms/widgets/bootstrap-select.js')}}" type="text/javascript"></script>
+    
 </body>
 
 </html>
