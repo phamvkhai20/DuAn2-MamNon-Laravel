@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\GiaoVien;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use App\Models\Kid;
+use DB;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -26,14 +27,20 @@ class AttendanceController extends Controller
             $attendanceTrue = Attendance::where('class_id', $id)->where("date", $data)->with('kid')->where("status", 1)->get();
             return response()->json(['attendanceTrue' => $attendanceTrue, 'kids' => $kids]);
         }
-        
+
         $kids = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
             $query->where("date",request()->get('date')?request()->get('date'):substr(Carbon::now(), 0, 10))->with('don_ho');
         }])->with('parent')->get();
+
         $attendanceTrue = Attendance::where('class_id', $id)->where("date", $dateAttendance)->with('don_ho','teacher')->with(['kid'=>function($query){
             $query->with('parent');
         }])->where("status", 1)->get();
-        return view('staff.giao-vien.diem-danh.diem-danh', compact('kids', 'attendanceTrue','idTeacher','dateAttendance'));
+
+        $attendance = Attendance::where('class_id', $id)->where("date", $dateAttendance)->with('don_ho','teacher')->with(['kid'=>function($query){
+            $query->with('parent');
+        }])->get();
+        
+        return view('staff.giao-vien.diem-danh.diem-danh', compact('kids', 'attendanceTrue','idTeacher','dateAttendance','attendance'));
     }
     public function giao_dien_diem_danh_don_muon(Request $request, $id)
     {
@@ -56,13 +63,17 @@ class AttendanceController extends Controller
         $attendanceTrue = Attendance::where('class_id', $id)->where("date", $dateAttendance)->with('don_ho','teacher')->where("status", 1)->with(['kid'=>function($query){
             $query->with('parent');
         }])->where('leave_time','00:00:00')->get();
+        
         return view('staff.giao-vien.diem-danh.diem-danh-don-muon', compact('kids', 'attendanceTrue','idTeacher','dateAttendance'));
+    }
+    public function saveCB(Request $request)
+    {         
+        dd($request->kid_id);
     }
     public function diem_danh_den(Request $request)
     {
         $idTeacher = Auth::guard('teacher')->user()->id;
         $date= request()->get('dateAttendance');
-        
         $data = Arr::except($request->all(), ['_token']);
         if($date>substr(Carbon::now(), 0, 10)){
             $request->session()->flash('status', 'error');
@@ -76,15 +87,13 @@ class AttendanceController extends Controller
                     $attendance->kid_id = $data["kid_id"][$index];
                     $attendance->leave_time = "00:00:00";
                     if ($data["status"][$index] == "off") {
-                        $attendance->meal = 'off';
                         $attendance->status = 0;
                         $attendance->arrival_time = "00:00:00";
                     } else {
                         $attendance->status = 1;
-                        $attendance->meal = $data["meal"][$index];
                         $attendance->arrival_time =  $data["arrival_time"][$index];
                     }
-                    $attendance->teacher_1 =  $idTeacher;
+                    $attendance->teacher_id =  Auth::guard('teacher')->user()->id;
                     $attendance->class_id =  $data["class_id"][$index];
                     $attendance->date =  $data["date"][$index];
                     $attendance->note =  $data["note"][$index];
@@ -93,35 +102,51 @@ class AttendanceController extends Controller
                 } else {
                     $attendance = new Attendance();
                     if ($data["status"][$index] == "off") {
-                        $attendance->meal = 'off';
-                    } else {
-                        $attendance->meal = $data["meal"][$index];
-                    }
-                    if ($data["status"][$index] == "off") {
-                        $attendance->status = 0;
-                        $attendance->arrival_time = "00:00:00";
+                        $attendance->status = $data["stt"][$index];
+                        $a = $data["arrival_time"][$index];
                     } else {
                         $attendance->status = 1;
                         $attendance->arrival_time =  $data["arrival_time"][$index];
+                        
+                        if(json_decode($attendance->arrival_time) == null){
+                            if($data["arrival_time"][$index] == "00:00:00"){
+                                $a = Carbon::now()->toTimeString();   
+                            }
+                            else{
+                                $a = array();
+                                $a[] = $attendance->arrival_time;
+                                $a[] = Carbon::now()->toTimeString();   
+                            }
+                              
+                        }
+                        else{
+                            $a = json_decode($attendance->arrival_time);
+                            $a[] = Carbon::now()->toTimeString();
+                        }
+                        
                     }
-                    $attendance->teacher_1 =  $idTeacher;
+                    $attendance->teacher =  $idTeacher;
+                    $attendance->leave_time =  $data["leave_time"][$index];
                     $attendance->class_id =  $data["class_id"][$index];
                     $attendance->note =  $data["note"][$index];
-                    if ($data["arrival_time"][$index] != "00:00:00") {
+                   
+                    
+                    if ($data["status"][$index] != 'off') {
                         $params = array(
                             'note'  => $attendance->note? $attendance->note: 'null',
                             'status'  => $attendance->status,
-                            'leave_time' => "00:00:00",
-                            'arrival_time' => $attendance->arrival_time,
-                            'meal' => $attendance->meal
+                            'leave_time' =>  $attendance->leave_time,
+                            'arrival_time' => $a,
+                            
                         );
                     } else {
                         $params = array(
                             'note'  => $attendance->note? $attendance->note:'null',
                             'status'  => $attendance->status,
-                            'meal' => $attendance->meal
+                            'arrival_time' => $a,
                         );
                     }
+                    
                     $find = Attendance::where("kid_id", $data["kid_id"][$index])->where("date", $data["date"][$index])->first();
                     $find->update($params);
                     $request->session()->flash('status', 'ok');
@@ -132,12 +157,10 @@ class AttendanceController extends Controller
                     $attendance->kid_id = $data["kid_id"][$index];
                     $attendance->leave_time = "00:00:00";
                     if ($data["status"][$index] == "off") {
-                        $attendance->meal = "off";
                         $attendance->status = 0;
                         $attendance->arrival_time = "00:00:00";
                     } else {
                         $attendance->status = 1;
-                        $attendance->meal = $data["meal"][$index];
                         $attendance->arrival_time =  $data["arrival_time"][$index];
                     }
                     $attendance->class_id =  $data["class_id"][$index];
@@ -147,7 +170,6 @@ class AttendanceController extends Controller
                     $request->session()->flash('status', 'ok');
                 } else {
                     $attendance = new Attendance();
-                    $attendance->meal = "off";
                     $attendance->status = 2;
                     $attendance->arrival_time = "00:00:00";
                     $attendance->class_id =  $data["class_id"][$index];
@@ -158,13 +180,13 @@ class AttendanceController extends Controller
                             'status'  => 2,
                             'leave_time' => "00:00:00",
                             'arrival_time' => "00:00:00",
-                            'meal' => 'off',
+                            
                         );
                     } else {
                         $params = array(
                             'note'  => "Nghỉ có phép",
                             'status'  => 2,
-                            'meal' => 'off'
+                           
                         );
                     }
                     $find = Attendance::where("kid_id", $data["kid_id"][$index])->where("date", $data["date"][$index])->first();
@@ -179,12 +201,29 @@ class AttendanceController extends Controller
     {
         $date= request()->get('dateAttendance');
         $data = Arr::except($request->all(), ['_token']);
+
         foreach ($data["kid_id"] as $index => $kid) {
             $attendance = new Attendance();
             if ($data["status"][$index] == "off") {
                 $attendance->leave_time = "00:00:00";
             } else {
+                $attendance->status = 0;
                 $attendance->leave_time =  $data["leave_time"][$index];
+                if(json_decode($attendance->leave_time) == null){
+                    if($data["leave_time"][$index] == "00:00:00"){
+                        $a = Carbon::now()->toTimeString();   
+                    }
+                    else{
+                        $a = array();
+                        $a[] = $attendance->leave_time;
+                        $a[] = Carbon::now()->toTimeString();   
+                    }
+                      
+                }
+                else{
+                    $a = json_decode($attendance->leave_time);
+                    $a[] = Carbon::now()->toTimeString();
+                }
             }
             $attendance->note =  $data["note"][$index]?$data["note"][$index]:'null';
             $params = array(
@@ -192,10 +231,12 @@ class AttendanceController extends Controller
                 'leave_time' => $attendance->leave_time,
             );
 
-            if ($data["check_diem_danh_ve"][$index] != "true") {
+            if ($data["status"][$index] == "on") {
                 $params = array(
                     'note'  => $attendance->note,
-                    'leave_time' => $attendance->leave_time,
+                    'leave_time' => $a,
+                    'status' => $attendance->status,
+
                 );
             } else if ($data["status"][$index] == "off") {
                 $params = array(

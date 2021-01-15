@@ -216,12 +216,13 @@ Route::group([
     Route::group([
         'prefix' => 'diem-danh',
     ], function () {
-        
+        Route::post('/saveCB', 'Web\GiaoVien\AttendanceController@saveCB')->name('giao-vien.saveCB');
         Route::post('/thay-doi-diem-danh', 'Web\GiaoVien\AttendanceController@update_attendance_history')->name('giao-vien.thay-doi-diem-danh');
 
         Route::post('/xac-nhan', 'Web\GiaoVien\AttendanceController@confirm_attendance')->name('giao-vien.xac-nhan-diem-danh');
         
         Route::get('/{id}', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh')->name('giao-vien.giao_dien_diem_danh');
+        Route::get('/updateStatus', 'Web\GiaoVien\AttendanceController@updateStatus')->name('giao-vien.updateStatus');
         Route::get('/don-muon/{id}', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh_don_muon')->name('giao-vien.giao_dien_diem_danh_don_muon');
         Route::post('/diem-danh-ve-muon/update', 'Web\GiaoVien\AttendanceController@diem_danh_ve_muon')->name('giao-vien.diem_danh_ve_muon');
 
