@@ -38,7 +38,7 @@
 
                                 </span>
                                 <span class="m-widget24__stats m--font-danger">
-                                    {{count($meal)}}
+                                   0
                                 </span>
                                 <div class="m--space-10"></div>
                                 

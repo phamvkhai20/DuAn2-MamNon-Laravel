@@ -6,10 +6,7 @@ use App\Http\Controllers\AuthController;
 Route::group([
     'prefix' => 'dang-nhap',
 ], function () {
-    Route::group([
-        'middleware' => ['check_login']
-    ], function () {
-
+    Route::group(['middleware' => ['check_login']], function () {
         Route::get('phu-huynh', 'AuthController@form_login_parent')->name('form.parent');
         Route::post('phu-huynh', 'AuthController@loginParent')->name('login.parent');
 
@@ -30,6 +27,18 @@ Route::get('/nop-ho-so', 'AuthController@nop_ho_so_nhap_hoc')->name('web.nop-ho-
 Route::get('/gioi-thieu', 'GioithieuController@gioi_thieu_truong_hoc')->name('web.gioi-thieu');
 
 
+Route::group([
+    'prefix' => 'lien-he',
+], function () {
+    Route::get('/', 'ContactController@lien_he_truong_hoc')
+    ->name('web.lien-he');
+    Route::get('them-moi', 'ContactController@add')
+    ->name('lien-he.them_moi');
+    Route::post('luu', 'ContactController@saveAdd')
+    ->name('lien-he.save_add');
+
+});
+
 Route::get('/404', 'ErrorControler@page_error')->name('error.404');
 
 Route::group([
@@ -43,7 +52,7 @@ Route::group([
     Route::post('/doi-mat-khau/{id}', 'Web\PhuHuynh\HomeController@save_password')->name('phu-huynh.save_password');
 
 
-    
+
     Route::group([
         'prefix' => '/{id}',
         // 'middleware' => ['check_parent'],
@@ -58,7 +67,7 @@ Route::group([
         Route::post('/luu-dang-ki-don', 'Web\PhuHuynh\ChildReceiptHistoryController@save_dang_ki')->name('phu-huynh.luu-diem-danh');
         Route::get('/diem-danh', 'Web\PhuHuynh\AttendanceController@view_attendance')->name('phu-huynh.diem-danh');
         Route::get('/lich-su-nghi', 'Web\PhuHuynh\AttendanceController@absence_history')->name('phu-huynh.lich-su-nghi');
-       
     });
     //lớp
 });
+Route::post('/export-csv','AdmissionRecordsController@export_csv');

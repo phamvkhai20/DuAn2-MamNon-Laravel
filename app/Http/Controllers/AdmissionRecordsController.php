@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdmissionRecords;
+use App\Exports\ExcelExport;
+use Excel;
+use App\Models\Config;
 use App\Models\Kid;
 use App\Models\Parents;
 use Illuminate\Http\Request;
@@ -12,12 +15,42 @@ class AdmissionRecordsController extends Controller
 {
     public function them_moi(Request $request)
     {
+
+//        kid_name: kid_name,
+//        nickname: nickname,
+//        address: address,
+//        date_of_birth: date_of_birth,
+//        gender: gender,
+//        grade_id: grade_id,
+//        parent_name: parent_name,
+//        email: email,
+//        phone: phone,
+//        status:status
+      
+//        $gender = null;
+//        if($request->gender == 1) {
+//            $gender = 'Nam';
+//        } else {
+//            $gender = 'Nữ';
+//        }
+
+        $content1 = str_replace('__hoTenTre__', $request->kid_name, Config::cfg('template_email_nhop_ho_so'));
+        $content1 = str_replace('__tenGoiONha__', $request->nickname, $content1);
+        $content1 = str_replace('__ngaySinh__', $request->date_of_birth, $content1);
+        $content1 = str_replace('__gioiTinh__', $request->gender, $content1);
+        $content1 = str_replace('__hienTaiDangCutruTai__', $request->address, $content1);
+        $content1 = str_replace('__luaTuoi__', $request->grade_id, $content1);
+        $content1 = str_replace('__hoTenPhuHuyng__', $request->parent_name, $content1);
+        $content1 = str_replace('__soDienThoai__', $request->phone, $content1);
+        $content1 = str_replace('__email__', $request->email, $content1);
+        sendMail($request->parent_name, $request->email, Config::cfg('title_nhap_ho_so'), $content1, '');
         $data = $request->all();
         $AdmissionRecords = AdmissionRecords::create($data);
         return response()->json(
             ['data' =>   $AdmissionRecords]
         );
     }
+
     public function admission(Request $request)
     {
         if($request->all() != null && $request['page'] == null){
@@ -28,12 +61,12 @@ class AdmissionRecordsController extends Controller
                 elseif($key == 'kid_name'){
                     $data['admissions'] = AdmissionRecords::where("$key",'LIKE',"%$value%")->orderBy('id', 'desc')->paginate(10);
                 }
-        
+
             }
         }else{
             $data['admissions'] = AdmissionRecords::orderBy('id', 'desc')->paginate(10);
         }
-        
+
         return view('staff.nha-truong.quan-ly-ho-so.index', $data);
     }
     public function updateStatus(Request $request)
@@ -86,4 +119,8 @@ class AdmissionRecordsController extends Controller
 
     return response()->json(['message' => 'Xác nhận thành công']);
 }
+    public function export_csv()
+    {
+        return Excel::download(new ExcelExport , 'AdmissionRecordsController.xlsx');
+    }
 }

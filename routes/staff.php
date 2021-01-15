@@ -20,13 +20,18 @@ Route::group([
     'as' => 'nha-truong.',
     'middleware' => ['check_school'],
 ], function () {
+    Route::match(['get', 'post'], '/config-email', 'Web\NhaTruong\HomeController@configEmail')
+        ->name('nha-truong.cau-hinh-email');
+    Route::match(['get', 'post'], '/template-email', 'Web\NhaTruong\HomeController@templateEmail')
+        ->name('tempalte_email');
+
     Route::get('/', 'Web\NhaTruong\HomeController@index')->name('nha-truong.index');
     Route::get('/doi-mat-khau/{id}', 'Web\NhaTruong\HomeController@change_password')->name('nha-truong.change_password');
     Route::post('/doi-mat-khau/{id}', 'Web\NhaTruong\HomeController@save_password')->name('nha-truong.save_password');
     Route::get('/ho-so', 'AdmissionRecordsController@admission')->name('nha-truong.admission');
     Route::get('/ho-so/updateStatus', 'AdmissionRecordsController@updateStatus')->name('nha-truong.updateStatus');
     //lớp
-        
+
     Route::get('get-data-attendance', 'Web\NhaTruong\HomeController@chartAttendance')
     ->name('axios.get-data-attendance');
 
@@ -92,6 +97,12 @@ Route::group([
         Route::get('xoa/{id}', 'Web\NhaTruong\YearController@delete')
             ->name('nam.xoa');
     });
+    Route::group([
+        'prefix' => 'lien-he',
+    ], function () {
+        Route::get('danh-sach-lien-he', 'Web\NhaTruong\ContactController@index')
+            ->name('lien-he.index');
+    }); 
     //thông báo
     Route::group([
         'prefix' => 'thong-bao',
@@ -101,7 +112,7 @@ Route::group([
         Route::get('chi-tiet', 'Web\NhaTruong\NotificationController@detail')
             ->name('thong-bao.detail');
         Route::post('them-moi/tao', 'Web\NhaTruong\NotificationController@save_add')
-        ->name('thong-bao.them_moi.tao');   
+        ->name('thong-bao.them_moi.tao');
         Route::get('them-moi', 'Web\NhaTruong\NotificationController@add')
             ->name('thong-bao.them_moi');
     });
@@ -188,7 +199,7 @@ Route::group([
 ], function () {
     Route::get('/doi-mat-khau/{id}', 'Web\GiaoVien\HomeController@change_password')->name('giao-vien.change_password');
     Route::post('/doi-mat-khau/{id}', 'Web\GiaoVien\HomeController@save_password')->name('giao-vien.save_password');
-    
+
 
     Route::group([
         'prefix' => 'thong-bao',
@@ -198,14 +209,15 @@ Route::group([
     Route::get('chi-tiet', 'Web\NhaTruong\NotificationController@detail')
         ->name('giao-vien.thong-bao.detail');
     Route::get('them-moi', 'Web\NhaTruong\NotificationController@teacher_add')
-        ->name('giao-vien.thong-bao.them_moi');   
+        ->name('giao-vien.thong-bao.them_moi');
         Route::post('them-moi/tao', 'Web\NhaTruong\NotificationController@save_teacher_add')
-        ->name('giao-vien.thong-bao.them_moi.tao');   
+        ->name('giao-vien.thong-bao.them_moi.tao');
     });
+   
     Route::group([
         'prefix' => '/{id}/so-lien-lac',
     ], function () {
-        
+
         Route::get('/danh-sach', 'Web\GiaoVien\ContactBookController@contact_book_list')->name('giao-vien.danh-sach-so-lien-lac-ngay');
 
         Route::get('/chi-tiet/{date}', 'Web\GiaoVien\ContactBookController@chi_tiet')->name('giao-vien.chi-tiet-so-lien-lac');
@@ -213,14 +225,14 @@ Route::group([
         Route::post('/tao-moi', 'Web\GiaoVien\ContactBookController@save_add_contact_book')->name('giao-vien.them-so-lien-lac.them-moi');
         Route::get('/', 'Web\GiaoVien\ContactBookController@form_add_contact_book')->name('giao-vien.them-so-lien-lac');
     });
+
     Route::group([
         'prefix' => 'diem-danh',
     ], function () {
-        Route::post('/saveCB', 'Web\GiaoVien\AttendanceController@saveCB')->name('giao-vien.saveCB');
         Route::post('/thay-doi-diem-danh', 'Web\GiaoVien\AttendanceController@update_attendance_history')->name('giao-vien.thay-doi-diem-danh');
 
         Route::post('/xac-nhan', 'Web\GiaoVien\AttendanceController@confirm_attendance')->name('giao-vien.xac-nhan-diem-danh');
-        
+
         Route::get('/{id}', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh')->name('giao-vien.giao_dien_diem_danh');
         Route::get('/updateStatus', 'Web\GiaoVien\AttendanceController@updateStatus')->name('giao-vien.updateStatus');
         Route::get('/don-muon/{id}', 'Web\GiaoVien\AttendanceController@giao_dien_diem_danh_don_muon')->name('giao-vien.giao_dien_diem_danh_don_muon');

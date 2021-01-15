@@ -26,9 +26,9 @@
                                     <div class="d-md-none m--margin-bottom-10"></div>
                                 </div>
                                 <form action="" class="d-flex">
-                                
+
                                 <div class="col-md-12">
-                                
+
                                     <div class="m-input-icon m-input-icon--left">
                                         <input value="{{request()->get('kid_name')}}" name="kid_name" id="searchByName" type="text" class="form-control m-input m-input--solid"
                                             placeholder="Tìm kiếm qua tên">
@@ -64,7 +64,17 @@
                         </h3>
                     </div>
                 </div>
-               
+        <div class="m-portlet__head-tools">
+                    <!-- <form action="#" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="file" accept=".xlsx"><br>
+                    <input type="submit" value="Import CSV" name="import_csv" class="btn btn-warning">
+                    </form> -->
+                    <form action="{{url('export-csv')}}" method="POST">
+                          @csrf
+                        <input type="submit" value="Export File Excel" name="export_csv" class="btn btn-success">
+                    </form>
+                </div>
             </div>
             <div class="m-portlet__body">
 
@@ -86,7 +96,7 @@
                                             <th rowspan="1" colspan="1">Số điện thoại</th>
                                             <th rowspan="1" colspan="1">Email</th>
                                             <th rowspan="1" colspan="1">Trạng Thái</th>
-                                           
+
                                             </th>
                                         </tr>
                                     </thead>
@@ -124,12 +134,8 @@
                                             </td>
                                         </tr>
                                         @endforeach
-                    
-                                    
                                     </tbody>
                                 </table>
-
-
                                 <div id="m_table_1_processing" class="dataTables_processing card"
                                     style="display: none;">
                                     Processing...</div>
@@ -140,6 +146,7 @@
                             {{ $admissions->links() }}
                             </ul>
                         </div>
+
                     </div>
                 </form>
             </div>
@@ -159,7 +166,7 @@ elems.forEach(function(html) {
     $('.js-switch').change(function () {
         let status = $(this).prop('checked') === true ? 1 : 0;
         let id = $(this).data('id');
-        
+
         $.ajax({
             type: "GET",
             dataType: "json",
