@@ -10,7 +10,9 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-
+use App\Mail\CheckOutEmail;
+use App\Mail\CheckInEmail;
+use Mail;
 class AttendanceController extends Controller
 {
     public function giao_dien_diem_danh(Request $request, $id)
@@ -77,6 +79,13 @@ class AttendanceController extends Controller
         foreach ($data["kid_id"] as $index => $kid) {
             $find = Attendance::where('kid_id', $data["kid_id"][$index])->where("date", $data["date"][$index])->where('status', '1')->get();
             if ($data["status"][$index] != "2") {
+                $result = array(
+                    'parent_name' =>  $data["parent_name"][$index],
+                    'kid_name' =>  $data["kid_name"][$index],
+                    'message'   =>   Carbon::now()->toTimeString(),
+                );
+        
+                Mail::to($data["parent_email"][$index])->send(new CheckInEmail($result));
                     $attendance = new Attendance();
                     $attendance->kid_id = $data["kid_id"][$index];
                     $attendance->leave_time = "00:00:00";
@@ -115,6 +124,13 @@ class AttendanceController extends Controller
             $attendance = new Attendance();
             if($data["status"][$index] != $data["old_status"][$index]){
                 if ($data["status"][$index] == "0") {
+                    $result = array(
+                        'parent_name' =>  $data["parent_name"][$index],
+                        'kid_name' =>  $data["kid_name"][$index],
+                        'message'   =>   Carbon::now()->toTimeString(),
+                    );
+            
+                    Mail::to($data["parent_email"][$index])->send(new CheckOutEmail($result));
                     $attendance->status = 0;
                     $attendance->leave_time =  $data["leave_time"][$index];
                     if(json_decode($attendance->leave_time) == null){
@@ -137,11 +153,19 @@ class AttendanceController extends Controller
                     'status' => $attendance->status,
                     'note' => $data["note"][$index],
                     );
-                    
                     $find = Attendance::where("kid_id", $data["kid_id"][$index])->where("date", $date)->first();
                     $find->update($params);
+                   
+                 
                 }
                 else{
+                    $result = array(
+                        'parent_name' =>  $data["parent_name"][$index],
+                        'kid_name' =>  $data["kid_name"][$index],
+                        'message'   =>   Carbon::now()->toTimeString(),
+                    );
+            
+                    Mail::to($data["parent_email"][$index])->send(new CheckInEmail($result));
                     $attendance->status = 1;
                     $attendance->arrival_time =  $data["arrival_time"][$index];
                     if(json_decode($attendance->arrival_time) == null){

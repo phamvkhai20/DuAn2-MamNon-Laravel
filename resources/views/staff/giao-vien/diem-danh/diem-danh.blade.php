@@ -146,6 +146,9 @@
                             <div @if (!empty($kid->attendance[0]) && $kid->attendance[0]->note != "") style="border:2px solid red" @endif data-toggle="tooltip" title="Số điện thoại phụ huynh: {{$kid->parent->phone}}"  class="col image_kid_attendance m-portlet justify-content-center" >
                                 <div style="margin-left:-15px;"  class="box_group_name">
                                     <b> {{$kid->kid_name}}</b>
+                                    <input hidden type="text" value="{{$kid->kid_name}}" name="kid_name[{{$kid->id}}]" />
+                                    <input hidden type="text" value="{{$kid->parent->parent_name}}" name="parent_name[{{$kid->id}}]" />
+                                    <input hidden type="text" value="{{$kid->parent->email}}" name="parent_email[{{$kid->id}}]" />
                                     <input type="hidden" name="dateAttendance" class="form-control m-input" id="date_attendance" value="{{$dateAttendance}}" />
                                     <input hidden type="text" value="{{$kid->class_id}}" name="class" />
                                     <input hidden type="text" name="date[{{$kid->id}}]" value="{{$dateAttendance}}" />   
@@ -244,6 +247,9 @@
                                 
                                     <div style="margin-left:-15px;" class="box_group_name">
                                         <b> {{$attendance->kid->kid_name}}</b>
+                                        <input hidden type="text" value="{{$attendance->kid->kid_name}}" name="kid_name[{{$attendance->kid->id}}]" />
+                                        <input hidden type="text" value="{{$attendance->kid->parent->parent_name}}" name="parent_name[{{$attendance->kid->id}}]" />
+                                        <input hidden type="text" value="{{$attendance->kid->parent->email}}" name="parent_email[{{$attendance->kid->id}}]" />
                                         <input type="hidden" name="dateAttendance" class="form-control m-input" id="date_attendance" value="{{$dateAttendance}}" />
                                         <input hidden type="text" value="{{$dateAttendance}}" name="date[{{$attendance->kid->id}}]" />
                                         <input hidden type="text" value="{{$attendance->kid->id}}" name="kid_id[{{$attendance->kid->id}}]" />
