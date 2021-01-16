@@ -32,6 +32,13 @@ class YearController extends Controller
     }
     public function saveAdd(Request $request)
     {
+        
+        $request->validate([
+            'school_year' => 'required|numeric',
+        ],[
+            'school_year.required' => 'Phải nhập năm học',
+            'school_year.numeric' => 'Nhập sai định dạng !',
+        ]);
         $data = request()->all();
         SchoolYearModel::create($data);
         return redirect()->route('nha-truong.nam.index');

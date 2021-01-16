@@ -13,8 +13,6 @@
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.diem-danh.list')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Điểm danh toàn trường</span></a></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.tre.create')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Tổng hợp điểm danh trẻ</span></a></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.tre.change')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Trẻ nghỉ nhiều liên tục</span></a></li>
                     </ul>
                 </div>
             </li>
@@ -76,7 +74,6 @@
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.khoi.index')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Danh sách khối lớp</span></a></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.khoi.them_moi')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Thêm mới khối lớp</span></a></li>
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{route('nha-truong.khoi.them_moi')}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Thêm mới khối lớp</span></a></li>
                     </ul>
                 </div>
