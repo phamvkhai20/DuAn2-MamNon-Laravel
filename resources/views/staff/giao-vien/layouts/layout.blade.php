@@ -75,6 +75,8 @@
     <script src="{{asset('assets_staff/demo/default/base/scripts.bundle.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets_staff/app/js/dashboard.js')}}" type="text/javascript"></script>
     <script src="{{asset('assets_staff/demo/default/custom/crud/forms/widgets/bootstrap-select.js')}}" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     
 </body>
 

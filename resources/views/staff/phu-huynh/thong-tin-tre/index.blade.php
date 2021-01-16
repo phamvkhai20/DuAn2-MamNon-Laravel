@@ -95,7 +95,7 @@
                                     <div class="form-group m-form__group row">
                                         <label class="col-form-label col-lg-3 col-sm-12">Lớp</label>
                                         <div class="col-lg-4 col-md-9 col-sm-12">
-                                            <input type="text" disabled value="{{$infoKid->getClass->name}}"
+                                            <input type="text" disabled @if($infoKid->class_id == null) style="color:red" value="Chưa có lớp" @else value="{{$infoKid->getClass->name}}" @endif
                                                 class="form-control" />
                                         </div>
                                     </div>

@@ -133,38 +133,17 @@
                 </div>
                 
             </form>
-            @elseif(date('w', strtotime($dateAttendance)) >= 6)
-                <h5 class="text-center">Ngày bạn chọn là cuối tuần</h5>
+            
             @elseif($dateAttendance >   Carbon::now()->toDateString())
                 <h5 class="text-center">Chưa đến thời gian điểm danh</h5>
-            @elseif($dateAttendance >=   Carbon::now()->toDateString())
-            <ul class="nav nav-pills nav-fill" role="tablist">
-                @if($date<"12:00:00"||count($attendanceTrue)==0) 
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#m_tabs_5_1">Đang vắng mặt</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#m_tabs_5_2">Đang có mặt</a>
-                    </li>
-                    @else
-                    <li class="nav-item">
-                        <a class="nav-link " data-toggle="tab" href="#m_tabs_5_1">Đang vắng mặt</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#m_tabs_5_2">Đang có mặt</a>
-                    </li>
-                    @endif
-            </ul>
-            <div class="tab-content">
-                @if($date<"12:00"||count($attendanceTrue)==0) <div class="tab-pane active" id="m_tabs_5_1" role="tabpanel">
-                    @else
-                    <div class="tab-pane " id="m_tabs_5_1" role="tabpanel">
-                        @endif
+            @elseif($dateAttendance =   Carbon::now()->toDateString())
+
+                
+                        @if(count($check) == 0)
                         <form class="row" action="{{ route('giao-vien.diem_danh_den')}}" method="post">
                             @csrf
-                            @foreach($kids as $index=>$kid)
-                            
-                            <div @if (!empty($kid->attendance[0]) && $kid->attendance[0]->note != "") style="border:2px solid red" @endif data-toggle="tooltip" title="Số điện thoại phụ huynh: {{$kid->parent->phone}}" @if (!empty($kid->attendance[0]) && $kid->attendance[0]->status == 1) hidden @endif  class="col image_kid_attendance m-portlet justify-content-center" style="background-image: url({{asset('/upload/avatar/'.$kid->kid_avatar)}})">
+                            @foreach($kids as $index=>$kid)  
+                            <div @if (!empty($kid->attendance[0]) && $kid->attendance[0]->note != "") style="border:2px solid red" @endif data-toggle="tooltip" title="Số điện thoại phụ huynh: {{$kid->parent->phone}}"  class="col image_kid_attendance m-portlet justify-content-center" >
                                 <div style="margin-left:-15px;"  class="box_group_name">
                                     <b> {{$kid->kid_name}}</b>
                                     <input type="hidden" name="dateAttendance" class="form-control m-input" id="date_attendance" value="{{$dateAttendance}}" />
@@ -184,7 +163,18 @@
                                     <input hidden type="text" value="{{$kid->id}}" name="kid_id[{{$kid->id}}]" />
                                     <input hidden type="text" value="{{$kid->class_id}}" name="class_id[{{$kid->id}}]" />
                                 </div>
-                                <div style="margin-left:-15px;" class="box_group_button">
+                                <div class="text-center" >
+                                        <img style="width:80%" src="{{asset('/upload/avatar/'.$kid->kid_avatar)}}" alt="">
+                                    </div>
+                                <div class="box_more">
+                                    <a href="#" class="button_khac" data-toggle="modal" data-target="#m_modal_1_2_{{$kid->id}}" class="m-portlet__nav-link m-dropdown__toggle btn m-btn m-btn--link" style="padding: 0;padding-top:15px;">
+                                        <i class="la la-ellipsis-h icon_button_khac"></i>
+                                        @if(!empty($kid->attendance[0])&&$kid->attendance[0]->status==2)
+                                        <span class="m-badge m-badge--danger m-badge--wide m-badge--rounded" style="margin:10px 0 0 -15px;border-radius:50%"></span>
+                                        @endif
+                                    </a>
+                                </div>
+                                <div style="margin-left:-15px;padding-bottom:10px; margin-bottom:25px" class="box_group_button">
                                     <div class="row">
                                         @if(!empty($kid->attendance[0])&&$kid->attendance[0]->status==2)
                                         <input hidden type="text" value="2" name="status[{{$kid->id}}]" />
@@ -192,28 +182,7 @@
                                         @else
                                         <div class="col-12">
                                             <input hidden type="text" value="off" name="status[{{$kid->id}}]" />
-                                            @if(!empty($kid->attendance[0])&&$kid->attendance[0]->status==1)
-                                            <span class="m-switch m-switch--outline m-switch--icon m-switch--primary">
-                                                <label style="margin-bottom:0">
-                                                    <input type="checkbox" onchange="handleClickP('{{$kid->id}}')" id="status_{{$kid->id}}" name="status[{{$kid->id}}]">
-                                                    <span></span>
-                                                </label>
-                                            </span>
-                                            @elseif(!empty($kid->attendance[0])&&$kid->attendance[0]->status==0)
-                                            <span class="m-switch m-switch--outline m-switch--icon m-switch--primary">
-                                                <label style="margin-bottom:0">
-                                                    <input type="checkbox" id="status_{{$kid->id}}" onchange="handleClickP('{{$kid->id}}')" name="status[{{$kid->id}}]">
-                                                    <span></span>
-                                                </label>
-                                            </span>
-                                            @elseif(empty($kid->attendance[0]))
-                                            <span class="m-switch m-switch--outline m-switch--icon m-switch--primary">
-                                                <label style="margin-bottom:0">
-                                                    <input type="checkbox" id="status_{{$kid->id}}" checked="checked" onchange="handleClickP('{{$kid->id}}')" name="status[{{$kid->id}}]">
-                                                    <span></span>
-                                                </label>
-                                            </span>
-                                            @endif
+                                            <input data-size="sm"  type="checkbox" checked data-toggle="toggle" data-on="Có mặt" data-off="Vắng mặt" data-onstyle="success" data-offstyle="danger"  name="status[{{$kid->id}}]">
                                         </div>
                                         
                                         @endif
@@ -263,21 +232,16 @@
                             @endforeach
                             <div class="m-nav-sticky" style="margin-top: 30px;width:150px;height:70px">
                                 <li class="m-nav-sticky__item" data-toggle="m-tooltip" data-placement="left">
-                                    <button @if (!empty($kid->attendance[0]) && $count1 == 0) disabled @endif id="diem_danh_den"  class="btn btn-primary button_attendance" type="submit">Xác nhận</button>
+                                    <button onclick="return confirm('Bạn đã chắc chắn chưa?')" id="diem_danh_den"  class="btn btn-primary button_attendance" type="submit">Xác nhận</button>
                                 </li>
                             </div>
                         </form>
-                    </div>
-                    @if($date<"12:00") <div class="tab-pane " id="m_tabs_5_2" role="tabpanel">
-                        @else
-                        <div class="tab-pane active" id="m_tabs_5_2" role="tabpanel">
-                            @endif
-                            
-                            <form class="row" action="{{ route('giao-vien.diem_danh_ve')}}" method="post">
+                        @elseif(count($check) > 0)
+                            <form class="row" action="{{ route('giao-vien.diem_danh_ve')}}" method="post" class="comfirm">
                                 @csrf
-                                @if(count($attendanceTrue)>0)
                                 @foreach($attendanceTrue as $index=>$attendance)
-                                <div @if($attendance->note != "") style="border:2px solid red" @endif data-toggle="tooltip" title="Số điện thoại phụ huynh: {{$attendance->kid->parent->phone}}" @if ($attendance->status == 0 )) hidden @endif class=" col image_kid_attendance m-portlet justify-content-center" style="background-image: url({{asset('/upload/avatar/'.$attendance->kid->kid_avatar)}})">
+                                <div @if($attendance->note != "") style="border:2px solid red;position: relative;   @endif data-toggle="tooltip" title="Số điện thoại phụ huynh: {{$attendance->kid->parent->phone}}" class=" col image_kid_attendance m-portlet justify-content-center" >
+                                
                                     <div style="margin-left:-15px;" class="box_group_name">
                                         <b> {{$attendance->kid->kid_name}}</b>
                                         <input type="hidden" name="dateAttendance" class="form-control m-input" id="date_attendance" value="{{$dateAttendance}}" />
@@ -285,10 +249,38 @@
                                         <input hidden type="text" value="{{$attendance->kid->id}}" name="kid_id[{{$attendance->kid->id}}]" />
                                         <input hidden type="text" value="{{$attendance->kid->class_id}}" name="class" />
                                         <input hidden type="text" value="{{$attendance->leave_time}}" name="leave_time[{{$attendance->kid->id}}]" />
+                                        <input hidden type="text" value="{{$attendance->arrival_time}}" name="arrival_time[{{$attendance->kid->id}}]" />
+                                        <input hidden type="text" value="{{$attendance->status}}" name="stt[{{$attendance->kid->id}}]" />
+                                        <input hidden type="text" value="{{$attendance->health}}" name="health[{{$attendance->kid->id}}]" />
+                                        <input hidden type="text" value="{{$attendance->learning}}" name="learning[{{$attendance->kid->id}}]" />
+                                        <input hidden type="text" value="{{$attendance->eating}}" name="eating[{{$attendance->kid->id}}]" />          
                                         <input hidden type="text" value="" name="note[{{$attendance->kid->id}}]" />
                                     </div>
+                                    <div class="text-center" >
+                                        <img style="width:80%" src="{{asset('/upload/avatar/'.$attendance->kid->kid_avatar)}}" alt="">
+                                    </div>
+                                    <div style="margin-top:10px">
+                                    <div class='row'>
+                                                            <div style="font-size:12px" class="col-6">
+                                                            <p style="margin-bottom:0px">Đến lúc</p>
+                                                            <?php
+                                                            foreach (explode(",",ltrim(rtrim(str_replace('"', '',$attendance->arrival_time),"]"),"[")) as $value) {
+                                                                echo("<p style='font-weight:bold;margin-bottom:0px'>"."-\n".$value."</p>");
+                                                            }
+                                                        ?>
+                                                            </div>
+                                                            <div style="font-size:12px" class="col-6">
+                                                            <p style="margin-bottom:0px">Về lúc</p>
+                                                            <?php
+                                                            foreach (explode(",",ltrim(rtrim(str_replace('"', '',$attendance->leave_time),"]"),"[")) as $value) {
+                                                                echo("<p style='font-weight:bold;margin-bottom:0px'>"."-\n".$value."</p>");
+                                                            }
+                                                        ?>
+                                                            </div>
+                                    </div>
+                                                        </div>
                                     <div class="box_more">
-                                        <a href="#" class="button_khac" data-toggle="modal" data-target="#m_modal_4_{{$attendance->kid->id}}" class="m-portlet__nav-link m-dropdown__toggle btn m-btn m-btn--link" style="padding: 0;padding-top:15px;">
+                                        <a href="#" class="button_khac" data-toggle="modal" @if($attendance->status == 2) data-target="#m_modal_1_2_{{$attendance->kid->id}}" @else data-target="#m_modal_1_{{$attendance->kid->id}}"  @endif class="m-portlet__nav-link m-dropdown__toggle btn m-btn m-btn--link" style="padding: 0;padding-top:15px;">
                                             <i class="la la-ellipsis-h icon_button_khac"></i>
                                             @if(!empty($attendance->don_ho))
                                             <span class="m-badge m-badge--danger m-badge--wide m-badge--rounded" style="margin:10px 0 0 -15px;border-radius:50%"></span>
@@ -296,21 +288,58 @@
                                         </a>
 
                                     </div>
-                                    <div style="margin-left:-15px;" class="box_group_button">
-                                        <div class="row">
+                                    <div style="margin-left:-15px; margin-bottom:25px"  class="box_group_button">
+                                       
                                             <div class="col-lg-12 col-md-12 col-sm-12">
-                                                <input hidden type="text" value="off" name="status[{{$attendance->kid->id}}]" />
-                                                <span class="m-switch m-switch--outline m-switch--icon m-switch--success">
-                                                    <label style="margin-bottom:0px">
-                                                        <input type="checkbox" onchange="handleClickAttendance2('{{$attendance->kid->id}}')" name="status[{{$attendance->kid->id}}]">
-                                                        <span></span>
-                                                    </label>
-                                                </span>
+                                                <input hidden type="text" value="0" name="status[{{$attendance->kid->id}}]" />
+                                                @if($attendance->status == 1)
+                                                <input data-size="sm"  type="checkbox" checked data-toggle="toggle" data-on="Có mặt" data-off="Vắng mặt" data-onstyle="success" data-offstyle="danger" value="{{ $attendance->status == 1 ? '1' : '0' }}" onchange="handleClickAttendance2('{{$attendance->kid->id}}')" name="status[{{$attendance->kid->id}}]">
+                                                <input hidden type="text" value="{{ $attendance->status}}" name="old_status[{{$attendance->kid->id}}]">
                                                 
+                                                @elseif($attendance->status==2)
+                                                <input hidden type="text" value="2" name="status[{{$attendance->kid->id}}]" />
+                                                <h4 style="line-height:38px;">Xin nghỉ</h4>
+                                                @elseif($attendance->status == 0)
+                                                <input data-size="sm"  type="checkbox" data-toggle="toggle" data-on="Có mặt" data-off="Vắng mặt" data-onstyle="success" data-offstyle="danger" value="{{ $attendance->status == 0 ? '1' : '0' }}" onchange="handleClickAttendance2('{{$attendance->kid->id}}')" name="status[{{$attendance->kid->id}}]">
+                                                <input hidden type="text" value="{{ $attendance->status}}" name="old_status[{{$attendance->kid->id}}]">
+                                                @endif
+                                                
+                                            </div>
+                                        
+                                    </div>
+                                    <div class="modal fade" id="m_modal_1_2_{{$attendance->kid->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Khác
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    
+                                                    <p>Xin nghỉ trên hệ thống nhưng có đi học !</p>
+                                                    <p>Thay đổi trạng thái</p>
+                                                    <div class="row">
+                                                        <input hidden type="text" value="Xin nghỉ trên hệ thống nhưng có đi học" name="note[{{$attendance->kid->id}}]" />
+                                                        <span class=" col-6 m-switch m-switch--outline m-switch--success">Điểm danh
+                                                            <label style="margin-bottom: 5px;margin-left:10px">
+                                                                <input hidden type="text" value="{{$attendance->status}}" name="old_status[{{$attendance->kid->id}}]" />
+                                                                <input data-size="sm"  type="checkbox" data-toggle="toggle" data-on="Có mặt" data-off="Vắng mặt" data-onstyle="success" data-offstyle="danger" value="{{ $attendance->status == 0 ? '0' : '1' }}" name="status[{{$attendance->kid->id}}]">
+                                                            </label>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Lưu</button>
+                                                    <button type="button" class="btn " data-dismiss="modal">Đóng</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal fade" id="m_modal_4_{{$attendance->kid->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                               
+                                    <div class="modal fade" id="m_modal_1_{{$attendance->kid->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -320,12 +349,13 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
+                                                
                                                     <ul class="nav nav-pills nav-fill" role="tablist">    
                                                         <li class="nav-item">
                                                             <a class="nav-link active" data-toggle="tab" href="#tab_note{{$attendance->kid->id}}">Lưu ý trong ngày</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#tab_book{{$attendance->kid->id}}">Sổ liên lạc ngày</a>
+                                                            <a class="nav-link" data-toggle="tab" href="#tab_book{{$attendance->kid->id}}">Nhận xét ngày</a>
                                                         </li>
                                                         <li @if(empty($attendance->don_ho)) style="display:none"  @endif class="nav-item">
                                                             <a class="nav-link" data-toggle="tab" href="#tab_pickup{{$attendance->kid->id}}">Thông tin đón hộ</a>
@@ -368,7 +398,7 @@
                                                         @endif
                                                         </div>
                                                         <div class="tab-pane" id="tab_book{{$attendance->kid->id}}" role="tabpane1">
-                                                        <h4 class="text-center">Sổ liên lạc ngày</h4>
+                                                        <h4 class="text-center">Nhận xét ngày</h4>
                                                         <br>    
                                                         <h5>Sức khỏe</h5>
                                                         <textarea class="form-control" name="health[{{$attendance->kid->id}}]" name="health[{{$attendance->kid->id}}]" placeholder="Nhận xét về sức khỏe" rows="3">{{$attendance->health}}</textarea>
@@ -397,23 +427,21 @@
                                         (d.getMinutes()) + ':' + d.getSeconds();
                                 </script>
                                 @endforeach
-                                
-                                @endif
                                 <div class="m-nav-sticky" style="margin-top: 30px;width:150px;height:70px">
                                 <li class="m-nav-sticky__item" data-toggle="m-tooltip" data-placement="left">
-                                    <button @if (!empty($kid->attendance[0]) && $count2 == 0) disabled @endif id="diem_danh_ve"  class="btn btn-primary button_attendance" type="submit">Xác nhận</button>
+                                    <button onclick="return confirm('Bạn đã chắc chắn chưa?')" @if (!empty($kid->attendance[0]) && $count2 == 0) disabled @endif id="diem_danh_ve"  class="btn btn-primary button_attendance" type="submit">Xác nhận</button>
                                 </li>
                             </div>
                             </form>
                         
-                        </div>
-                        <div id="info">
-                        </div>
+                        @endif
+                        @endif
+                    </div>
             </div>
         </div>
     </div>
-    @endif
 </div>
+
 <script>
     function fetch_customer_data(query = '') {
         $.ajax({
