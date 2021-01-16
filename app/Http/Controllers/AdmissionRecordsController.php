@@ -15,25 +15,6 @@ class AdmissionRecordsController extends Controller
 {
     public function them_moi(Request $request)
     {
-
-//        kid_name: kid_name,
-//        nickname: nickname,
-//        address: address,
-//        date_of_birth: date_of_birth,
-//        gender: gender,
-//        grade_id: grade_id,
-//        parent_name: parent_name,
-//        email: email,
-//        phone: phone,
-//        status:status
-      
-//        $gender = null;
-//        if($request->gender == 1) {
-//            $gender = 'Nam';
-//        } else {
-//            $gender = 'Nữ';
-//        }
-
         $content1 = str_replace('__hoTenTre__', $request->kid_name, Config::cfg('template_email_nhop_ho_so'));
         $content1 = str_replace('__tenGoiONha__', $request->nickname, $content1);
         $content1 = str_replace('__ngaySinh__', $request->date_of_birth, $content1);
