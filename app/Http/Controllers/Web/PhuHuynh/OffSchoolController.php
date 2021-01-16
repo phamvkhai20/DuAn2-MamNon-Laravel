@@ -80,7 +80,7 @@ class OffSchoolController extends Controller
                     $offSchool->arrival_time = "00:00:00";
                     $offSchool->class_id = $kid->class_id;
                     $offSchool->date = $day;
-                    $offSchool->note =  "Xin Nghỉ học";
+                    $offSchool->note =  "";
                     $offSchool->save();
                 }
             }
