@@ -45,7 +45,7 @@
                 </a></li>
             @endforeach
             <li class="m-menu__section ">
-                <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin học phí</h4>
+                <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin của trẻ</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-life-saver"></i><span class="m-menu__link-text">Điểm danh
@@ -57,14 +57,14 @@
                     </ul>
                 </div>
             </li>
-            <li class="m-menu__section ">
+            <!-- <li class="m-menu__section ">
                 <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin cho trẻ</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="{{route('phu-huynh.so-lien-lac',['id'=>session('id_kid_default')])}}" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-book"></i><span class="m-menu__link-text">Sổ liên lạc
                     </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
 
-            </li>
+            </li> -->
             <li class="m-menu__section ">
                 <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Tiện ích nhà trường</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
