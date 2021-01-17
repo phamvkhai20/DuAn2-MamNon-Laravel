@@ -31,6 +31,8 @@
                     @php 
                         $statusAttendance=['1'=>'Đi học','2'=>"Nghỉ phép",'0'=>'Nghỉ không phép'];
                         $styleAttendance=['1'=>'m--font-success','2'=>"m--font-primary",'0'=>'m--font-danger'];
+                        $statusMeal=['on'=>"Có ăn",'off'=>"không ăn",'0'=>"không ăn"];
+                        $styleMeal=['on'=>'m--font-success','off'=>'m--font-danger','0'=>'m--font-danger'];
                     @endphp
                     <div class="m-portlet__body">
                         <div class="row">
@@ -47,6 +49,7 @@
                                             <th rowspan="1" colspan="1">Trạng thái</th>
                                             <th rowspan="1" colspan="1">Giờ đến</th>
                                             <th rowspan="1" colspan="1">Giờ về</th>
+                                            <th rowspan="1" colspan="1">Ăn</th>
                                             <th rowspan="1" colspan="1">Khác</th>
                                         </tr>
                                     </thead>
@@ -66,25 +69,17 @@
                                                 @endphp
                                             </td>
                                             <td rowspan="1" colspan="1">
-                                                @if($attendance->arrival_time != "00:00:00")
-                                                <span class="m--font-success">
-                                                    Đi học
+                                                <span class="{{$styleAttendance[$attendance->status]}}">
+                                                    {{$statusAttendance[$attendance->status]}}
                                                 </span>
-                                                @endif
-                                                @if($attendance->arrival_time == "00:00:00")
-                                                <span class="m--font-danger">
-                                                   Nghỉ không phép
-                                                </span>
-                                                @endif
-                                                @if($attendance->status == 2)
-                                                <span class="m--font-primary">
-                                                    Nghỉ có phép
-                                                </span>
-                                                @endif
                                             </td>
                                             <td rowspan="1" colspan="1">{{$attendance->arrival_time}}</td>
                                             <td rowspan="1" colspan="1">{{$attendance->leave_time}}</td>
-                                            
+                                            <td rowspan="1" colspan="1">
+                                                <span class="{{$styleMeal[$attendance->meal]}}">
+                                                    {{$statusMeal[$attendance->meal]}}
+                                                </span>
+                                            </td>
                                             <td rowspan="1" colspan="1"><a href="#" data-toggle="modal" data-target="#m_modal_{{$attendance->id}}">Ghi chú</a> </td>
                                             <div class="modal fade" id="m_modal_{{$attendance->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg" role="document">
