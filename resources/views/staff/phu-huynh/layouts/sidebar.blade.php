@@ -45,7 +45,7 @@
                 </a></li>
             @endforeach
             <li class="m-menu__section ">
-                <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin đi học</h4>
+                <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin của trẻ</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="{{route('phu-huynh.diem-danh',['id'=>session('id_kid_default')])}}" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-life-saver"></i><span class="m-menu__link-text">Xem điểm danh
