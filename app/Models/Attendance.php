@@ -18,7 +18,8 @@ class Attendance extends Model
     "teacher_id",
     "health",
     "learning",
-    "eating",];
+    "eating",
+    "comment_status"];
 
     public function kid()
     {

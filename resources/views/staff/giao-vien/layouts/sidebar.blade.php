@@ -36,17 +36,16 @@
             <li class="m-menu__section ">
 
                 <!-- classArray -->
-                <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin học phí</h4>
+                <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin điểm danh</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la  la-list-alt"></i><span class="m-menu__link-text">Quản lý điểm
                         danh</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
                 <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
-
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.giao_dien_diem_danh',['id'=>session('class')])}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Điểm danh ngày</span></a></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.xem_diem_danh',['id'=>session('class')])}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Xem điểm danh</span></a></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.giao_dien_diem_danh_don_muon',['id'=>session('class')])}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Đón muộn</span></a></li>
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.xem_diem_danh',['id'=>session('class')])}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Tổng hợp điểm danh</span></a></li>
+                        
                     </ul>
                 </div>
             </li>
@@ -68,13 +67,7 @@
                 <h4 class="m-menu__section-text" style="color:#868aa8;font-size:15px">Thông tin lớp học</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la  la-child"></i><span class="m-menu__link-text">Quản lý trẻ</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
-                <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
-                    <ul class="m-menu__subnav">
-
-                        <li class="m-menu__item " aria-haspopup="true"><a href="{{route('giao-vien.danh-sach-tre',['id'=> session('class')])}}" class="m-menu__link "><i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span class="m-menu__link-text">Danh sách trẻ</span></a></li>
-                    </ul>
-                </div>
+            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="{{route('giao-vien.danh-sach-tre',['id'=> session('class')])}}" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la  la-child"></i><span class="m-menu__link-text">Danh sách học sinh</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
             </li>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-yc-square"></i><span class="m-menu__link-text">Quản lý thông báo
                         </span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
@@ -100,8 +93,7 @@
                                     class="m-menu__link-text">Đăng xuất</span></a></li>
                     </ul>
                 </div>
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover"><a href="{{ route('logout.teacher') }}" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon la la-yc-square"></i><span class="m-menu__link-text">Đăng xuất</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
-            </li>
+           
 
         </ul>
     </div>

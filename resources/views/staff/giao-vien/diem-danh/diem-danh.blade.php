@@ -245,7 +245,11 @@
                                 @csrf
                                 @foreach($attendanceTrue as $index=>$attendance)
                                 <div @if($attendance->note != "") style="border:2px solid red;position: relative;   @endif data-toggle="tooltip" title="Số điện thoại phụ huynh: {{$attendance->kid->parent->phone}}" class=" col image_kid_attendance m-portlet justify-content-center" >
-                                
+                                <input hidden type="text" value="{{count($check1)}}" name="check1" />
+                                <input hidden type="text" value="{{count($check2)}}" name="check2" />
+                                <input hidden type="text" value="{{count($check3)}}" name="check3" />
+                                <input hidden type="text" value="{{$attendance->comment_status}}" name="comment_status[{{$attendance->kid->id}}]" />
+
                                     <div style="margin-left:-15px;" class="box_group_name">
                                         <b> {{$attendance->kid->kid_name}}</b>
                                         <input hidden type="text" value="{{$attendance->kid->kid_name}}" name="kid_name[{{$attendance->kid->id}}]" />
@@ -443,7 +447,16 @@
 
                                 <div class="m-nav-sticky" style="margin-top: 30px;width:150px;height:70px">
                                 <li class="m-nav-sticky__item" data-toggle="m-tooltip" data-placement="left">
-                                    <button onclick="return confirm('Bạn đã chắc chắn chưa?')" @if (!empty($kid->attendance[0]) && $count2 == 0) disabled @endif id="diem_danh_ve"  class="btn btn-primary button_attendance" type="submit">Xác nhận</button>
+                                @if(count($check1) == count($check2) + count($check3))
+                                    @if(count($check_status) != 0)
+                                    <button onclick="return confirm('Bạn đã chắc chắn chưa?')" id="diem_danh_ve"  class="btn btn-primary button_attendance" type="submit">Gửi nhận xét</button>
+                                    @else
+                                    <button onclick="return confirm('Bạn đã chắc chắn chưa?')" disabled id="diem_danh_ve"  class="btn btn-primary button_attendance" type="submit">Gửi nhận xét</button>
+                                    @endif
+                                @else
+                                <button onclick="return confirm('Bạn đã chắc chắn chưa?')" @if (!empty($kid->attendance[0]) && $count2 == 0) disabled @endif id="diem_danh_ve"  class="btn btn-primary button_attendance" type="submit">Xác nhận</button>
+                                @endif
+
                                 </li>
                             </div>
                             @endif
