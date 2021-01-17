@@ -333,7 +333,7 @@ class AttendanceController extends Controller
             }else{
                 $today=$todayTemp;
             }
-            $query->whereBetween("date", [$month.'-1', $today])->where('status', "0");
+            $query->whereBetween("date", [$month.'-1', $today])->where('arrival_time',"==", "00:00:00");
         }])->get();
         $permission = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
             $date=request()->all()?(request()->get('date')):Carbon::now();
@@ -355,20 +355,10 @@ class AttendanceController extends Controller
             }else{
                 $today=$todayTemp;
             }
-            $query->whereBetween("date", [$month.'-1', $today])->where('status', "1");
+            $query->whereBetween("date", [$month.'-1', $today])->where('arrival_time',"!=", "00:00:00");
         }])->get();
-        $meal = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
-            $date=request()->all()?(request()->get('date')):substr(Carbon::now(), 0, 10);
-            $month = substr($date, 0, 7);
-            $todayTemp = substr($date, 0, 10);
-            if($todayTemp==$month){
-                $today = substr($date, 0, 10)."-31";
-            }else{
-                $today=$todayTemp;
-            }
-            $query->whereBetween("date", [$month.'-1', $today])->where('meal', "on");
-        }])->get();
-        return view('staff.giao-vien.diem-danh.tong-hop', compact('getAttendance', 'studentInClass', 'absent', 'permission', 'present','month','meal'));
+        
+        return view('staff.giao-vien.diem-danh.tong-hop', compact('getAttendance', 'studentInClass', 'absent', 'permission', 'present','month'));
     }
     public function confirm_attendance(Request $request){
         $arrKids=$request->get('confirm');
