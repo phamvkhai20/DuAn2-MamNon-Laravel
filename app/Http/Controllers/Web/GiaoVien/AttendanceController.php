@@ -139,13 +139,13 @@ class AttendanceController extends Controller
             $attendance = new Attendance();
             if($data["status"][$index] != $data["old_status"][$index]){
                 if ($data["status"][$index] == "0") {
-                    // $result = array(
-                    //     'parent_name' =>  $data["parent_name"][$index],
-                    //     'kid_name' =>  $data["kid_name"][$index],
-                    //     'message'   =>   Carbon::now()->toTimeString(),
-                    // );
+                    $result = array(
+                        'parent_name' =>  $data["parent_name"][$index],
+                        'kid_name' =>  $data["kid_name"][$index],
+                        'message'   =>   Carbon::now()->toTimeString(),
+                    );
             
-                    // Mail::to($data["parent_email"][$index])->send(new CheckOutEmail($result));
+                    Mail::to($data["parent_email"][$index])->send(new CheckOutEmail($result));
                     $attendance->status = 0;
                     $attendance->leave_time =  $data["leave_time"][$index];
                     if(json_decode($attendance->leave_time) == null){
@@ -174,13 +174,13 @@ class AttendanceController extends Controller
                  
                 }
                 else{
-                    // $result = array(
-                    //     'parent_name' =>  $data["parent_name"][$index],
-                    //     'kid_name' =>  $data["kid_name"][$index],
-                    //     'message'   =>   Carbon::now()->toTimeString(),
-                    // );
+                    $result = array(
+                        'parent_name' =>  $data["parent_name"][$index],
+                        'kid_name' =>  $data["kid_name"][$index],
+                        'message'   =>   Carbon::now()->toTimeString(),
+                    );
             
-                    // Mail::to($data["parent_email"][$index])->send(new CheckInEmail($result));
+                    Mail::to($data["parent_email"][$index])->send(new CheckInEmail($result));
                     $attendance->status = 1;
                     $attendance->arrival_time =  $data["arrival_time"][$index];
                     if(json_decode($attendance->arrival_time) == null){
