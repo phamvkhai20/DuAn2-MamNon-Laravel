@@ -6,95 +6,6 @@
     use Carbon\Carbon;
     $date= substr(Carbon::now('Asia/Ho_Chi_Minh'),11,5)
     @endphp
-    @if($ngayThu==1)
-    @if((empty($attendance)||$attendance->arrival_time=="00:00:00"||$attendance->status==0))
-    <div class="m-alert m-alert--icon alert alert-warning" role="alert">
-        <div class="m-alert__icon">
-            <i class="la la-warning"></i>
-        </div>
-        <div class="m-alert__text">
-            <strong>Con của bạn chưa đến lớp</strong>
-        </div>
-        <div class="m-alert__close">
-            <button type="button" class="close" data-close="alert" aria-label="Hide">
-            </button>
-        </div>
-    </div>
-    @else
-    @if($date>"16:00:00"&&$attendance->leave_time=="00:00:00")
-    <div class="m-alert m-alert--icon alert alert-warning" role="alert">
-        <div class="m-alert__icon">
-            <i class="la la-warning"></i>
-        </div>
-        <div class="m-alert__text">
-            <strong style="color:#000">Con của bạn chưa được đón về</strong>
-        </div>
-        <div class="m-alert__close">
-            <button type="button" class="close" data-close="alert" aria-label="Hide">
-            </button>
-        </div>
-    </div>
-    @endif
-    <div class="">
-        <div class="m-portlet">
-            <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                    <div class="m-portlet__head-title">
-                        <h3 class="m-portlet__head-text">
-                            {{$prinDay}}
-                        </h3>
-                    </div>
-                </div>
-            </div>
-            <div class="m-portlet__body m-portlet__body--no-padding">
-                <div class="m-demo">
-                    <div class="m-demo__preview">
-                        <div class="m-list__content">
-                            <div class="m-list-badge m--margin-bottom-20">
-                                @if($attendance->arrival_time!=="00:00:00"&&!empty($attendance->teacher_1)&&!empty($attendance->teacher_2))
-                                <div class="m-list-badge__label m--font-success">
-                                    {{$attendance->arrival_time}}
-                                </div>
-                                <div class="m-list-badge__items">
-                                    <h5>Trẻ đã đến lớp</h5>
-                                </div>
-                                @else
-                                <div class="m-list-badge__label m--font-success">
-                                    --:--:--
-                                </div>
-                                <div class="m-list-badge__items">
-                                    <h5>Trẻ chưa đến lớp</h5>
-                                </div>
-                                @endif
-                            </div>
-                            <div class="m-list-badge m--margin-bottom-20">
-                                @if($attendance->leave_time!=="00:00:00")
-                                <div class="m-list-badge__label m--font-brand">
-                                    {{$attendance->leave_time}}
-                                </div>
-                                <div class="m-list-badge__items">
-                                    <h5>Trẻ đã được phụ huynh đón về</h5>
-                                </div>
-                                @else
-                                <div class="m-list-badge__label m--font-brand">
-                                    --:--:--
-                                </div>
-                                <div class="m-list-badge__items">
-                                    @if($date>"16:00:00")
-                                    <h5>Trẻ chưa được phụ huynh đón về</h5>
-                                    @endif
-                                </div>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    @endif
-    @endif
     <div class="m-demo" data-code-preview="true" data-code-html="true" data-code-js="false">
         <div class="p-3">
             <div class="m-nav-grid">
@@ -115,13 +26,7 @@
                         <span class="m-nav-grid__text">Đăng kí đón</span>
                     </a>
                 </div>
-                <div class="m-nav-grid__row">
-                    <a href="{{route('phu-huynh.so-lien-lac',['id'=>session('id_kid_default')])}}"
-                        class="m-nav-grid__item">
-                        <i class="m-nav-grid__icon flaticon-book"></i>
-                        <span class="m-nav-grid__text">Sổ liên lạc</span>
-                    </a>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -232,109 +137,7 @@
             </div>
         </div>
     </div>
-    <div class="">
-        <div class="row">
-            <div class="col-xl-6">
-
-                <!--begin:: Widgets/Support Tickets -->
-                <div class="m-portlet m-portlet--full-height ">
-                    <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">
-                                    Thông báo
-                                </h3>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="m-portlet__body">
-                        <div class="m-widget3">
-                            <div class="m-widget3__item">
-                                <div class="m-widget3__header">
-                                    <div class="m-widget3__user-img">
-                                        <img class="m-widget3__img" src="../../assets/app/media/img/users/user1.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="m-widget3__info">
-                                        <span class="m-widget3__username">
-                                            Melania Trump
-                                        </span><br>
-                                        <span class="m-widget3__time">
-                                            2 day ago
-                                        </span>
-                                    </div>
-                                    <span class="m-widget3__status m--font-info">
-                                        Pending
-                                    </span>
-                                </div>
-                                <div class="m-widget3__body">
-                                    <p class="m-widget3__text">
-                                        Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh
-                                        euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="m-widget3__item">
-                                <div class="m-widget3__header">
-                                    <div class="m-widget3__user-img">
-                                        <img class="m-widget3__img" src="../../assets/app/media/img/users/user4.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="m-widget3__info">
-                                        <span class="m-widget3__username">
-                                            Lebron King James
-                                        </span><br>
-                                        <span class="m-widget3__time">
-                                            1 day ago
-                                        </span>
-                                    </div>
-                                    <span class="m-widget3__status m--font-brand">
-                                        Open
-                                    </span>
-                                </div>
-                                <div class="m-widget3__body">
-                                    <p class="m-widget3__text">
-                                        Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh
-                                        euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad
-                                        minim veniam,quis nostrud exerci tation ullamcorper.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="m-widget3__item">
-                                <div class="m-widget3__header">
-                                    <div class="m-widget3__user-img">
-                                        <img class="m-widget3__img" src="../../assets/app/media/img/users/user5.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="m-widget3__info">
-                                        <span class="m-widget3__username">
-                                            Deb Gibson
-                                        </span><br>
-                                        <span class="m-widget3__time">
-                                            3 weeks ago
-                                        </span>
-                                    </div>
-                                    <span class="m-widget3__status m--font-success">
-                                        Closed
-                                    </span>
-                                </div>
-                                <div class="m-widget3__body">
-                                    <p class="m-widget3__text">
-                                        Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh
-                                        euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--end:: Widgets/Support Tickets -->
-            </div>
-        </div>
-    </div>
-</div>
+    
 <div class="modal fade" id="m_daterangepicker_modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content ">
