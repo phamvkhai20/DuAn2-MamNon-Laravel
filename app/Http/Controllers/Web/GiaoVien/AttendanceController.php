@@ -45,7 +45,8 @@ class AttendanceController extends Controller
         $check1 = Attendance::where('class_id', $id)->where("date", $dateAttendance)->get();
         $check2 = Attendance::where('class_id', $id)->where("date", $dateAttendance)->where('status', '0')->get();
         $check3 = Attendance::where('class_id', $id)->where("date", $dateAttendance)->where('status', '2')->get();
-        return view('staff.giao-vien.diem-danh.diem-danh', compact('kids', 'attendanceTrue','idTeacher','dateAttendance','check','attendance','check1','check2','check3'));
+        $check_status = Attendance::where('class_id', $id)->where("date", $dateAttendance)->where('comment_status', '0')->get();
+        return view('staff.giao-vien.diem-danh.diem-danh', compact('kids', 'attendanceTrue','idTeacher','dateAttendance','check','attendance','check1','check2','check3','check_status'));
     }
     public function giao_dien_diem_danh_don_muon(Request $request, $id)
     {
@@ -89,6 +90,7 @@ class AttendanceController extends Controller
                     $attendance->leave_time = "00:00:00";
                     $attendance->status = 0;
                     $attendance->arrival_time = "00:00:00";
+                    $attendance->comment_status = "1";
                     $attendance->health =  "";
                     $attendance->learning =  "";
                     $attendance->eating =  "";
@@ -102,16 +104,17 @@ class AttendanceController extends Controller
                 
             }
             if($data["status"][$index] == "on"){
-                $result = array(
-                    'parent_name' =>  $data["parent_name"][$index],
-                    'kid_name' =>  $data["kid_name"][$index],
-                    'message'   =>   Carbon::now()->toTimeString(),
-                );
+                // $result = array(
+                //     'parent_name' =>  $data["parent_name"][$index],
+                //     'kid_name' =>  $data["kid_name"][$index],
+                //     'message'   =>   Carbon::now()->toTimeString(),
+                // );
         
-                Mail::to($data["parent_email"][$index])->send(new CheckInEmail($result));
+                // Mail::to($data["parent_email"][$index])->send(new CheckInEmail($result));
                     $attendance = new Attendance();
                     $attendance->kid_id = $data["kid_id"][$index];
                     $attendance->leave_time = "00:00:00";
+                    $attendance->comment_status = "0";
                     $attendance->status = 1;
                     $attendance->arrival_time =  $data["arrival_time"][$index];
                     $attendance->health = 'Trẻ bình thường! Không có dấu hiệu bất thường';
@@ -137,13 +140,13 @@ class AttendanceController extends Controller
             $attendance = new Attendance();
             if($data["status"][$index] != $data["old_status"][$index]){
                 if ($data["status"][$index] == "0") {
-                    $result = array(
-                        'parent_name' =>  $data["parent_name"][$index],
-                        'kid_name' =>  $data["kid_name"][$index],
-                        'message'   =>   Carbon::now()->toTimeString(),
-                    );
+                    // $result = array(
+                    //     'parent_name' =>  $data["parent_name"][$index],
+                    //     'kid_name' =>  $data["kid_name"][$index],
+                    //     'message'   =>   Carbon::now()->toTimeString(),
+                    // );
             
-                    Mail::to($data["parent_email"][$index])->send(new CheckOutEmail($result));
+                    // Mail::to($data["parent_email"][$index])->send(new CheckOutEmail($result));
                     $attendance->status = 0;
                     $attendance->leave_time =  $data["leave_time"][$index];
                     if(json_decode($attendance->leave_time) == null){
@@ -172,13 +175,13 @@ class AttendanceController extends Controller
                  
                 }
                 else{
-                    $result = array(
-                        'parent_name' =>  $data["parent_name"][$index],
-                        'kid_name' =>  $data["kid_name"][$index],
-                        'message'   =>   Carbon::now()->toTimeString(),
-                    );
+                    // $result = array(
+                    //     'parent_name' =>  $data["parent_name"][$index],
+                    //     'kid_name' =>  $data["kid_name"][$index],
+                    //     'message'   =>   Carbon::now()->toTimeString(),
+                    // );
             
-                    Mail::to($data["parent_email"][$index])->send(new CheckInEmail($result));
+                    // Mail::to($data["parent_email"][$index])->send(new CheckInEmail($result));
                     $attendance->status = 1;
                     $attendance->arrival_time =  $data["arrival_time"][$index];
                     if(json_decode($attendance->arrival_time) == null){
@@ -212,7 +215,9 @@ class AttendanceController extends Controller
                         'health' => $attendance->health,
                         'learning' => $attendance->learning,
                         'eating' => $attendance->eating,
+                        'comment_status' => 0,
                     );
+                    // dd($params);
                     $find = Attendance::where("kid_id", $data["kid_id"][$index])->where("date", $date)->first();
                     $find->update($params);
                 }
@@ -228,6 +233,14 @@ class AttendanceController extends Controller
                 $find->update($params);
             }
             if($data["check1"] == $data["check2"] + $data["check3"]){
+                if($data["comment_status"][$index] == 0){
+                    $params = array(
+                        
+                        'comment_status' => 1,
+                    );
+                    
+                    $find = Attendance::where("kid_id", $data["kid_id"][$index])->where("date", $date)->first();
+                    $find->update($params);
                 $result = array(
                     'date' =>  $data["date"][$index],
                     'parent_name' =>  $data["parent_name"][$index],
@@ -239,6 +252,7 @@ class AttendanceController extends Controller
                 // dd($result);
         
                 Mail::to($data["parent_email"][$index])->send(new CommentEmail($result));
+                }
             }
         }
         
