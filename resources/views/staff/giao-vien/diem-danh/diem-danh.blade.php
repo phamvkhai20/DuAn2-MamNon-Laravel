@@ -137,7 +137,6 @@
             @elseif($dateAttendance >   Carbon::now()->toDateString())
                 <h5 class="text-center">Chưa đến thời gian điểm danh</h5>
             @elseif($dateAttendance =   Carbon::now()->toDateString())
-            
                         @if(count($check) == 0)
                         <form class="row" action="{{ route('giao-vien.diem_danh_den')}}" method="post">
                             @csrf
@@ -250,6 +249,7 @@
                                 <input hidden type="text" value="{{count($check2)}}" name="check2" />
                                 <input hidden type="text" value="{{count($check3)}}" name="check3" />
                                 <input hidden type="text" value="{{$attendance->comment_status}}" name="comment_status[{{$attendance->kid->id}}]" />
+
                                     <div style="margin-left:-15px;" class="box_group_name">
                                         <b> {{$attendance->kid->kid_name}}</b>
                                         <input hidden type="text" value="{{$attendance->kid->kid_name}}" name="kid_name[{{$attendance->kid->id}}]" />
@@ -456,6 +456,7 @@
                                 @else
                                 <button onclick="return confirm('Bạn đã chắc chắn chưa?')" @if (!empty($kid->attendance[0]) && $count2 == 0) disabled @endif id="diem_danh_ve"  class="btn btn-primary button_attendance" type="submit">Xác nhận</button>
                                 @endif
+
                                 </li>
                             </div>
                             @endif
