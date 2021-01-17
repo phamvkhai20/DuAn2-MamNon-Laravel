@@ -358,26 +358,26 @@
     console.log(nam_min);
     if (kid_name.value== "") {
         kid_name.style.backgroundColor='#FFE591';
-        document.querySelector("#id_kid_name").innerHTML="không được bỏ trống tên";
+        document.querySelector("#id_kid_name").innerHTML="Không được bỏ trống tên";
             }
-            else if(nickname.value ==""){
+             if(nickname.value ==""){
                  nickname.style.backgroundColor='#FFE591';
-                 document.querySelector("#id_nick_name").innerHTML="không được bỏ trống tên ở nhà";
+                 document.querySelector("#id_nick_name").innerHTML="Không được bỏ trống tên ở nhà";
             }
-            else if(date_of_birth   ==""){
+             if(date_of_birth   ==""){
                 date_of_birth.style.backgroundColor='#FFE591';
                 document.querySelector("#id_date").innerHTML="không được bỏ trống ngày sinh";
             }
-            else if(tuoi<nam_min||tuoi>nam_max){
+             if(tuoi<nam_min||tuoi>nam_max){
                 date_of_birth.style.backgroundColor='#FFE591';
-                document.querySelector("#id_date").innerHTML="năm tuổi k phù hợp";
+                document.querySelector("#id_date").innerHTML="Năm tuổi k phù hợp";
             }
-            else if(address.value ==""){
+             if(address.value ==""){
                 address.style.backgroundColor='#FFE591';
-                document.querySelector("#id_address").innerHTML="không được để trống địa chỉ";
+                document.querySelector("#id_address").innerHTML="Không được để trống địa chỉ";
             }
-            else if(grade =="0"){
-                 alert("hãy chọn lớp cho trẻ");
+             if(grade =="0"){
+                 alert("Chọn lứa tuổi của trẻ");
                         // document.querySelector("#id_address").innerHTML="không được để trống địa chỉ";
             }
             else{

@@ -37,10 +37,11 @@ class AttendanceController extends Controller
         $attendanceTrue = Attendance::where('class_id', $id)->where("date", $dateAttendance)->with('don_ho','teacher')->with(['kid'=>function($query){
             $query->with('parent');
         }])->orderBy('note', 'desc')->get();
-        $check = Attendance::where('class_id', $id)->where("date", $dateAttendance)->with('don_ho','teacher')->with(['kid'=>function($query){
+        $attendance = Attendance::where('class_id', $id)->where("date", $dateAttendance)->with('don_ho','teacher')->with(['kid'=>function($query){
             $query->with('parent');
-        }])->where('status', '1')->get();
-        return view('staff.giao-vien.diem-danh.diem-danh', compact('kids', 'attendanceTrue','idTeacher','dateAttendance','check'));
+        }])->get();
+        $check = Attendance::where('class_id', $id)->where("date", $dateAttendance)->whereNotIn('status', [2])->get();
+        return view('staff.giao-vien.diem-danh.diem-danh', compact('kids', 'attendanceTrue','idTeacher','dateAttendance','check','attendance'));
     }
     public function giao_dien_diem_danh_don_muon(Request $request, $id)
     {
@@ -78,7 +79,25 @@ class AttendanceController extends Controller
         }
         foreach ($data["kid_id"] as $index => $kid) {
             $find = Attendance::where('kid_id', $data["kid_id"][$index])->where("date", $data["date"][$index])->where('status', '1')->get();
-            if ($data["status"][$index] != "2") {
+            if ($data["status"][$index] == "off") {
+                    $attendance = new Attendance();
+                    $attendance->kid_id = $data["kid_id"][$index];
+                    $attendance->leave_time = "00:00:00";
+                    $attendance->status = 0;
+                    $attendance->arrival_time = "00:00:00";
+                    $attendance->health =  "";
+                    $attendance->learning =  "";
+                    $attendance->eating =  "";
+                    $attendance->teacher_id =  Auth::guard('teacher')->user()->id;
+                    $attendance->class_id =  $data["class_id"][$index];
+                    $attendance->date =  $data["date"][$index];
+                    $attendance->note =  $data["note"][$index];
+                    
+                    $attendance->save();
+                    $request->session()->flash('status', 'ok');
+                
+            }
+            if($data["status"][$index] == "on"){
                 $result = array(
                     'parent_name' =>  $data["parent_name"][$index],
                     'kid_name' =>  $data["kid_name"][$index],
@@ -89,27 +108,17 @@ class AttendanceController extends Controller
                     $attendance = new Attendance();
                     $attendance->kid_id = $data["kid_id"][$index];
                     $attendance->leave_time = "00:00:00";
-                    if ($data["status"][$index] == "off") {
-                        $attendance->status = 0;
-                        $attendance->arrival_time = "00:00:00";
-                        $attendance->health =  "";
-                        $attendance->learning =  "";
-                        $attendance->eating =  "";
-                    } else {
-                        $attendance->status = 1;
-                        $attendance->arrival_time =  $data["arrival_time"][$index];
-                        $attendance->health = 'Trẻ bình thường! Không có dấu hiệu bất thường';
-                        $attendance->learning = 'Chăm ngoan! Nghe lời cô giáo';
-                        $attendance->Eating = 'Trẻ bình thường! Không quậy trong giờ ăn, ngủ';
-                    }
+                    $attendance->status = 1;
+                    $attendance->arrival_time =  $data["arrival_time"][$index];
+                    $attendance->health = 'Trẻ bình thường! Không có dấu hiệu bất thường';
+                    $attendance->learning = 'Chăm ngoan! Nghe lời cô giáo';
+                    $attendance->Eating = 'Trẻ bình thường! Không quậy trong giờ ăn, ngủ';
                     $attendance->teacher_id =  Auth::guard('teacher')->user()->id;
                     $attendance->class_id =  $data["class_id"][$index];
                     $attendance->date =  $data["date"][$index];
                     $attendance->note =  $data["note"][$index];
-                    
                     $attendance->save();
                     $request->session()->flash('status', 'ok');
-                
             }
         }
         return redirect()->route('giao-vien.giao_dien_diem_danh', ['id' => $data["class"],'date'=>$date]);
