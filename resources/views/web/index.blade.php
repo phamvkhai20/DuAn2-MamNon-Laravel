@@ -81,7 +81,7 @@
                             <p class="card-text">Last updated 3 mins ago</p>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="col-4">
                     <img style="width: 100%" src="http://mauweb.monamedia.net/kidsworld/wp-content/uploads/2019/01/kids_painting.png" alt="">
