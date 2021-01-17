@@ -44,15 +44,18 @@
             <div class="m-portlet__body">
                 <div class="m-section">
                     <div class=" table-responsive">
-                        <table class="table table-bordered table_attendance" style="min-width: 100%;width: 100%;">
+                        <table class="table table-bordered table_attendance" style="min-width: 500px;width: 100%;">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Họ và tên</th>
+                                    @foreach($getAttendance as $gg)
+                                    <th>{{substr($gg->date,8,2)}}</th>
+                                    @endforeach
                                     <th>Đi học</th>
                                     <th>Vắng</th>
                                     <th>Có phép</th>
-                                    
+                                    <th>Ăn</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,6 +63,20 @@
                                 <tr>
                                     <th width="40px">{{$index+1}}</th>
                                     <td width="140px">{{$student->kid_name}}</td>
+                                    @foreach($student->attendance as $attendances)
+                                    <td width="60px">
+                                        
+                                            <select  onchange="updateAttendance({{$attendances->id}})" id="attendance_{{$attendances->id}}"
+                                                class="form-control m-bootstrap-select m_selectpicker button_attendance">
+                                                <option value="1" {{ $attendances->status==1?"selected":''}} data-content="<span  class='m-badge m-badge--success m-badge--wide m-badge--rounded '>Đi học</span>">
+                                                </option>
+                                                <option value="2" {{ $attendances->status==2?"selected":''}}  data-content="<span   class='m-badge m-badge--brand  m-badge--wide m-badge--rounded'>Có phép</span>">
+                                                </option>
+                                                <option value="0"   {{ $attendances->status==0?"selected":''}} data-content="<span class='m-badge m-badge--danger  m-badge--wide m-badge--rounded'>Vắng</span>">
+                                                </option>
+                                            </select>
+                                    </td>
+                                    @endforeach
                                     @if(!empty(count($present[$index]->attendance)))
                                     <td width="60px">{{count($present[$index]->attendance)}}</td>
                                     @else
@@ -75,7 +92,7 @@
                                     @else
                                     <td width="60px">0</td>
                                     @endif
-                                
+                                    <td>{{count($meal[$index]->attendance)}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
