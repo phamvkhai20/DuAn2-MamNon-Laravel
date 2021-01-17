@@ -49,6 +49,7 @@ class OffSchoolController extends Controller
                 $offSchool->class_id = $kid->class_id;
                 $offSchool->date =  Carbon::parse($start)->format('Y-m-d');
                 $offSchool->note =  "Xin Nghỉ học";
+                $offSchool->comment_status =  "1";
                 $offSchool->save();
                 return response()->json(
                     ['data' =>   'Thành công']

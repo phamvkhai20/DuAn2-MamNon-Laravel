@@ -238,7 +238,7 @@ class AttendanceController extends Controller
                         
                         'comment_status' => 1,
                     );
-                    
+
                     $find = Attendance::where("kid_id", $data["kid_id"][$index])->where("date", $date)->first();
                     $find->update($params);
                 $result = array(
