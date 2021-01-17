@@ -139,13 +139,13 @@ class AttendanceController extends Controller
             $attendance = new Attendance();
             if($data["status"][$index] != $data["old_status"][$index]){
                 if ($data["status"][$index] == "0") {
-                    // $result = array(
-                    //     'parent_name' =>  $data["parent_name"][$index],
-                    //     'kid_name' =>  $data["kid_name"][$index],
-                    //     'message'   =>   Carbon::now()->toTimeString(),
-                    // );
+                    $result = array(
+                        'parent_name' =>  $data["parent_name"][$index],
+                        'kid_name' =>  $data["kid_name"][$index],
+                        'message'   =>   Carbon::now()->toTimeString(),
+                    );
             
-                    // Mail::to($data["parent_email"][$index])->send(new CheckOutEmail($result));
+                    Mail::to($data["parent_email"][$index])->send(new CheckOutEmail($result));
                     $attendance->status = 0;
                     $attendance->leave_time =  $data["leave_time"][$index];
                     if(json_decode($attendance->leave_time) == null){
@@ -174,13 +174,13 @@ class AttendanceController extends Controller
                  
                 }
                 else{
-                    // $result = array(
-                    //     'parent_name' =>  $data["parent_name"][$index],
-                    //     'kid_name' =>  $data["kid_name"][$index],
-                    //     'message'   =>   Carbon::now()->toTimeString(),
-                    // );
+                    $result = array(
+                        'parent_name' =>  $data["parent_name"][$index],
+                        'kid_name' =>  $data["kid_name"][$index],
+                        'message'   =>   Carbon::now()->toTimeString(),
+                    );
             
-                    // Mail::to($data["parent_email"][$index])->send(new CheckInEmail($result));
+                    Mail::to($data["parent_email"][$index])->send(new CheckInEmail($result));
                     $attendance->status = 1;
                     $attendance->arrival_time =  $data["arrival_time"][$index];
                     if(json_decode($attendance->arrival_time) == null){
@@ -237,7 +237,7 @@ class AttendanceController extends Controller
                         
                         'comment_status' => 1,
                     );
-                    
+
                     $find = Attendance::where("kid_id", $data["kid_id"][$index])->where("date", $date)->first();
                     $find->update($params);
                 $result = array(
@@ -333,7 +333,7 @@ class AttendanceController extends Controller
             }else{
                 $today=$todayTemp;
             }
-            $query->whereBetween("date", [$month.'-1', $today])->where('status', "0");
+            $query->whereBetween("date", [$month.'-1', $today])->where('arrival_time',"==", "00:00:00");
         }])->get();
         $permission = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
             $date=request()->all()?(request()->get('date')):Carbon::now();
@@ -355,20 +355,10 @@ class AttendanceController extends Controller
             }else{
                 $today=$todayTemp;
             }
-            $query->whereBetween("date", [$month.'-1', $today])->where('status', "1");
+            $query->whereBetween("date", [$month.'-1', $today])->where('arrival_time',"!=", "00:00:00");
         }])->get();
-        $meal = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
-            $date=request()->all()?(request()->get('date')):substr(Carbon::now(), 0, 10);
-            $month = substr($date, 0, 7);
-            $todayTemp = substr($date, 0, 10);
-            if($todayTemp==$month){
-                $today = substr($date, 0, 10)."-31";
-            }else{
-                $today=$todayTemp;
-            }
-            $query->whereBetween("date", [$month.'-1', $today])->where('meal', "on");
-        }])->get();
-        return view('staff.giao-vien.diem-danh.tong-hop', compact('getAttendance', 'studentInClass', 'absent', 'permission', 'present','month','meal'));
+        
+        return view('staff.giao-vien.diem-danh.tong-hop', compact('getAttendance', 'studentInClass', 'absent', 'permission', 'present','month'));
     }
     public function confirm_attendance(Request $request){
         $arrKids=$request->get('confirm');

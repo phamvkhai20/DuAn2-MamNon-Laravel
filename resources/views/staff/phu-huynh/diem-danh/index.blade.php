@@ -49,7 +49,6 @@
                                             <th rowspan="1" colspan="1">Trạng thái</th>
                                             <th rowspan="1" colspan="1">Giờ đến</th>
                                             <th rowspan="1" colspan="1">Giờ về</th>
-                                            <th rowspan="1" colspan="1">Ăn</th>
                                             <th rowspan="1" colspan="1">Khác</th>
                                         </tr>
                                     </thead>
@@ -69,17 +68,22 @@
                                                 @endphp
                                             </td>
                                             <td rowspan="1" colspan="1">
-                                                <span class="{{$styleAttendance[$attendance->status]}}">
-                                                    {{$statusAttendance[$attendance->status]}}
+                                            @if($attendance->arrival_time != "00:00:00")
+                                                <span class="m--font-success">
+                                                    Đi học
                                                 </span>
-                                            </td>
+                                            @elseif($attendance->arrival_time == "00:00:00")
+                                            <span class="m--font-danger">
+                                                    Nghỉ học
+                                                </span>
+                                            
+                                            @elseif($attendance->status == 2)
+                                            <span class="m--font-primary">
+                                                   Nghỉ có phép
+                                                </span>
+                                            @endif
                                             <td rowspan="1" colspan="1">{{$attendance->arrival_time}}</td>
                                             <td rowspan="1" colspan="1">{{$attendance->leave_time}}</td>
-                                            <td rowspan="1" colspan="1">
-                                                <span class="{{$styleMeal[$attendance->meal]}}">
-                                                    {{$statusMeal[$attendance->meal]}}
-                                                </span>
-                                            </td>
                                             <td rowspan="1" colspan="1"><a href="#" data-toggle="modal" data-target="#m_modal_{{$attendance->id}}">Ghi chú</a> </td>
                                             <div class="modal fade" id="m_modal_{{$attendance->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg" role="document">
