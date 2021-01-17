@@ -312,7 +312,7 @@
                                             </span>
                                         </button>
 
-                                        <button href="#" onclick="fillData1()"
+                                        <button href="#" onclick="fillData11()"
                                             class="btn btn-warning m-btn m-btn--custom m-btn--icon"
                                             data-wizard-action="next"id="aas">
                                             <span>
@@ -405,7 +405,6 @@
         const phone_text = document.querySelector("span[name = 'phone_text']");
         const email_text = document.querySelector("span[name = 'email_text']");
 
-        console.log(kid_name);
         kid_name_text.innerHTML = kid_name;
         nickname_text.innerHTML = nickname;
         address_text.innerHTML = address;

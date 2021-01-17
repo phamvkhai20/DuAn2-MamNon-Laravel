@@ -9,7 +9,7 @@
                 <div class="m-portlet__head-caption">
                     <div class="m-portlet__head-title">
                         <h3 class="m-portlet__head-text">
-                            @yield('title')- {{$history->kid_name}}
+                            @yield('title')
                         </h3>
                     </div>
                 </div>
@@ -42,6 +42,7 @@
                                             <th rowspan="1" colspan="1">Trạng thái</th>
                                             <th rowspan="1" colspan="1">Giờ đến</th>
                                             <th rowspan="1" colspan="1">Giờ về</th>
+                                            <th rowspan="1" colspan="1">Ăn</th>
                                             <th rowspan="1" colspan="1">Khác</th>
                                         </tr>
                                     </thead>
@@ -75,7 +76,13 @@
                                             </td>
                                             <td rowspan="1" colspan="1">{{$attendance->arrival_time}}</td>
                                             <td rowspan="1" colspan="1">{{$attendance->leave_time}}</td>
-                                            
+                                            <td rowspan="1" colspan="1">
+                                                @php
+                                                if($attendance->meal==0){echo "Không ăn";}else{
+                                                echo "Có ăn";
+                                                }
+                                                @endphp
+                                            </td>
                                             <td rowspan="1" colspan="1"><a href="">Chi tiết</a> </td>
                                         </tr>
                                         @endforeach
