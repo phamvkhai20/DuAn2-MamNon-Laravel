@@ -12,6 +12,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\CheckOutEmail;
 use App\Mail\CheckInEmail;
+use App\Mail\CommentEmail;
 use Mail;
 class AttendanceController extends Controller
 {
@@ -41,7 +42,10 @@ class AttendanceController extends Controller
             $query->with('parent');
         }])->get();
         $check = Attendance::where('class_id', $id)->where("date", $dateAttendance)->whereNotIn('status', [2])->get();
-        return view('staff.giao-vien.diem-danh.diem-danh', compact('kids', 'attendanceTrue','idTeacher','dateAttendance','check','attendance'));
+        $check1 = Attendance::where('class_id', $id)->where("date", $dateAttendance)->get();
+        $check2 = Attendance::where('class_id', $id)->where("date", $dateAttendance)->where('status', '0')->get();
+        $check3 = Attendance::where('class_id', $id)->where("date", $dateAttendance)->where('status', '2')->get();
+        return view('staff.giao-vien.diem-danh.diem-danh', compact('kids', 'attendanceTrue','idTeacher','dateAttendance','check','attendance','check1','check2','check3'));
     }
     public function giao_dien_diem_danh_don_muon(Request $request, $id)
     {
@@ -72,7 +76,7 @@ class AttendanceController extends Controller
         $idTeacher = Auth::guard('teacher')->user()->id;
         $date= request()->get('dateAttendance');
         $data = Arr::except($request->all(), ['_token']);
-        // dd($data);
+       
         if($date>substr(Carbon::now(), 0, 10)){
             $request->session()->flash('status', 'error');
             return redirect()->route('giao-vien.giao_dien_diem_danh', ['id' => $data["class"],'date'=>$date]);
@@ -128,7 +132,7 @@ class AttendanceController extends Controller
         $date= request()->get('dateAttendance');
         // dd($date);
         $data = Arr::except($request->all(), ['_token']);
-        // dd($data);
+   
         foreach ($data["kid_id"] as $index => $kid) {
             $attendance = new Attendance();
             if($data["status"][$index] != $data["old_status"][$index]){
@@ -223,7 +227,21 @@ class AttendanceController extends Controller
                 $find = Attendance::where("kid_id", $data["kid_id"][$index])->where("date", $date)->first();
                 $find->update($params);
             }
+            if($data["check1"] == $data["check2"] + $data["check3"]){
+                $result = array(
+                    'date' =>  $data["date"][$index],
+                    'parent_name' =>  $data["parent_name"][$index],
+                    'kid_name' =>  $data["kid_name"][$index],
+                    'health' =>  $data["health"][$index],
+                    'learning' =>  $data["learning"][$index],
+                    'eating' =>  $data["eating"][$index],
+                );
+                // dd($result);
+        
+                Mail::to($data["parent_email"][$index])->send(new CommentEmail($result));
+            }
         }
+        
         $request->session()->flash('status', 'ok');
         return redirect()->route('giao-vien.giao_dien_diem_danh', ['id' => $data["class"],'date'=>$date]);
     }
@@ -303,7 +321,7 @@ class AttendanceController extends Controller
             }else{
                 $today=$todayTemp;
             }
-            $query->whereBetween("date", [$month.'-1', $today])->where('status', "0");
+            $query->whereBetween("date", [$month.'-1', $today])->where('arrival_time', "00:00:00");
         }])->get();
         $permission = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
             $date=request()->all()?(request()->get('date')):Carbon::now();
@@ -325,20 +343,10 @@ class AttendanceController extends Controller
             }else{
                 $today=$todayTemp;
             }
-            $query->whereBetween("date", [$month.'-1', $today])->where('status', "1");
+            $query->whereBetween("date", [$month.'-1', $today])->where('arrival_time','!=', "00:00:00");
         }])->get();
-        $meal = Kid::where('class_id', $id)->with(['attendance' => function ($query) {
-            $date=request()->all()?(request()->get('date')):substr(Carbon::now(), 0, 10);
-            $month = substr($date, 0, 7);
-            $todayTemp = substr($date, 0, 10);
-            if($todayTemp==$month){
-                $today = substr($date, 0, 10)."-31";
-            }else{
-                $today=$todayTemp;
-            }
-            $query->whereBetween("date", [$month.'-1', $today])->where('meal', "on");
-        }])->get();
-        return view('staff.giao-vien.diem-danh.tong-hop', compact('getAttendance', 'studentInClass', 'absent', 'permission', 'present','month','meal'));
+       
+        return view('staff.giao-vien.diem-danh.tong-hop', compact('getAttendance', 'studentInClass', 'absent', 'permission', 'present','month'));
     }
     public function confirm_attendance(Request $request){
         $arrKids=$request->get('confirm');
