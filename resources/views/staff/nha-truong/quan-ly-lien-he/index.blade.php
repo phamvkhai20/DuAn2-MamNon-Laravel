@@ -79,13 +79,6 @@
                             <span>Quay lại</span>
                         </span>
                     </a>
-                    <a href="{{route('nha-truong.nam.them_moi')}}"
-                        class="btn btn-success m-btn m-btn--icon m-btn--wide m-btn--md m--margin-right-10">
-                        <span>
-                            <i class="la la-plus"></i>
-                            <span>Thêm năm học</span>
-                        </span>
-                    </a>
                 </div>
             </div>
             <div class="m-portlet__body">

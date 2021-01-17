@@ -32,7 +32,7 @@
                                 <label class="col-lg-2 col-form-label">Năm:</label>
                                 <div class="col-lg-6">
                                     <input type="text" name="school_year" class="form-control m-input" placeholder="Nhập tên đầy đủ">
-                                    <!-- <span class="m-form__help">Please enter your full name</span> -->
+                                    <span class="error-message text-danger">{{ $errors->first('school_year') }}</span></p>
                                 </div>
                             </div>
                         </div>
